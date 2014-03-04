@@ -1,0 +1,11 @@
+straightDFA/init.bc
+straightDFA/log.bc
+*.ll
+miniz/bin/
+miniz/bin_linux/
+miniz/bin_mingw/
+*.cbp
+*.vcproj
+miniz/examples.sln
+miniz/examples.workspace
+
