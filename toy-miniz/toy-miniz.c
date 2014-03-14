@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+#include <sys/types.h> #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdint.h>
@@ -43,8 +42,10 @@ void mz_deflate(mz_stream * pStream, size_t rc)
     tdefl_compress(&d, pStream->next_in, pStream->next_out, rc);
 }
 
-int main(int argc, char **argv)
+//int main(int argc, char **argv)
+int main(void)
 {
+    //char * argument = argv[0];
     mz_stream stream;
     memset(&stream, 0, sizeof(stream));
     stream.next_in = s_inbuf;

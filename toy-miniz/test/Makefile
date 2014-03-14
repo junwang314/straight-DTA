@@ -40,3 +40,6 @@ view:$(TARGET).bc
 
 reco:$(TARGET).bc
 	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -reco < $^
+
+verbose:$(TARGET).bc
+	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -reco -debug-only=verbose < $^ >make.ll 2>&1; vim make.ll

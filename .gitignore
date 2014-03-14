@@ -8,4 +8,5 @@ miniz/bin_mingw/
 *.vcproj
 miniz/examples.sln
 miniz/examples.workspace
+*.swp
 

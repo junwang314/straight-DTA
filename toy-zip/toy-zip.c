@@ -36,20 +36,20 @@ int testFunc(){
 
 int main(int argc, char **argv)
 {
-	int fs = open(src, O_RDONLY);
-	int fd = open(dst, O_WRONLY|O_CREAT, 0664);
+    FILE * fs = fopen(src, "r");
+    FILE * fd = fopen(dst, "w");
 
 	void * p = malloc(8);
-	ssize_t rc = read(fs, p, 8);
+	ssize_t rc = fread(p, 1, 8, fs);
 	if (rc <= 0)
 		return -1;
 	else
 	{
 		int result = compress((int *)p);
-		write(fd, &result, 4);
+		fwrite(&result, 1, 4, fd);
 	}
-	close(fs);
-	close(fd);
+	fclose(fs);
+	fclose(fd);
 	free(p);
     int ret = testFunc();
 	return 0;
