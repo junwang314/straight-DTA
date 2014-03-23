@@ -9,4 +9,5 @@ miniz/bin_mingw/
 miniz/examples.sln
 miniz/examples.workspace
 *.swp
+*.o
 

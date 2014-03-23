@@ -3,7 +3,7 @@ CC 	=	wllvm
 INSTALL	=	install
 IFLAGS  = -idirafter dummyinc
 #CFLAGS = -g
-CFLAGS	=	-O2 -Wall -W -Wshadow #-pedantic -Werror -Wconversion
+CFLAGS	=	-g -O2 -Wall -W -Wshadow #-pedantic -Werror -Wconversion
 
 LIBS	=	`./vsf_findlibs.sh`
 LINK	=	-lcrypt -Wl,-s
