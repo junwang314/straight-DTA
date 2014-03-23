@@ -577,7 +577,7 @@ vsf_sysutil_exit(int exit_code)
     s_exit_func = 0;
     (*curr_func)();
   }
-  _exit(exit_code);
+  exit(exit_code); //use exit() instead of _exit() to flush log file upon exit
 }
 
 struct vsf_sysutil_wait_retval

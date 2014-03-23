@@ -22,6 +22,9 @@
 #include "tcpwrap.h"
 #include "vsftpver.h"
 #include "ssl.h"
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
 
 /*
  * Forward decls of helper functions
@@ -32,9 +35,20 @@ static void session_init(struct vsf_session* p_sess);
 static void env_init(void);
 static void limits_init(void);
 
+void flush_log(int sig)
+{
+  exit(0);
+}
+
 int
 main(int argc, const char* argv[])
 {
+  /* add handler for SIGINT to flush log file when receiving SIGINT, e.g. CTRL^C is pressed */
+  struct sigaction sa;
+  memset(&sa, 0, sizeof(struct sigaction));
+  sa.sa_handler = flush_log;
+  sigaction(SIGINT, &sa, NULL);
+
   struct vsf_session the_session =
   {
     /* Control connection */
