@@ -163,10 +163,12 @@ main(int argc, const char* argv[])
   if (tunable_listen || tunable_listen_ipv6)
   {
     /* Standalone mode */
+    printf("vsf_standalone_main\n");
     struct vsf_client_launch ret = vsf_standalone_main();
     the_session.num_clients = ret.num_children;
     the_session.num_this_ip = ret.num_this_ip;
   }
+
   if (tunable_tcp_wrappers)
   {
     the_session.tcp_wrapper_ok = vsf_tcp_wrapper_ok(VSFTP_COMMAND_FD);

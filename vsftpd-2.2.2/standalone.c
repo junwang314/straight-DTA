@@ -162,6 +162,7 @@ vsf_standalone_main(void)
     if (new_child != 0)
     {
       /* Parent context */
+      printf("parent context\n");
       vsf_sysutil_close(new_client_sock);
       if (new_child > 0)
       {
@@ -178,6 +179,7 @@ vsf_standalone_main(void)
     else
     {
       /* Child context */
+      printf("child context");
       vsf_set_die_if_parent_dies();
       vsf_sysutil_close(listen_sock);
       prepare_child(new_client_sock);
@@ -199,6 +201,7 @@ prepare_child(int new_client_sock)
   if (new_client_sock > 2)
   {
     vsf_sysutil_close(new_client_sock);
+    printf("close new_client_sock\n");
   }
 }
 
