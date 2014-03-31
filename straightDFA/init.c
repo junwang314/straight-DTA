@@ -132,7 +132,10 @@ short * _StraightTaint_init (short ** ptrToAddr)
 //    gettimeofday(&tv_old, NULL);
 
 #ifdef _HACK_LOG
-    flog = fopen("tmp", "w");
+    int pid = getpid();
+    char filename[1024];
+    snprintf(filename, 1024, "tmp.%d", pid);
+    flog = fopen(filename, "w");
 #endif
 
     printf("init complete...\n");
