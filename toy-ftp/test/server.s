@@ -143,15 +143,10 @@ _Z8myListenv:                           # @_Z8myListenv
 	movl	$.L.str6, %edi
 	xorl	%eax, %eax
 	callq	printf
-	movl	$_ZSt4cout, %edi
-	movl	$.L.str7, %esi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
 	movl	-24(%rbp), %esi
-	movq	%rax, %rdi
-	callq	_ZNSolsEi
-	movl	$.L.str8, %esi
-	movq	%rax, %rdi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	movl	$.L.str7, %edi
+	xorl	%eax, %eax
+	callq	printf
 	callq	fork
 	movl	%eax, %ebx
 	movl	%ebx, %edi
@@ -165,7 +160,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	callq	_StraightTaint_log
 	cmpl	$0, -48(%rbp)
 	je	.LBB1_15
-# BB#5:                                 # %if.else32
+# BB#5:                                 # %if.else24
                                         #   in Loop: Header=BB1_2 Depth=1
 	movl	$10, %edi
 	callq	_StraightTaint_log
@@ -174,83 +169,65 @@ _Z8myListenv:                           # @_Z8myListenv
 	cmpl	$-1, %eax
 	movl	%eax, -48(%rbp)
 	jne	.LBB1_7
-# BB#6:                                 # %if.then35
+# BB#6:                                 # %if.then27
                                         #   in Loop: Header=BB1_2 Depth=1
 	movl	$11, %edi
 	callq	_StraightTaint_log
-	movl	$_ZSt4cout, %edi
-	movl	$.L.str11, %esi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	movl	$.L.str10, %edi
+	xorl	%eax, %eax
+	callq	printf
 	jmp	.LBB1_11
 	.align	16, 0x90
-.LBB1_7:                                # %if.else37
+.LBB1_7:                                # %if.else29
                                         #   in Loop: Header=BB1_2 Depth=1
 	movl	$12, %edi
 	callq	_StraightTaint_log
 	testb	$127, -52(%rbp)
 	jne	.LBB1_9
-# BB#8:                                 # %if.then40
+# BB#8:                                 # %if.then32
                                         #   in Loop: Header=BB1_2 Depth=1
 	movl	$13, %edi
 	callq	_StraightTaint_log
 	movl	-24(%rbp), %edi
 	callq	close
-	movl	$_ZSt4cout, %edi
-	movl	$.L.str12, %esi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
 	movl	-48(%rbp), %esi
-	movq	%rax, %rdi
-	callq	_ZNSolsEi
-	movl	$.L.str8, %esi
-	movq	%rax, %rdi
+	movl	$.L.str11, %edi
+	xorl	%eax, %eax
+	callq	printf
 	jmp	.LBB1_10
 	.align	16, 0x90
-.LBB1_9:                                # %if.else45
+.LBB1_9:                                # %if.else35
                                         #   in Loop: Header=BB1_2 Depth=1
 	movl	$14, %edi
 	callq	_StraightTaint_log
-	movl	$_ZSt4cout, %edi
-	movl	$.L.str13, %esi
-.LBB1_10:                               # %if.end47
+	movl	$.L.str12, %edi
+	xorl	%eax, %eax
+	callq	printf
+.LBB1_10:                               # %if.end37
                                         #   in Loop: Header=BB1_2 Depth=1
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
 	movl	$15, %edi
 	callq	_StraightTaint_log
 	jmp	.LBB1_11
-.LBB1_15:                               # %if.then19
+.LBB1_15:                               # %if.then17
 	movl	$9, %edi
 	callq	_StraightTaint_log
-	movl	$_ZSt4cout, %edi
-	movl	$.L.str9, %esi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
 	movl	-48(%rbp), %esi
-	movq	%rax, %rdi
-	callq	_ZNSolsEi
-	movl	$.L.str8, %esi
-	movq	%rax, %rdi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	movl	$.L.str8, %edi
+	xorl	%eax, %eax
+	callq	printf
 	movl	-24(%rbp), %edi
 	xorl	%esi, %esi
 	callq	dup2
-	movl	%eax, -56(%rbp)
-	movl	$_ZSt4cout, %edi
-	movl	$.L.str10, %esi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
-	movl	-56(%rbp), %esi
-	movq	%rax, %rdi
-	callq	_ZNSolsEi
-	movl	$.L.str8, %esi
-	movq	%rax, %rdi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
-	movl	$_ZSt4cout, %edi
-	movl	$.L.str7, %esi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	movl	%eax, %ecx
+	movl	%ecx, -56(%rbp)
+	movl	$.L.str9, %edi
+	xorl	%eax, %eax
+	movl	%ecx, %esi
+	callq	printf
 	movl	-24(%rbp), %esi
-	movq	%rax, %rdi
-	callq	_ZNSolsEi
-	movl	$.L.str8, %esi
-	movq	%rax, %rdi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	movl	$.L.str7, %edi
+	xorl	%eax, %eax
+	callq	printf
 	movl	-24(%rbp), %edi
 	callq	close
 	movl	-20(%rbp), %edi
@@ -279,7 +256,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	callq	close
 	xorl	%edi, %edi
 	callq	exit
-.LBB1_14:                               # %if.then17
+.LBB1_14:                               # %if.then15
 	movl	$7, %edi
 	callq	_StraightTaint_log
 	movl	$.L.str2, %edi
@@ -332,15 +309,10 @@ main:                                   # @main
 	callq	_StraightTaint_log
 	movl	$25, %edi
 	callq	_StraightTaint_log
-	movl	$_ZSt4cout, %edi
-	movl	$.L.str15, %esi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
 	movl	-1060(%rbp), %esi
-	movq	%rax, %rdi
-	callq	_ZNSolsEi
-	movl	$.L.str8, %esi
-	movq	%rax, %rdi
-	callq	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	movl	$.L.str14, %edi
+	xorl	%eax, %eax
+	callq	printf
 	movl	$1, %edi
 	callq	sleep
 	leaq	-1056(%rbp), %rbx
@@ -354,7 +326,7 @@ main:                                   # @main
 	testl	%eax, %eax
 	movl	%eax, -1064(%rbp)
 	jle	.LBB2_4
-# BB#2:                                 # %cond.end13
+# BB#2:                                 # %cond.end11
 	movl	$26, %edi
 	callq	_StraightTaint_log
 	movl	$29, %edi
@@ -362,18 +334,18 @@ main:                                   # @main
 	movl	-1064(%rbp), %ecx
 	leaq	-1070(%rbp), %r14
 	movl	$6, %esi
-	movl	$.L.str17, %edx
+	movl	$.L.str16, %edx
 	xorl	%eax, %eax
 	movq	%r14, %rdi
 	callq	snprintf
 	leaq	-1104(%rbp), %rbx
-	movl	$.L.str18, %esi
+	movl	$.L.str17, %esi
 	movq	%rbx, %rdi
 	callq	strcpy
 	movq	%rbx, %rdi
 	movq	%r14, %rsi
 	callq	strcat
-	movl	$.L.str19, %esi
+	movl	$.L.str18, %esi
 	movq	%rbx, %rdi
 	callq	fopen
 	movq	%rax, -1112(%rbp)
@@ -394,15 +366,15 @@ main:                                   # @main
 .LBB2_3:                                # %cond.false
 	movl	$23, %edi
 	callq	_StraightTaint_log
-	movl	$.L.str14, %edi
+	movl	$.L.str13, %edi
 	movl	$.L.str3, %esi
 	movl	$86, %edx
 	movl	$.L__PRETTY_FUNCTION__.main, %ecx
 	callq	__assert_fail
-.LBB2_4:                                # %cond.false12
+.LBB2_4:                                # %cond.false10
 	movl	$27, %edi
 	callq	_StraightTaint_log
-	movl	$.L.str16, %edi
+	movl	$.L.str15, %edi
 	movl	$.L.str3, %esi
 	movl	$91, %edx
 	movl	$.L__PRETTY_FUNCTION__.main, %ecx
@@ -484,7 +456,7 @@ buf_switcher:                           # @buf_switcher
 	movsd	.LCPI4_2(%rip), %xmm1
 	divsd	%xmm1, %xmm0
 	divsd	%xmm1, %xmm0
-	movl	$.L.str20, %edi
+	movl	$.L.str19, %edi
 	movb	$1, %al
 	callq	printf
 	.loc	1 48 0                  # ../../straightDFA/init.c:48:0
@@ -522,33 +494,48 @@ _StraightTaint_init:                    # @_StraightTaint_init
 	.cfi_startproc
 # BB#0:                                 # %entry
 	pushq	%rbp
-.Ltmp37:
-	.cfi_def_cfa_offset 16
 .Ltmp38:
+	.cfi_def_cfa_offset 16
+.Ltmp39:
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
-.Ltmp39:
-	.cfi_def_cfa_register %rbp
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	.loc	1 135 0 prologue_end    # ../../straightDFA/init.c:135:0
 .Ltmp40:
-	movl	$.L.str121, %edi
-	movl	$.L.str222, %esi
+	.cfi_def_cfa_register %rbp
+	pushq	%rbx
+	subq	$1048, %rsp             # imm = 0x418
+.Ltmp41:
+	.cfi_offset %rbx, -24
+	movq	%rdi, -16(%rbp)
+	.loc	1 135 0 prologue_end    # ../../straightDFA/init.c:135:0
+.Ltmp42:
+	callq	getpid
+	movl	%eax, %ecx
+	movl	%ecx, -20(%rbp)
+	leaq	-1056(%rbp), %rbx
+	movl	$1024, %esi             # imm = 0x400
+	.loc	1 137 0                 # ../../straightDFA/init.c:137:0
+	movl	$.L.str120, %edx
+	xorl	%eax, %eax
+	movq	%rbx, %rdi
+	callq	snprintf
+	.loc	1 138 0                 # ../../straightDFA/init.c:138:0
+	movl	$.L.str221, %esi
+	movq	%rbx, %rdi
 	callq	fopen
 	movq	%rax, flog(%rip)
-	.loc	1 138 0                 # ../../straightDFA/init.c:138:0
-	movl	$.L.str323, %edi
+	.loc	1 141 0                 # ../../straightDFA/init.c:141:0
+	movl	$.L.str322, %edi
 	xorl	%eax, %eax
 	callq	printf
-	.loc	1 139 0                 # ../../straightDFA/init.c:139:0
+	.loc	1 142 0                 # ../../straightDFA/init.c:142:0
 	movq	pos(%rip), %rax
-	addq	$16, %rsp
+	addq	$1048, %rsp             # imm = 0x418
+	popq	%rbx
 	popq	%rbp
 	ret
-.Ltmp41:
-.Ltmp42:
-	.size	_StraightTaint_init, .Ltmp42-_StraightTaint_init
+.Ltmp43:
+.Ltmp44:
+	.size	_StraightTaint_init, .Ltmp44-_StraightTaint_init
 .Lfunc_end5:
 	.cfi_endproc
 
@@ -557,34 +544,163 @@ _StraightTaint_init:                    # @_StraightTaint_init
 	.type	_StraightTaint_log,@function
 _StraightTaint_log:                     # @_StraightTaint_log
 .Lfunc_begin6:
-	.loc	4 6 0                   # ../../straightDFA/log.c:6:0
+	.loc	4 7 0                   # ../../straightDFA/log.c:7:0
 	.cfi_startproc
 # BB#0:                                 # %entry
 	pushq	%rbp
-.Ltmp45:
+.Ltmp47:
 	.cfi_def_cfa_offset 16
-.Ltmp46:
+.Ltmp48:
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
-.Ltmp47:
+.Ltmp49:
 	.cfi_def_cfa_register %rbp
 	subq	$16, %rsp
 	movw	%di, -2(%rbp)
-	.loc	4 7 0 prologue_end      # ../../straightDFA/log.c:7:0
-.Ltmp48:
+	.loc	4 8 0 prologue_end      # ../../straightDFA/log.c:8:0
+.Ltmp50:
 	movq	flog(%rip), %rdi
 	movswl	-2(%rbp), %edx
-	movl	$.L.str26, %esi
+	movl	$.L.str25, %esi
 	xorl	%eax, %eax
 	callq	fprintf
-	.loc	4 8 0                   # ../../straightDFA/log.c:8:0
+	.loc	4 9 0                   # ../../straightDFA/log.c:9:0
 	addq	$16, %rsp
 	popq	%rbp
 	ret
-.Ltmp49:
-.Ltmp50:
-	.size	_StraightTaint_log, .Ltmp50-_StraightTaint_log
+.Ltmp51:
+.Ltmp52:
+	.size	_StraightTaint_log, .Ltmp52-_StraightTaint_log
 .Lfunc_end6:
+	.cfi_endproc
+
+	.globl	_StraightTaint_fork32
+	.align	16, 0x90
+	.type	_StraightTaint_fork32,@function
+_StraightTaint_fork32:                  # @_StraightTaint_fork32
+.Lfunc_begin7:
+	.loc	4 25 0                  # ../../straightDFA/log.c:25:0
+	.cfi_startproc
+# BB#0:                                 # %entry
+	pushq	%rbp
+.Ltmp55:
+	.cfi_def_cfa_offset 16
+.Ltmp56:
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+.Ltmp57:
+	.cfi_def_cfa_register %rbp
+	subq	$16, %rsp
+	movl	%edi, -4(%rbp)
+	.loc	4 26 0 prologue_end     # ../../straightDFA/log.c:26:0
+.Ltmp58:
+	callq	do_StraightTaint_fork
+	.loc	4 27 0                  # ../../straightDFA/log.c:27:0
+	addq	$16, %rsp
+	popq	%rbp
+	ret
+.Ltmp59:
+.Ltmp60:
+	.size	_StraightTaint_fork32, .Ltmp60-_StraightTaint_fork32
+.Lfunc_end7:
+	.cfi_endproc
+
+	.globl	_StraightTaint_fork64
+	.align	16, 0x90
+	.type	_StraightTaint_fork64,@function
+_StraightTaint_fork64:                  # @_StraightTaint_fork64
+.Lfunc_begin8:
+	.loc	4 30 0                  # ../../straightDFA/log.c:30:0
+	.cfi_startproc
+# BB#0:                                 # %entry
+	pushq	%rbp
+.Ltmp63:
+	.cfi_def_cfa_offset 16
+.Ltmp64:
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+.Ltmp65:
+	.cfi_def_cfa_register %rbp
+	subq	$16, %rsp
+	movq	%rdi, -8(%rbp)
+	.loc	4 31 0 prologue_end     # ../../straightDFA/log.c:31:0
+.Ltmp66:
+	movl	-8(%rbp), %edi
+	movl	%edi, -12(%rbp)
+	.loc	4 32 0                  # ../../straightDFA/log.c:32:0
+	callq	do_StraightTaint_fork
+	.loc	4 33 0                  # ../../straightDFA/log.c:33:0
+	addq	$16, %rsp
+	popq	%rbp
+	ret
+.Ltmp67:
+.Ltmp68:
+	.size	_StraightTaint_fork64, .Ltmp68-_StraightTaint_fork64
+.Lfunc_end8:
+	.cfi_endproc
+
+	.align	16, 0x90
+	.type	do_StraightTaint_fork,@function
+do_StraightTaint_fork:                  # @do_StraightTaint_fork
+.Lfunc_begin9:
+	.loc	4 12 0                  # ../../straightDFA/log.c:12:0
+	.cfi_startproc
+# BB#0:                                 # %entry
+	pushq	%rbp
+.Ltmp72:
+	.cfi_def_cfa_offset 16
+.Ltmp73:
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+.Ltmp74:
+	.cfi_def_cfa_register %rbp
+	pushq	%rbx
+	subq	$1032, %rsp             # imm = 0x408
+.Ltmp75:
+	.cfi_offset %rbx, -24
+	testl	%edi, %edi
+	movl	%edi, -12(%rbp)
+	jg	.LBB9_3
+# BB#1:                                 # %if.else
+	.loc	4 15 0 prologue_end     # ../../straightDFA/log.c:15:0
+.Ltmp76:
+	cmpl	$0, -12(%rbp)
+	jne	.LBB9_4
+# BB#2:                                 # %if.then2
+.Ltmp77:
+	#DEBUG_VALUE: filename <- [RBP+-1040]
+	.loc	4 17 0                  # ../../straightDFA/log.c:17:0
+	movl	-12(%rbp), %ecx
+	leaq	-1040(%rbp), %rbx
+	movl	$1024, %esi             # imm = 0x400
+	movl	$.L.str126, %edx
+	xorl	%eax, %eax
+	movq	%rbx, %rdi
+	callq	snprintf
+	.loc	4 18 0                  # ../../straightDFA/log.c:18:0
+	movl	$.L.str227, %esi
+	movq	%rbx, %rdi
+	callq	fopen
+	movq	%rax, flog(%rip)
+.Ltmp78:
+.LBB9_3:                                # %if.end6
+	.loc	4 22 0                  # ../../straightDFA/log.c:22:0
+	addq	$1032, %rsp             # imm = 0x408
+	popq	%rbx
+	popq	%rbp
+	ret
+.LBB9_4:                                # %if.else5
+	.loc	4 20 0                  # ../../straightDFA/log.c:20:0
+.Ltmp79:
+	movl	$.L.str328, %edi
+	movl	$.L.str429, %esi
+	movl	$20, %edx
+	movl	$.L__PRETTY_FUNCTION__.do_StraightTaint_fork, %ecx
+	callq	__assert_fail
+.Ltmp80:
+.Ltmp81:
+	.size	do_StraightTaint_fork, .Ltmp81-do_StraightTaint_fork
+.Lfunc_end9:
 	.cfi_endproc
 
 	.type	_ZStL8__ioinit,@object  # @_ZStL8__ioinit
@@ -633,73 +749,68 @@ _StraightTaint_log:                     # @_StraightTaint_log
 
 	.type	.L.str7,@object         # @.str7
 .L.str7:
-	.asciz	"connfd: "
-	.size	.L.str7, 9
+	.asciz	"connfd: %d\n"
+	.size	.L.str7, 12
 
 	.type	.L.str8,@object         # @.str8
 .L.str8:
-	.asciz	"\n"
-	.size	.L.str8, 2
+	.asciz	"This is child process. pid: %d\n"
+	.size	.L.str8, 32
 
 	.type	.L.str9,@object         # @.str9
 .L.str9:
-	.asciz	"This is child process. pid: "
-	.size	.L.str9, 29
+	.asciz	"newfdin: %d\n"
+	.size	.L.str9, 13
 
 	.type	.L.str10,@object        # @.str10
 .L.str10:
-	.asciz	"newfdin: "
-	.size	.L.str10, 10
+	.asciz	"wait failed\n"
+	.size	.L.str10, 13
 
 	.type	.L.str11,@object        # @.str11
 .L.str11:
-	.asciz	"wait failed\n"
-	.size	.L.str11, 13
+	.asciz	"This is parent process. child pid is : %d"
+	.size	.L.str11, 42
 
 	.type	.L.str12,@object        # @.str12
 .L.str12:
-	.asciz	"This is parent process. child pid is : "
-	.size	.L.str12, 40
+	.asciz	"Child process ends unexpectedly\n"
+	.size	.L.str12, 33
 
 	.type	.L.str13,@object        # @.str13
 .L.str13:
-	.asciz	"Child process ends unexpectedly\n"
-	.size	.L.str13, 33
-
-	.type	.L.str14,@object        # @.str14
-.L.str14:
 	.asciz	"recvnum!=0"
-	.size	.L.str14, 11
+	.size	.L.str13, 11
 
 	.type	.L__PRETTY_FUNCTION__.main,@object # @__PRETTY_FUNCTION__.main
 .L__PRETTY_FUNCTION__.main:
 	.asciz	"int main()"
 	.size	.L__PRETTY_FUNCTION__.main, 11
 
+	.type	.L.str14,@object        # @.str14
+.L.str14:
+	.asciz	"recvnum: %d\n"
+	.size	.L.str14, 13
+
 	.type	.L.str15,@object        # @.str15
 .L.str15:
-	.asciz	"recvnum: "
-	.size	.L.str15, 10
+	.asciz	"pid>0"
+	.size	.L.str15, 6
 
 	.type	.L.str16,@object        # @.str16
 .L.str16:
-	.asciz	"pid>0"
-	.size	.L.str16, 6
+	.asciz	"%d"
+	.size	.L.str16, 3
 
 	.type	.L.str17,@object        # @.str17
 .L.str17:
-	.asciz	"%d"
-	.size	.L.str17, 3
+	.asciz	"log_"
+	.size	.L.str17, 5
 
 	.type	.L.str18,@object        # @.str18
 .L.str18:
-	.asciz	"log_"
-	.size	.L.str18, 5
-
-	.type	.L.str19,@object        # @.str19
-.L.str19:
 	.asciz	"w"
-	.size	.L.str19, 2
+	.size	.L.str18, 2
 
 	.section	.ctors,"aw",@progbits
 	.align	8
@@ -721,28 +832,28 @@ sum:
 	.comm	pos,8,8
 	.type	buf1,@object            # @buf1
 	.comm	buf1,8,8
-	.type	.L.str20,@object        # @.str20
+	.type	.L.str19,@object        # @.str19
 	.section	.rodata.str1.1,"aMS",@progbits,1
-.L.str20:
+.L.str19:
 	.asciz	"%.2fMB\n"
-	.size	.L.str20, 8
+	.size	.L.str19, 8
 
-	.type	.L.str121,@object       # @.str121
-.L.str121:
-	.asciz	"tmp"
-	.size	.L.str121, 4
+	.type	.L.str120,@object       # @.str120
+.L.str120:
+	.asciz	"tmp.%d"
+	.size	.L.str120, 7
 
-	.type	.L.str222,@object       # @.str222
-.L.str222:
+	.type	.L.str221,@object       # @.str221
+.L.str221:
 	.asciz	"w"
-	.size	.L.str222, 2
+	.size	.L.str221, 2
 
 	.type	flog,@object            # @flog
 	.comm	flog,8,8
-	.type	.L.str323,@object       # @.str323
-.L.str323:
+	.type	.L.str322,@object       # @.str322
+.L.str322:
 	.asciz	"init complete...\n"
-	.size	.L.str323, 18
+	.size	.L.str322, 18
 
 	.type	buf2,@object            # @buf2
 	.comm	buf2,8,8
@@ -752,10 +863,35 @@ sum:
 	.comm	tv_old,16,8
 	.type	tv_new,@object          # @tv_new
 	.comm	tv_new,16,8
-	.type	.L.str26,@object        # @.str26
-.L.str26:
+	.type	.L.str25,@object        # @.str25
+.L.str25:
 	.asciz	"%d\n"
-	.size	.L.str26, 4
+	.size	.L.str25, 4
+
+	.type	.L.str126,@object       # @.str126
+.L.str126:
+	.asciz	"tmp.%d"
+	.size	.L.str126, 7
+
+	.type	.L.str227,@object       # @.str227
+.L.str227:
+	.asciz	"w"
+	.size	.L.str227, 2
+
+	.type	.L.str328,@object       # @.str328
+.L.str328:
+	.asciz	"0"
+	.size	.L.str328, 2
+
+	.type	.L.str429,@object       # @.str429
+.L.str429:
+	.asciz	"../../straightDFA/log.c"
+	.size	.L.str429, 24
+
+	.type	.L__PRETTY_FUNCTION__.do_StraightTaint_fork,@object # @__PRETTY_FUNCTION__.do_StraightTaint_fork
+.L__PRETTY_FUNCTION__.do_StraightTaint_fork:
+	.asciz	"void do_StraightTaint_fork(int)"
+	.size	.L__PRETTY_FUNCTION__.do_StraightTaint_fork, 32
 
 	.bss
 .Ldebug_end1:
@@ -895,18 +1031,30 @@ sum:
 .Linfo_string65:
 	.asciz	"_StraightTaint_log"
 .Linfo_string66:
-	.asciz	"pos_old"
+	.asciz	"_StraightTaint_fork32"
 .Linfo_string67:
-	.asciz	"ptrToAddr"
+	.asciz	"_StraightTaint_fork64"
 .Linfo_string68:
+	.asciz	"do_StraightTaint_fork"
+.Linfo_string69:
+	.asciz	"pos_old"
+.Linfo_string70:
+	.asciz	"ptrToAddr"
+.Linfo_string71:
+	.asciz	"pid"
+.Linfo_string72:
+	.asciz	"filename"
+.Linfo_string73:
 	.asciz	"BBID"
+.Linfo_string74:
+	.asciz	"lpid"
 	.section	.debug_info,"",@progbits
 .L.debug_info_begin0:
-	.long	984                     # Length of Unit
+	.long	1026                    # Length of Unit
 	.short	4                       # DWARF version number
 	.long	.Lsection_abbrev        # Offset Into Abbrev. Section
 	.byte	8                       # Address Size (in bytes)
-	.byte	1                       # Abbrev [1] 0xb:0x3d1 DW_TAG_compile_unit
+	.byte	1                       # Abbrev [1] 0xb:0x3fb DW_TAG_compile_unit
 	.long	.Linfo_string0          # DW_AT_producer
 	.short	12                      # DW_AT_language
 	.long	.Linfo_string1          # DW_AT_name
@@ -1380,7 +1528,7 @@ sum:
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
 	.byte	16                      # Abbrev [16] 0x3a0:0xe DW_TAG_variable
-	.long	.Linfo_string66         # DW_AT_name
+	.long	.Linfo_string69         # DW_AT_name
 	.byte	1                       # DW_AT_decl_file
 	.byte	48                      # DW_AT_decl_line
 	.long	647                     # DW_AT_type
@@ -1388,7 +1536,7 @@ sum:
 	.byte	145
 	.byte	120
 	.byte	0                       # End Of Children Mark
-	.byte	17                      # Abbrev [17] 0x3af:0x2c DW_TAG_subprogram
+	.byte	17                      # Abbrev [17] 0x3af:0x49 DW_TAG_subprogram
 	.long	.Linfo_string63         # DW_AT_name
 	.byte	1                       # DW_AT_decl_file
 	.byte	67                      # DW_AT_decl_line
@@ -1400,46 +1548,150 @@ sum:
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
 	.byte	18                      # Abbrev [18] 0x3cc:0xe DW_TAG_formal_parameter
-	.long	.Linfo_string67         # DW_AT_name
+	.long	.Linfo_string70         # DW_AT_name
 	.byte	1                       # DW_AT_decl_file
 	.byte	67                      # DW_AT_decl_line
 	.long	703                     # DW_AT_type
 	.byte	2                       # DW_AT_location
 	.byte	145
-	.byte	120
+	.byte	112
+	.byte	16                      # Abbrev [16] 0x3da:0xe DW_TAG_variable
+	.long	.Linfo_string71         # DW_AT_name
+	.byte	1                       # DW_AT_decl_file
+	.byte	135                     # DW_AT_decl_line
+	.long	519                     # DW_AT_type
+	.byte	2                       # DW_AT_location
+	.byte	145
+	.byte	108
+	.byte	16                      # Abbrev [16] 0x3e8:0xf DW_TAG_variable
+	.long	.Linfo_string72         # DW_AT_name
+	.byte	1                       # DW_AT_decl_file
+	.byte	136                     # DW_AT_decl_line
+	.long	1016                    # DW_AT_type
+	.byte	3                       # DW_AT_location
+	.byte	145
+	.ascii	"\340w"
+	.byte	0                       # End Of Children Mark
+	.byte	10                      # Abbrev [10] 0x3f8:0xd DW_TAG_array_type
+	.long	531                     # DW_AT_type
+	.byte	19                      # Abbrev [19] 0x3fd:0x7 DW_TAG_subrange_type
+	.long	640                     # DW_AT_type
+	.short	1023                    # DW_AT_upper_bound
 	.byte	0                       # End Of Children Mark
 	.byte	0                       # End Of Children Mark
 .L.debug_info_end0:
 .L.debug_info_begin1:
-	.long	75                      # Length of Unit
+	.long	254                     # Length of Unit
 	.short	4                       # DWARF version number
 	.long	.Lsection_abbrev        # Offset Into Abbrev. Section
 	.byte	8                       # Address Size (in bytes)
-	.byte	1                       # Abbrev [1] 0xb:0x44 DW_TAG_compile_unit
+	.byte	1                       # Abbrev [1] 0xb:0xf7 DW_TAG_compile_unit
 	.long	.Linfo_string0          # DW_AT_producer
 	.short	12                      # DW_AT_language
 	.long	.Linfo_string64         # DW_AT_name
 	.quad	0                       # DW_AT_low_pc
 	.long	.Lsection_line          # DW_AT_stmt_list
 	.long	.Linfo_string2          # DW_AT_comp_dir
-	.byte	19                      # Abbrev [19] 0x26:0x28 DW_TAG_subprogram
+	.byte	20                      # Abbrev [20] 0x26:0x28 DW_TAG_subprogram
 	.long	.Linfo_string65         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	5                       # DW_AT_decl_line
+	.byte	6                       # DW_AT_decl_line
                                         # DW_AT_prototyped
                                         # DW_AT_external
 	.quad	.Lfunc_begin6           # DW_AT_low_pc
 	.quad	.Lfunc_end6             # DW_AT_high_pc
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
-	.byte	20                      # Abbrev [20] 0x3f:0xe DW_TAG_formal_parameter
-	.long	.Linfo_string68         # DW_AT_name
+	.byte	21                      # Abbrev [21] 0x3f:0xe DW_TAG_formal_parameter
+	.long	.Linfo_string73         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	5                       # DW_AT_decl_line
+	.byte	6                       # DW_AT_decl_line
 	.long	.Lsection_info+713      # DW_AT_type
 	.byte	2                       # DW_AT_location
 	.byte	145
 	.byte	126
+	.byte	0                       # End Of Children Mark
+	.byte	20                      # Abbrev [20] 0x4e:0x28 DW_TAG_subprogram
+	.long	.Linfo_string66         # DW_AT_name
+	.byte	4                       # DW_AT_decl_file
+	.byte	24                      # DW_AT_decl_line
+                                        # DW_AT_prototyped
+                                        # DW_AT_external
+	.quad	.Lfunc_begin7           # DW_AT_low_pc
+	.quad	.Lfunc_end7             # DW_AT_high_pc
+	.byte	1                       # DW_AT_frame_base
+	.byte	86
+	.byte	21                      # Abbrev [21] 0x67:0xe DW_TAG_formal_parameter
+	.long	.Linfo_string71         # DW_AT_name
+	.byte	4                       # DW_AT_decl_file
+	.byte	24                      # DW_AT_decl_line
+	.long	.Lsection_info+519      # DW_AT_type
+	.byte	2                       # DW_AT_location
+	.byte	145
+	.byte	124
+	.byte	0                       # End Of Children Mark
+	.byte	20                      # Abbrev [20] 0x76:0x36 DW_TAG_subprogram
+	.long	.Linfo_string67         # DW_AT_name
+	.byte	4                       # DW_AT_decl_file
+	.byte	29                      # DW_AT_decl_line
+                                        # DW_AT_prototyped
+                                        # DW_AT_external
+	.quad	.Lfunc_begin8           # DW_AT_low_pc
+	.quad	.Lfunc_end8             # DW_AT_high_pc
+	.byte	1                       # DW_AT_frame_base
+	.byte	86
+	.byte	21                      # Abbrev [21] 0x8f:0xe DW_TAG_formal_parameter
+	.long	.Linfo_string74         # DW_AT_name
+	.byte	4                       # DW_AT_decl_file
+	.byte	29                      # DW_AT_decl_line
+	.long	.Lsection_info+607      # DW_AT_type
+	.byte	2                       # DW_AT_location
+	.byte	145
+	.byte	120
+	.byte	22                      # Abbrev [22] 0x9d:0xe DW_TAG_variable
+	.long	.Linfo_string71         # DW_AT_name
+	.byte	4                       # DW_AT_decl_file
+	.byte	31                      # DW_AT_decl_line
+	.long	.Lsection_info+519      # DW_AT_type
+	.byte	2                       # DW_AT_location
+	.byte	145
+	.byte	116
+	.byte	0                       # End Of Children Mark
+	.byte	23                      # Abbrev [23] 0xac:0x55 DW_TAG_subprogram
+	.long	.Linfo_string68         # DW_AT_name
+	.byte	4                       # DW_AT_decl_file
+	.byte	11                      # DW_AT_decl_line
+                                        # DW_AT_prototyped
+	.quad	.Lfunc_begin9           # DW_AT_low_pc
+	.quad	.Lfunc_end9             # DW_AT_high_pc
+	.byte	1                       # DW_AT_frame_base
+	.byte	86
+	.byte	21                      # Abbrev [21] 0xc5:0xe DW_TAG_formal_parameter
+	.long	.Linfo_string71         # DW_AT_name
+	.byte	4                       # DW_AT_decl_file
+	.byte	11                      # DW_AT_decl_line
+	.long	.Lsection_info+519      # DW_AT_type
+	.byte	2                       # DW_AT_location
+	.byte	145
+	.byte	116
+	.byte	24                      # Abbrev [24] 0xd3:0x2d DW_TAG_lexical_block
+	.long	.Ldebug_ranges1         # DW_AT_ranges
+	.byte	24                      # Abbrev [24] 0xd8:0x27 DW_TAG_lexical_block
+	.long	.Ldebug_ranges0         # DW_AT_ranges
+	.byte	25                      # Abbrev [25] 0xdd:0x21 DW_TAG_lexical_block
+	.quad	.Ltmp77                 # DW_AT_low_pc
+	.quad	.Ltmp78                 # DW_AT_high_pc
+	.byte	22                      # Abbrev [22] 0xee:0xf DW_TAG_variable
+	.long	.Linfo_string72         # DW_AT_name
+	.byte	4                       # DW_AT_decl_file
+	.byte	16                      # DW_AT_decl_line
+	.long	.Lsection_info+1016     # DW_AT_type
+	.byte	3                       # DW_AT_location
+	.byte	145
+	.ascii	"\360w"
+	.byte	0                       # End Of Children Mark
+	.byte	0                       # End Of Children Mark
+	.byte	0                       # End Of Children Mark
 	.byte	0                       # End Of Children Mark
 	.byte	0                       # End Of Children Mark
 .L.debug_info_end1:
@@ -1689,6 +1941,15 @@ sum:
 	.byte	0                       # EOM(1)
 	.byte	0                       # EOM(2)
 	.byte	19                      # Abbreviation Code
+	.byte	33                      # DW_TAG_subrange_type
+	.byte	0                       # DW_CHILDREN_no
+	.byte	73                      # DW_AT_type
+	.byte	19                      # DW_FORM_ref4
+	.byte	47                      # DW_AT_upper_bound
+	.byte	5                       # DW_FORM_data2
+	.byte	0                       # EOM(1)
+	.byte	0                       # EOM(2)
+	.byte	20                      # Abbreviation Code
 	.byte	46                      # DW_TAG_subprogram
 	.byte	1                       # DW_CHILDREN_yes
 	.byte	3                       # DW_AT_name
@@ -1709,7 +1970,7 @@ sum:
 	.byte	10                      # DW_FORM_block1
 	.byte	0                       # EOM(1)
 	.byte	0                       # EOM(2)
-	.byte	20                      # Abbreviation Code
+	.byte	21                      # Abbreviation Code
 	.byte	5                       # DW_TAG_formal_parameter
 	.byte	0                       # DW_CHILDREN_no
 	.byte	3                       # DW_AT_name
@@ -1722,6 +1983,56 @@ sum:
 	.byte	16                      # DW_FORM_ref_addr
 	.byte	2                       # DW_AT_location
 	.byte	10                      # DW_FORM_block1
+	.byte	0                       # EOM(1)
+	.byte	0                       # EOM(2)
+	.byte	22                      # Abbreviation Code
+	.byte	52                      # DW_TAG_variable
+	.byte	0                       # DW_CHILDREN_no
+	.byte	3                       # DW_AT_name
+	.byte	14                      # DW_FORM_strp
+	.byte	58                      # DW_AT_decl_file
+	.byte	11                      # DW_FORM_data1
+	.byte	59                      # DW_AT_decl_line
+	.byte	11                      # DW_FORM_data1
+	.byte	73                      # DW_AT_type
+	.byte	16                      # DW_FORM_ref_addr
+	.byte	2                       # DW_AT_location
+	.byte	10                      # DW_FORM_block1
+	.byte	0                       # EOM(1)
+	.byte	0                       # EOM(2)
+	.byte	23                      # Abbreviation Code
+	.byte	46                      # DW_TAG_subprogram
+	.byte	1                       # DW_CHILDREN_yes
+	.byte	3                       # DW_AT_name
+	.byte	14                      # DW_FORM_strp
+	.byte	58                      # DW_AT_decl_file
+	.byte	11                      # DW_FORM_data1
+	.byte	59                      # DW_AT_decl_line
+	.byte	11                      # DW_FORM_data1
+	.byte	39                      # DW_AT_prototyped
+	.byte	25                      # DW_FORM_flag_present
+	.byte	17                      # DW_AT_low_pc
+	.byte	1                       # DW_FORM_addr
+	.byte	18                      # DW_AT_high_pc
+	.byte	1                       # DW_FORM_addr
+	.byte	64                      # DW_AT_frame_base
+	.byte	10                      # DW_FORM_block1
+	.byte	0                       # EOM(1)
+	.byte	0                       # EOM(2)
+	.byte	24                      # Abbreviation Code
+	.byte	11                      # DW_TAG_lexical_block
+	.byte	1                       # DW_CHILDREN_yes
+	.byte	85                      # DW_AT_ranges
+	.byte	23                      # DW_FORM_sec_offset
+	.byte	0                       # EOM(1)
+	.byte	0                       # EOM(2)
+	.byte	25                      # Abbreviation Code
+	.byte	11                      # DW_TAG_lexical_block
+	.byte	1                       # DW_CHILDREN_yes
+	.byte	17                      # DW_AT_low_pc
+	.byte	1                       # DW_FORM_addr
+	.byte	18                      # DW_AT_high_pc
+	.byte	1                       # DW_FORM_addr
 	.byte	0                       # EOM(1)
 	.byte	0                       # EOM(2)
 	.byte	0                       # EOM(3)
@@ -1774,8 +2085,22 @@ sum:
 	.quad	0                       # ARange terminator
 	.quad	0
 	.section	.debug_ranges,"",@progbits
-.Lgnu_ranges0:
 .Lgnu_ranges1:
+.Ldebug_ranges0:
+	.quad	.Ltmp76
+	.quad	.Ltmp78
+	.quad	.Ltmp79
+	.quad	.Ltmp80
+	.quad	0
+	.quad	0
+.Ldebug_ranges1:
+	.quad	.Ltmp76
+	.quad	.Ltmp78
+	.quad	.Ltmp79
+	.quad	.Ltmp80
+	.quad	0
+	.quad	0
+.Lgnu_ranges0:
 	.section	.debug_macinfo,"",@progbits
 	.section	.debug_pubnames,"",@progbits
 .Lset3 = .Lpubnames_end0-.Lpubnames_begin0 # Length of Public Names Info
@@ -1814,8 +2139,14 @@ sum:
 	.long	.L.debug_info_begin1    # Offset of Compilation Unit Info
 .Lset6 = .L.debug_info_end1-.L.debug_info_begin1 # Compilation Unit Length
 	.long	.Lset6
+	.long	118                     # DIE offset
+	.asciz	"_StraightTaint_fork64" # External Name
 	.long	38                      # DIE offset
 	.asciz	"_StraightTaint_log"    # External Name
+	.long	172                     # DIE offset
+	.asciz	"do_StraightTaint_fork" # External Name
+	.long	78                      # DIE offset
+	.asciz	"_StraightTaint_fork32" # External Name
 	.long	0                       # End Mark
 .Lpubnames_end1:
 	.section	.debug_pubtypes,"",@progbits

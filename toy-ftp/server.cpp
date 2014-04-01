@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
-#include <string.h>
+#include <string>
 #include <sys/types.h>
 #include <iostream>
 #include <assert.h>
@@ -35,7 +35,7 @@ void myListen()
     printf("loop...\n");
     connfd = accept(listenfd, (struct sockaddr*)NULL ,NULL); // accept awaiting request
     printf("socket accept\n");
-    cout<<"connfd: "<<connfd<<"\n";
+    printf("connfd: %d\n",connfd);
     int pid, status;
 
     pid=fork();
@@ -45,11 +45,11 @@ void myListen()
     }
     else if(pid==0)
     {
-      cout<<"This is child process. pid: "<<pid<<"\n";        
+      printf("This is child process. pid: %d\n",pid);        
 
       int newfdin=dup2(connfd,0);
-      cout<<"newfdin: "<<newfdin<<"\n";
-      cout<<"connfd: "<<connfd<<"\n";
+      printf("newfdin: %d\n",newfdin);
+      printf("connfd: %d\n",connfd);
       close(connfd);  
       close(listenfd);
       return;
@@ -58,18 +58,18 @@ void myListen()
     {
       if((pid=wait(&status))==-1)
       {
-        cout<<"wait failed\n";
+        printf("wait failed\n");
       }
       else
       {
         if(WIFEXITED(status)!=0)
         {
           close(connfd);
-          cout<<"This is parent process. child pid is : "<<pid<<"\n";                
+          printf("This is parent process. child pid is : %d",pid);                
         }
         else
         {
-          cout<<"Child process ends unexpectedly\n";
+          printf("Child process ends unexpectedly\n");
         }
       }
       sleep(1);
@@ -84,7 +84,7 @@ int main(void)
   char recvBuff[1025];
   int recvnum=recv(0, recvBuff, 1025,0);
   assert(recvnum!=0);
-  cout<<"recvnum: "<<recvnum<<"\n";
+  printf("recvnum: %d\n",recvnum);
   sleep(1);
   write(1, recvBuff, strlen(recvBuff)); 
   int pid=getpid();

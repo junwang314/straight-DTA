@@ -8,7 +8,7 @@ LOG=../../straightDFA/log
 all:$(TARGET)
 
 $(TARGET):$(TARGET).s
-	g++ -g -pthread $^ -lcrypt -o $@
+	gcc -g -pthread $^ -lcrypt -o $@ -lstdc++
 
 $(TARGET).s:$(TARGET).bc
 	llc $^
