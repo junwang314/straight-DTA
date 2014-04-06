@@ -23,53 +23,36 @@
 	.file	2 "/usr/include/libio.h"
 	.file	3 "/usr/include/x86_64-linux-gnu/bits/time.h"
 	.file	4 "../../straightDFA/log.c"
-	.section	.text.startup,"ax",@progbits
-	.align	16, 0x90
-	.type	__cxx_global_var_init,@function
-__cxx_global_var_init:                  # @__cxx_global_var_init
-	.cfi_startproc
-# BB#0:                                 # %entry
-	pushq	%rax
-.Ltmp1:
-	.cfi_def_cfa_offset 16
-	movl	$1, %edi
-	callq	_StraightTaint_log
-	movl	$_ZStL8__ioinit, %edi
-	callq	_ZNSt8ios_base4InitC1Ev
-	movl	$_ZNSt8ios_base4InitD1Ev, %edi
-	movl	$_ZStL8__ioinit, %esi
-	movl	$__dso_handle, %edx
-	callq	__cxa_atexit
-	popq	%rax
-	ret
-.Ltmp2:
-	.size	__cxx_global_var_init, .Ltmp2-__cxx_global_var_init
-	.cfi_endproc
-
 	.text
-	.globl	_Z8myListenv
+	.globl	myListen
 	.align	16, 0x90
-	.type	_Z8myListenv,@function
-_Z8myListenv:                           # @_Z8myListenv
+	.type	myListen,@function
+myListen:                               # @myListen
 	.cfi_startproc
 # BB#0:                                 # %entry
 	pushq	%rbp
-.Ltmp6:
+.Ltmp3:
 	.cfi_def_cfa_offset 16
-.Ltmp7:
+.Ltmp4:
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
-.Ltmp8:
+.Ltmp5:
 	.cfi_def_cfa_register %rbp
 	pushq	%r14
 	pushq	%rbx
-	subq	$48, %rsp
-.Ltmp9:
+	subq	$64, %rsp
+.Ltmp6:
 	.cfi_offset %rbx, -32
-.Ltmp10:
+.Ltmp7:
 	.cfi_offset %r14, -24
-	movl	$2, %edi
+	movl	$1, %edi
 	callq	_StraightTaint_log
+	callq	getpid
+	movl	%eax, %ecx
+	movl	$.L.str, %edi
+	xorl	%eax, %eax
+	movl	%ecx, %esi
+	callq	printf
 	movl	$0, -20(%rbp)
 	movl	$0, -24(%rbp)
 	movl	$2, %edi
@@ -77,7 +60,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	xorl	%edx, %edx
 	callq	socket
 	movl	%eax, -20(%rbp)
-	movl	$.L.str, %edi
+	movl	$.L.str1, %edi
 	xorl	%eax, %eax
 	callq	printf
 	movabsq	$3472328296227680304, %rax # imm = 0x3030303030303030
@@ -98,41 +81,41 @@ _Z8myListenv:                           # @_Z8myListenv
 	movl	$10, %esi
 	callq	listen
 	cmpl	$-1, %eax
-	je	.LBB1_13
+	je	.LBB0_13
 # BB#1:                                 # %if.end
-	movl	$4, %edi
+	movl	$3, %edi
 	callq	_StraightTaint_log
-	movl	$.L.str4, %edi
+	movl	$.L.str5, %edi
 	xorl	%eax, %eax
 	callq	printf
 	movl	$0, -44(%rbp)
 	leaq	-52(%rbp), %r14
-	jmp	.LBB1_2
+	jmp	.LBB0_2
 	.align	16, 0x90
-.LBB1_11:                               # %for.inc
-                                        #   in Loop: Header=BB1_2 Depth=1
-	movl	$16, %edi
+.LBB0_11:                               # %for.inc
+                                        #   in Loop: Header=BB0_2 Depth=1
+	movl	$15, %edi
 	callq	_StraightTaint_log
 	movl	$1, %edi
 	callq	sleep
+	movl	$16, %edi
+	callq	_StraightTaint_log
 	movl	$17, %edi
 	callq	_StraightTaint_log
 	movl	$18, %edi
 	callq	_StraightTaint_log
-	movl	$19, %edi
-	callq	_StraightTaint_log
 	incl	-44(%rbp)
-.LBB1_2:                                # %for.cond
+.LBB0_2:                                # %for.cond
                                         # =>This Inner Loop Header: Depth=1
+	movl	$4, %edi
+	callq	_StraightTaint_log
+	cmpl	$0, -44(%rbp)
+	jg	.LBB0_12
+# BB#3:                                 # %for.body
+                                        #   in Loop: Header=BB0_2 Depth=1
 	movl	$5, %edi
 	callq	_StraightTaint_log
-	cmpl	$1, -44(%rbp)
-	jg	.LBB1_12
-# BB#3:                                 # %for.body
-                                        #   in Loop: Header=BB1_2 Depth=1
-	movl	$6, %edi
-	callq	_StraightTaint_log
-	movl	$.L.str5, %edi
+	movl	$.L.str6, %edi
 	xorl	%eax, %eax
 	callq	printf
 	movl	-20(%rbp), %edi
@@ -140,11 +123,11 @@ _Z8myListenv:                           # @_Z8myListenv
 	xorl	%edx, %edx
 	callq	accept
 	movl	%eax, -24(%rbp)
-	movl	$.L.str6, %edi
+	movl	$.L.str7, %edi
 	xorl	%eax, %eax
 	callq	printf
 	movl	-24(%rbp), %esi
-	movl	$.L.str7, %edi
+	movl	$.L.str8, %edi
 	xorl	%eax, %eax
 	callq	printf
 	callq	fork
@@ -153,66 +136,69 @@ _Z8myListenv:                           # @_Z8myListenv
 	callq	_StraightTaint_fork32
 	testl	%ebx, %ebx
 	movl	%ebx, -48(%rbp)
-	js	.LBB1_14
+	js	.LBB0_14
 # BB#4:                                 # %if.else
-                                        #   in Loop: Header=BB1_2 Depth=1
-	movl	$8, %edi
+                                        #   in Loop: Header=BB0_2 Depth=1
+	movl	$7, %edi
 	callq	_StraightTaint_log
 	cmpl	$0, -48(%rbp)
-	je	.LBB1_15
-# BB#5:                                 # %if.else24
-                                        #   in Loop: Header=BB1_2 Depth=1
-	movl	$10, %edi
+	je	.LBB0_15
+# BB#5:                                 # %if.else26
+                                        #   in Loop: Header=BB0_2 Depth=1
+	movl	$9, %edi
 	callq	_StraightTaint_log
+	movq	%r14, -64(%rbp)
 	movq	%r14, %rdi
 	callq	wait
 	cmpl	$-1, %eax
 	movl	%eax, -48(%rbp)
-	jne	.LBB1_7
-# BB#6:                                 # %if.then27
-                                        #   in Loop: Header=BB1_2 Depth=1
-	movl	$11, %edi
+	jne	.LBB0_7
+# BB#6:                                 # %if.then29
+                                        #   in Loop: Header=BB0_2 Depth=1
+	movl	$10, %edi
 	callq	_StraightTaint_log
-	movl	$.L.str10, %edi
+	movl	$.L.str11, %edi
 	xorl	%eax, %eax
 	callq	printf
-	jmp	.LBB1_11
+	jmp	.LBB0_11
 	.align	16, 0x90
-.LBB1_7:                                # %if.else29
-                                        #   in Loop: Header=BB1_2 Depth=1
-	movl	$12, %edi
+.LBB0_7:                                # %if.else31
+                                        #   in Loop: Header=BB0_2 Depth=1
+	movl	$11, %edi
 	callq	_StraightTaint_log
-	testb	$127, -52(%rbp)
-	jne	.LBB1_9
-# BB#8:                                 # %if.then32
-                                        #   in Loop: Header=BB1_2 Depth=1
-	movl	$13, %edi
+	movl	-52(%rbp), %eax
+	movl	%eax, -72(%rbp)
+	testb	$127, -72(%rbp)
+	jne	.LBB0_9
+# BB#8:                                 # %if.then35
+                                        #   in Loop: Header=BB0_2 Depth=1
+	movl	$12, %edi
 	callq	_StraightTaint_log
 	movl	-24(%rbp), %edi
 	callq	close
 	movl	-48(%rbp), %esi
-	movl	$.L.str11, %edi
-	xorl	%eax, %eax
-	callq	printf
-	jmp	.LBB1_10
-	.align	16, 0x90
-.LBB1_9:                                # %if.else35
-                                        #   in Loop: Header=BB1_2 Depth=1
-	movl	$14, %edi
-	callq	_StraightTaint_log
 	movl	$.L.str12, %edi
 	xorl	%eax, %eax
 	callq	printf
-.LBB1_10:                               # %if.end37
-                                        #   in Loop: Header=BB1_2 Depth=1
-	movl	$15, %edi
+	jmp	.LBB0_10
+	.align	16, 0x90
+.LBB0_9:                                # %if.else38
+                                        #   in Loop: Header=BB0_2 Depth=1
+	movl	$13, %edi
 	callq	_StraightTaint_log
-	jmp	.LBB1_11
-.LBB1_15:                               # %if.then17
-	movl	$9, %edi
+	movl	$.L.str13, %edi
+	xorl	%eax, %eax
+	callq	printf
+.LBB0_10:                               # %if.end40
+                                        #   in Loop: Header=BB0_2 Depth=1
+	movl	$14, %edi
+	callq	_StraightTaint_log
+	jmp	.LBB0_11
+.LBB0_15:                               # %if.then19
+	movl	$8, %edi
 	callq	_StraightTaint_log
 	movl	-48(%rbp), %esi
-	movl	$.L.str8, %edi
+	movl	$.L.str9, %edi
 	xorl	%eax, %eax
 	callq	printf
 	movl	-24(%rbp), %edi
@@ -220,52 +206,52 @@ _Z8myListenv:                           # @_Z8myListenv
 	callq	dup2
 	movl	%eax, %ecx
 	movl	%ecx, -56(%rbp)
-	movl	$.L.str9, %edi
+	movl	$.L.str10, %edi
 	xorl	%eax, %eax
 	movl	%ecx, %esi
 	callq	printf
 	movl	-24(%rbp), %esi
-	movl	$.L.str7, %edi
+	movl	$.L.str8, %edi
 	xorl	%eax, %eax
 	callq	printf
 	movl	-24(%rbp), %edi
 	callq	close
 	movl	-20(%rbp), %edi
 	callq	close
-	addq	$48, %rsp
+	addq	$64, %rsp
 	popq	%rbx
 	popq	%r14
 	popq	%rbp
 	ret
-.LBB1_13:                               # %if.then
-	movl	$3, %edi
+.LBB0_13:                               # %if.then
+	movl	$2, %edi
 	callq	_StraightTaint_log
-	movl	$.L.str1, %edi
+	movl	$.L.str2, %edi
 	xorl	%eax, %eax
 	callq	printf
-	movl	$.L.str2, %edi
-	movl	$.L.str3, %esi
-	movl	$30, %edx
-	movl	$.L__PRETTY_FUNCTION__._Z8myListenv, %ecx
+	movl	$.L.str3, %edi
+	movl	$.L.str4, %esi
+	movl	$31, %edx
+	movl	$.L__PRETTY_FUNCTION__.myListen, %ecx
 	callq	__assert_fail
-.LBB1_12:                               # %for.end
-	movl	$20, %edi
+.LBB0_12:                               # %for.end
+	movl	$19, %edi
 	callq	_StraightTaint_log
 	movl	-20(%rbp), %eax
 	movl	%eax, %edi
 	callq	close
 	xorl	%edi, %edi
 	callq	exit
-.LBB1_14:                               # %if.then15
-	movl	$7, %edi
+.LBB0_14:                               # %if.then17
+	movl	$6, %edi
 	callq	_StraightTaint_log
-	movl	$.L.str2, %edi
-	movl	$.L.str3, %esi
-	movl	$44, %edx
-	movl	$.L__PRETTY_FUNCTION__._Z8myListenv, %ecx
+	movl	$.L.str3, %edi
+	movl	$.L.str4, %esi
+	movl	$46, %edx
+	movl	$.L__PRETTY_FUNCTION__.myListen, %ecx
 	callq	__assert_fail
-.Ltmp11:
-	.size	_Z8myListenv, .Ltmp11-_Z8myListenv
+.Ltmp8:
+	.size	myListen, .Ltmp8-myListen
 	.cfi_endproc
 
 	.globl	main
@@ -275,27 +261,30 @@ main:                                   # @main
 	.cfi_startproc
 # BB#0:                                 # %entry
 	pushq	%rbp
-.Ltmp15:
+.Ltmp12:
 	.cfi_def_cfa_offset 16
-.Ltmp16:
+.Ltmp13:
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
-.Ltmp17:
+.Ltmp14:
 	.cfi_def_cfa_register %rbp
 	pushq	%r14
 	pushq	%rbx
 	subq	$1104, %rsp             # imm = 0x450
-.Ltmp18:
+.Ltmp15:
 	.cfi_offset %rbx, -32
-.Ltmp19:
+.Ltmp16:
 	.cfi_offset %r14, -24
 	movl	$addr, %edi
 	callq	_StraightTaint_init
 	movq	%rax, addr(%rip)
-	movl	$21, %edi
+	movl	$20, %edi
 	callq	_StraightTaint_log
 	movl	$0, -20(%rbp)
-	callq	_Z8myListenv
+	movl	$.L.str14, %edi
+	xorl	%eax, %eax
+	callq	printf
+	callq	myListen
 	leaq	-1056(%rbp), %rsi
 	xorl	%edi, %edi
 	movl	$1025, %edx             # imm = 0x401
@@ -303,14 +292,14 @@ main:                                   # @main
 	callq	recv
 	testl	%eax, %eax
 	movl	%eax, -1060(%rbp)
-	je	.LBB2_3
+	je	.LBB1_3
 # BB#1:                                 # %cond.end
-	movl	$22, %edi
+	movl	$21, %edi
 	callq	_StraightTaint_log
-	movl	$25, %edi
+	movl	$24, %edi
 	callq	_StraightTaint_log
 	movl	-1060(%rbp), %esi
-	movl	$.L.str14, %edi
+	movl	$.L.str16, %edi
 	xorl	%eax, %eax
 	callq	printf
 	movl	$1, %edi
@@ -325,27 +314,27 @@ main:                                   # @main
 	callq	getpid
 	testl	%eax, %eax
 	movl	%eax, -1064(%rbp)
-	jle	.LBB2_4
-# BB#2:                                 # %cond.end11
-	movl	$26, %edi
+	jle	.LBB1_4
+# BB#2:                                 # %cond.end14
+	movl	$25, %edi
 	callq	_StraightTaint_log
-	movl	$29, %edi
+	movl	$28, %edi
 	callq	_StraightTaint_log
 	movl	-1064(%rbp), %ecx
 	leaq	-1070(%rbp), %r14
 	movl	$6, %esi
-	movl	$.L.str16, %edx
+	movl	$.L.str18, %edx
 	xorl	%eax, %eax
 	movq	%r14, %rdi
 	callq	snprintf
 	leaq	-1104(%rbp), %rbx
-	movl	$.L.str17, %esi
+	movl	$.L.str19, %esi
 	movq	%rbx, %rdi
 	callq	strcpy
 	movq	%rbx, %rdi
 	movq	%r14, %rsi
 	callq	strcat
-	movl	$.L.str18, %esi
+	movl	$.L.str20, %esi
 	movq	%rbx, %rdi
 	callq	fopen
 	movq	%rax, -1112(%rbp)
@@ -363,82 +352,59 @@ main:                                   # @main
 	popq	%r14
 	popq	%rbp
 	ret
-.LBB2_3:                                # %cond.false
-	movl	$23, %edi
-	callq	_StraightTaint_log
-	movl	$.L.str13, %edi
-	movl	$.L.str3, %esi
-	movl	$86, %edx
-	movl	$.L__PRETTY_FUNCTION__.main, %ecx
-	callq	__assert_fail
-.LBB2_4:                                # %cond.false10
-	movl	$27, %edi
+.LBB1_3:                                # %cond.false
+	movl	$22, %edi
 	callq	_StraightTaint_log
 	movl	$.L.str15, %edi
-	movl	$.L.str3, %esi
-	movl	$91, %edx
+	movl	$.L.str4, %esi
+	movl	$89, %edx
 	movl	$.L__PRETTY_FUNCTION__.main, %ecx
 	callq	__assert_fail
-.Ltmp20:
-	.size	main, .Ltmp20-main
-	.cfi_endproc
-
-	.section	.text.startup,"ax",@progbits
-	.align	16, 0x90
-	.type	_GLOBAL__I_a,@function
-_GLOBAL__I_a:                           # @_GLOBAL__I_a
-	.cfi_startproc
-# BB#0:                                 # %entry
-	pushq	%rbp
-.Ltmp23:
-	.cfi_def_cfa_offset 16
-.Ltmp24:
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-.Ltmp25:
-	.cfi_def_cfa_register %rbp
-	movl	$30, %edi
+.LBB1_4:                                # %cond.false13
+	movl	$26, %edi
 	callq	_StraightTaint_log
-	callq	__cxx_global_var_init
-	popq	%rbp
-	ret
-.Ltmp26:
-	.size	_GLOBAL__I_a, .Ltmp26-_GLOBAL__I_a
+	movl	$.L.str17, %edi
+	movl	$.L.str4, %esi
+	movl	$94, %edx
+	movl	$.L__PRETTY_FUNCTION__.main, %ecx
+	callq	__assert_fail
+.Ltmp17:
+	.size	main, .Ltmp17-main
 	.cfi_endproc
 
 	.section	.rodata.cst16,"aM",@progbits,16
 	.align	16
-.LCPI4_0:
+.LCPI2_0:
 	.long	1127219200              # 0x43300000
 	.long	1160773632              # 0x45300000
 	.long	0                       # 0x0
 	.long	0                       # 0x0
-.LCPI4_1:
+.LCPI2_1:
 	.quad	4841369599423283200     # double 4.503600e+15
 	.quad	4985484787499139072     # double 1.934281e+25
 	.section	.rodata.cst8,"aM",@progbits,8
 	.align	8
-.LCPI4_2:
+.LCPI2_2:
 	.quad	4652218415073722368     # double 1024
 	.text
 	.globl	buf_switcher
 	.align	16, 0x90
 	.type	buf_switcher,@function
 buf_switcher:                           # @buf_switcher
-.Lfunc_begin4:
+.Lfunc_begin2:
 	.loc	1 31 0                  # ../../straightDFA/init.c:31:0
 	.cfi_startproc
 # BB#0:                                 # %entry
 	pushq	%rbp
-.Ltmp29:
+.Ltmp20:
 	.cfi_def_cfa_offset 16
-.Ltmp30:
+.Ltmp21:
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
-.Ltmp31:
+.Ltmp22:
 	.cfi_def_cfa_register %rbp
 	.loc	1 33 0 prologue_end     # ../../straightDFA/init.c:33:0
-.Ltmp32:
+.Ltmp23:
 	subq	$16, %rsp
 	movq	p2addr(%rip), %rax
 	movq	(%rax), %rax
@@ -450,13 +416,13 @@ buf_switcher:                           # @buf_switcher
 	movq	%rax, sum(%rip)
 	.loc	1 46 0                  # ../../straightDFA/init.c:46:0
 	movd	%rax, %xmm0
-	punpckldq	.LCPI4_0(%rip), %xmm0 # xmm0 = xmm0[0],mem[0],xmm0[1],mem[1]
-	subpd	.LCPI4_1(%rip), %xmm0
+	punpckldq	.LCPI2_0(%rip), %xmm0 # xmm0 = xmm0[0],mem[0],xmm0[1],mem[1]
+	subpd	.LCPI2_1(%rip), %xmm0
 	haddpd	%xmm0, %xmm0
-	movsd	.LCPI4_2(%rip), %xmm1
+	movsd	.LCPI2_2(%rip), %xmm1
 	divsd	%xmm1, %xmm0
 	divsd	%xmm1, %xmm0
-	movl	$.L.str19, %edi
+	movl	$.L.str21, %edi
 	movb	$1, %al
 	callq	printf
 	.loc	1 48 0                  # ../../straightDFA/init.c:48:0
@@ -479,18 +445,72 @@ buf_switcher:                           # @buf_switcher
 	addq	$16, %rsp
 	popq	%rbp
 	ret
-.Ltmp33:
-.Ltmp34:
-	.size	buf_switcher, .Ltmp34-buf_switcher
-.Lfunc_end4:
+.Ltmp24:
+.Ltmp25:
+	.size	buf_switcher, .Ltmp25-buf_switcher
+.Lfunc_end2:
 	.cfi_endproc
 
 	.globl	_StraightTaint_init
 	.align	16, 0x90
 	.type	_StraightTaint_init,@function
 _StraightTaint_init:                    # @_StraightTaint_init
-.Lfunc_begin5:
+.Lfunc_begin3:
 	.loc	1 68 0                  # ../../straightDFA/init.c:68:0
+	.cfi_startproc
+# BB#0:                                 # %entry
+	pushq	%rbp
+.Ltmp29:
+	.cfi_def_cfa_offset 16
+.Ltmp30:
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+.Ltmp31:
+	.cfi_def_cfa_register %rbp
+	pushq	%rbx
+	subq	$1048, %rsp             # imm = 0x418
+.Ltmp32:
+	.cfi_offset %rbx, -24
+	movq	%rdi, -16(%rbp)
+	.loc	1 135 0 prologue_end    # ../../straightDFA/init.c:135:0
+.Ltmp33:
+	callq	getpid
+	movl	%eax, %ecx
+	movl	%ecx, -20(%rbp)
+	leaq	-1056(%rbp), %rbx
+	movl	$1024, %esi             # imm = 0x400
+	.loc	1 137 0                 # ../../straightDFA/init.c:137:0
+	movl	$.L.str122, %edx
+	xorl	%eax, %eax
+	movq	%rbx, %rdi
+	callq	snprintf
+	.loc	1 138 0                 # ../../straightDFA/init.c:138:0
+	movl	$.L.str223, %esi
+	movq	%rbx, %rdi
+	callq	fopen
+	movq	%rax, flog(%rip)
+	.loc	1 141 0                 # ../../straightDFA/init.c:141:0
+	movl	$.L.str324, %edi
+	xorl	%eax, %eax
+	callq	printf
+	.loc	1 142 0                 # ../../straightDFA/init.c:142:0
+	movq	pos(%rip), %rax
+	addq	$1048, %rsp             # imm = 0x418
+	popq	%rbx
+	popq	%rbp
+	ret
+.Ltmp34:
+.Ltmp35:
+	.size	_StraightTaint_init, .Ltmp35-_StraightTaint_init
+.Lfunc_end3:
+	.cfi_endproc
+
+	.globl	_StraightTaint_log
+	.align	16, 0x90
+	.type	_StraightTaint_log,@function
+_StraightTaint_log:                     # @_StraightTaint_log
+.Lfunc_begin4:
+	.loc	4 12 0                  # ../../straightDFA/log.c:12:0
 	.cfi_startproc
 # BB#0:                                 # %entry
 	pushq	%rbp
@@ -501,116 +521,95 @@ _StraightTaint_init:                    # @_StraightTaint_init
 	movq	%rsp, %rbp
 .Ltmp40:
 	.cfi_def_cfa_register %rbp
-	pushq	%rbx
-	subq	$1048, %rsp             # imm = 0x418
-.Ltmp41:
-	.cfi_offset %rbx, -24
-	movq	%rdi, -16(%rbp)
-	.loc	1 135 0 prologue_end    # ../../straightDFA/init.c:135:0
-.Ltmp42:
-	callq	getpid
-	movl	%eax, %ecx
-	movl	%ecx, -20(%rbp)
-	leaq	-1056(%rbp), %rbx
-	movl	$1024, %esi             # imm = 0x400
-	.loc	1 137 0                 # ../../straightDFA/init.c:137:0
-	movl	$.L.str120, %edx
-	xorl	%eax, %eax
-	movq	%rbx, %rdi
-	callq	snprintf
-	.loc	1 138 0                 # ../../straightDFA/init.c:138:0
-	movl	$.L.str221, %esi
-	movq	%rbx, %rdi
-	callq	fopen
-	movq	%rax, flog(%rip)
-	.loc	1 141 0                 # ../../straightDFA/init.c:141:0
-	movl	$.L.str322, %edi
-	xorl	%eax, %eax
-	callq	printf
-	.loc	1 142 0                 # ../../straightDFA/init.c:142:0
-	movq	pos(%rip), %rax
-	addq	$1048, %rsp             # imm = 0x418
-	popq	%rbx
-	popq	%rbp
-	ret
-.Ltmp43:
-.Ltmp44:
-	.size	_StraightTaint_init, .Ltmp44-_StraightTaint_init
-.Lfunc_end5:
-	.cfi_endproc
-
-	.globl	_StraightTaint_log
-	.align	16, 0x90
-	.type	_StraightTaint_log,@function
-_StraightTaint_log:                     # @_StraightTaint_log
-.Lfunc_begin6:
-	.loc	4 7 0                   # ../../straightDFA/log.c:7:0
-	.cfi_startproc
-# BB#0:                                 # %entry
-	pushq	%rbp
-.Ltmp47:
-	.cfi_def_cfa_offset 16
-.Ltmp48:
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-.Ltmp49:
-	.cfi_def_cfa_register %rbp
 	subq	$16, %rsp
 	movw	%di, -2(%rbp)
-	.loc	4 8 0 prologue_end      # ../../straightDFA/log.c:8:0
-.Ltmp50:
+	.loc	4 13 0 prologue_end     # ../../straightDFA/log.c:13:0
+.Ltmp41:
 	movq	flog(%rip), %rdi
 	movswl	-2(%rbp), %edx
-	movl	$.L.str25, %esi
+	movl	$.L.str27, %esi
 	xorl	%eax, %eax
 	callq	fprintf
-	.loc	4 9 0                   # ../../straightDFA/log.c:9:0
+	.loc	4 14 0                  # ../../straightDFA/log.c:14:0
 	addq	$16, %rsp
 	popq	%rbp
 	ret
-.Ltmp51:
-.Ltmp52:
-	.size	_StraightTaint_log, .Ltmp52-_StraightTaint_log
-.Lfunc_end6:
+.Ltmp42:
+.Ltmp43:
+	.size	_StraightTaint_log, .Ltmp43-_StraightTaint_log
+.Lfunc_end4:
 	.cfi_endproc
 
 	.globl	_StraightTaint_fork32
 	.align	16, 0x90
 	.type	_StraightTaint_fork32,@function
 _StraightTaint_fork32:                  # @_StraightTaint_fork32
-.Lfunc_begin7:
-	.loc	4 25 0                  # ../../straightDFA/log.c:25:0
+.Lfunc_begin5:
+	.loc	4 30 0                  # ../../straightDFA/log.c:30:0
 	.cfi_startproc
 # BB#0:                                 # %entry
 	pushq	%rbp
-.Ltmp55:
+.Ltmp46:
 	.cfi_def_cfa_offset 16
-.Ltmp56:
+.Ltmp47:
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
-.Ltmp57:
+.Ltmp48:
 	.cfi_def_cfa_register %rbp
 	subq	$16, %rsp
 	movl	%edi, -4(%rbp)
-	.loc	4 26 0 prologue_end     # ../../straightDFA/log.c:26:0
-.Ltmp58:
+	.loc	4 31 0 prologue_end     # ../../straightDFA/log.c:31:0
+.Ltmp49:
 	callq	do_StraightTaint_fork
-	.loc	4 27 0                  # ../../straightDFA/log.c:27:0
+	.loc	4 32 0                  # ../../straightDFA/log.c:32:0
 	addq	$16, %rsp
 	popq	%rbp
 	ret
-.Ltmp59:
-.Ltmp60:
-	.size	_StraightTaint_fork32, .Ltmp60-_StraightTaint_fork32
-.Lfunc_end7:
+.Ltmp50:
+.Ltmp51:
+	.size	_StraightTaint_fork32, .Ltmp51-_StraightTaint_fork32
+.Lfunc_end5:
 	.cfi_endproc
 
 	.globl	_StraightTaint_fork64
 	.align	16, 0x90
 	.type	_StraightTaint_fork64,@function
 _StraightTaint_fork64:                  # @_StraightTaint_fork64
-.Lfunc_begin8:
-	.loc	4 30 0                  # ../../straightDFA/log.c:30:0
+.Lfunc_begin6:
+	.loc	4 35 0                  # ../../straightDFA/log.c:35:0
+	.cfi_startproc
+# BB#0:                                 # %entry
+	pushq	%rbp
+.Ltmp54:
+	.cfi_def_cfa_offset 16
+.Ltmp55:
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+.Ltmp56:
+	.cfi_def_cfa_register %rbp
+	subq	$16, %rsp
+	movq	%rdi, -8(%rbp)
+	.loc	4 36 0 prologue_end     # ../../straightDFA/log.c:36:0
+.Ltmp57:
+	movl	-8(%rbp), %edi
+	movl	%edi, -12(%rbp)
+	.loc	4 37 0                  # ../../straightDFA/log.c:37:0
+	callq	do_StraightTaint_fork
+	.loc	4 38 0                  # ../../straightDFA/log.c:38:0
+	addq	$16, %rsp
+	popq	%rbp
+	ret
+.Ltmp58:
+.Ltmp59:
+	.size	_StraightTaint_fork64, .Ltmp59-_StraightTaint_fork64
+.Lfunc_end6:
+	.cfi_endproc
+
+	.align	16, 0x90
+	.type	do_StraightTaint_fork,@function
+do_StraightTaint_fork:                  # @do_StraightTaint_fork
+.Lfunc_begin7:
+	.loc	4 17 0                  # ../../straightDFA/log.c:17:0
 	.cfi_startproc
 # BB#0:                                 # %entry
 	pushq	%rbp
@@ -621,200 +620,175 @@ _StraightTaint_fork64:                  # @_StraightTaint_fork64
 	movq	%rsp, %rbp
 .Ltmp65:
 	.cfi_def_cfa_register %rbp
-	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
-	.loc	4 31 0 prologue_end     # ../../straightDFA/log.c:31:0
-.Ltmp66:
-	movl	-8(%rbp), %edi
-	movl	%edi, -12(%rbp)
-	.loc	4 32 0                  # ../../straightDFA/log.c:32:0
-	callq	do_StraightTaint_fork
-	.loc	4 33 0                  # ../../straightDFA/log.c:33:0
-	addq	$16, %rsp
-	popq	%rbp
-	ret
-.Ltmp67:
-.Ltmp68:
-	.size	_StraightTaint_fork64, .Ltmp68-_StraightTaint_fork64
-.Lfunc_end8:
-	.cfi_endproc
-
-	.align	16, 0x90
-	.type	do_StraightTaint_fork,@function
-do_StraightTaint_fork:                  # @do_StraightTaint_fork
-.Lfunc_begin9:
-	.loc	4 12 0                  # ../../straightDFA/log.c:12:0
-	.cfi_startproc
-# BB#0:                                 # %entry
-	pushq	%rbp
-.Ltmp72:
-	.cfi_def_cfa_offset 16
-.Ltmp73:
-	.cfi_offset %rbp, -16
-	movq	%rsp, %rbp
-.Ltmp74:
-	.cfi_def_cfa_register %rbp
 	pushq	%rbx
 	subq	$1032, %rsp             # imm = 0x408
-.Ltmp75:
+.Ltmp66:
 	.cfi_offset %rbx, -24
 	testl	%edi, %edi
 	movl	%edi, -12(%rbp)
-	jg	.LBB9_3
+	jg	.LBB7_3
 # BB#1:                                 # %if.else
-	.loc	4 15 0 prologue_end     # ../../straightDFA/log.c:15:0
-.Ltmp76:
+	.loc	4 20 0 prologue_end     # ../../straightDFA/log.c:20:0
+.Ltmp67:
 	cmpl	$0, -12(%rbp)
-	jne	.LBB9_4
+	jne	.LBB7_4
 # BB#2:                                 # %if.then2
-.Ltmp77:
+.Ltmp68:
 	#DEBUG_VALUE: filename <- [RBP+-1040]
-	.loc	4 17 0                  # ../../straightDFA/log.c:17:0
-	movl	-12(%rbp), %ecx
+	movl	$39, %edi
+	xorl	%eax, %eax
+	.loc	4 22 0                  # ../../straightDFA/log.c:22:0
+.Ltmp69:
+	callq	syscall
+	movq	%rax, %rcx
 	leaq	-1040(%rbp), %rbx
 	movl	$1024, %esi             # imm = 0x400
-	movl	$.L.str126, %edx
+	movl	$.L.str128, %edx
 	xorl	%eax, %eax
 	movq	%rbx, %rdi
 	callq	snprintf
-	.loc	4 18 0                  # ../../straightDFA/log.c:18:0
-	movl	$.L.str227, %esi
+	.loc	4 23 0                  # ../../straightDFA/log.c:23:0
+	movl	$.L.str229, %esi
 	movq	%rbx, %rdi
 	callq	fopen
 	movq	%rax, flog(%rip)
-.Ltmp78:
-.LBB9_3:                                # %if.end6
-	.loc	4 22 0                  # ../../straightDFA/log.c:22:0
+.Ltmp70:
+.LBB7_3:                                # %if.end7
+	.loc	4 27 0                  # ../../straightDFA/log.c:27:0
 	addq	$1032, %rsp             # imm = 0x408
 	popq	%rbx
 	popq	%rbp
 	ret
-.LBB9_4:                                # %if.else5
-	.loc	4 20 0                  # ../../straightDFA/log.c:20:0
-.Ltmp79:
-	movl	$.L.str328, %edi
-	movl	$.L.str429, %esi
-	movl	$20, %edx
+.LBB7_4:                                # %if.else6
+	.loc	4 25 0                  # ../../straightDFA/log.c:25:0
+.Ltmp71:
+	movl	$.L.str330, %edi
+	movl	$.L.str431, %esi
+	movl	$25, %edx
 	movl	$.L__PRETTY_FUNCTION__.do_StraightTaint_fork, %ecx
 	callq	__assert_fail
-.Ltmp80:
-.Ltmp81:
-	.size	do_StraightTaint_fork, .Ltmp81-do_StraightTaint_fork
-.Lfunc_end9:
+.Ltmp72:
+.Ltmp73:
+	.size	do_StraightTaint_fork, .Ltmp73-do_StraightTaint_fork
+.Lfunc_end7:
 	.cfi_endproc
 
-	.type	_ZStL8__ioinit,@object  # @_ZStL8__ioinit
-	.local	_ZStL8__ioinit
-	.comm	_ZStL8__ioinit,1,1
 	.type	.L.str,@object          # @.str
 	.section	.rodata.str1.1,"aMS",@progbits,1
 .L.str:
-	.asciz	"socket retrieve success\n"
-	.size	.L.str, 25
+	.asciz	"Parent pid is: %d\n"
+	.size	.L.str, 19
 
 	.type	.L.str1,@object         # @.str1
 .L.str1:
-	.asciz	"Failed to listen\n"
-	.size	.L.str1, 18
+	.asciz	"socket retrieve success\n"
+	.size	.L.str1, 25
 
 	.type	.L.str2,@object         # @.str2
 .L.str2:
-	.asciz	"0"
-	.size	.L.str2, 2
+	.asciz	"Failed to listen\n"
+	.size	.L.str2, 18
 
 	.type	.L.str3,@object         # @.str3
 .L.str3:
-	.asciz	"server.cpp"
-	.size	.L.str3, 11
-
-	.type	.L__PRETTY_FUNCTION__._Z8myListenv,@object # @__PRETTY_FUNCTION__._Z8myListenv
-.L__PRETTY_FUNCTION__._Z8myListenv:
-	.asciz	"void myListen()"
-	.size	.L__PRETTY_FUNCTION__._Z8myListenv, 16
+	.asciz	"0"
+	.size	.L.str3, 2
 
 	.type	.L.str4,@object         # @.str4
 .L.str4:
-	.asciz	"begin listen...\n"
-	.size	.L.str4, 17
+	.asciz	"server.c"
+	.size	.L.str4, 9
+
+	.type	.L__PRETTY_FUNCTION__.myListen,@object # @__PRETTY_FUNCTION__.myListen
+.L__PRETTY_FUNCTION__.myListen:
+	.asciz	"void myListen()"
+	.size	.L__PRETTY_FUNCTION__.myListen, 16
 
 	.type	.L.str5,@object         # @.str5
 .L.str5:
-	.asciz	"loop...\n"
-	.size	.L.str5, 9
+	.asciz	"begin listen...\n"
+	.size	.L.str5, 17
 
 	.type	.L.str6,@object         # @.str6
 .L.str6:
-	.asciz	"socket accept\n"
-	.size	.L.str6, 15
+	.asciz	"loop...\n"
+	.size	.L.str6, 9
 
 	.type	.L.str7,@object         # @.str7
 .L.str7:
-	.asciz	"connfd: %d\n"
-	.size	.L.str7, 12
+	.asciz	"socket accept\n"
+	.size	.L.str7, 15
 
 	.type	.L.str8,@object         # @.str8
 .L.str8:
-	.asciz	"This is child process. pid: %d\n"
-	.size	.L.str8, 32
+	.asciz	"connfd: %d\n"
+	.size	.L.str8, 12
 
 	.type	.L.str9,@object         # @.str9
 .L.str9:
-	.asciz	"newfdin: %d\n"
-	.size	.L.str9, 13
+	.asciz	"This is child process. pid: %d\n"
+	.size	.L.str9, 32
 
 	.type	.L.str10,@object        # @.str10
 .L.str10:
-	.asciz	"wait failed\n"
+	.asciz	"newfdin: %d\n"
 	.size	.L.str10, 13
 
 	.type	.L.str11,@object        # @.str11
 .L.str11:
-	.asciz	"This is parent process. child pid is : %d"
-	.size	.L.str11, 42
+	.asciz	"wait failed\n"
+	.size	.L.str11, 13
 
 	.type	.L.str12,@object        # @.str12
 .L.str12:
-	.asciz	"Child process ends unexpectedly\n"
-	.size	.L.str12, 33
+	.asciz	"This is parent process. child pid is : %d\n"
+	.size	.L.str12, 43
 
 	.type	.L.str13,@object        # @.str13
 .L.str13:
+	.asciz	"Child process ends unexpectedly\n"
+	.size	.L.str13, 33
+
+	.type	.L.str14,@object        # @.str14
+.L.str14:
+	.asciz	"main()\n"
+	.size	.L.str14, 8
+
+	.type	.L.str15,@object        # @.str15
+.L.str15:
 	.asciz	"recvnum!=0"
-	.size	.L.str13, 11
+	.size	.L.str15, 11
 
 	.type	.L__PRETTY_FUNCTION__.main,@object # @__PRETTY_FUNCTION__.main
 .L__PRETTY_FUNCTION__.main:
 	.asciz	"int main()"
 	.size	.L__PRETTY_FUNCTION__.main, 11
 
-	.type	.L.str14,@object        # @.str14
-.L.str14:
-	.asciz	"recvnum: %d\n"
-	.size	.L.str14, 13
-
-	.type	.L.str15,@object        # @.str15
-.L.str15:
-	.asciz	"pid>0"
-	.size	.L.str15, 6
-
 	.type	.L.str16,@object        # @.str16
 .L.str16:
-	.asciz	"%d"
-	.size	.L.str16, 3
+	.asciz	"recvnum: %d\n"
+	.size	.L.str16, 13
 
 	.type	.L.str17,@object        # @.str17
 .L.str17:
-	.asciz	"log_"
-	.size	.L.str17, 5
+	.asciz	"pid>0"
+	.size	.L.str17, 6
 
 	.type	.L.str18,@object        # @.str18
 .L.str18:
-	.asciz	"w"
-	.size	.L.str18, 2
+	.asciz	"%d"
+	.size	.L.str18, 3
 
-	.section	.ctors,"aw",@progbits
-	.align	8
-	.quad	_GLOBAL__I_a
+	.type	.L.str19,@object        # @.str19
+.L.str19:
+	.asciz	"log_"
+	.size	.L.str19, 5
+
+	.type	.L.str20,@object        # @.str20
+.L.str20:
+	.asciz	"w"
+	.size	.L.str20, 2
+
 	.type	addr,@object            # @addr
 	.comm	addr,8,8
 	.type	sum,@object             # @sum
@@ -832,28 +806,28 @@ sum:
 	.comm	pos,8,8
 	.type	buf1,@object            # @buf1
 	.comm	buf1,8,8
-	.type	.L.str19,@object        # @.str19
+	.type	.L.str21,@object        # @.str21
 	.section	.rodata.str1.1,"aMS",@progbits,1
-.L.str19:
+.L.str21:
 	.asciz	"%.2fMB\n"
-	.size	.L.str19, 8
+	.size	.L.str21, 8
 
-	.type	.L.str120,@object       # @.str120
-.L.str120:
+	.type	.L.str122,@object       # @.str122
+.L.str122:
 	.asciz	"tmp.%d"
-	.size	.L.str120, 7
+	.size	.L.str122, 7
 
-	.type	.L.str221,@object       # @.str221
-.L.str221:
+	.type	.L.str223,@object       # @.str223
+.L.str223:
 	.asciz	"w"
-	.size	.L.str221, 2
+	.size	.L.str223, 2
 
 	.type	flog,@object            # @flog
 	.comm	flog,8,8
-	.type	.L.str322,@object       # @.str322
-.L.str322:
+	.type	.L.str324,@object       # @.str324
+.L.str324:
 	.asciz	"init complete...\n"
-	.size	.L.str322, 18
+	.size	.L.str324, 18
 
 	.type	buf2,@object            # @buf2
 	.comm	buf2,8,8
@@ -863,30 +837,30 @@ sum:
 	.comm	tv_old,16,8
 	.type	tv_new,@object          # @tv_new
 	.comm	tv_new,16,8
-	.type	.L.str25,@object        # @.str25
-.L.str25:
+	.type	.L.str27,@object        # @.str27
+.L.str27:
 	.asciz	"%d\n"
-	.size	.L.str25, 4
+	.size	.L.str27, 4
 
-	.type	.L.str126,@object       # @.str126
-.L.str126:
+	.type	.L.str128,@object       # @.str128
+.L.str128:
 	.asciz	"tmp.%d"
-	.size	.L.str126, 7
+	.size	.L.str128, 7
 
-	.type	.L.str227,@object       # @.str227
-.L.str227:
+	.type	.L.str229,@object       # @.str229
+.L.str229:
 	.asciz	"w"
-	.size	.L.str227, 2
+	.size	.L.str229, 2
 
-	.type	.L.str328,@object       # @.str328
-.L.str328:
+	.type	.L.str330,@object       # @.str330
+.L.str330:
 	.asciz	"0"
-	.size	.L.str328, 2
+	.size	.L.str330, 2
 
-	.type	.L.str429,@object       # @.str429
-.L.str429:
+	.type	.L.str431,@object       # @.str431
+.L.str431:
 	.asciz	"../../straightDFA/log.c"
-	.size	.L.str429, 24
+	.size	.L.str431, 24
 
 	.type	.L__PRETTY_FUNCTION__.do_StraightTaint_fork,@object # @__PRETTY_FUNCTION__.do_StraightTaint_fork
 .L__PRETTY_FUNCTION__.do_StraightTaint_fork:
@@ -1523,8 +1497,8 @@ sum:
 	.byte	1                       # DW_AT_decl_file
 	.byte	30                      # DW_AT_decl_line
                                         # DW_AT_external
-	.quad	.Lfunc_begin4           # DW_AT_low_pc
-	.quad	.Lfunc_end4             # DW_AT_high_pc
+	.quad	.Lfunc_begin2           # DW_AT_low_pc
+	.quad	.Lfunc_end2             # DW_AT_high_pc
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
 	.byte	16                      # Abbrev [16] 0x3a0:0xe DW_TAG_variable
@@ -1543,8 +1517,8 @@ sum:
                                         # DW_AT_prototyped
 	.long	708                     # DW_AT_type
                                         # DW_AT_external
-	.quad	.Lfunc_begin5           # DW_AT_low_pc
-	.quad	.Lfunc_end5             # DW_AT_high_pc
+	.quad	.Lfunc_begin3           # DW_AT_low_pc
+	.quad	.Lfunc_end3             # DW_AT_high_pc
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
 	.byte	18                      # Abbrev [18] 0x3cc:0xe DW_TAG_formal_parameter
@@ -1595,17 +1569,17 @@ sum:
 	.byte	20                      # Abbrev [20] 0x26:0x28 DW_TAG_subprogram
 	.long	.Linfo_string65         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	6                       # DW_AT_decl_line
+	.byte	11                      # DW_AT_decl_line
                                         # DW_AT_prototyped
                                         # DW_AT_external
-	.quad	.Lfunc_begin6           # DW_AT_low_pc
-	.quad	.Lfunc_end6             # DW_AT_high_pc
+	.quad	.Lfunc_begin4           # DW_AT_low_pc
+	.quad	.Lfunc_end4             # DW_AT_high_pc
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
 	.byte	21                      # Abbrev [21] 0x3f:0xe DW_TAG_formal_parameter
 	.long	.Linfo_string73         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	6                       # DW_AT_decl_line
+	.byte	11                      # DW_AT_decl_line
 	.long	.Lsection_info+713      # DW_AT_type
 	.byte	2                       # DW_AT_location
 	.byte	145
@@ -1614,17 +1588,17 @@ sum:
 	.byte	20                      # Abbrev [20] 0x4e:0x28 DW_TAG_subprogram
 	.long	.Linfo_string66         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	24                      # DW_AT_decl_line
+	.byte	29                      # DW_AT_decl_line
                                         # DW_AT_prototyped
                                         # DW_AT_external
-	.quad	.Lfunc_begin7           # DW_AT_low_pc
-	.quad	.Lfunc_end7             # DW_AT_high_pc
+	.quad	.Lfunc_begin5           # DW_AT_low_pc
+	.quad	.Lfunc_end5             # DW_AT_high_pc
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
 	.byte	21                      # Abbrev [21] 0x67:0xe DW_TAG_formal_parameter
 	.long	.Linfo_string71         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	24                      # DW_AT_decl_line
+	.byte	29                      # DW_AT_decl_line
 	.long	.Lsection_info+519      # DW_AT_type
 	.byte	2                       # DW_AT_location
 	.byte	145
@@ -1633,17 +1607,17 @@ sum:
 	.byte	20                      # Abbrev [20] 0x76:0x36 DW_TAG_subprogram
 	.long	.Linfo_string67         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	29                      # DW_AT_decl_line
+	.byte	34                      # DW_AT_decl_line
                                         # DW_AT_prototyped
                                         # DW_AT_external
-	.quad	.Lfunc_begin8           # DW_AT_low_pc
-	.quad	.Lfunc_end8             # DW_AT_high_pc
+	.quad	.Lfunc_begin6           # DW_AT_low_pc
+	.quad	.Lfunc_end6             # DW_AT_high_pc
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
 	.byte	21                      # Abbrev [21] 0x8f:0xe DW_TAG_formal_parameter
 	.long	.Linfo_string74         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	29                      # DW_AT_decl_line
+	.byte	34                      # DW_AT_decl_line
 	.long	.Lsection_info+607      # DW_AT_type
 	.byte	2                       # DW_AT_location
 	.byte	145
@@ -1651,7 +1625,7 @@ sum:
 	.byte	22                      # Abbrev [22] 0x9d:0xe DW_TAG_variable
 	.long	.Linfo_string71         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	31                      # DW_AT_decl_line
+	.byte	36                      # DW_AT_decl_line
 	.long	.Lsection_info+519      # DW_AT_type
 	.byte	2                       # DW_AT_location
 	.byte	145
@@ -1660,16 +1634,16 @@ sum:
 	.byte	23                      # Abbrev [23] 0xac:0x55 DW_TAG_subprogram
 	.long	.Linfo_string68         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	11                      # DW_AT_decl_line
+	.byte	16                      # DW_AT_decl_line
                                         # DW_AT_prototyped
-	.quad	.Lfunc_begin9           # DW_AT_low_pc
-	.quad	.Lfunc_end9             # DW_AT_high_pc
+	.quad	.Lfunc_begin7           # DW_AT_low_pc
+	.quad	.Lfunc_end7             # DW_AT_high_pc
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
 	.byte	21                      # Abbrev [21] 0xc5:0xe DW_TAG_formal_parameter
 	.long	.Linfo_string71         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	11                      # DW_AT_decl_line
+	.byte	16                      # DW_AT_decl_line
 	.long	.Lsection_info+519      # DW_AT_type
 	.byte	2                       # DW_AT_location
 	.byte	145
@@ -1679,12 +1653,12 @@ sum:
 	.byte	24                      # Abbrev [24] 0xd8:0x27 DW_TAG_lexical_block
 	.long	.Ldebug_ranges0         # DW_AT_ranges
 	.byte	25                      # Abbrev [25] 0xdd:0x21 DW_TAG_lexical_block
-	.quad	.Ltmp77                 # DW_AT_low_pc
-	.quad	.Ltmp78                 # DW_AT_high_pc
+	.quad	.Ltmp69                 # DW_AT_low_pc
+	.quad	.Ltmp70                 # DW_AT_high_pc
 	.byte	22                      # Abbrev [22] 0xee:0xf DW_TAG_variable
 	.long	.Linfo_string72         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	16                      # DW_AT_decl_line
+	.byte	21                      # DW_AT_decl_line
 	.long	.Lsection_info+1016     # DW_AT_type
 	.byte	3                       # DW_AT_location
 	.byte	145
@@ -2065,8 +2039,8 @@ sum:
 	.quad	sum
 .Lset0 = .Ldebug_end1-sum
 	.quad	.Lset0
-	.quad	.Lfunc_begin4
-.Lset1 = .Lfunc_begin6-.Lfunc_begin4
+	.quad	.Lfunc_begin2
+.Lset1 = .Lfunc_begin4-.Lfunc_begin2
 	.quad	.Lset1
 	.quad	0                       # ARange terminator
 	.quad	0
@@ -2079,28 +2053,28 @@ sum:
 	.byte	255
 	.byte	255
 	.byte	255
-	.quad	.Lfunc_begin6
-.Lset2 = .Ldebug_end2-.Lfunc_begin6
+	.quad	.Lfunc_begin4
+.Lset2 = .Ldebug_end2-.Lfunc_begin4
 	.quad	.Lset2
 	.quad	0                       # ARange terminator
 	.quad	0
 	.section	.debug_ranges,"",@progbits
+.Lgnu_ranges0:
 .Lgnu_ranges1:
 .Ldebug_ranges0:
-	.quad	.Ltmp76
-	.quad	.Ltmp78
-	.quad	.Ltmp79
-	.quad	.Ltmp80
+	.quad	.Ltmp67
+	.quad	.Ltmp70
+	.quad	.Ltmp71
+	.quad	.Ltmp72
 	.quad	0
 	.quad	0
 .Ldebug_ranges1:
-	.quad	.Ltmp76
-	.quad	.Ltmp78
-	.quad	.Ltmp79
-	.quad	.Ltmp80
+	.quad	.Ltmp67
+	.quad	.Ltmp70
+	.quad	.Ltmp71
+	.quad	.Ltmp72
 	.quad	0
 	.quad	0
-.Lgnu_ranges0:
 	.section	.debug_macinfo,"",@progbits
 	.section	.debug_pubnames,"",@progbits
 .Lset3 = .Lpubnames_end0-.Lpubnames_begin0 # Length of Public Names Info

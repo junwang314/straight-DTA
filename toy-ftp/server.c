@@ -5,16 +5,17 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
-#include <string>
+#include <string.h>
 #include <sys/types.h>
-#include <iostream>
+//#include <iostream>
 #include <assert.h>
 #include <sys/wait.h>
 
-using namespace std;
+//using namespace std;
 #define src "./src.txt"
 void myListen()
 {
+  printf("Parent pid is: %d\n",getpid());
   int listenfd = 0,connfd = 0;
   struct sockaddr_in serv_addr;
   listenfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -30,7 +31,8 @@ void myListen()
     assert(0);
   }
   printf("begin listen...\n");
-  for(int i=0;i<2;i++)
+  int i;
+  for(i=0;i<1;i++)
   {
     printf("loop...\n");
     connfd = accept(listenfd, (struct sockaddr*)NULL ,NULL); // accept awaiting request
@@ -65,7 +67,7 @@ void myListen()
         if(WIFEXITED(status)!=0)
         {
           close(connfd);
-          printf("This is parent process. child pid is : %d",pid);                
+          printf("This is parent process. child pid is : %d\n",pid);                
         }
         else
         {
@@ -80,6 +82,7 @@ void myListen()
 }
 int main(void)
 {
+  printf("main()\n");
   myListen();
   char recvBuff[1025];
   int recvnum=recv(0, recvBuff, 1025,0);
@@ -98,3 +101,4 @@ int main(void)
   ssize_t rc=fwrite(recvBuff,1,1025,fs); 
   fclose(fs);  
 }
+

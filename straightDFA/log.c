@@ -1,5 +1,10 @@
 #include <stdio.h>
 #include <assert.h>
+#include <sys/types.h>
+#include <unistd.h>
+#define _GNU_SOURCE         /* See feature_test_macros(7) */
+#include <sys/syscall.h>   /* For SYS_xxx definitions */
+
 
 extern FILE *flog;
 	
@@ -14,7 +19,7 @@ static inline void do_StraightTaint_fork(int pid)
         //do nothing
     } else if (pid == 0) { //child process
         char filename[1024];
-        snprintf(filename, 1024, "tmp.%d", pid);
+        snprintf(filename, 1024, "tmp.%d", syscall(__NR_getpid));
         flog = fopen(filename, "w");
     } else {
         assert(0);
