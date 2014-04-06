@@ -135,7 +135,7 @@ short * _StraightTaint_init (short ** ptrToAddr)
     int pid = getpid();
     char filename[1024];
     snprintf(filename, 1024, "tmp.%d", pid);
-    flog = fopen(filename, "w");
+    flog = fopen(filename, "w+");
 #endif
 
     printf("init complete...\n");
