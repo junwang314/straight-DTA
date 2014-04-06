@@ -109,7 +109,7 @@ myListen:                               # @myListen
                                         # =>This Inner Loop Header: Depth=1
 	movl	$4, %edi
 	callq	_StraightTaint_log
-	cmpl	$0, -44(%rbp)
+	cmpl	$1, -44(%rbp)
 	jg	.LBB0_12
 # BB#3:                                 # %for.body
                                         #   in Loop: Header=BB0_2 Depth=1
@@ -130,6 +130,8 @@ myListen:                               # @myListen
 	movl	$.L.str8, %edi
 	xorl	%eax, %eax
 	callq	printf
+	movl	$5, %edi
+	callq	_StraightTaint_flush
 	callq	fork
 	movl	%eax, %ebx
 	movl	%ebx, %edi
@@ -505,10 +507,10 @@ _StraightTaint_init:                    # @_StraightTaint_init
 .Lfunc_end3:
 	.cfi_endproc
 
-	.globl	_StraightTaint_log
+	.globl	_StraightTaint_flush
 	.align	16, 0x90
-	.type	_StraightTaint_log,@function
-_StraightTaint_log:                     # @_StraightTaint_log
+	.type	_StraightTaint_flush,@function
+_StraightTaint_flush:                   # @_StraightTaint_flush
 .Lfunc_begin4:
 	.loc	4 12 0                  # ../../straightDFA/log.c:12:0
 	.cfi_startproc
@@ -526,26 +528,23 @@ _StraightTaint_log:                     # @_StraightTaint_log
 	.loc	4 13 0 prologue_end     # ../../straightDFA/log.c:13:0
 .Ltmp41:
 	movq	flog(%rip), %rdi
-	movswl	-2(%rbp), %edx
-	movl	$.L.str27, %esi
-	xorl	%eax, %eax
-	callq	fprintf
+	callq	fflush
 	.loc	4 14 0                  # ../../straightDFA/log.c:14:0
 	addq	$16, %rsp
 	popq	%rbp
 	ret
 .Ltmp42:
 .Ltmp43:
-	.size	_StraightTaint_log, .Ltmp43-_StraightTaint_log
+	.size	_StraightTaint_flush, .Ltmp43-_StraightTaint_flush
 .Lfunc_end4:
 	.cfi_endproc
 
-	.globl	_StraightTaint_fork32
+	.globl	_StraightTaint_log
 	.align	16, 0x90
-	.type	_StraightTaint_fork32,@function
-_StraightTaint_fork32:                  # @_StraightTaint_fork32
+	.type	_StraightTaint_log,@function
+_StraightTaint_log:                     # @_StraightTaint_log
 .Lfunc_begin5:
-	.loc	4 30 0                  # ../../straightDFA/log.c:30:0
+	.loc	4 17 0                  # ../../straightDFA/log.c:17:0
 	.cfi_startproc
 # BB#0:                                 # %entry
 	pushq	%rbp
@@ -557,24 +556,28 @@ _StraightTaint_fork32:                  # @_StraightTaint_fork32
 .Ltmp48:
 	.cfi_def_cfa_register %rbp
 	subq	$16, %rsp
-	movl	%edi, -4(%rbp)
-	.loc	4 31 0 prologue_end     # ../../straightDFA/log.c:31:0
+	movw	%di, -2(%rbp)
+	.loc	4 18 0 prologue_end     # ../../straightDFA/log.c:18:0
 .Ltmp49:
-	callq	do_StraightTaint_fork
-	.loc	4 32 0                  # ../../straightDFA/log.c:32:0
+	movq	flog(%rip), %rdi
+	movswl	-2(%rbp), %edx
+	movl	$.L.str27, %esi
+	xorl	%eax, %eax
+	callq	fprintf
+	.loc	4 19 0                  # ../../straightDFA/log.c:19:0
 	addq	$16, %rsp
 	popq	%rbp
 	ret
 .Ltmp50:
 .Ltmp51:
-	.size	_StraightTaint_fork32, .Ltmp51-_StraightTaint_fork32
+	.size	_StraightTaint_log, .Ltmp51-_StraightTaint_log
 .Lfunc_end5:
 	.cfi_endproc
 
-	.globl	_StraightTaint_fork64
+	.globl	_StraightTaint_fork32
 	.align	16, 0x90
-	.type	_StraightTaint_fork64,@function
-_StraightTaint_fork64:                  # @_StraightTaint_fork64
+	.type	_StraightTaint_fork32,@function
+_StraightTaint_fork32:                  # @_StraightTaint_fork32
 .Lfunc_begin6:
 	.loc	4 35 0                  # ../../straightDFA/log.c:35:0
 	.cfi_startproc
@@ -588,57 +591,88 @@ _StraightTaint_fork64:                  # @_StraightTaint_fork64
 .Ltmp56:
 	.cfi_def_cfa_register %rbp
 	subq	$16, %rsp
-	movq	%rdi, -8(%rbp)
+	movl	%edi, -4(%rbp)
 	.loc	4 36 0 prologue_end     # ../../straightDFA/log.c:36:0
 .Ltmp57:
-	movl	-8(%rbp), %edi
-	movl	%edi, -12(%rbp)
-	.loc	4 37 0                  # ../../straightDFA/log.c:37:0
 	callq	do_StraightTaint_fork
-	.loc	4 38 0                  # ../../straightDFA/log.c:38:0
+	.loc	4 37 0                  # ../../straightDFA/log.c:37:0
 	addq	$16, %rsp
 	popq	%rbp
 	ret
 .Ltmp58:
 .Ltmp59:
-	.size	_StraightTaint_fork64, .Ltmp59-_StraightTaint_fork64
+	.size	_StraightTaint_fork32, .Ltmp59-_StraightTaint_fork32
 .Lfunc_end6:
+	.cfi_endproc
+
+	.globl	_StraightTaint_fork64
+	.align	16, 0x90
+	.type	_StraightTaint_fork64,@function
+_StraightTaint_fork64:                  # @_StraightTaint_fork64
+.Lfunc_begin7:
+	.loc	4 40 0                  # ../../straightDFA/log.c:40:0
+	.cfi_startproc
+# BB#0:                                 # %entry
+	pushq	%rbp
+.Ltmp62:
+	.cfi_def_cfa_offset 16
+.Ltmp63:
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+.Ltmp64:
+	.cfi_def_cfa_register %rbp
+	subq	$16, %rsp
+	movq	%rdi, -8(%rbp)
+	.loc	4 41 0 prologue_end     # ../../straightDFA/log.c:41:0
+.Ltmp65:
+	movl	-8(%rbp), %edi
+	movl	%edi, -12(%rbp)
+	.loc	4 42 0                  # ../../straightDFA/log.c:42:0
+	callq	do_StraightTaint_fork
+	.loc	4 43 0                  # ../../straightDFA/log.c:43:0
+	addq	$16, %rsp
+	popq	%rbp
+	ret
+.Ltmp66:
+.Ltmp67:
+	.size	_StraightTaint_fork64, .Ltmp67-_StraightTaint_fork64
+.Lfunc_end7:
 	.cfi_endproc
 
 	.align	16, 0x90
 	.type	do_StraightTaint_fork,@function
 do_StraightTaint_fork:                  # @do_StraightTaint_fork
-.Lfunc_begin7:
-	.loc	4 17 0                  # ../../straightDFA/log.c:17:0
+.Lfunc_begin8:
+	.loc	4 22 0                  # ../../straightDFA/log.c:22:0
 	.cfi_startproc
 # BB#0:                                 # %entry
 	pushq	%rbp
-.Ltmp63:
+.Ltmp71:
 	.cfi_def_cfa_offset 16
-.Ltmp64:
+.Ltmp72:
 	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
-.Ltmp65:
+.Ltmp73:
 	.cfi_def_cfa_register %rbp
 	pushq	%rbx
 	subq	$1032, %rsp             # imm = 0x408
-.Ltmp66:
+.Ltmp74:
 	.cfi_offset %rbx, -24
 	testl	%edi, %edi
 	movl	%edi, -12(%rbp)
-	jg	.LBB7_3
+	jg	.LBB8_3
 # BB#1:                                 # %if.else
-	.loc	4 20 0 prologue_end     # ../../straightDFA/log.c:20:0
-.Ltmp67:
+	.loc	4 25 0 prologue_end     # ../../straightDFA/log.c:25:0
+.Ltmp75:
 	cmpl	$0, -12(%rbp)
-	jne	.LBB7_4
+	jne	.LBB8_4
 # BB#2:                                 # %if.then2
-.Ltmp68:
+.Ltmp76:
 	#DEBUG_VALUE: filename <- [RBP+-1040]
 	movl	$39, %edi
 	xorl	%eax, %eax
-	.loc	4 22 0                  # ../../straightDFA/log.c:22:0
-.Ltmp69:
+	.loc	4 27 0                  # ../../straightDFA/log.c:27:0
+.Ltmp77:
 	callq	syscall
 	movq	%rax, %rcx
 	leaq	-1040(%rbp), %rbx
@@ -647,30 +681,30 @@ do_StraightTaint_fork:                  # @do_StraightTaint_fork
 	xorl	%eax, %eax
 	movq	%rbx, %rdi
 	callq	snprintf
-	.loc	4 23 0                  # ../../straightDFA/log.c:23:0
+	.loc	4 28 0                  # ../../straightDFA/log.c:28:0
 	movl	$.L.str229, %esi
 	movq	%rbx, %rdi
 	callq	fopen
 	movq	%rax, flog(%rip)
-.Ltmp70:
-.LBB7_3:                                # %if.end7
-	.loc	4 27 0                  # ../../straightDFA/log.c:27:0
+.Ltmp78:
+.LBB8_3:                                # %if.end7
+	.loc	4 32 0                  # ../../straightDFA/log.c:32:0
 	addq	$1032, %rsp             # imm = 0x408
 	popq	%rbx
 	popq	%rbp
 	ret
-.LBB7_4:                                # %if.else6
-	.loc	4 25 0                  # ../../straightDFA/log.c:25:0
-.Ltmp71:
+.LBB8_4:                                # %if.else6
+	.loc	4 30 0                  # ../../straightDFA/log.c:30:0
+.Ltmp79:
 	movl	$.L.str330, %edi
 	movl	$.L.str431, %esi
-	movl	$25, %edx
+	movl	$30, %edx
 	movl	$.L__PRETTY_FUNCTION__.do_StraightTaint_fork, %ecx
 	callq	__assert_fail
-.Ltmp72:
-.Ltmp73:
-	.size	do_StraightTaint_fork, .Ltmp73-do_StraightTaint_fork
-.Lfunc_end7:
+.Ltmp80:
+.Ltmp81:
+	.size	do_StraightTaint_fork, .Ltmp81-do_StraightTaint_fork
+.Lfunc_end8:
 	.cfi_endproc
 
 	.type	.L.str,@object          # @.str
@@ -696,8 +730,8 @@ do_StraightTaint_fork:                  # @do_StraightTaint_fork
 
 	.type	.L.str4,@object         # @.str4
 .L.str4:
-	.asciz	"server.c"
-	.size	.L.str4, 9
+	.asciz	"../server.c"
+	.size	.L.str4, 12
 
 	.type	.L__PRETTY_FUNCTION__.myListen,@object # @__PRETTY_FUNCTION__.myListen
 .L__PRETTY_FUNCTION__.myListen:
@@ -1003,24 +1037,26 @@ sum:
 .Linfo_string64:
 	.asciz	"../../straightDFA/log.c"
 .Linfo_string65:
-	.asciz	"_StraightTaint_log"
+	.asciz	"_StraightTaint_flush"
 .Linfo_string66:
-	.asciz	"_StraightTaint_fork32"
+	.asciz	"_StraightTaint_log"
 .Linfo_string67:
-	.asciz	"_StraightTaint_fork64"
+	.asciz	"_StraightTaint_fork32"
 .Linfo_string68:
-	.asciz	"do_StraightTaint_fork"
+	.asciz	"_StraightTaint_fork64"
 .Linfo_string69:
-	.asciz	"pos_old"
+	.asciz	"do_StraightTaint_fork"
 .Linfo_string70:
-	.asciz	"ptrToAddr"
+	.asciz	"pos_old"
 .Linfo_string71:
-	.asciz	"pid"
+	.asciz	"ptrToAddr"
 .Linfo_string72:
-	.asciz	"filename"
+	.asciz	"pid"
 .Linfo_string73:
-	.asciz	"BBID"
+	.asciz	"filename"
 .Linfo_string74:
+	.asciz	"BBID"
+.Linfo_string75:
 	.asciz	"lpid"
 	.section	.debug_info,"",@progbits
 .L.debug_info_begin0:
@@ -1502,7 +1538,7 @@ sum:
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
 	.byte	16                      # Abbrev [16] 0x3a0:0xe DW_TAG_variable
-	.long	.Linfo_string69         # DW_AT_name
+	.long	.Linfo_string70         # DW_AT_name
 	.byte	1                       # DW_AT_decl_file
 	.byte	48                      # DW_AT_decl_line
 	.long	647                     # DW_AT_type
@@ -1522,7 +1558,7 @@ sum:
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
 	.byte	18                      # Abbrev [18] 0x3cc:0xe DW_TAG_formal_parameter
-	.long	.Linfo_string70         # DW_AT_name
+	.long	.Linfo_string71         # DW_AT_name
 	.byte	1                       # DW_AT_decl_file
 	.byte	67                      # DW_AT_decl_line
 	.long	703                     # DW_AT_type
@@ -1530,7 +1566,7 @@ sum:
 	.byte	145
 	.byte	112
 	.byte	16                      # Abbrev [16] 0x3da:0xe DW_TAG_variable
-	.long	.Linfo_string71         # DW_AT_name
+	.long	.Linfo_string72         # DW_AT_name
 	.byte	1                       # DW_AT_decl_file
 	.byte	135                     # DW_AT_decl_line
 	.long	519                     # DW_AT_type
@@ -1538,7 +1574,7 @@ sum:
 	.byte	145
 	.byte	108
 	.byte	16                      # Abbrev [16] 0x3e8:0xf DW_TAG_variable
-	.long	.Linfo_string72         # DW_AT_name
+	.long	.Linfo_string73         # DW_AT_name
 	.byte	1                       # DW_AT_decl_file
 	.byte	136                     # DW_AT_decl_line
 	.long	1016                    # DW_AT_type
@@ -1555,11 +1591,11 @@ sum:
 	.byte	0                       # End Of Children Mark
 .L.debug_info_end0:
 .L.debug_info_begin1:
-	.long	254                     # Length of Unit
+	.long	294                     # Length of Unit
 	.short	4                       # DWARF version number
 	.long	.Lsection_abbrev        # Offset Into Abbrev. Section
 	.byte	8                       # Address Size (in bytes)
-	.byte	1                       # Abbrev [1] 0xb:0xf7 DW_TAG_compile_unit
+	.byte	1                       # Abbrev [1] 0xb:0x11f DW_TAG_compile_unit
 	.long	.Linfo_string0          # DW_AT_producer
 	.short	12                      # DW_AT_language
 	.long	.Linfo_string64         # DW_AT_name
@@ -1577,7 +1613,7 @@ sum:
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
 	.byte	21                      # Abbrev [21] 0x3f:0xe DW_TAG_formal_parameter
-	.long	.Linfo_string73         # DW_AT_name
+	.long	.Linfo_string74         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
 	.byte	11                      # DW_AT_decl_line
 	.long	.Lsection_info+713      # DW_AT_type
@@ -1588,7 +1624,7 @@ sum:
 	.byte	20                      # Abbrev [20] 0x4e:0x28 DW_TAG_subprogram
 	.long	.Linfo_string66         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	29                      # DW_AT_decl_line
+	.byte	16                      # DW_AT_decl_line
                                         # DW_AT_prototyped
                                         # DW_AT_external
 	.quad	.Lfunc_begin5           # DW_AT_low_pc
@@ -1596,15 +1632,15 @@ sum:
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
 	.byte	21                      # Abbrev [21] 0x67:0xe DW_TAG_formal_parameter
-	.long	.Linfo_string71         # DW_AT_name
+	.long	.Linfo_string74         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	29                      # DW_AT_decl_line
-	.long	.Lsection_info+519      # DW_AT_type
+	.byte	16                      # DW_AT_decl_line
+	.long	.Lsection_info+713      # DW_AT_type
 	.byte	2                       # DW_AT_location
 	.byte	145
-	.byte	124
+	.byte	126
 	.byte	0                       # End Of Children Mark
-	.byte	20                      # Abbrev [20] 0x76:0x36 DW_TAG_subprogram
+	.byte	20                      # Abbrev [20] 0x76:0x28 DW_TAG_subprogram
 	.long	.Linfo_string67         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
 	.byte	34                      # DW_AT_decl_line
@@ -1615,50 +1651,69 @@ sum:
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
 	.byte	21                      # Abbrev [21] 0x8f:0xe DW_TAG_formal_parameter
-	.long	.Linfo_string74         # DW_AT_name
+	.long	.Linfo_string72         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
 	.byte	34                      # DW_AT_decl_line
+	.long	.Lsection_info+519      # DW_AT_type
+	.byte	2                       # DW_AT_location
+	.byte	145
+	.byte	124
+	.byte	0                       # End Of Children Mark
+	.byte	20                      # Abbrev [20] 0x9e:0x36 DW_TAG_subprogram
+	.long	.Linfo_string68         # DW_AT_name
+	.byte	4                       # DW_AT_decl_file
+	.byte	39                      # DW_AT_decl_line
+                                        # DW_AT_prototyped
+                                        # DW_AT_external
+	.quad	.Lfunc_begin7           # DW_AT_low_pc
+	.quad	.Lfunc_end7             # DW_AT_high_pc
+	.byte	1                       # DW_AT_frame_base
+	.byte	86
+	.byte	21                      # Abbrev [21] 0xb7:0xe DW_TAG_formal_parameter
+	.long	.Linfo_string75         # DW_AT_name
+	.byte	4                       # DW_AT_decl_file
+	.byte	39                      # DW_AT_decl_line
 	.long	.Lsection_info+607      # DW_AT_type
 	.byte	2                       # DW_AT_location
 	.byte	145
 	.byte	120
-	.byte	22                      # Abbrev [22] 0x9d:0xe DW_TAG_variable
-	.long	.Linfo_string71         # DW_AT_name
+	.byte	22                      # Abbrev [22] 0xc5:0xe DW_TAG_variable
+	.long	.Linfo_string72         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	36                      # DW_AT_decl_line
+	.byte	41                      # DW_AT_decl_line
 	.long	.Lsection_info+519      # DW_AT_type
 	.byte	2                       # DW_AT_location
 	.byte	145
 	.byte	116
 	.byte	0                       # End Of Children Mark
-	.byte	23                      # Abbrev [23] 0xac:0x55 DW_TAG_subprogram
-	.long	.Linfo_string68         # DW_AT_name
+	.byte	23                      # Abbrev [23] 0xd4:0x55 DW_TAG_subprogram
+	.long	.Linfo_string69         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	16                      # DW_AT_decl_line
+	.byte	21                      # DW_AT_decl_line
                                         # DW_AT_prototyped
-	.quad	.Lfunc_begin7           # DW_AT_low_pc
-	.quad	.Lfunc_end7             # DW_AT_high_pc
+	.quad	.Lfunc_begin8           # DW_AT_low_pc
+	.quad	.Lfunc_end8             # DW_AT_high_pc
 	.byte	1                       # DW_AT_frame_base
 	.byte	86
-	.byte	21                      # Abbrev [21] 0xc5:0xe DW_TAG_formal_parameter
-	.long	.Linfo_string71         # DW_AT_name
+	.byte	21                      # Abbrev [21] 0xed:0xe DW_TAG_formal_parameter
+	.long	.Linfo_string72         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	16                      # DW_AT_decl_line
+	.byte	21                      # DW_AT_decl_line
 	.long	.Lsection_info+519      # DW_AT_type
 	.byte	2                       # DW_AT_location
 	.byte	145
 	.byte	116
-	.byte	24                      # Abbrev [24] 0xd3:0x2d DW_TAG_lexical_block
+	.byte	24                      # Abbrev [24] 0xfb:0x2d DW_TAG_lexical_block
 	.long	.Ldebug_ranges1         # DW_AT_ranges
-	.byte	24                      # Abbrev [24] 0xd8:0x27 DW_TAG_lexical_block
+	.byte	24                      # Abbrev [24] 0x100:0x27 DW_TAG_lexical_block
 	.long	.Ldebug_ranges0         # DW_AT_ranges
-	.byte	25                      # Abbrev [25] 0xdd:0x21 DW_TAG_lexical_block
-	.quad	.Ltmp69                 # DW_AT_low_pc
-	.quad	.Ltmp70                 # DW_AT_high_pc
-	.byte	22                      # Abbrev [22] 0xee:0xf DW_TAG_variable
-	.long	.Linfo_string72         # DW_AT_name
+	.byte	25                      # Abbrev [25] 0x105:0x21 DW_TAG_lexical_block
+	.quad	.Ltmp77                 # DW_AT_low_pc
+	.quad	.Ltmp78                 # DW_AT_high_pc
+	.byte	22                      # Abbrev [22] 0x116:0xf DW_TAG_variable
+	.long	.Linfo_string73         # DW_AT_name
 	.byte	4                       # DW_AT_decl_file
-	.byte	21                      # DW_AT_decl_line
+	.byte	26                      # DW_AT_decl_line
 	.long	.Lsection_info+1016     # DW_AT_type
 	.byte	3                       # DW_AT_location
 	.byte	145
@@ -2059,22 +2114,22 @@ sum:
 	.quad	0                       # ARange terminator
 	.quad	0
 	.section	.debug_ranges,"",@progbits
-.Lgnu_ranges0:
 .Lgnu_ranges1:
 .Ldebug_ranges0:
-	.quad	.Ltmp67
-	.quad	.Ltmp70
-	.quad	.Ltmp71
-	.quad	.Ltmp72
+	.quad	.Ltmp75
+	.quad	.Ltmp78
+	.quad	.Ltmp79
+	.quad	.Ltmp80
 	.quad	0
 	.quad	0
 .Ldebug_ranges1:
-	.quad	.Ltmp67
-	.quad	.Ltmp70
-	.quad	.Ltmp71
-	.quad	.Ltmp72
+	.quad	.Ltmp75
+	.quad	.Ltmp78
+	.quad	.Ltmp79
+	.quad	.Ltmp80
 	.quad	0
 	.quad	0
+.Lgnu_ranges0:
 	.section	.debug_macinfo,"",@progbits
 	.section	.debug_pubnames,"",@progbits
 .Lset3 = .Lpubnames_end0-.Lpubnames_begin0 # Length of Public Names Info
@@ -2113,13 +2168,15 @@ sum:
 	.long	.L.debug_info_begin1    # Offset of Compilation Unit Info
 .Lset6 = .L.debug_info_end1-.L.debug_info_begin1 # Compilation Unit Length
 	.long	.Lset6
-	.long	118                     # DIE offset
+	.long	158                     # DIE offset
 	.asciz	"_StraightTaint_fork64" # External Name
 	.long	38                      # DIE offset
-	.asciz	"_StraightTaint_log"    # External Name
-	.long	172                     # DIE offset
-	.asciz	"do_StraightTaint_fork" # External Name
+	.asciz	"_StraightTaint_flush"  # External Name
 	.long	78                      # DIE offset
+	.asciz	"_StraightTaint_log"    # External Name
+	.long	212                     # DIE offset
+	.asciz	"do_StraightTaint_fork" # External Name
+	.long	118                     # DIE offset
 	.asciz	"_StraightTaint_fork32" # External Name
 	.long	0                       # End Mark
 .Lpubnames_end1:

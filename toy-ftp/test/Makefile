@@ -25,6 +25,9 @@ $(LOG).bc:$(LOG).c
 $(NEWSRC).bc:$(SRC).bc
 	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -inst < $^ > $@
 
+$(SRC).bc:$(NEWSRC).bc
+	clang -c -emit-llvm ../server.c -o ../server.bc
+
 clean:$(SRC).bc $(INIT).c $(LOG).c
 	rm $(TARGET) $(TARGET).s $(TARGET).bc
 	touch $^

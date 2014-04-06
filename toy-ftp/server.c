@@ -32,7 +32,7 @@ void myListen()
   }
   printf("begin listen...\n");
   int i;
-  for(i=0;i<1;i++)
+  for(i=0;i<2;i++)
   {
     printf("loop...\n");
     connfd = accept(listenfd, (struct sockaddr*)NULL ,NULL); // accept awaiting request
