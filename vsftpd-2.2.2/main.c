@@ -25,7 +25,8 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <stdio.h>
+#include <sys/syscall.h>
 /*
  * Forward decls of helper functions
  */
@@ -35,6 +36,8 @@ static void session_init(struct vsf_session* p_sess);
 static void env_init(void);
 static void limits_init(void);
 
+FILE* dbgfile;
+
 void flush_log(int sig)
 {
   exit(0);
@@ -43,6 +46,9 @@ void flush_log(int sig)
 int
 main(int argc, const char* argv[])
 {
+  //FIXME
+  dbgfile=fopen("dbgfile","w");
+
   /* add handler for SIGINT to flush log file when receiving SIGINT, e.g. CTRL^C is pressed */
   struct sigaction sa;
   memset(&sa, 0, sizeof(struct sigaction));
@@ -165,6 +171,8 @@ main(int argc, const char* argv[])
     /* Standalone mode */
     printf("vsf_standalone_main\n");
     struct vsf_client_launch ret = vsf_standalone_main();
+    fprintf(dbgfile,"return from vsf_standalone_main. pid: %d\n",syscall(__NR_getpid));
+    fflush(dbgfile);
     the_session.num_clients = ret.num_children;
     the_session.num_this_ip = ret.num_this_ip;
   }
@@ -249,14 +257,21 @@ main(int argc, const char* argv[])
       tunable_chown_uploads = 0;
     }
   }
+  fprintf(dbgfile,"process pid: %d\n",syscall(__NR_getpid));
+  fflush(dbgfile);
   if (tunable_one_process_model)
   {
+    fprintf(dbgfile,"tunable_one_process_model. pid: %d\n",syscall(__NR_getpid));
+    fflush(dbgfile);
     vsf_one_process_start(&the_session);
   }
   else
   {
+    fprintf(dbgfile,"NOT tunable_one_process_model. pid: %d\n",syscall(__NR_getpid));
+    fflush(dbgfile);
     vsf_two_process_start(&the_session);
   }
+  fclose(dbgfile);
   /* NOTREACHED */
   bug("should not get here: main");
   return 1;

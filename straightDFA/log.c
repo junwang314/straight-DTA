@@ -35,7 +35,7 @@ static inline void do_StraightTaint_fork(int pid)
 	char buf[1024];
 	size_t size;
 	while(size=fread(buf,1,1024,flogParent)){
-		printf("size read: %d\n",size);
+//		printf("size read: %d\n",size);
 		fwrite(buf,1,size,flog);
 	}
 	fclose(flogParent);

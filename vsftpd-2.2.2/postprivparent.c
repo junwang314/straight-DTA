@@ -21,7 +21,8 @@
 #include "secutil.h"
 #include "sysstr.h"
 #include "sysdeputil.h"
-
+#include <stdio.h>
+extern FILE* dbgfile;
 static void minimize_privilege(struct vsf_session* p_sess);
 static void process_post_login_req(struct vsf_session* p_sess);
 static void cmd_process_chown(struct vsf_session* p_sess);
@@ -45,35 +46,51 @@ vsf_priv_parent_postlogin(struct vsf_session* p_sess)
 static void
 process_post_login_req(struct vsf_session* p_sess)
 {
+  fprintf(dbgfile,"process_post_login_req\n");
+  fflush(dbgfile);
   char cmd;
   /* Blocks */
   cmd = priv_sock_get_cmd(p_sess->parent_fd);
   if (tunable_chown_uploads && cmd == PRIV_SOCK_CHOWN)
   {
+    fprintf(dbgfile,"PRIV_SOCK_CHOWN\n");
+    fflush(dbgfile);
     cmd_process_chown(p_sess);
   }
   else if (cmd == PRIV_SOCK_GET_DATA_SOCK)
   {
+    fprintf(dbgfile,"PRIV_SOCK_GET_DATA_SOCK\n");
+    fflush(dbgfile);
     cmd_process_get_data_sock(p_sess);
   }
   else if (cmd == PRIV_SOCK_PASV_CLEANUP)
   {
+    fprintf(dbgfile,"PRIV_SOCK_PASV_CLEANUP\n");
+    fflush(dbgfile);
     cmd_process_pasv_cleanup(p_sess);
   }
   else if (cmd == PRIV_SOCK_PASV_ACTIVE)
   {
+    fprintf(dbgfile,"PRIV_SOCK_PASV_ACTIVE\n");
+    fflush(dbgfile);
     cmd_process_pasv_active(p_sess);
   }
   else if (cmd == PRIV_SOCK_PASV_LISTEN)
   {
+    fprintf(dbgfile,"PRIV_SOCK_PASV_LISTEN\n");
+    fflush(dbgfile);
     cmd_process_pasv_listen(p_sess);
   }
   else if (cmd == PRIV_SOCK_PASV_ACCEPT)
   {
+    fprintf(dbgfile,"PRIV_SOCK_PASV_ACCEPT\n");
+    fflush(dbgfile);
     cmd_process_pasv_accept(p_sess);
   }
   else
   {
+    fprintf(dbgfile,"else\n");
+    fflush(dbgfile);
     die("bad request in process_post_login_req");
   }
 }

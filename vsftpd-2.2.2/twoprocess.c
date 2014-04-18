@@ -27,6 +27,8 @@
 #include "sysutil.h"
 #include "sysdeputil.h"
 #include "sslslave.h"
+#include <stdio.h>
+extern FILE* dbgfile;
 
 static void drop_all_privs(void);
 static void handle_sigchld(void* duff);
@@ -93,10 +95,14 @@ vsf_two_process_start(struct vsf_session* p_sess)
     int newpid;
     if (tunable_isolate_network)
     {
+      fprintf(dbgfile,"vsf_sysutil_fork_newnet\n");
+      fflush(dbgfile);
       newpid = vsf_sysutil_fork_newnet();
     }
     else
     {
+      fprintf(dbgfile,"vsf_sysutil_fork\n");
+      fflush(dbgfile);
       newpid = vsf_sysutil_fork();
     }
     if (newpid != 0)
@@ -170,6 +176,8 @@ void
 vsf_two_process_login(struct vsf_session* p_sess,
                       const struct mystr* p_pass_str)
 {
+  fprintf(dbgfile,"vsf_two_process_login\n");
+  fflush(dbgfile);
   char result;
   priv_sock_send_cmd(p_sess->child_fd, PRIV_SOCK_LOGIN);
   priv_sock_send_str(p_sess->child_fd, &p_sess->user_str);
@@ -279,9 +287,13 @@ vsf_two_process_chown_upload(struct vsf_session* p_sess, int fd)
   }
 }
 
+extern FILE* dbgfile;
 static void
 process_login_req(struct vsf_session* p_sess)
 {
+  fprintf(dbgfile,"process_login_req\n");
+  fflush(dbgfile);
+
   enum EVSFPrivopLoginResult e_login_result = kVSFLoginNull;
   char cmd;
   /* Blocks */
@@ -317,6 +329,8 @@ process_login_req(struct vsf_session* p_sess)
       break;
     case kVSFLoginReal:
       {
+        fprintf(dbgfile,"KVSFLoginReal\n");
+        fflush(dbgfile);
         int do_chroot = 0;
         if (tunable_chroot_local_user)
         {
@@ -360,6 +374,8 @@ static void
 common_do_login(struct vsf_session* p_sess, const struct mystr* p_user_str,
                 int do_chroot, int anon)
 {
+  fprintf(dbgfile,"common_do_login\n");
+  fflush(dbgfile);
   int was_anon = anon;
   const struct mystr* p_orig_user_str = p_user_str;
   int newpid;
@@ -383,10 +399,14 @@ common_do_login(struct vsf_session* p_sess, const struct mystr* p_user_str,
   vsf_sysutil_install_sighandler(kVSFSysUtilSigCHLD, handle_sigchld, 0, 1);
   if (tunable_isolate_network && !tunable_port_promiscuous)
   {
+    fprintf(dbgfile,"vsf_sysutil_fork_newnet\n");
+    fflush(dbgfile);
     newpid = vsf_sysutil_fork_newnet();
   }
   else
   {
+    fprintf(dbgfile,"vsf_sysutil_fork\n");
+    fflush(dbgfile);
     newpid = vsf_sysutil_fork();
   }
   if (newpid == 0)

@@ -6,7 +6,7 @@
  *
  * Highly system dependent utilities - e.g. authentication, capabilities.
  */
-
+#include <stdio.h>
 #include "sysdeputil.h"
 #include "str.h"
 #include "sysutil.h"
@@ -1259,18 +1259,26 @@ vsf_set_term_if_parent_dies()
 #endif
 }
 
+extern FILE* dbgfile;
+
 int
 vsf_sysutil_fork_isolate_failok()
 {
 #ifdef VSF_SYSDEP_HAVE_LINUX_CLONE
+  fprintf(dbgfile, "VSF_SYSDEP_HAVE_LINUX_CLONE\n");
+  fflush(dbgfile);
   static int cloneflags_work = 1;
   if (cloneflags_work)
   {
+    fprintf(dbgfile,"syscall __NR_clone\n");
+    fflush(dbgfile);
     int ret = syscall(__NR_clone, CLONE_NEWPID | CLONE_NEWIPC | SIGCHLD, NULL);
     if (ret != -1 || (errno != EINVAL && errno != EPERM))
     {
       if (ret == 0)
       {
+        fprintf(dbgfile,"call vsf_sysutil_post_fork\n");
+        fflush(dbgfile);
         vsf_sysutil_post_fork();
       }
       return ret;
@@ -1278,6 +1286,8 @@ vsf_sysutil_fork_isolate_failok()
     cloneflags_work = 0;
   }
 #endif
+  fprintf(dbgfile, "return vsf_sysutil_fork_failok\n");
+  fflush(dbgfile);
   return vsf_sysutil_fork_failok();
 }
 
