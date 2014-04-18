@@ -8,6 +8,10 @@
 
 extern FILE *flog;
 	
+void _StraightTaint_pseudo()
+{
+}
+
 void _StraightTaint_flush(short BBID)
 {
     fflush(flog);
