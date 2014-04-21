@@ -30,13 +30,15 @@ static inline void do_StraightTaint_fork(int pid)
         char filename[1024];
         snprintf(filename, 1024, "tmp.%d", syscall(__NR_getpid));
 	FILE* flogParent=flog;
-        flog = fopen(filename, "w");
-	fseek(flogParent,0,SEEK_SET);
-	char buf[1024];
-	size_t size;
-	while(size=fread(buf,1,1024,flogParent)){
-//		printf("size read: %d\n",size);
-		fwrite(buf,1,size,flog);
+        flog = fopen(filename, "w+");
+	rewind(flogParent);
+        int bbid=0;
+	int size;
+	fflush(flog);
+	fflush(flogParent);
+	while(EOF!=fscanf(flogParent,"%d",&bbid)){
+//		printf("bbid: %d\n",bbid);
+		fprintf(flog,"%d\n",bbid);
 	}
 	fclose(flogParent);
     } else {

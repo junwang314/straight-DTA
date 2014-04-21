@@ -55,7 +55,9 @@
 #include <utime.h>
 #include <netdb.h>
 #include <sys/resource.h>
-
+#include <stdio.h>
+#include <sys/syscall.h>
+extern FILE* dbgfile;
 /* Private variables to this file */
 /* Current umask() */
 static unsigned int s_current_umask;
@@ -397,6 +399,8 @@ vsf_sysutil_read_loop(const int fd, void* p_buf, unsigned int size)
   {
     die("size too big in vsf_sysutil_read_loop");
   }
+  //fprintf(dbgfile,"vsf_sysutil_read_loop pid: %d\n",syscall(__NR_getpid));
+  //fflush(dbgfile);
   while (1)
   {
     retval = vsf_sysutil_read(fd, (char*)p_buf + num_read, size);
@@ -407,6 +411,8 @@ vsf_sysutil_read_loop(const int fd, void* p_buf, unsigned int size)
     else if (retval == 0)
     {
       /* Read all we're going to read.. */
+      //fprintf(dbgfile,"vsf_sysutil_read_loop num_read: %d pid: %d\n",num_read,syscall(__NR_getpid));
+      //fflush(dbgfile);
       return num_read; 
     }
     if ((unsigned int) retval > size)
@@ -418,6 +424,8 @@ vsf_sysutil_read_loop(const int fd, void* p_buf, unsigned int size)
     if (size == 0)
     {
       /* Hit the read target, cool. */
+      //fprintf(dbgfile,"vsf_sysutil_read_loop num_read: %d pid: %d\n",num_read, syscall(__NR_getpid));
+      //fflush(dbgfile);
       return num_read;
     }
   }

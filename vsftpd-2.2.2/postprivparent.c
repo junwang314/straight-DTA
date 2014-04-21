@@ -50,7 +50,11 @@ process_post_login_req(struct vsf_session* p_sess)
   fflush(dbgfile);
   char cmd;
   /* Blocks */
+//  fprintf(dbgfile,"**********\n");
+//  fflush(dbgfile);
   cmd = priv_sock_get_cmd(p_sess->parent_fd);
+//  fprintf(dbgfile,"**********\n");
+//  fflush(dbgfile);
   if (tunable_chown_uploads && cmd == PRIV_SOCK_CHOWN)
   {
     fprintf(dbgfile,"PRIV_SOCK_CHOWN\n");

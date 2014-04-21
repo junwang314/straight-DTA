@@ -27,7 +27,9 @@
 #include "ssl.h"
 #include "vsftpver.h"
 #include "opts.h"
-
+#include <stdio.h>
+#include "sys/syscall.h"
+extern FILE* dbgfile;
 /* Private local functions */
 static void handle_pwd(struct vsf_session* p_sess);
 static void handle_cwd(struct vsf_session* p_sess);
@@ -82,6 +84,8 @@ static void resolve_tilde(struct mystr* p_str, struct vsf_session* p_sess);
 void
 process_post_login(struct vsf_session* p_sess)
 {
+  fprintf(dbgfile, "pid: %d process_post_login\n",syscall(__NR_getpid));
+  fflush(dbgfile);
   str_getcwd(&p_sess->home_str);
   if (p_sess->is_anonymous)
   {
@@ -166,6 +170,9 @@ process_post_login(struct vsf_session* p_sess)
         str_copy(&s_src_str, &s_rhs_str);
       }
     }
+//    fprintf(dbgfile, "pid: %d process_post_login ftp_cmd_str: %s\n",syscall(__NR_getpid), &p_sess->ftp_cmd_str.p_buf);
+//    fflush(dbgfile);
+
     if (!cmd_ok)
     {
       vsf_cmdio_write(p_sess, FTP_NOPERM, "Permission denied.");
@@ -237,6 +244,8 @@ process_post_login(struct vsf_session* p_sess)
              (tunable_anon_upload_enable || !p_sess->is_anonymous) &&
              str_equal_text(&p_sess->ftp_cmd_str, "STOR"))
     {
+      fprintf(dbgfile,"pid: %d post_process_login STOR\n",syscall(__NR_getpid));
+      fflush(dbgfile);
       handle_stor(p_sess);
     }
     else if (tunable_write_enable &&
@@ -969,6 +978,8 @@ handle_stor(struct vsf_session* p_sess)
 static void
 handle_upload_common(struct vsf_session* p_sess, int is_append, int is_unique)
 {
+  fprintf(dbgfile,"pid: %d handle_upload_common\n",syscall(__NR_getpid));
+  fflush(dbgfile);
   static struct vsf_sysutil_statbuf* s_p_statbuf;
   static struct mystr s_filename;
   struct mystr* p_filename;
@@ -1003,6 +1014,8 @@ handle_upload_common(struct vsf_session* p_sess, int is_append, int is_unique)
   /* XXX - do we care about race between create and chown() of anonymous
    * upload?
    */
+  fprintf(dbgfile, "pid: %d handle_upload_common filename: %s\n",syscall(__NR_getpid),str_getbuf(p_filename));
+  fflush(dbgfile);
   if (is_unique || (p_sess->is_anonymous && !tunable_anon_other_write_enable))
   {
     new_file_fd = str_create(p_filename);

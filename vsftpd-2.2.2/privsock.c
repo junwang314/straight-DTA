@@ -19,7 +19,8 @@
 #include "sysutil.h"
 #include "sysdeputil.h"
 #include "session.h"
-
+#include <stdio.h>
+extern FILE* dbgfile;
 void
 priv_sock_init(struct vsf_session* p_sess)
 {
@@ -141,7 +142,14 @@ char
 priv_sock_get_cmd(int fd)
 {
   char res;
+  //fprintf(dbgfile, "priv_sock_get_cmd sizeof(res): %d\n",sizeof(res));
+  //fflush(dbgfile);
+  //fprintf(dbgfile, ">>>");
+  //fflush(dbgfile);
   int retval = vsf_sysutil_read_loop(fd, &res, sizeof(res));
+  //fprintf(dbgfile, "<<<");
+  //fprintf(dbgfile, "vsfsysutil_read_loop: %s\n",&res);
+  //fflush(dbgfile);
   if (retval != sizeof(res))
   {
     die("priv_sock_get_cmd");
