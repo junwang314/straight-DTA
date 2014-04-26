@@ -15,7 +15,7 @@
 #define _HACK_LOG
 
 FILE *flog;
-
+FILE *configFile;
 #define DFT
 
 //total buffer size
@@ -136,6 +136,13 @@ short * _StraightTaint_init (short ** ptrToAddr)
     char filename[1024];
     snprintf(filename, 1024, "tmp.%d", pid);
     flog = fopen(filename, "w+");
+    configFile=fopen("configFile","w+");
+    fprintf(configFile,"%s\n",filename);
+//    int pid=getpid(); 
+    system("auditctl -D");
+    char cmd[1024];
+    snprintf(cmd,1024,"sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S bind -S connect -S accept -S write -F pid=%d\0",pid);
+    system(cmd);
 #endif
 
     printf("init complete...\n");

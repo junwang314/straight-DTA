@@ -224,7 +224,7 @@ static char* s_p_proctitle = 0;
 #include <fcntl.h>
 static int s_zero_fd = -1;
 #endif
-
+extern FILE* dbgfile;
 /* File private functions/variables */
 static int do_sendfile(const int out_fd, const int in_fd,
                        unsigned int num_send, filesize_t start_pos);
@@ -1025,19 +1025,19 @@ vsf_sysutil_send_fd(int sock_fd, int send_fd)
 {
   int retval;
   struct msghdr msg;
-  struct cmsghdr* p_cmsg;
+  struct cmsghdr* p_cmsg;//
   struct iovec vec;
   char cmsgbuf[CMSG_SPACE(sizeof(send_fd))];
   int* p_fds;
   char sendchar = 0;
   msg.msg_control = cmsgbuf;
   msg.msg_controllen = sizeof(cmsgbuf);
-  p_cmsg = CMSG_FIRSTHDR(&msg);
+  p_cmsg = CMSG_FIRSTHDR(&msg);//
   p_cmsg->cmsg_level = SOL_SOCKET;
   p_cmsg->cmsg_type = SCM_RIGHTS;
   p_cmsg->cmsg_len = CMSG_LEN(sizeof(send_fd));
-  p_fds = (int*)CMSG_DATA(p_cmsg);
-  *p_fds = send_fd;
+  p_fds = (int*)CMSG_DATA(p_cmsg);//
+  *p_fds = send_fd;//
   msg.msg_controllen = p_cmsg->cmsg_len;
   msg.msg_name = NULL;
   msg.msg_namelen = 0;
@@ -1059,6 +1059,8 @@ vsf_sysutil_send_fd(int sock_fd, int send_fd)
 int
 vsf_sysutil_recv_fd(const int sock_fd)
 {
+  fprintf(dbgfile,"pid: %d const vsf_sysutil_recv_fd\n",syscall(__NR_getpid));
+  fflush(dbgfile);  
   int retval;
   struct msghdr msg;
   char recvchar;
@@ -1141,6 +1143,8 @@ vsf_sysutil_recv_fd(int sock_fd)
   msg.msg_iovlen = 1;
   msg.msg_accrights = (caddr_t) &recv_fd;
   msg.msg_accrightslen = sizeof(recv_fd);
+  fprintf(dbgfile,"pid: %d vsf_sysutil_recv_fd recvmsg\n",syscall(__NR_getpid));
+  fflush(dbgfile);
   retval = recvmsg(sock_fd, &msg, 0);
   if (retval != 1)
   {

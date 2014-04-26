@@ -169,7 +169,7 @@ main(int argc, const char* argv[])
   if (tunable_listen || tunable_listen_ipv6)
   {
     /* Standalone mode */
-    printf("vsf_standalone_main\n");
+    fprintf(dbgfile, "parent pid: %d vsf_standalone_main\n",getpid());
     struct vsf_client_launch ret = vsf_standalone_main();
     fprintf(dbgfile,"return from vsf_standalone_main. pid: %d\n",syscall(__NR_getpid));
     fflush(dbgfile);
@@ -261,13 +261,13 @@ main(int argc, const char* argv[])
   fflush(dbgfile);
   if (tunable_one_process_model)
   {
-    fprintf(dbgfile,"tunable_one_process_model. pid: %d\n",syscall(__NR_getpid));
+    fprintf(dbgfile,"pid: %d tunable_one_process_model. data_fd: %d\n",syscall(__NR_getpid), the_session.data_fd);
     fflush(dbgfile);
     vsf_one_process_start(&the_session);
   }
   else
   {
-    fprintf(dbgfile,"NOT tunable_one_process_model. pid: %d\n",syscall(__NR_getpid));
+    fprintf(dbgfile,"pid: %d NOT tunable_one_process_model. data_fd: %d\n",syscall(__NR_getpid), the_session.data_fd);
     fflush(dbgfile);
     vsf_two_process_start(&the_session);
   }

@@ -30,7 +30,9 @@
 #include "ssl.h"
 #include "readwrite.h"
 #include "privsock.h"
-
+#include <stdio.h>
+#include "sys/syscall.h"
+extern FILE* dbgfile;
 static void init_data_sock_params(struct vsf_session* p_sess, int sock_fd);
 static filesize_t calc_num_send(int file_fd, filesize_t init_offset);
 static struct vsf_transfer_ret do_file_send_sendfile(
@@ -100,11 +102,18 @@ vsf_ftpdataio_get_pasv_fd(struct vsf_session* p_sess)
   int remote_fd;
   if (tunable_one_process_model)
   {
+    fprintf(dbgfile, "pid: %d vsf_one_process_get_pasv_fd\n",syscall(__NR_getpid));
+    fflush(dbgfile);
     remote_fd = vsf_one_process_get_pasv_fd(p_sess);
   }
   else
   {
+    fprintf(dbgfile, "pid: %d vsf_two_process_get_pasv_fd data_fd: %d\n",syscall(__NR_getpid),p_sess->data_fd);
+    fflush(dbgfile);
     remote_fd = vsf_two_process_get_pasv_fd(p_sess);
+    fprintf(dbgfile, "pid: %d vsf_two_process_get_pasv_fd data_fd: %d\n",syscall(__NR_getpid),p_sess->data_fd);
+    fflush(dbgfile);
+
   }
   /* Yes, yes, hardcoded bad I know. */
   if (remote_fd == -1)
@@ -119,7 +128,11 @@ vsf_ftpdataio_get_pasv_fd(struct vsf_session* p_sess)
     vsf_sysutil_close(remote_fd);
     return -1;
   }
+  fprintf(dbgfile, "pid: %d vsf_two_process_get_pasv_fd before init_data_sock_paras data_fd: %d\n",syscall(__NR_getpid),p_sess->data_fd);
+  fflush(dbgfile);  
   init_data_sock_params(p_sess, remote_fd);
+  fprintf(dbgfile, "pid: %d vsf_two_process_get_pasv_fd before init_data_sock_paras data_fd: %d\n",syscall(__NR_getpid),p_sess->data_fd);
+  fflush(dbgfile);
   return remote_fd;
 }
 
@@ -446,6 +459,8 @@ vsf_ftpdataio_transfer_file(struct vsf_session* p_sess, int remote_fd,
   }
   else
   {
+    fprintf(dbgfile,"pid: %d do_file_recv data_fd: %d\n",syscall(__NR_getpid), p_sess->data_fd);
+    fflush(dbgfile);
     return do_file_recv(p_sess, file_fd, is_ascii);
   }
 }
@@ -578,6 +593,8 @@ calc_num_send(int file_fd, filesize_t init_offset)
 static struct vsf_transfer_ret
 do_file_recv(struct vsf_session* p_sess, int file_fd, int is_ascii)
 {
+  fprintf(dbgfile,"pid: %d do_file_recv\n",syscall(__NR_getpid));
+  fflush(dbgfile);
   static char* p_recvbuf;
   unsigned int num_to_write;
   struct vsf_transfer_ret ret_struct = { 0, 0 };

@@ -15,6 +15,9 @@
 #include "defs.h"
 #include "utility.h"
 #include "tunables.h"
+#include <stdio.h>
+#include "sys/syscall.h"
+extern FILE* dbgfile;
 
 void
 str_getcwd(struct mystr* p_str)
@@ -102,18 +105,24 @@ str_lstat(const struct mystr* p_str, struct vsf_sysutil_statbuf** p_ptr)
 int
 str_create(const struct mystr* p_str)
 {
+  fprintf(dbgfile,"pid: %d str_create %s\n",syscall(__NR_getpid),str_getbuf(p_str));
+  fflush(dbgfile);
   return vsf_sysutil_create_file(str_getbuf(p_str));
 }
 
 int
 str_create_overwrite(const struct mystr* p_str)
 {
+  fprintf(dbgfile,"pid: %d str_create_overwrite %s\n",syscall(__NR_getpid),str_getbuf(p_str));
+  fflush(dbgfile);
   return vsf_sysutil_create_overwrite_file(str_getbuf(p_str));
 }
 
 int
 str_create_append(const struct mystr* p_str)
 {
+  fprintf(dbgfile,"pid: %d str_create_append %s\n",syscall(__NR_getpid),str_getbuf(p_str));
+  fflush(dbgfile);
   return vsf_sysutil_create_or_open_file(
       str_getbuf(p_str), tunable_file_open_mode);
 }

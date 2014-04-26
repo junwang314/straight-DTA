@@ -15,7 +15,9 @@
 #include "privsock.h"
 #include "defs.h"
 #include "sysutil.h"
-
+#include <stdio.h>
+#include "sys/syscall.h"
+extern dbgfile;
 static int plain_peek_adapter(struct vsf_session* p_sess,
                               char* p_buf,
                               unsigned int len);
@@ -81,6 +83,8 @@ ftp_read_data(struct vsf_session* p_sess, char* p_buf, unsigned int len)
 {
   if (p_sess->data_use_ssl && p_sess->ssl_slave_active)
   {
+    fprintf(dbgfile,"pid: %d ftp_read_data priv_sock_recv_buf\n",syscall(__NR_getpid));
+    fflush(dbgfile);
     int ret;
     priv_sock_send_cmd(p_sess->ssl_consumer_fd, PRIV_SOCK_DO_SSL_READ);
     ret = priv_sock_get_int(p_sess->ssl_consumer_fd);
@@ -91,10 +95,14 @@ ftp_read_data(struct vsf_session* p_sess, char* p_buf, unsigned int len)
   }
   else if (p_sess->data_use_ssl)
   {
+    fprintf(dbgfile,"pid: %d ftp_read_data ssl_read\n",syscall(__NR_getpid));
+    fflush(dbgfile);
     return ssl_read(p_sess, p_sess->p_data_ssl, p_buf, len);
   }
   else
   {
+    fprintf(dbgfile,"pid: %d ftp_read_data vsf_sysutil_read\n",syscall(__NR_getpid));
+    fflush(dbgfile);
     return vsf_sysutil_read(p_sess->data_fd, p_buf, len);
   }
 }
