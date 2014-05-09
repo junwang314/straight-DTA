@@ -31,10 +31,10 @@ DESTDIR =
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 
-CC = wllvm
-GMSGFMT = PATH=../src:$$PATH msgfmt
-MSGFMT = msgfmt
-XGETTEXT = PATH=../src:$$PATH :
+CC = gcc
+GMSGFMT = PATH=../src:$$PATH /usr/bin/msgfmt
+MSGFMT = /usr/bin/msgfmt
+XGETTEXT = PATH=../src:$$PATH /usr/bin/xgettext
 MSGMERGE = PATH=../src:$$PATH msgmerge
 
 DEFS = -DHAVE_CONFIG_H

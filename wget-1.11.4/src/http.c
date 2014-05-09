@@ -1361,6 +1361,7 @@ free_hstat (struct http_stat *hs)
 static uerr_t
 gethttp (struct url *u, struct http_stat *hs, int *dt, struct url *proxy)
 {
+  printf("~~~gethttp\n");
   struct request *req;
 
   char *type;
@@ -2279,7 +2280,7 @@ File `%s' already there; not retrieving.\n\n"), hs->local_file);
       logprintf (LOG_NOTQUIET, _("Saving to: `%s'\n"), 
                  HYPHENP (hs->local_file) ? "STDOUT" : hs->local_file);
     }
-    
+  printf("~~~hs->local_file: %s\n",hs->local_file); 
   /* This confuses the timestamping code that checks for file size.
      #### The timestamping code should be smarter about file size.  */
   if (opt.save_headers && hs->restval == 0)
@@ -2327,6 +2328,7 @@ uerr_t
 http_loop (struct url *u, char **newloc, char **local_file, const char *referer,
            int *dt, struct url *proxy)
 {
+  printf("~~~http_loop\n");
   int count;
   bool got_head = false;         /* used for time-stamping and filename detection */
   bool time_came_from_head = false;

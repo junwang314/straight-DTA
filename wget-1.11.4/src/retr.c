@@ -599,6 +599,7 @@ uerr_t
 retrieve_url (const char *origurl, char **file, char **newloc,
               const char *refurl, int *dt, bool recursive)
 {
+  printf("~~~retrieve_url\n");
   uerr_t result;
   char *url;
   bool location_changed;
