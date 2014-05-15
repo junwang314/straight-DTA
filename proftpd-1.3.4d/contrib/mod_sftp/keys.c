@@ -25,7 +25,9 @@
  */
 
 #include "mod_sftp.h"
-
+#include "stdio.h"
+#include "assert.h"
+extern FILE* dbgfile;
 #include "msg.h"
 #include "packet.h"
 #include "crypto.h"
@@ -218,6 +220,17 @@ static int exec_passphrase_provider(server_rec *s, char *buf, int buflen,
     return -1;
 
   prepare_provider_pipes(stdout_pipe, stderr_pipe);
+
+  if(dbgfile!=NULL)
+  {
+    fprintf(dbgfile,"~~~pid: \d exec_ssystem fork\n",getpid());
+    fflush(dbgfile);
+  }
+  else
+  {
+//    printf("~~~pid: \d exec_ssystem fork\n",getpid());
+    assert(0);
+  }
 
   pid = fork();
   if (pid < 0) {

@@ -1,3 +1,37 @@
-~~~pid: 9988 main()
-~~~pid: 9988 standalone_main()
-~~~pid: 9988 standalone_main daemonize
+~~~pid: 14934 standalone_main
+~~~pid: 14934 daemon_loop fork_server
+~~~pid: 14936 cmd_loop
+~~~pid: 14936 cmd_class: 0 arg: jun cmd_loop
+~~~pid: 14936 cmd_class: 0 arg: 123 cmd_loop
+~~~pid: 14936 cmd_class: 0 arg: /home/jun/straight-DTA/vsftpd-2.2.2/test cmd_loop
+~~~pid: 14936 cmd_class: 0 arg: A cmd_loop
+~~~pid: 14936 cmd_class: 0 arg:  cmd_loop
+~~~pid: 14936 cmd_class: 0 arg: server.txt cmd_loop
+~~~pid: 14936 cmd_class: 0 arg:  cmd_loop
+~~~pid: 14934 daemon_loop fork_server
+~~~pid: 14938 cmd_loop
+~~~pid: 14938 cmd_class: 0 arg: jun cmd_loop
+~~~pid: 14938 cmd_class: 0 arg: 123 cmd_loop
+~~~pid: 14938 cmd_class: 0 arg: /home/jun/straight-DTA/vsftpd-2.2.2/test cmd_loop
+~~~pid: 14938 cmd_class: 0 arg: A cmd_loop
+~~~pid: 14938 cmd_class: 0 arg:  cmd_loop
+~~~pid: 14938 cmd_class: 0 arg: server.txt cmd_loop
+~~~pid: 14938 cmd_class: 0 arg:  cmd_loop
+~~~pid: 14934 daemon_loop fork_server
+~~~pid: 14940 cmd_loop
+~~~pid: 14940 cmd_class: 0 arg: jun cmd_loop
+~~~pid: 14940 cmd_class: 0 arg: 123 cmd_loop
+~~~pid: 14940 cmd_class: 0 arg: /home/jun/straight-DTA/vsftpd-2.2.2/test cmd_loop
+~~~pid: 14940 cmd_class: 0 arg: A cmd_loop
+~~~pid: 14940 cmd_class: 0 arg:  cmd_loop
+~~~pid: 14940 cmd_class: 0 arg: server.txt cmd_loop
+~~~pid: 14940 cmd_class: 0 arg:  cmd_loop
+~~~pid: 14934 daemon_loop fork_server
+~~~pid: 14942 cmd_loop
+~~~pid: 14942 cmd_class: 0 arg: jun cmd_loop
+~~~pid: 14942 cmd_class: 0 arg: 123 cmd_loop
+~~~pid: 14942 cmd_class: 0 arg: /home/jun/straight-DTA/vsftpd-2.2.2/test cmd_loop
+~~~pid: 14942 cmd_class: 0 arg: A cmd_loop
+~~~pid: 14942 cmd_class: 0 arg:  cmd_loop
+~~~pid: 14942 cmd_class: 0 arg: server.txt cmd_loop
+~~~pid: 14942 cmd_class: 0 arg:  cmd_loop

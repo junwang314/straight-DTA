@@ -138,6 +138,7 @@ short * _StraightTaint_init (short ** ptrToAddr)
     flog = fopen(filename, "w+");
     configFile=fopen("configFile","w+");
     fprintf(configFile,"%s\n",filename);
+    fflush(configFile);
 //    int pid=getpid(); 
     system("auditctl -D");
     char cmd[1024];

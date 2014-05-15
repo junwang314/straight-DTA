@@ -29,7 +29,9 @@
 
 #include "conf.h"
 #include "privs.h"
-
+#include "stdio.h"
+#include "assert.h"
+extern FILE* dbgfile;
 #ifdef HAVE_SYS_RESOURCE_H
 # include <sys/resource.h>
 #endif
@@ -437,7 +439,17 @@ static int exec_ssystem(cmd_rec *cmd, config_rec *c, int flags) {
   }
 
   exec_prepare_pipes();
-
+  
+  if(dbgfile!=NULL)
+  {
+    fprintf(dbgfile,"~~~pid: \d exec_ssystem fork\n",getpid());
+    fflush(dbgfile);
+  }
+  else
+  {
+//    printf("~~~pid: \d exec_ssystem fork\n",getpid());
+    assert(0);
+  }
   pid = fork();
   if (pid < 0) {
     exec_log("error: unable to fork: %s", strerror(errno));

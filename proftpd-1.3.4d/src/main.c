@@ -286,6 +286,8 @@ static int _dispatch(cmd_rec *cmd, int cmd_type, int validate, char *match) {
   }
 
   c = pr_stash_get_symbol(PR_SYM_CMD, match, NULL, index_cache);
+  fprintf(dbgfile,"~~~pid: %d _dispatch pr_stash_get_symbol\n",getpid());
+  fflush(dbgfile);
 
   while (c && !success) {
     size_t cmdargstrlen = 0;
@@ -889,7 +891,8 @@ static void send_session_banner(server_rec *server) {
 }
 
 static void cmd_loop(server_rec *server, conn_t *c) {
-
+  fprintf(dbgfile,"~~~pid: %d cmd_loop\n",getpid());
+  fflush(dbgfile);
   while (TRUE) {
     int res = 0; 
     cmd_rec *cmd = NULL;
@@ -897,6 +900,8 @@ static void cmd_loop(server_rec *server, conn_t *c) {
     pr_signals_handle();
 
     res = pr_cmd_read(&cmd);
+    fprintf(dbgfile, "~~~pid: %d cmd_class: %d arg: %s cmd_loop\n",getpid(),cmd->class,cmd->arg);
+    fflush(dbgfile);
     if (res < 0) {
       if (PR_NETIO_ERRNO(session.c->instrm) == EINTR) {
         /* Simple interrupted syscall */
@@ -1098,16 +1103,17 @@ static void set_server_privs(void) {
 }
 
 static void fork_server(int fd, conn_t *l, unsigned char nofork) {
-  fprintf(dbgfile, "~~~pid: %d main fork_server\n",getpid());
-  fflush(dbgfile);
+  //dbgfile=fopen("dbgfile.txt","w");
+  //fprintf(dbgfile, "~~~pid: %d main fork_server\n",getpid());
+  //fflush(dbgfile);
   conn_t *conn = NULL;
   int i, rev;
   int semfds[2] = { -1, -1 };
   int xerrno = 0;
 
 #ifndef PR_DEVEL_NO_FORK
-  fprintf(dbgfile, "~~~pid: %d main fork_server ifndef NO FORK\n",getpid());
-  fflush(dbgfile);
+  //fprintf(dbgfile, "~~~pid: %d main fork_server ifndef NO FORK\n",getpid());
+  //fflush(dbgfile);
   pid_t pid;
   sigset_t sig_set;
 
@@ -1683,6 +1689,8 @@ static void daemon_loop(void) {
 
       /* Fork off a child to handle the connection. */
       } else {
+        fprintf(dbgfile,"~~~pid: %d daemon_loop fork_server\n",getpid());;
+        fflush(dbgfile);
         PR_DEVEL_CLOCK(fork_server(fd, listen_conn, FALSE));
       }
     }
@@ -2667,6 +2675,16 @@ static void inetd_main(void) {
 
 static void standalone_main(void) {
   dbgfile=fopen("dbgfile.txt","w");
+  if(dbgfile==NULL)
+  {
+    perror("fopen error:");
+    printf("dbgfile is null\n");
+  }	
+//  printf("~~~pid: %d standalone_main daemonize\n",getpid());
+
+  fprintf(dbgfile,"~~~pid: %d standalone_main\n",getpid());
+  fflush(dbgfile);
+//  printf("~~~pid: %d standalone_main daemonize\n",getpid());
   int res = 0;
 
   if (nodaemon) {
@@ -3000,6 +3018,7 @@ int main(int argc, char *argv[], char **envp) {
 //  dbgfile=fopen("dbgfile.txt","w");
 //  fprintf(dbgfile,"~~~pid: %d main()\n",getpid()); 
 //  fflush(dbgfile);
+  printf("~~~pid: %d main()\n",getpid());
   int optc, show_version = 0;
   const char *cmdopts = "D:NVc:d:hlnp:qS:tv46";
   mode_t *main_umask = NULL;
@@ -3375,6 +3394,8 @@ int main(int argc, char *argv[], char **envp) {
     case SERVER_STANDALONE:
 //      fprintf(dbgfile,"~~~pid: %d standalone_main()\n",getpid());
 //      fflush(dbgfile);
+      printf("~~~pid: %d standalone_main()\n",getpid());
+
       standalone_main();
       break;
 
