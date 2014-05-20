@@ -5,7 +5,7 @@
 #define _GNU_SOURCE         /* See feature_test_macros(7) */
 #include <sys/syscall.h>   /* For SYS_xxx definitions */
 
-
+extern FILE *configFile; 
 extern FILE *flog;
 	
 void _StraightTaint_pseudo()
@@ -28,7 +28,16 @@ static inline void do_StraightTaint_fork(int pid)
         //do nothing
     } else if (pid == 0) { //child process
         char filename[1024];
-        snprintf(filename, 1024, "tmp.%d", syscall(__NR_getpid));
+        int nrPid=syscall(__NR_getpid);
+        snprintf(filename, 1024, "tmp.%d", nrPid);
+        //record the log-file-name in configFile
+        fprintf(configFile,"%s\n",filename);
+        fflush(configFile);
+        //run auditd for this new process
+        char cmd[1024];
+        snprintf(cmd,1024,"sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S bind -S connect -S accept -S write -S kill -S close -F pid=%d\0",nrPid);
+        system(cmd);
+        //copy parent log to child log
 	FILE* flogParent=flog;
         flog = fopen(filename, "w+");
 	rewind(flogParent);
