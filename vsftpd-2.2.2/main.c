@@ -47,7 +47,7 @@ int
 main(int argc, const char* argv[])
 {
   //FIXME
-  dbgfile=fopen("dbgfile","w");
+  dbgfile=fopen("dbgfile","w+");
 
   /* add handler for SIGINT to flush log file when receiving SIGINT, e.g. CTRL^C is pressed */
   struct sigaction sa;

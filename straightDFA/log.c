@@ -7,7 +7,7 @@
 
 extern FILE *configFile; 
 extern FILE *flog;
-	
+
 void _StraightTaint_pseudo()
 {
 }
@@ -38,18 +38,18 @@ static inline void do_StraightTaint_fork(int pid)
         snprintf(cmd,1024,"sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S bind -S connect -S accept -S write -S kill -S close -F pid=%d\0",nrPid);
         system(cmd);
         //copy parent log to child log
-	FILE* flogParent=flog;
+        FILE* flogParent=flog;
         flog = fopen(filename, "w+");
-	rewind(flogParent);
+        rewind(flogParent);
         int bbid=0;
-	int size;
-	fflush(flog);
-	fflush(flogParent);
-	while(EOF!=fscanf(flogParent,"%d",&bbid)){
-//		printf("bbid: %d\n",bbid);
-		fprintf(flog,"%d\n",bbid);
-	}
-	fclose(flogParent);
+        int size;
+        fflush(flog);
+        fflush(flogParent);
+        while(EOF!=fscanf(flogParent,"%d",&bbid)){
+            //		printf("bbid: %d\n",bbid);
+            fprintf(flog,"%d\n",bbid);
+        }
+        fclose(flogParent);
     } else {
         assert(0);
     }

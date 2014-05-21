@@ -67,7 +67,7 @@
 #if defined(__linux__)
   #include <errno.h>
   #include <syscall.h>
-  #define VSF_SYSDEP_HAVE_LINUX_CLONE
+  //#define VSF_SYSDEP_HAVE_LINUX_CLONE
   #include <sched.h>
   #ifndef CLONE_NEWPID
     #define CLONE_NEWPID 0x20000000
