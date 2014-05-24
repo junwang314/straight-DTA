@@ -1,37 +1,77 @@
-~~~pid: 14934 standalone_main
-~~~pid: 14934 daemon_loop fork_server
-~~~pid: 14936 cmd_loop
-~~~pid: 14936 cmd_class: 0 arg: jun cmd_loop
-~~~pid: 14936 cmd_class: 0 arg: 123 cmd_loop
-~~~pid: 14936 cmd_class: 0 arg: /home/jun/straight-DTA/vsftpd-2.2.2/test cmd_loop
-~~~pid: 14936 cmd_class: 0 arg: A cmd_loop
-~~~pid: 14936 cmd_class: 0 arg:  cmd_loop
-~~~pid: 14936 cmd_class: 0 arg: server.txt cmd_loop
-~~~pid: 14936 cmd_class: 0 arg:  cmd_loop
-~~~pid: 14934 daemon_loop fork_server
-~~~pid: 14938 cmd_loop
-~~~pid: 14938 cmd_class: 0 arg: jun cmd_loop
-~~~pid: 14938 cmd_class: 0 arg: 123 cmd_loop
-~~~pid: 14938 cmd_class: 0 arg: /home/jun/straight-DTA/vsftpd-2.2.2/test cmd_loop
-~~~pid: 14938 cmd_class: 0 arg: A cmd_loop
-~~~pid: 14938 cmd_class: 0 arg:  cmd_loop
-~~~pid: 14938 cmd_class: 0 arg: server.txt cmd_loop
-~~~pid: 14938 cmd_class: 0 arg:  cmd_loop
-~~~pid: 14934 daemon_loop fork_server
-~~~pid: 14940 cmd_loop
-~~~pid: 14940 cmd_class: 0 arg: jun cmd_loop
-~~~pid: 14940 cmd_class: 0 arg: 123 cmd_loop
-~~~pid: 14940 cmd_class: 0 arg: /home/jun/straight-DTA/vsftpd-2.2.2/test cmd_loop
-~~~pid: 14940 cmd_class: 0 arg: A cmd_loop
-~~~pid: 14940 cmd_class: 0 arg:  cmd_loop
-~~~pid: 14940 cmd_class: 0 arg: server.txt cmd_loop
-~~~pid: 14940 cmd_class: 0 arg:  cmd_loop
-~~~pid: 14934 daemon_loop fork_server
-~~~pid: 14942 cmd_loop
-~~~pid: 14942 cmd_class: 0 arg: jun cmd_loop
-~~~pid: 14942 cmd_class: 0 arg: 123 cmd_loop
-~~~pid: 14942 cmd_class: 0 arg: /home/jun/straight-DTA/vsftpd-2.2.2/test cmd_loop
-~~~pid: 14942 cmd_class: 0 arg: A cmd_loop
-~~~pid: 14942 cmd_class: 0 arg:  cmd_loop
-~~~pid: 14942 cmd_class: 0 arg: server.txt cmd_loop
-~~~pid: 14942 cmd_class: 0 arg:  cmd_loop
+~~~pid: 29676 standalone_main
+~~~pid: 29676 daemon_loop fork_server
+~~~pid: 29678 cmd_loop
+~~~pid: 29678 cmd_class: 0 arg: jun cmd_loop
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 cmd_class: 0 arg: 123 cmd_loop
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 cmd_class: 0 arg: /home/jun/straight-DTA/vsftpd-2.2.2/test cmd_loop
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 cmd_class: 0 arg: A cmd_loop
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 cmd_class: 0 arg:  cmd_loop
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 cmd_class: 0 arg: server.txt cmd_loop
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 xfer_stor 1st..
+~~~pid: 29678 xfer_stor 2nd
+~~~pid: 29678 xfer_stor 3rd
+~~~pid: 29678 xfer_stor 4th
+~~~pid: 29678 xfer_stor 5th
+~~~pid: 29678 xfer_stor 6th
+~~~pid: 29678 xfer_stor 6.5th
+~~~pid: 29678 xfer_stor 7th
+~~~pid: 29678 xfer_stor 8th before pr_data_xfer...
+~~~pid: 29678 pr_data_xfer XXXXXXXX
+~~~pid: 29678 pr_data_xfer XXXXXXXX
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 cmd_class: 0 arg:  cmd_loop
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol
+~~~pid: 29678 _dispatch pr_stash_get_symbol

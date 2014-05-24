@@ -31,7 +31,9 @@
 
 #include "conf.h"
 #include "privs.h"
-
+#include "stdio.h"
+#include "unistd.h"
+extern FILE* dbgfile;
 #ifdef HAVE_SYS_SENDFILE_H
 # include <sys/sendfile.h>
 #endif
@@ -1503,6 +1505,9 @@ MODRET xfer_pre_appe(cmd_rec *cmd) {
 }
 
 MODRET xfer_stor(cmd_rec *cmd) {
+  fprintf(dbgfile, "~~~pid: %d xfer_stor 1st..\n",getpid());
+  fflush(dbgfile);
+  dup(session.d->instrm->strm_fd);
   char *path;
   char *lbuf;
   int bufsz, len, ferrno = 0, res;
@@ -1523,6 +1528,9 @@ MODRET xfer_stor(cmd_rec *cmd) {
   path = session.xfer.path;
 
   res = pr_filter_allow_path(CURRENT_CONF, path);
+  fprintf(dbgfile, "~~~pid: %d xfer_stor 2nd\n",getpid());
+  fflush(dbgfile);
+  dup(session.d->instrm->strm_fd);
   switch (res) {
     case 0:
       break;
@@ -1539,6 +1547,9 @@ MODRET xfer_stor(cmd_rec *cmd) {
       pr_response_add_err(R_550, _("%s: Forbidden filename"), cmd->arg);
       return PR_ERROR(cmd);
   }
+  dup(session.d->instrm->strm_fd);
+  fprintf(dbgfile,"~~~pid: %d xfer_stor 3rd\n",getpid());
+  fflush(dbgfile);
 
   /* Make sure the proper current working directory is set in the FSIO
    * layer, so that the proper FS can be used for the open().
@@ -1590,7 +1601,9 @@ MODRET xfer_stor(cmd_rec *cmd) {
         strerror(ferrno));
     }
   }
-
+  dup(session.d->instrm->strm_fd);
+  fprintf(dbgfile,"~~~pid: %d xfer_stor 4th\n",getpid());
+  fflush(dbgfile);
   if (stor_fh != NULL &&
       session.restart_pos) {
     int xerrno = 0;
@@ -1626,6 +1639,9 @@ MODRET xfer_stor(cmd_rec *cmd) {
     curr_pos = session.restart_pos;
     session.restart_pos = 0L;
   }
+  dup(session.d->instrm->strm_fd);
+  fprintf(dbgfile, "~~~pid: %d xfer_stor 5th\n",getpid());
+  fflush(dbgfile);
 
   if (stor_fh == NULL) {
     pr_log_debug(DEBUG4, "unable to open '%s' for writing: %s", cmd->arg,
@@ -1638,7 +1654,9 @@ MODRET xfer_stor(cmd_rec *cmd) {
    * want to know its current size.
    */
   (void) pr_fsio_fstat(stor_fh, &st);
-
+  dup(session.d->instrm->strm_fd);
+  fprintf(dbgfile, "~~~pid: %d xfer_stor 6th\n",getpid());
+  fflush(dbgfile);
   /* Perform the actual transfer now */
   pr_data_init(cmd->arg, PR_NETIO_IO_RD);
 
@@ -1654,12 +1672,18 @@ MODRET xfer_stor(cmd_rec *cmd) {
   /* First, make sure the uploaded file has the requested ownership. */
   stor_chown();
 
-  if (pr_data_open(cmd->arg, NULL, PR_NETIO_IO_RD, 0) < 0) {
+  int _tmp=pr_data_open(cmd->arg, NULL, PR_NETIO_IO_RD, 0);
+  dup(session.d->instrm->strm_fd);
+  fprintf(dbgfile, "~~~pid: %d xfer_stor 6.5th\n",getpid());
+  fflush(dbgfile);
+  if (_tmp < 0) {
     stor_abort();
     pr_data_abort(0, TRUE);
     return PR_ERROR(cmd);
   }
-
+//  dup(session.d->instrm->strm_fd);
+//  fprintf(dbgfile, "~~~pid: %d xfer_stor 6.5th\n",getpid());
+//  fflush(dbgfile);
   /* Initialize the number of bytes stored */
   nbytes_stored = 0;
 
@@ -1674,7 +1698,9 @@ MODRET xfer_stor(cmd_rec *cmd) {
   } else {
     have_limit = TRUE;
   }
-
+  dup(session.d->instrm->strm_fd);
+  fprintf(dbgfile, "~~~pid: %d xfer_stor 7th\n",getpid());
+  fflush(dbgfile);
   /* Check the MaxStoreFileSize, and abort now if zero. */
   if (have_limit &&
       nbytes_max_store == 0) {
@@ -1704,7 +1730,10 @@ MODRET xfer_stor(cmd_rec *cmd) {
   lbuf = (char *) palloc(cmd->tmp_pool, bufsz);
   pr_trace_msg("data", 8, "allocated upload buffer of %lu bytes",
     (unsigned long) bufsz);
-
+  
+  dup(session.d->instrm->strm_fd);
+  fprintf(dbgfile, "~~~pid: %d xfer_stor 8th before pr_data_xfer...\n",getpid());
+  fflush(dbgfile);
   while ((len = pr_data_xfer(lbuf, bufsz)) > 0) {
     pr_signals_handle();
 

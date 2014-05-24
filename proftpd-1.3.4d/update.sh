@@ -1,5 +1,5 @@
 make 
-sudo ./proftpd -n
+sudo strace -f -o proftpd.strace ./proftpd -n
 cat dbgfile.txt
 ps aux | grep proftpd
 ps aux | grep vsftpd

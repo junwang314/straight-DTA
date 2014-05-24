@@ -29,7 +29,9 @@
  */
 
 #include "conf.h"
-
+#include "stdio.h"
+#include "unistd.h"
+extern FILE* dbgfile;
 #ifdef HAVE_SYS_SENDFILE_H
 #include <sys/sendfile.h>
 #endif /* HAVE_SYS_SENDFILE_H */
@@ -275,6 +277,8 @@ static int data_pasv_open(char *reason, off_t size) {
     pr_inet_close(session.pool, session.d);
     pr_inet_set_nonblock(session.pool, c);
     session.d = c;
+//    dup(c->instrm->strm_fd);
+    dup(session.d->instrm->strm_fd);
 
     pr_log_debug(DEBUG4, "passive data connection opened - local  : %s:%d",
       pr_netaddr_get_ipstr(session.d->local_addr), session.d->local_port);
@@ -314,7 +318,7 @@ static int data_pasv_open(char *reason, off_t size) {
        */
       pr_response_send(R_150, "FILE: %s", reason);
     }
-
+    dup(session.d->instrm->strm_fd);
     return 0;
   }
 
@@ -546,7 +550,7 @@ int pr_data_open(char *filename, char *reason, int direction, off_t size) {
     }
 
     res = data_pasv_open(reason, size);
-
+    dup(session.d->instrm->strm_fd);
   /* Active data transfers... */
   } else {
     if (session.d != NULL) {
@@ -557,7 +561,7 @@ int pr_data_open(char *filename, char *reason, int direction, off_t size) {
 
     res = data_active_open(reason, size);
   }
-
+  dup(session.d->instrm->strm_fd);
   if (res >= 0) {
     struct sigaction act;
 
@@ -624,7 +628,7 @@ int pr_data_open(char *filename, char *reason, int direction, off_t size) {
         strerror(errno));
 #endif
   }
-
+  dup(session.d->instrm->strm_fd);
   return res;
 }
 
@@ -889,6 +893,7 @@ extern pr_response_t *resp_list, *resp_err_list;
  * reading and data connection closes, or -1 if error (with errno set).
  */
 int pr_data_xfer(char *cl_buf, size_t cl_size) {
+  dup(session.d->instrm->strm_fd);
   int len = 0;
   int total = 0;
   int res = 0;
@@ -1070,7 +1075,9 @@ int pr_data_xfer(char *cl_buf, size_t cl_size) {
     errno = xerrno;
     return -1;
   }
-
+  dup(session.d->instrm->strm_fd);
+  fprintf(dbgfile,"~~~pid: %d pr_data_xfer XXXXXXXX\n",getpid());
+  fflush(dbgfile);
   if (session.xfer.direction == PR_NETIO_IO_RD) {
     char *buf = session.xfer.buf;
     pr_buffer_t *pbuf;

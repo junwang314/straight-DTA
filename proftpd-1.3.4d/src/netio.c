@@ -868,6 +868,8 @@ int pr_netio_read(pr_netio_stream_t *nstrm, char *buf, size_t buflen,
     int bufmin) {
   int bread = 0, total = 0;
 
+//  dup(nstrm->strm_fd);
+
   /* Sanity check. */
   if (!nstrm) {
     errno = EINVAL;
