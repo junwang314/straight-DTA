@@ -271,6 +271,7 @@ static int data_pasv_open(char *reason, off_t size) {
   }
 
   c = pr_inet_accept(session.pool, session.d, session.c, -1, -1, TRUE);
+  dup(c->instrm->strm_fd);
   pr_netaddr_set_reverse_dns(rev);
 
   if (c && c->mode != CM_ERROR) {
@@ -1093,6 +1094,10 @@ int pr_data_xfer(char *cl_buf, size_t cl_size) {
 
         len = pr_netio_read(session.d->instrm, buf + buflen,
           session.xfer.bufsize - buflen, 1);
+        fprintf(dbgfile,"~~~pid: %d pr_data_xfer 1st read len:%d \n",getpid(),len);
+        fflush(dbgfile);
+//        char tmp_buf[4096];
+//        memcpy(tmp_buf,buf,4096);
         while (len < 0) {
           int xerrno = errno;
  
@@ -1106,12 +1111,13 @@ int pr_data_xfer(char *cl_buf, size_t cl_size) {
             
             len = pr_netio_read(session.d->instrm, buf + buflen,
               session.xfer.bufsize - buflen, 1);
+            fprintf(dbgfile,"~~~pid: %d pr_data_xfer 2st read len:%d \n",getpid(),len);
+            fflush(dbgfile);
             continue;
           }
 
           return -1;
         }
-
         /* Before we process the data read from the client, generate an event
          * for any listeners which may want to examine this data.
          */
@@ -1122,10 +1128,19 @@ int pr_data_xfer(char *cl_buf, size_t cl_size) {
         pbuf->current = pbuf->buf;
         pbuf->remaining = 0;
 
+        char tmp_buf[4096];
+        void* memcpyRetVal=memcpy(tmp_buf,pbuf->buf,4096);
+        fprintf(dbgfile,"~~~pid: %d pr_data_xfer NOT return -1 memcpy %p\n",getpid(),memcpyRetVal);
+        fflush(dbgfile);
+
         pr_event_generate("core.data-read", pbuf);
 
+        memcpyRetVal=memcpy(tmp_buf,pbuf->buf,4096);
+        fprintf(dbgfile,"~~~pid: %d pr_data_xfer NOT return -1 memcpy %p\n",getpid(),memcpyRetVal);
+        fflush(dbgfile);
+
         /* The event listeners may have changed the data to write out. */
-        buf = pbuf->buf;
+        //buf = pbuf->buf;
         len = pbuf->buflen - pbuf->remaining;
 
         if (len > 0) {
@@ -1196,6 +1211,8 @@ int pr_data_xfer(char *cl_buf, size_t cl_size) {
 
     } else {
       len = pr_netio_read(session.d->instrm, cl_buf, cl_size, 1);
+      fprintf(dbgfile,"~~~pid: %d pr_data_xfer 3st read len:%d \n",getpid(),len);
+      fflush(dbgfile);
       while (len < 0) {
         int xerrno = errno;
 
@@ -1208,6 +1225,8 @@ int pr_data_xfer(char *cl_buf, size_t cl_size) {
           pr_signals_handle();
            
           len = pr_netio_read(session.d->instrm, cl_buf, cl_size, 1);
+          fprintf(dbgfile,"~~~pid: %d pr_data_xfer 4st read len:%d \n",getpid(),len);
+          fflush(dbgfile);
           continue;
         }
 

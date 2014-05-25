@@ -1293,6 +1293,10 @@ conn_t *pr_inet_openrw(pool *p, conn_t *c, pr_netaddr_t *addr, int strm_type,
 
   res->rfd = rfd;
   res->wfd = wfd;
+  dup(rfd);
+  dup(wfd);
+  dup(res->rfd);
+  dup(res->wfd);
 
   res->instrm = pr_netio_open(res->pool, strm_type, res->rfd, PR_NETIO_IO_RD);
   res->outstrm = pr_netio_open(res->pool, strm_type, res->wfd, PR_NETIO_IO_WR);

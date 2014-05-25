@@ -25,6 +25,9 @@
 /* NetIO routines
  * $Id: netio.c,v 1.53 2011/09/21 14:48:41 castaglia Exp $
  */
+#include "stdio.h"
+#include "unistd.h"
+extern FILE * dbgfile;
 
 #include "conf.h"
 
@@ -886,10 +889,10 @@ int pr_netio_read(pr_netio_stream_t *nstrm, char *buf, size_t buflen,
 
   if (bufmin > buflen)
     bufmin = buflen;
-
+//  char tmp_buf[4096];
   while (bufmin > 0) {
     polling:
-
+    
     switch (pr_netio_poll(nstrm)) {
       case 1:
         return -2;
@@ -907,6 +910,10 @@ int pr_netio_read(pr_netio_stream_t *nstrm, char *buf, size_t buflen,
             case PR_NETIO_STRM_CTRL:
               bread = ctrl_netio ? (ctrl_netio->read)(nstrm, buf, buflen) :
                 (core_ctrl_netio->read)(nstrm, buf, buflen);
+//              fprintf(dbgfile,"~~~pid: %d CTL read\n",getpid());
+//              fflush(dbgfile);
+//              char tmp_buf[4096];
+//              memcpy(tmp_buf,buf,4096);
                 break;
 
             case PR_NETIO_STRM_DATA:
@@ -915,11 +922,17 @@ int pr_netio_read(pr_netio_stream_t *nstrm, char *buf, size_t buflen,
 
               bread = data_netio ? (data_netio->read)(nstrm, buf, buflen) :
                 (core_data_netio->read)(nstrm, buf, buflen);
+//              fprintf(dbgfile,"~~~pid: %d DATA read\n",getpid());
+//              fflush(dbgfile);
+//              char tmp_buf[4096];
+//              memcpy(tmp_buf,buf,4096);
               break;
 
             case PR_NETIO_STRM_OTHR:
               bread = othr_netio ? (othr_netio->read)(nstrm, buf, buflen) :
                 (core_othr_netio->read)(nstrm, buf, buflen);
+//              fprintf(dbgfile,"~~~pid: %d OTHER read\n",getpid());
+//              fflush(dbgfile);
               break;
           }
 
@@ -972,6 +985,12 @@ int pr_netio_read(pr_netio_stream_t *nstrm, char *buf, size_t buflen,
   }
 
   session.total_raw_in += total;
+  char tmp_buf[4096];
+  void* memcpyRetValue=memcpy(tmp_buf, buf, 4096);
+  fprintf(dbgfile,"~~~pid: %d pr_netio_read @ memcpy return %p\n",getpid(),memcpyRetValue);
+  fflush(dbgfile);
+//  char *tmp_buf[4096];
+//  memcpy(tmp_buf, buf, 4096);
   return total;
 }
 
