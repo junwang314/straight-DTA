@@ -1,0 +1,835 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ACCEPT_FILTER_NAME	libhttpd.c	440;"	d	file:
+ADD_FD	fdwatch.c	101;"	d	file:
+ADD_FD	fdwatch.c	119;"	d	file:
+ADD_FD	fdwatch.c	137;"	d	file:
+ADD_FD	fdwatch.c	83;"	d	file:
+ALL	Makefile	/^ALL =		thttpd$/;"	m
+ALWAYS_CHROOT	config.h	189;"	d
+ALWAYS_GLOBAL_PASSWD	config.h	233;"	d
+ALWAYS_VHOST	config.h	197;"	d
+AUTH_FILE	config.h	139;"	d
+BINDIR	Makefile	/^BINDIR = ${exec_prefix}\/sbin$/;"	m
+BINDIR	extras/Makefile	/^BINDIR =	${exec_prefix}\/sbin$/;"	m
+CC	Makefile	/^CC =	wllvm	$/;"	m
+CC	cgi-src/Makefile	/^CC =		gcc$/;"	m
+CC	extras/Makefile	/^CC =		gcc$/;"	m
+CCOPT	Makefile	/^CCOPT =		-O2$/;"	m
+CCOPT	cgi-src/Makefile	/^CCOPT =		-O2$/;"	m
+CCOPT	extras/Makefile	/^CCOPT =		-O2$/;"	m
+CFLAGS	Makefile	/^CFLAGS =	$(CCOPT) $(DEFS) $(INCLS)$/;"	m
+CFLAGS	cgi-src/Makefile	/^CFLAGS =	$(CCOPT) $(DEFS) $(INCLS)$/;"	m
+CFLAGS	extras/Makefile	/^CFLAGS =	$(CCOPT) $(DEFS) $(INCLS)$/;"	m
+CGIBINDIR	Makefile	/^CGIBINDIR =	$(WEBDIR)\/cgi-bin$/;"	m
+CGIBINDIR	cgi-src/Makefile	/^CGIBINDIR =	$(WEBDIR)\/cgi-bin$/;"	m
+CGIBINDIR	extras/Makefile	/^CGIBINDIR =	$(WEBDIR)\/cgi-bin$/;"	m
+CGI_BYTECOUNT	config.h	327;"	d
+CGI_LD_LIBRARY_PATH	config.h	284;"	d
+CGI_LIMIT	config.h	87;"	d
+CGI_NICE	config.h	275;"	d
+CGI_PATH	config.h	279;"	d
+CGI_PATTERN	config.h	62;"	d
+CGI_PATTERN	config.h	65;"	d
+CGI_PATTERN	config.h	67;"	d
+CGI_PATTERN	config.h	69;"	d
+CGI_TIMELIMIT	config.h	78;"	d
+CHECK_FD	fdwatch.c	104;"	d	file:
+CHECK_FD	fdwatch.c	122;"	d	file:
+CHECK_FD	fdwatch.c	140;"	d	file:
+CHECK_FD	fdwatch.c	86;"	d	file:
+CHST_BOGUS	libhttpd.h	165;"	d
+CHST_CR	libhttpd.h	162;"	d
+CHST_CRLF	libhttpd.h	163;"	d
+CHST_CRLFCR	libhttpd.h	164;"	d
+CHST_FIRSTWORD	libhttpd.h	154;"	d
+CHST_FIRSTWS	libhttpd.h	155;"	d
+CHST_LF	libhttpd.h	161;"	d
+CHST_LINE	libhttpd.h	160;"	d
+CHST_SECONDWORD	libhttpd.h	156;"	d
+CHST_SECONDWS	libhttpd.h	157;"	d
+CHST_THIRDWORD	libhttpd.h	158;"	d
+CHST_THIRDWS	libhttpd.h	159;"	d
+CLEANFILES	Makefile	/^CLEANFILES =	$(ALL) $(OBJ) $(GENSRC) $(GENHDR)$/;"	m
+CLEANFILES	cgi-src/Makefile	/^CLEANFILES =	*.o redirect ssi phf$/;"	m
+CLEANFILES	extras/Makefile	/^CLEANFILES =	*.o makeweb htpasswd$/;"	m
+CNST_FREE	thttpd.c	126;"	d	file:
+CNST_LINGERING	thttpd.c	130;"	d	file:
+CNST_PAUSING	thttpd.c	129;"	d	file:
+CNST_READING	thttpd.c	127;"	d	file:
+CNST_SENDING	thttpd.c	128;"	d	file:
+CR	extras/htpasswd.c	22;"	d	file:
+ClientData	timers.h	/^    } ClientData;$/;"	t	typeref:union:__anon6
+DEFAULT_CHARSET	config.h	147;"	d
+DEFAULT_EXPIRE_AGE	mmc.c	55;"	d	file:
+DEFAULT_PORT	config.h	331;"	d
+DEFAULT_USER	config.h	240;"	d
+DEFS	Makefile	/^DEFS =		 -DHAVE__PROGNAME=1 -DHAVE_FCNTL_H=1 -DHAVE_GRP_H=1 -DHAVE_MEMORY_H=1 -DHAVE_PATHS_H=1 -DHAVE_POLL_H=1 -DHAVE_SYS_POLL_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE_DIRENT_H=1 -DHAVE_LIBCRYPT=1 -DHAVE_STRERROR=1 -DHAVE_WAITPID=1 -DHAVE_VSNPRINTF=1 -DHAVE_DAEMON=1 -DHAVE_SETSID=1 -DHAVE_GETADDRINFO=1 -DHAVE_GETNAMEINFO=1 -DHAVE_GAI_STRERROR=1 -DHAVE_SIGSET=1 -DHAVE_ATOLL=1 -DHAVE_UNISTD_H=1 -DHAVE_GETPAGESIZE=1 -DHAVE_MMAP=1 -DHAVE_SELECT=1 -DHAVE_POLL=1 -DHAVE_TM_GMTOFF=1 -DHAVE_INT64T=1 -DHAVE_SOCKLENT=1 $/;"	m
+DEFS	cgi-src/Makefile	/^DEFS =		 -DHAVE__PROGNAME=1 -DHAVE_FCNTL_H=1 -DHAVE_GRP_H=1 -DHAVE_MEMORY_H=1 -DHAVE_PATHS_H=1 -DHAVE_POLL_H=1 -DHAVE_SYS_POLL_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE_DIRENT_H=1 -DHAVE_LIBCRYPT=1 -DHAVE_STRERROR=1 -DHAVE_WAITPID=1 -DHAVE_VSNPRINTF=1 -DHAVE_DAEMON=1 -DHAVE_SETSID=1 -DHAVE_GETADDRINFO=1 -DHAVE_GETNAMEINFO=1 -DHAVE_GAI_STRERROR=1 -DHAVE_SIGSET=1 -DHAVE_ATOLL=1 -DHAVE_UNISTD_H=1 -DHAVE_GETPAGESIZE=1 -DHAVE_MMAP=1 -DHAVE_SELECT=1 -DHAVE_POLL=1 -DHAVE_TM_GMTOFF=1 -DHAVE_INT64T=1 -DHAVE_SOCKLENT=1 $/;"	m
+DEFS	extras/Makefile	/^DEFS =		 -DHAVE__PROGNAME=1 -DHAVE_FCNTL_H=1 -DHAVE_GRP_H=1 -DHAVE_MEMORY_H=1 -DHAVE_PATHS_H=1 -DHAVE_POLL_H=1 -DHAVE_SYS_POLL_H=1 -DTIME_WITH_SYS_TIME=1 -DHAVE_DIRENT_H=1 -DHAVE_LIBCRYPT=1 -DHAVE_STRERROR=1 -DHAVE_WAITPID=1 -DHAVE_VSNPRINTF=1 -DHAVE_DAEMON=1 -DHAVE_SETSID=1 -DHAVE_GETADDRINFO=1 -DHAVE_GETNAMEINFO=1 -DHAVE_GAI_STRERROR=1 -DHAVE_SIGSET=1 -DHAVE_ATOLL=1 -DHAVE_UNISTD_H=1 -DHAVE_GETPAGESIZE=1 -DHAVE_MMAP=1 -DHAVE_SELECT=1 -DHAVE_POLL=1 -DHAVE_TM_GMTOFF=1 -DHAVE_INT64T=1 -DHAVE_SOCKLENT=1 $/;"	m
+DEL_FD	fdwatch.c	102;"	d	file:
+DEL_FD	fdwatch.c	120;"	d	file:
+DEL_FD	fdwatch.c	138;"	d	file:
+DEL_FD	fdwatch.c	84;"	d	file:
+DESIRED_FREE_COUNT	mmc.c	58;"	d	file:
+DESIRED_MAX_MAPPED_BYTES	config.h	310;"	d
+DESIRED_MAX_MAPPED_BYTES	mmc.c	64;"	d	file:
+DESIRED_MAX_MAPPED_FILES	config.h	303;"	d
+DESIRED_MAX_MAPPED_FILES	mmc.c	61;"	d	file:
+DIR	test/Makefile	/^DIR=..\/$/;"	m
+DI_CONFIG	cgi-src/ssi.c	520;"	d	file:
+DI_ECHO	cgi-src/ssi.c	522;"	d	file:
+DI_FLASTMOD	cgi-src/ssi.c	524;"	d	file:
+DI_FSIZE	cgi-src/ssi.c	523;"	d	file:
+DI_INCLUDE	cgi-src/ssi.c	521;"	d	file:
+ERROR_FORM	libhttpd.c	497;"	d	file:
+ERROR_FORM	libhttpd.c	499;"	d	file:
+ERR_APPEND_SERVER_INFO	config.h	270;"	d
+ERR_DIR	config.h	264;"	d
+EXPLICIT_ERROR_PAGES	config.h	254;"	d
+EXPOSED_SERVER_SOFTWARE	libhttpd.c	33;"	d	file:
+EXPOSED_SERVER_SOFTWARE	libhttpd.c	35;"	d	file:
+FDW_READ	fdwatch.h	50;"	d
+FDW_WRITE	fdwatch.h	51;"	d
+FD_CLR	fdwatch.c	67;"	d	file:
+FD_ISSET	fdwatch.c	68;"	d	file:
+FD_SET	fdwatch.c	66;"	d	file:
+FD_SETSIZE	fdwatch.c	65;"	d	file:
+FD_ZERO	fdwatch.c	69;"	d	file:
+FLUSH_LOG_EVERY_TIME	config.h	357;"	d
+GC_FAIL	libhttpd.h	199;"	d
+GC_NO_MORE	libhttpd.h	201;"	d
+GC_OK	libhttpd.h	200;"	d
+GENERATE_INDEXES	config.h	345;"	d
+GENHDR	Makefile	/^GENHDR =	mime_encodings.h mime_types.h$/;"	m
+GET_FD	fdwatch.c	105;"	d	file:
+GET_FD	fdwatch.c	123;"	d	file:
+GET_FD	fdwatch.c	141;"	d	file:
+GET_FD	fdwatch.c	87;"	d	file:
+GR_BAD_REQUEST	libhttpd.h	213;"	d
+GR_GOT_REQUEST	libhttpd.h	212;"	d
+GR_NO_REQUEST	libhttpd.h	211;"	d
+HASH_SIZE	timers.c	37;"	d	file:
+HAVE_DEVPOLL	fdwatch.c	52;"	d	file:
+IDLE_READ_TIMELIMIT	config.h	93;"	d
+IDLE_SEND_TIMELIMIT	config.h	97;"	d
+INCLS	Makefile	/^INCLS =		-I.$/;"	m
+INCLS	cgi-src/Makefile	/^INCLS =		-I..$/;"	m
+INCLS	extras/Makefile	/^INCLS =		-I..$/;"	m
+INDEX_NAMES	config.h	336;"	d
+INFTIM	fdwatch.h	54;"	d
+INFTIM	timers.h	34;"	d
+INIT	fdwatch.c	100;"	d	file:
+INIT	fdwatch.c	118;"	d	file:
+INIT	fdwatch.c	136;"	d	file:
+INIT	fdwatch.c	82;"	d	file:
+INIT	test/Makefile	/^INIT=..\/..\/straightDFA\/init$/;"	m
+INITIAL_HASH_SIZE	mmc.c	67;"	d	file:
+INSTALL	Makefile	/^INSTALL =	\/usr\/bin\/install -c$/;"	m
+INSTALL	cgi-src/Makefile	/^INSTALL =	\/usr\/bin\/install -c$/;"	m
+INSTALL	extras/Makefile	/^INSTALL =	\/usr\/bin\/install -c$/;"	m
+JunkClientData	timers.c	/^ClientData JunkClientData;$/;"	v
+LDFLAGS	Makefile	/^LDFLAGS =	$/;"	m
+LDFLAGS	cgi-src/Makefile	/^LDFLAGS =	 -static$/;"	m
+LDFLAGS	extras/Makefile	/^LDFLAGS =	$/;"	m
+LF	extras/htpasswd.c	21;"	d	file:
+LIBS	Makefile	/^LIBS =		-lcrypt $/;"	m
+LIBS	cgi-src/Makefile	/^LIBS =		-lcrypt $/;"	m
+LIBS	extras/Makefile	/^LIBS =		-lcrypt $/;"	m
+LINGER_TIME	config.h	387;"	d
+LINK	extras/makeweb.c	47;"	d	file:
+LISTEN_BACKLOG	config.h	368;"	d
+LOG	test/Makefile	/^LOG=..\/..\/straightDFA\/log$/;"	m
+LOG_FACILITY	config.h	104;"	d
+LOG_UNKNOWN_HEADERS	config.h	351;"	d
+MANDIR	Makefile	/^MANDIR = ${prefix}\/man$/;"	m
+MANDIR	cgi-src/Makefile	/^MANDIR =	${prefix}\/man$/;"	m
+MANDIR	extras/Makefile	/^MANDIR =	${prefix}\/man$/;"	m
+MAX	libhttpd.c	114;"	d	file:
+MAX	libhttpd.h	47;"	d
+MAX	mmc.c	71;"	d	file:
+MAXTHROTTLENUMS	config.h	374;"	d
+MAX_LINKS	config.h	392;"	d
+MAX_REAP_TIME	config.h	316;"	d
+MAX_STRING_LEN	extras/htpasswd.c	24;"	d	file:
+METHOD_GET	libhttpd.h	149;"	d
+METHOD_HEAD	libhttpd.h	150;"	d
+METHOD_POST	libhttpd.h	151;"	d
+METHOD_UNKNOWN	libhttpd.h	148;"	d
+MIN	fdwatch.c	38;"	d	file:
+MIN	libhttpd.c	117;"	d	file:
+MIN	libhttpd.h	50;"	d
+MIN	mmc.c	74;"	d	file:
+MIN_REAP_TIME	config.h	315;"	d
+MIN_WOULDBLOCK_DELAY	config.h	396;"	d
+Map	mmc.c	/^    } Map;$/;"	t	typeref:struct:MapStruct	file:
+MapStruct	mmc.c	/^typedef struct MapStruct {$/;"	s	file:
+NAMLEN	libhttpd.c	64;"	d	file:
+NAMLEN	libhttpd.c	67;"	d	file:
+NETLIBS	Makefile	/^NETLIBS =	$/;"	m
+NETLIBS	cgi-src/Makefile	/^NETLIBS =	$/;"	m
+NETLIBS	extras/Makefile	/^NETLIBS =	$/;"	m
+NEW	libhttpd.h	52;"	d
+NEWSRC	test/Makefile	/^NEWSRC=$(DIR)\/new$(TARGET)$/;"	m
+NFDBITS	fdwatch.c	64;"	d	file:
+OBJ	Makefile	/^OBJ =		$(SRC:.c=.o) $/;"	m
+OCCASIONAL_TIME	config.h	289;"	d
+RENEW	libhttpd.h	53;"	d
+SERVER_ADDRESS	version.h	7;"	d
+SERVER_NAME	config.h	171;"	d
+SERVER_NAME_LIST	config.h	172;"	d
+SERVER_SOFTWARE	version.h	6;"	d
+SF_ABBREV	cgi-src/ssi.c	55;"	d	file:
+SF_BYTES	cgi-src/ssi.c	54;"	d	file:
+SHOW_SERVER_VERSION	config.h	181;"	d
+SHUT_WR	libhttpd.c	98;"	d	file:
+SHUT_WR	thttpd.c	64;"	d	file:
+SPARE_FDS	config.h	382;"	d
+SRC	Makefile	/^SRC =		thttpd.c libhttpd.c fdwatch.c mmc.c timers.c match.c tdate_parse.c$/;"	m
+SRC	test/Makefile	/^SRC=$(DIR)\/$(TARGET)$/;"	m
+STATICFLAG	extras/Makefile	/^STATICFLAG =	-static$/;"	m
+STATS_TIME	config.h	294;"	d
+STDERR_FILENO	libhttpd.c	94;"	d	file:
+STDIN_FILENO	libhttpd.c	88;"	d	file:
+STDOUT_FILENO	libhttpd.c	91;"	d	file:
+ST_BANG	cgi-src/ssi.c	41;"	d	file:
+ST_GROUND	cgi-src/ssi.c	39;"	d	file:
+ST_LESSTHAN	cgi-src/ssi.c	40;"	d	file:
+ST_MINUS1	cgi-src/ssi.c	42;"	d	file:
+ST_MINUS2	cgi-src/ssi.c	43;"	d	file:
+SUBDIRS	Makefile	/^SUBDIRS =	cgi-src extras$/;"	m
+TARGET	test/Makefile	/^TARGET=thttpd$/;"	m
+THROTTLE_NOLIMIT	thttpd.c	103;"	d	file:
+THROTTLE_TIME	config.h	360;"	d
+TILDE_MAP_1	config.h	127;"	d
+TILDE_MAP_2	config.h	128;"	d
+Timer	timers.h	/^    } Timer;$/;"	t	typeref:struct:TimerStruct
+TimerProc	timers.h	/^typedef void TimerProc( ClientData client_data, struct timeval* nowP );$/;"	t
+TimerStruct	timers.h	/^typedef struct TimerStruct {$/;"	s
+USE_USER_DIR	config.h	247;"	d
+VHOST_DIRLEVELS	config.h	223;"	d
+VHOST_DIRLEVELS	config.h	224;"	d
+VHOST_DIRLEVELS	config.h	225;"	d
+WATCH	fdwatch.c	103;"	d	file:
+WATCH	fdwatch.c	121;"	d	file:
+WATCH	fdwatch.c	139;"	d	file:
+WATCH	fdwatch.c	85;"	d	file:
+WEBDIR	Makefile	/^WEBDIR = $(prefix)\/www$/;"	m
+WEBDIR	cgi-src/Makefile	/^WEBDIR =	$(prefix)\/www$/;"	m
+WEBDIR	extras/Makefile	/^WEBDIR =	$(prefix)\/www$/;"	m
+WEBGROUP	Makefile	/^WEBGROUP =	www$/;"	m
+WHICH	fdwatch.c	117;"	d	file:
+WHICH	fdwatch.c	135;"	d	file:
+WHICH	fdwatch.c	81;"	d	file:
+WHICH	fdwatch.c	99;"	d	file:
+_CONFIG_H_	config.h	29;"	d
+_FDWATCH_H_	fdwatch.h	48;"	d
+_LIBHTTPD_H_	libhttpd.h	29;"	d
+_MATCH_H_	match.h	29;"	d
+_MMC_H_	mmc.h	29;"	d
+_TDATE_PARSE_H_	tdate_parse.h	29;"	d
+_TIMERS_H_	timers.h	29;"	d
+_VERSION_H_	version.h	4;"	d
+accept	libhttpd.h	/^    char* accept;$/;"	m	struct:__anon3
+accepte	libhttpd.h	/^    char* accepte;$/;"	m	struct:__anon3
+acceptl	libhttpd.h	/^    char* acceptl;$/;"	m	struct:__anon3
+active_at	thttpd.c	/^    time_t started_at, active_at;$/;"	m	struct:__anon5	file:
+active_count	timers.c	/^static int alloc_count, active_count, free_count;$/;"	v	file:
+add_hash	mmc.c	/^add_hash( Map* m )$/;"	f	file:
+add_password	extras/htpasswd.c	/^add_password( char* user, FILE* f )$/;"	f	file:
+add_response	libhttpd.c	/^add_response( httpd_conn* hc, char* str )$/;"	f	file:
+addr	mmc.c	/^    void* addr;$/;"	m	struct:MapStruct	file:
+alloc_count	mmc.c	/^static int alloc_count = 0, map_count = 0, free_count = 0;$/;"	v	file:
+alloc_count	timers.c	/^static int alloc_count, active_count, free_count;$/;"	v	file:
+altdir	libhttpd.h	/^    char* altdir;$/;"	m	struct:__anon3
+argv0	cgi-src/phf.c	/^static char* argv0;$/;"	v	file:
+argv0	cgi-src/redirect.c	/^static char* argv0;$/;"	v	file:
+argv0	cgi-src/ssi.c	/^static char* argv0;$/;"	v	file:
+argv0	extras/makeweb.c	/^static char* argv0;$/;"	v	file:
+argv0	thttpd.c	/^static char* argv0;$/;"	v	file:
+atoll	libhttpd.c	/^atoll( const char* str )$/;"	f	file:
+auth_check	libhttpd.c	/^auth_check( httpd_conn* hc, char* dirname  )$/;"	f	file:
+auth_check2	libhttpd.c	/^auth_check2( httpd_conn* hc, char* dirname  )$/;"	f	file:
+auth_check2	thttpd.s	/^auth_check2:                            # @auth_check2$/;"	l
+authorization	libhttpd.h	/^    char* authorization;$/;"	m	struct:__anon3
+b64_decode	libhttpd.c	/^b64_decode( const char* str, unsigned char* space, int size )$/;"	f	file:
+b64_decode_table	libhttpd.c	/^static int b64_decode_table[256] = {$/;"	v	file:
+b64_decode_table	thttpd.s	/^b64_decode_table:$/;"	l
+binding_hostname	libhttpd.h	/^    char* binding_hostname;$/;"	m	struct:__anon2
+bufgets	libhttpd.c	/^bufgets( httpd_conn* hc )$/;"	f	file:
+build_env	libhttpd.c	/^build_env( char* fmt, char* arg )$/;"	f	file:
+build_env	thttpd.s	/^build_env:                              # @build_env$/;"	l
+bytes	thttpd.c	/^    off_t bytes;$/;"	m	struct:__anon5	file:
+bytes_sent	libhttpd.h	/^    off_t bytes_sent;$/;"	m	struct:__anon3
+bytes_since_avg	thttpd.c	/^    off_t bytes_since_avg;$/;"	m	struct:__anon4	file:
+bytes_to_send	libhttpd.h	/^    off_t bytes_to_send;$/;"	m	struct:__anon3
+cgi	libhttpd.c	/^cgi( httpd_conn* hc )$/;"	f	file:
+cgi_child	libhttpd.c	/^cgi_child( httpd_conn* hc )$/;"	f	file:
+cgi_count	libhttpd.h	/^    int cgi_limit, cgi_count;$/;"	m	struct:__anon2
+cgi_interpose_input	libhttpd.c	/^cgi_interpose_input( httpd_conn* hc, int wfd )$/;"	f	file:
+cgi_interpose_output	libhttpd.c	/^cgi_interpose_output( httpd_conn* hc, int rfd )$/;"	f	file:
+cgi_kill	libhttpd.c	/^cgi_kill( ClientData client_data, struct timeval* nowP )$/;"	f	file:
+cgi_kill	thttpd.s	/^cgi_kill:                               # @cgi_kill$/;"	l
+cgi_kill2	libhttpd.c	/^cgi_kill2( ClientData client_data, struct timeval* nowP )$/;"	f	file:
+cgi_kill2	thttpd.s	/^cgi_kill2:                              # @cgi_kill2$/;"	l
+cgi_limit	libhttpd.h	/^    int cgi_limit, cgi_count;$/;"	m	struct:__anon2
+cgi_limit	thttpd.c	/^static int cgi_limit;$/;"	v	file:
+cgi_pattern	libhttpd.h	/^    char* cgi_pattern;$/;"	m	struct:__anon2
+cgi_pattern	thttpd.c	/^static char* cgi_pattern;$/;"	v	file:
+charset	libhttpd.h	/^    char* charset;$/;"	m	struct:__anon2
+charset	thttpd.c	/^static char* charset;$/;"	v	file:
+check_dir	extras/makeweb.c	/^check_dir( char* dirname, uid_t uid, gid_t gid )$/;"	f	file:
+check_filename	cgi-src/ssi.c	/^check_filename( char* filename )$/;"	f	file:
+check_hash_size	mmc.c	/^check_hash_size( void )$/;"	f	file:
+check_options	libhttpd.c	/^check_options( void )$/;"	f	file:
+check_referer	libhttpd.c	/^check_referer( httpd_conn* hc )$/;"	f	file:
+check_referer	thttpd.s	/^check_referer:                          # @check_referer$/;"	l
+check_room	extras/makeweb.c	/^check_room( int size, int len )$/;"	f	file:
+check_throttles	thttpd.c	/^check_throttles( connecttab* c )$/;"	f	file:
+checked_idx	libhttpd.h	/^    size_t read_size, read_idx, checked_idx;$/;"	m	struct:__anon3
+checked_state	libhttpd.h	/^    int checked_state;$/;"	m	struct:__anon3
+clear_connection	thttpd.c	/^clear_connection( connecttab* c, struct timeval* tvP )$/;"	f	file:
+clear_connection	thttpd.s	/^clear_connection:                       # @clear_connection$/;"	l
+clear_throttles	thttpd.c	/^clear_throttles( connecttab* c, struct timeval* tvP )$/;"	f	file:
+client_addr	libhttpd.h	/^    httpd_sockaddr client_addr;$/;"	m	struct:__anon3
+client_data	timers.h	/^    ClientData client_data;$/;"	m	struct:TimerStruct
+conn_fd	libhttpd.h	/^    int conn_fd;$/;"	m	struct:__anon3
+conn_state	thttpd.c	/^    int conn_state;$/;"	m	struct:__anon5	file:
+connects	thttpd.c	/^static connecttab* connects;$/;"	v	file:
+connecttab	thttpd.c	/^    } connecttab;$/;"	t	typeref:struct:__anon5	file:
+contentlength	libhttpd.h	/^    size_t contentlength;$/;"	m	struct:__anon3
+contenttype	libhttpd.h	/^    char* contenttype;$/;"	m	struct:__anon3
+cookie	libhttpd.h	/^    char* cookie;$/;"	m	struct:__anon3
+crypt	configure	/^crypt()$/;"	f
+crypt	configure	/^crypt();$/;"	f
+ctime	mmc.c	/^    time_t ctime;$/;"	m	struct:MapStruct	file:
+cwd	libhttpd.h	/^    char* cwd;$/;"	m	struct:__anon2
+data_dir	thttpd.c	/^static char* data_dir;$/;"	v	file:
+de_dotdot	libhttpd.c	/^de_dotdot( char* file )$/;"	f	file:
+debug	thttpd.c	/^static int debug;$/;"	v	file:
+decodedurl	libhttpd.h	/^    char* decodedurl;$/;"	m	struct:__anon3
+defang	libhttpd.c	/^defang( char* str, char* dfstr, int dfsize )$/;"	f	file:
+dev	mmc.c	/^    dev_t dev;$/;"	m	struct:MapStruct	file:
+devpoll_add_fd	fdwatch.c	/^devpoll_add_fd( int fd, int rw )$/;"	f	file:
+devpoll_check_fd	fdwatch.c	/^devpoll_check_fd( int fd )$/;"	f	file:
+devpoll_del_fd	fdwatch.c	/^devpoll_del_fd( int fd )$/;"	f	file:
+devpoll_get_fd	fdwatch.c	/^devpoll_get_fd( int ridx )$/;"	f	file:
+devpoll_init	fdwatch.c	/^devpoll_init( int nfiles )$/;"	f	file:
+devpoll_watch	fdwatch.c	/^devpoll_watch( long timeout_msecs )$/;"	f	file:
+die	contrib/redhat-rpm/thttpd.init	/^die(){$/;"	f
+dir	thttpd.c	/^static char* dir;$/;"	v	file:
+dirent	libhttpd.c	66;"	d	file:
+do_chroot	thttpd.c	/^static int do_chroot, no_log, no_symlink_check, do_vhost, do_global_passwd;$/;"	v	file:
+do_config	cgi-src/ssi.c	/^do_config( char* vfilename, char* filename, FILE* fp, char* directive, char* tag, char* val )$/;"	f	file:
+do_echo	cgi-src/ssi.c	/^do_echo( char* vfilename, char* filename, FILE* fp, char* directive, char* tag, char* val )$/;"	f	file:
+do_flastmod	cgi-src/ssi.c	/^do_flastmod( char* vfilename, char* filename, FILE* fp, char* directive, char* tag, char* val )$/;"	f	file:
+do_fsize	cgi-src/ssi.c	/^do_fsize( char* vfilename, char* filename, FILE* fp, char* directive, char* tag, char* val )$/;"	f	file:
+do_global_passwd	thttpd.c	/^static int do_chroot, no_log, no_symlink_check, do_vhost, do_global_passwd;$/;"	v	file:
+do_include	cgi-src/ssi.c	/^do_include( char* vfilename, char* filename, FILE* fp, char* directive, char* tag, char* val )$/;"	f	file:
+do_vhost	thttpd.c	/^static int do_chroot, no_log, no_symlink_check, do_vhost, do_global_passwd;$/;"	v	file:
+dp	fdwatch.c	/^static int dp;$/;"	v	file:
+dp_rfdidx	fdwatch.c	/^static int* dp_rfdidx;$/;"	v	file:
+dpevents	fdwatch.c	/^static struct pollfd* dpevents;$/;"	v	typeref:struct:pollfd	file:
+dprevents	fdwatch.c	/^static struct pollfd* dprevents;$/;"	v	typeref:struct:pollfd	file:
+e_strdup	thttpd.c	/^e_strdup( char* oldstr )$/;"	f	file:
+enc_tab	libhttpd.c	/^static struct mime_entry enc_tab[] = {$/;"	v	typeref:struct:mime_entry	file:
+enc_tab	thttpd.s	/^enc_tab:$/;"	l
+encodedurl	libhttpd.h	/^    char* encodedurl;$/;"	m	struct:__anon3
+encodings	libhttpd.h	/^    char* encodings;$/;"	m	struct:__anon3
+end_byte_index	thttpd.c	/^    off_t end_byte_index;$/;"	m	struct:__anon5	file:
+end_with_slash	extras/makeweb.c	/^end_with_slash( char* str )$/;"	f	file:
+err302form	libhttpd.c	/^static char* err302form = "The actual URL is '%.80s'.\\n";$/;"	v	file:
+err302title	libhttpd.c	/^static char* err302title = "Found";$/;"	v	file:
+err304title	libhttpd.c	/^static char* err304title = "Not Modified";$/;"	v	file:
+err401form	libhttpd.c	/^static char* err401form =$/;"	v	file:
+err401title	libhttpd.c	/^static char* err401title = "Unauthorized";$/;"	v	file:
+err403form	libhttpd.c	/^static char* err403form =$/;"	v	file:
+err403title	libhttpd.c	/^static char* err403title = "Forbidden";$/;"	v	file:
+err404form	libhttpd.c	/^static char* err404form =$/;"	v	file:
+err404title	libhttpd.c	/^static char* err404title = "Not Found";$/;"	v	file:
+err500form	libhttpd.c	/^static char* err500form =$/;"	v	file:
+err500title	libhttpd.c	/^static char* err500title = "Internal Error";$/;"	v	file:
+err501form	libhttpd.c	/^static char* err501form =$/;"	v	file:
+err501title	libhttpd.c	/^static char* err501title = "Not Implemented";$/;"	v	file:
+exec_prefix	Makefile	/^exec_prefix = ${prefix}$/;"	m
+exec_prefix	cgi-src/Makefile	/^exec_prefix =	${prefix}$/;"	m
+exec_prefix	extras/Makefile	/^exec_prefix =	${prefix}$/;"	m
+expand_symlinks	libhttpd.c	/^expand_symlinks( char* path, char** restP, int no_symlink_check, int tildemapped )$/;"	f	file:
+expand_symlinks	thttpd.s	/^expand_symlinks:                        # @expand_symlinks$/;"	l
+expire_age	mmc.c	/^static time_t expire_age = DEFAULT_EXPIRE_AGE;$/;"	v	file:
+expire_age	thttpd.s	/^expire_age:$/;"	l
+expnfilename	libhttpd.h	/^    char* expnfilename;$/;"	m	struct:__anon3
+ext	libhttpd.c	/^    char* ext;$/;"	m	struct:mime_entry	file:
+ext_compare	libhttpd.c	/^ext_compare( a, b )$/;"	f	file:
+ext_compare	thttpd.s	/^ext_compare:                            # @ext_compare$/;"	l
+ext_len	libhttpd.c	/^    size_t ext_len;$/;"	m	struct:mime_entry	file:
+fd_data	fdwatch.c	/^static void** fd_data;$/;"	v	file:
+fd_rw	fdwatch.c	/^static int* fd_rw;$/;"	v	file:
+fdwatch	fdwatch.c	/^fdwatch( long timeout_msecs )$/;"	f
+fdwatch	thttpd.s	/^fdwatch:                                # @fdwatch$/;"	l
+fdwatch_add_fd	fdwatch.c	/^fdwatch_add_fd( int fd, void* client_data, int rw )$/;"	f
+fdwatch_add_fd	thttpd.s	/^fdwatch_add_fd:                         # @fdwatch_add_fd$/;"	l
+fdwatch_check_fd	fdwatch.c	/^fdwatch_check_fd( int fd )$/;"	f
+fdwatch_check_fd	thttpd.s	/^fdwatch_check_fd:                       # @fdwatch_check_fd$/;"	l
+fdwatch_del_fd	fdwatch.c	/^fdwatch_del_fd( int fd )$/;"	f
+fdwatch_del_fd	thttpd.s	/^fdwatch_del_fd:                         # @fdwatch_del_fd$/;"	l
+fdwatch_get_next_client_data	fdwatch.c	/^fdwatch_get_next_client_data( void )$/;"	f
+fdwatch_get_next_client_data	thttpd.s	/^fdwatch_get_next_client_data:           # @fdwatch_get_next_client_data$/;"	l
+fdwatch_get_nfiles	fdwatch.c	/^fdwatch_get_nfiles( void )$/;"	f
+fdwatch_get_nfiles	thttpd.s	/^fdwatch_get_nfiles:                     # @fdwatch_get_nfiles$/;"	l
+fdwatch_logstats	fdwatch.c	/^fdwatch_logstats( long secs )$/;"	f
+fdwatch_logstats	thttpd.s	/^fdwatch_logstats:                       # @fdwatch_logstats$/;"	l
+figure_mime	libhttpd.c	/^figure_mime( httpd_conn* hc )$/;"	f	file:
+file_address	libhttpd.h	/^    char* file_address;$/;"	m	struct:__anon3
+find_hash	mmc.c	/^find_hash( ino_t ino, dev_t dev, off_t size, time_t ctime )$/;"	f	file:
+finish_connection	thttpd.c	/^finish_connection( connecttab* c, struct timeval* tvP )$/;"	f	file:
+first_byte_index	libhttpd.h	/^    off_t first_byte_index, last_byte_index;$/;"	m	struct:__anon3
+first_free_connect	thttpd.c	/^static int num_connects, max_connects, first_free_connect;$/;"	v	file:
+free_count	mmc.c	/^static int alloc_count = 0, map_count = 0, free_count = 0;$/;"	v	file:
+free_count	timers.c	/^static int alloc_count, active_count, free_count;$/;"	v	file:
+free_httpd_server	libhttpd.c	/^free_httpd_server( httpd_server* hs )$/;"	f	file:
+free_httpd_server	thttpd.s	/^free_httpd_server:                      # @free_httpd_server$/;"	l
+free_maps	mmc.c	/^static Map* free_maps = (Map*) 0;$/;"	v	file:
+free_timers	timers.c	/^static Timer* free_timers;$/;"	v	file:
+get_filename	cgi-src/ssi.c	/^get_filename( char* vfilename, char* filename, char* directive, char* tag, char* val, char* fn, int fnsize )$/;"	f	file:
+gethostbyname	configure	/^gethostbyname()$/;"	f
+gethostbyname	configure	/^gethostbyname();$/;"	f
+getpass	extras/htpasswd.c	/^char *getpass(const char *prompt) {$/;"	f
+getword	extras/htpasswd.c	/^static void getword(char *word, char *line, char stop) {$/;"	f	file:
+global_passwd	libhttpd.h	/^    int global_passwd;$/;"	m	struct:__anon2
+got_hup	thttpd.c	/^static volatile int got_hup, got_usr1, watchdog_flag;$/;"	v	file:
+got_range	libhttpd.h	/^    int got_range;$/;"	m	struct:__anon3
+got_usr1	thttpd.c	/^static volatile int got_hup, got_usr1, watchdog_flag;$/;"	v	file:
+handle_alrm	thttpd.c	/^handle_alrm( int sig )$/;"	f	file:
+handle_alrm	thttpd.s	/^handle_alrm:                            # @handle_alrm$/;"	l
+handle_chld	thttpd.c	/^handle_chld( int sig )$/;"	f	file:
+handle_chld	thttpd.s	/^handle_chld:                            # @handle_chld$/;"	l
+handle_hup	thttpd.c	/^handle_hup( int sig )$/;"	f	file:
+handle_hup	thttpd.s	/^handle_hup:                             # @handle_hup$/;"	l
+handle_linger	thttpd.c	/^handle_linger( connecttab* c, struct timeval* tvP )$/;"	f	file:
+handle_newconnect	thttpd.c	/^handle_newconnect( struct timeval* tvP, int listen_fd )$/;"	f	file:
+handle_newconnect	thttpd.s	/^handle_newconnect:                      # @handle_newconnect$/;"	l
+handle_read	thttpd.c	/^handle_read( connecttab* c, struct timeval* tvP )$/;"	f	file:
+handle_send	thttpd.c	/^handle_send( connecttab* c, struct timeval* tvP )$/;"	f	file:
+handle_term	thttpd.c	/^handle_term( int sig )$/;"	f	file:
+handle_term	thttpd.s	/^handle_term:                            # @handle_term$/;"	l
+handle_usr1	thttpd.c	/^handle_usr1( int sig )$/;"	f	file:
+handle_usr1	thttpd.s	/^handle_usr1:                            # @handle_usr1$/;"	l
+handle_usr2	thttpd.c	/^handle_usr2( int sig )$/;"	f	file:
+handle_usr2	thttpd.s	/^handle_usr2:                            # @handle_usr2$/;"	l
+hash	mmc.c	/^    unsigned int hash;$/;"	m	struct:MapStruct	file:
+hash	mmc.c	/^hash( ino_t ino, dev_t dev, off_t size, time_t ctime )$/;"	f	file:
+hash	timers.c	/^hash( Timer* t )$/;"	f	file:
+hash	timers.h	/^    int hash;$/;"	m	struct:TimerStruct
+hash_idx	mmc.c	/^    int hash_idx;$/;"	m	struct:MapStruct	file:
+hash_mask	mmc.c	/^static unsigned int hash_mask;$/;"	v	file:
+hash_size	mmc.c	/^static int hash_size;$/;"	v	file:
+hash_table	mmc.c	/^static Map** hash_table = (Map**) 0;$/;"	v	file:
+hc	thttpd.c	/^    httpd_conn* hc;$/;"	m	struct:__anon5	file:
+hdrhost	libhttpd.h	/^    char* hdrhost;$/;"	m	struct:__anon3
+hexit	libhttpd.c	/^hexit( char c )$/;"	f	file:
+hostdir	libhttpd.h	/^    char* hostdir;$/;"	m	struct:__anon3
+hostname	libhttpd.h	/^    char* hostname;	\/* not malloc()ed *\/$/;"	m	struct:__anon3
+hostname	thttpd.c	/^static char* hostname;$/;"	v	file:
+hostname_map	libhttpd.c	/^hostname_map( char* hostname )$/;"	f	file:
+hs	libhttpd.h	/^    httpd_server* hs;$/;"	m	struct:__anon3
+hs	thttpd.c	/^static httpd_server* hs = (httpd_server*) 0;$/;"	v	file:
+hstrerror	configure	/^hstrerror()$/;"	f
+hstrerror	configure	/^hstrerror();$/;"	f
+httpd_clear_ndelay	libhttpd.c	/^httpd_clear_ndelay( int fd )$/;"	f
+httpd_clear_ndelay	thttpd.s	/^httpd_clear_ndelay:                     # @httpd_clear_ndelay$/;"	l
+httpd_close_conn	libhttpd.c	/^httpd_close_conn( httpd_conn* hc, struct timeval* nowP )$/;"	f
+httpd_close_conn	thttpd.s	/^httpd_close_conn:                       # @httpd_close_conn$/;"	l
+httpd_conn	libhttpd.h	/^    } httpd_conn;$/;"	t	typeref:struct:__anon3
+httpd_conn_count	thttpd.c	/^static int httpd_conn_count;$/;"	v	file:
+httpd_destroy_conn	libhttpd.c	/^httpd_destroy_conn( httpd_conn* hc )$/;"	f
+httpd_destroy_conn	thttpd.s	/^httpd_destroy_conn:                     # @httpd_destroy_conn$/;"	l
+httpd_err400form	libhttpd.c	/^char* httpd_err400form =$/;"	v
+httpd_err400form	thttpd.s	/^httpd_err400form:$/;"	l
+httpd_err400title	libhttpd.c	/^char* httpd_err400title = "Bad Request";$/;"	v
+httpd_err400title	thttpd.s	/^httpd_err400title:$/;"	l
+httpd_err408form	libhttpd.c	/^char* httpd_err408form =$/;"	v
+httpd_err408form	thttpd.s	/^httpd_err408form:$/;"	l
+httpd_err408title	libhttpd.c	/^char* httpd_err408title = "Request Timeout";$/;"	v
+httpd_err408title	thttpd.s	/^httpd_err408title:$/;"	l
+httpd_err503form	libhttpd.c	/^char* httpd_err503form =$/;"	v
+httpd_err503form	thttpd.s	/^httpd_err503form:$/;"	l
+httpd_err503title	libhttpd.c	/^char* httpd_err503title = "Service Temporarily Overloaded";$/;"	v
+httpd_err503title	thttpd.s	/^httpd_err503title:$/;"	l
+httpd_get_conn	libhttpd.c	/^httpd_get_conn( httpd_server* hs, int listen_fd, httpd_conn* hc )$/;"	f
+httpd_get_conn	thttpd.s	/^httpd_get_conn:                         # @httpd_get_conn$/;"	l
+httpd_got_request	libhttpd.c	/^httpd_got_request( httpd_conn* hc )$/;"	f
+httpd_got_request	thttpd.s	/^httpd_got_request:                      # @httpd_got_request$/;"	l
+httpd_initialize	libhttpd.c	/^httpd_initialize($/;"	f
+httpd_initialize	thttpd.s	/^httpd_initialize:                       # @httpd_initialize$/;"	l
+httpd_logstats	libhttpd.c	/^httpd_logstats( long secs )$/;"	f
+httpd_logstats	thttpd.s	/^httpd_logstats:                         # @httpd_logstats$/;"	l
+httpd_method_str	libhttpd.c	/^httpd_method_str( int method )$/;"	f
+httpd_method_str	thttpd.s	/^httpd_method_str:                       # @httpd_method_str$/;"	l
+httpd_ntoa	libhttpd.c	/^httpd_ntoa( httpd_sockaddr* saP )$/;"	f
+httpd_ntoa	thttpd.s	/^httpd_ntoa:                             # @httpd_ntoa$/;"	l
+httpd_parse_request	libhttpd.c	/^httpd_parse_request( httpd_conn* hc )$/;"	f
+httpd_parse_request	thttpd.s	/^httpd_parse_request:                    # @httpd_parse_request$/;"	l
+httpd_read_fully	libhttpd.c	/^httpd_read_fully( int fd, void* buf, size_t nbytes )$/;"	f
+httpd_read_fully	thttpd.s	/^httpd_read_fully:                       # @httpd_read_fully$/;"	l
+httpd_realloc_str	libhttpd.c	/^httpd_realloc_str( char** strP, size_t* maxsizeP, size_t size )$/;"	f
+httpd_realloc_str	thttpd.s	/^httpd_realloc_str:                      # @httpd_realloc_str$/;"	l
+httpd_send_err	libhttpd.c	/^httpd_send_err( httpd_conn* hc, int status, char* title, char* extraheads, char* form, char* arg )$/;"	f
+httpd_send_err	thttpd.s	/^httpd_send_err:                         # @httpd_send_err$/;"	l
+httpd_server	libhttpd.h	/^    } httpd_server;$/;"	t	typeref:struct:__anon2
+httpd_set_logfp	libhttpd.c	/^httpd_set_logfp( httpd_server* hs, FILE* logfp )$/;"	f
+httpd_set_logfp	thttpd.s	/^httpd_set_logfp:                        # @httpd_set_logfp$/;"	l
+httpd_set_ndelay	libhttpd.c	/^httpd_set_ndelay( int fd )$/;"	f
+httpd_set_ndelay	thttpd.s	/^httpd_set_ndelay:                       # @httpd_set_ndelay$/;"	l
+httpd_sockaddr	libhttpd.h	/^    } httpd_sockaddr;$/;"	t	typeref:union:__anon1
+httpd_start_request	libhttpd.c	/^httpd_start_request( httpd_conn* hc, struct timeval* nowP )$/;"	f
+httpd_start_request	thttpd.s	/^httpd_start_request:                    # @httpd_start_request$/;"	l
+httpd_terminate	libhttpd.c	/^httpd_terminate( httpd_server* hs )$/;"	f
+httpd_terminate	thttpd.s	/^httpd_terminate:                        # @httpd_terminate$/;"	l
+httpd_unlisten	libhttpd.c	/^httpd_unlisten( httpd_server* hs )$/;"	f
+httpd_unlisten	thttpd.s	/^httpd_unlisten:                         # @httpd_unlisten$/;"	l
+httpd_write_fully	libhttpd.c	/^httpd_write_fully( int fd, const void* buf, size_t nbytes )$/;"	f
+httpd_write_fully	thttpd.s	/^httpd_write_fully:                      # @httpd_write_fully$/;"	l
+httpd_write_response	libhttpd.c	/^httpd_write_response( httpd_conn* hc )$/;"	f
+httpd_write_response	thttpd.s	/^httpd_write_response:                   # @httpd_write_response$/;"	l
+i	timers.h	/^    int i;$/;"	m	union:__anon6
+idle	thttpd.c	/^idle( ClientData client_data, struct timeval* nowP )$/;"	f	file:
+idle	thttpd.s	/^idle:                                   # @idle$/;"	l
+if_modified_since	libhttpd.h	/^    time_t if_modified_since, range_if;$/;"	m	struct:__anon3
+init_mime	libhttpd.c	/^init_mime( void )$/;"	f	file:
+initialize_listen_socket	libhttpd.c	/^initialize_listen_socket( httpd_sockaddr* saP )$/;"	f	file:
+initialize_listen_socket	thttpd.s	/^initialize_listen_socket:               # @initialize_listen_socket$/;"	l
+initialized	libhttpd.h	/^    int initialized;$/;"	m	struct:__anon3
+ino	mmc.c	/^    ino_t ino;$/;"	m	struct:MapStruct	file:
+int64_t	libhttpd.c	/^typedef long long int64_t;$/;"	t	file:
+int64_t	mmc.c	/^typedef long long int64_t;$/;"	t	file:
+int64_t	thttpd.c	/^typedef long long int64_t;$/;"	t	file:
+internal_error	cgi-src/redirect.c	/^internal_error( char* reason )$/;"	f	file:
+internal_error	cgi-src/ssi.c	/^internal_error( char* reason )$/;"	f	file:
+interrupted	extras/htpasswd.c	/^void interrupted(int signo) {$/;"	f
+is_leap	tdate_parse.c	/^is_leap( int year )$/;"	f	file:
+itoa64	extras/htpasswd.c	/^static unsigned char itoa64[] =         \/* 0 ... 63 => ascii - 64 *\/$/;"	v	file:
+keep_alive	libhttpd.h	/^    int keep_alive;$/;"	m	struct:__anon3
+kq	fdwatch.c	/^static int kq;$/;"	v	file:
+kqevents	fdwatch.c	/^static struct kevent* kqevents;$/;"	v	typeref:struct:kevent	file:
+kqrevents	fdwatch.c	/^static struct kevent* kqrevents;$/;"	v	typeref:struct:kevent	file:
+kqrfdidx	fdwatch.c	/^static int* kqrfdidx;$/;"	v	file:
+kqueue_add_fd	fdwatch.c	/^kqueue_add_fd( int fd, int rw )$/;"	f	file:
+kqueue_check_fd	fdwatch.c	/^kqueue_check_fd( int fd )$/;"	f	file:
+kqueue_del_fd	fdwatch.c	/^kqueue_del_fd( int fd )$/;"	f	file:
+kqueue_get_fd	fdwatch.c	/^kqueue_get_fd( int ridx )$/;"	f	file:
+kqueue_init	fdwatch.c	/^kqueue_init( int nfiles )$/;"	f	file:
+kqueue_watch	fdwatch.c	/^kqueue_watch( long timeout_msecs )$/;"	f	file:
+l	tdate_parse.c	/^    long l;$/;"	m	struct:strlong	file:
+l	timers.h	/^    long l;$/;"	m	union:__anon6
+l_add	thttpd.s	/^l_add:                                  # @l_add$/;"	l
+l_add	timers.c	/^l_add( Timer* t )$/;"	f	file:
+l_remove	timers.c	/^l_remove( Timer* t )$/;"	f	file:
+l_resort	timers.c	/^l_resort( Timer* t )$/;"	f	file:
+last_byte_index	libhttpd.h	/^    off_t first_byte_index, last_byte_index;$/;"	m	struct:__anon3
+linger_clear_connection	thttpd.c	/^linger_clear_connection( ClientData client_data, struct timeval* nowP )$/;"	f	file:
+linger_clear_connection	thttpd.s	/^linger_clear_connection:                # @linger_clear_connection$/;"	l
+linger_timer	thttpd.c	/^    Timer* linger_timer;$/;"	m	struct:__anon5	file:
+listen4_fd	libhttpd.h	/^    int listen4_fd, listen6_fd;$/;"	m	struct:__anon2
+listen6_fd	libhttpd.h	/^    int listen4_fd, listen6_fd;$/;"	m	struct:__anon2
+local_pattern	libhttpd.h	/^    char* local_pattern;$/;"	m	struct:__anon2
+local_pattern	thttpd.c	/^static char* local_pattern;$/;"	v	file:
+logfile	thttpd.c	/^static char* logfile;$/;"	v	file:
+logfp	libhttpd.h	/^    FILE* logfp;$/;"	m	struct:__anon2
+logstats	thttpd.c	/^logstats( struct timeval* nowP )$/;"	f	file:
+logstats	thttpd.s	/^logstats:                               # @logstats$/;"	l
+lookup_hostname	thttpd.c	/^lookup_hostname( httpd_sockaddr* sa4P, size_t sa4_len, int* gotv4P, httpd_sockaddr* sa6P, size_t sa6_len, int* gotv6P )$/;"	f	file:
+ls	libhttpd.c	/^ls( httpd_conn* hc )$/;"	f	file:
+main	cgi-src/phf.c	/^main( int argc, char* argv[] )$/;"	f
+main	cgi-src/redirect.c	/^main( int argc, char** argv )$/;"	f
+main	cgi-src/ssi.c	/^main( int argc, char** argv )$/;"	f
+main	config.guess	/^		main()$/;"	f
+main	config.guess	/^	main ()$/;"	f
+main	config.guess	/^main ()$/;"	f
+main	extras/htpasswd.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	extras/makeweb.c	/^main( int argc, char** argv )$/;"	f
+main	thttpd.c	/^main( int argc, char** argv )$/;"	f
+main	thttpd.s	/^main:                                   # @main$/;"	l
+make_argp	libhttpd.c	/^make_argp( httpd_conn* hc )$/;"	f	file:
+make_envp	libhttpd.c	/^make_envp( httpd_conn* hc )$/;"	f	file:
+make_log_entry	libhttpd.c	/^make_log_entry( httpd_conn* hc, struct timeval* nowP )$/;"	f	file:
+map_count	mmc.c	/^static int alloc_count = 0, map_count = 0, free_count = 0;$/;"	v	file:
+mapped_bytes	mmc.c	/^static off_t mapped_bytes = 0;$/;"	v	file:
+maps	mmc.c	/^static Map* maps = (Map*) 0;$/;"	v	file:
+master_rfdset	fdwatch.c	/^static fd_set master_rfdset;$/;"	v	file:
+master_wfdset	fdwatch.c	/^static fd_set master_wfdset;$/;"	v	file:
+match	match.c	/^match( const char* pattern, const char* string )$/;"	f
+match	thttpd.s	/^match:                                  # @match$/;"	l
+match_one	match.c	/^match_one( const char* pattern, int patternlen, const char* string )$/;"	f	file:
+match_one	thttpd.s	/^match_one:                              # @match_one$/;"	l
+max_age	libhttpd.h	/^    int max_age;$/;"	m	struct:__anon2
+max_age	thttpd.c	/^static int max_age;$/;"	v	file:
+max_connects	thttpd.c	/^static int num_connects, max_connects, first_free_connect;$/;"	v	file:
+max_limit	thttpd.c	/^    long max_limit, min_limit;$/;"	m	struct:__anon4	file:
+max_limit	thttpd.c	/^    long max_limit, min_limit;$/;"	m	struct:__anon5	file:
+maxaccept	libhttpd.h	/^	maxpathinfo, maxquery, maxaccept, maxaccepte, maxreqhost, maxhostdir,$/;"	m	struct:__anon3
+maxaccepte	libhttpd.h	/^	maxpathinfo, maxquery, maxaccept, maxaccepte, maxreqhost, maxhostdir,$/;"	m	struct:__anon3
+maxaltdir	libhttpd.h	/^    size_t maxaltdir;$/;"	m	struct:__anon3
+maxdecodedurl	libhttpd.h	/^    size_t maxdecodedurl, maxorigfilename, maxexpnfilename, maxencodings,$/;"	m	struct:__anon3
+maxdpevents	fdwatch.c	/^static int maxdpevents;$/;"	v	file:
+maxencodings	libhttpd.h	/^    size_t maxdecodedurl, maxorigfilename, maxexpnfilename, maxencodings,$/;"	m	struct:__anon3
+maxexpnfilename	libhttpd.h	/^    size_t maxdecodedurl, maxorigfilename, maxexpnfilename, maxencodings,$/;"	m	struct:__anon3
+maxfd	fdwatch.c	/^static int maxfd;$/;"	v	file:
+maxfd_changed	fdwatch.c	/^static int maxfd_changed;$/;"	v	file:
+maxhostdir	libhttpd.h	/^	maxpathinfo, maxquery, maxaccept, maxaccepte, maxreqhost, maxhostdir,$/;"	m	struct:__anon3
+maxkqevents	fdwatch.c	/^static int maxkqevents;$/;"	v	file:
+maxorigfilename	libhttpd.h	/^    size_t maxdecodedurl, maxorigfilename, maxexpnfilename, maxencodings,$/;"	m	struct:__anon3
+maxpathinfo	libhttpd.h	/^	maxpathinfo, maxquery, maxaccept, maxaccepte, maxreqhost, maxhostdir,$/;"	m	struct:__anon3
+maxquery	libhttpd.h	/^	maxpathinfo, maxquery, maxaccept, maxaccepte, maxreqhost, maxhostdir,$/;"	m	struct:__anon3
+maxremoteuser	libhttpd.h	/^	maxremoteuser, maxresponse;$/;"	m	struct:__anon3
+maxreqhost	libhttpd.h	/^	maxpathinfo, maxquery, maxaccept, maxaccepte, maxreqhost, maxhostdir,$/;"	m	struct:__anon3
+maxresponse	libhttpd.h	/^	maxremoteuser, maxresponse;$/;"	m	struct:__anon3
+maxthrottles	thttpd.c	/^static int numthrottles, maxthrottles;$/;"	v	file:
+method	libhttpd.h	/^    int method;$/;"	m	struct:__anon3
+mime_entry	libhttpd.c	/^struct mime_entry {$/;"	s	file:
+mime_flag	libhttpd.h	/^    int mime_flag;$/;"	m	struct:__anon3
+min_limit	thttpd.c	/^    long max_limit, min_limit;$/;"	m	struct:__anon4	file:
+min_limit	thttpd.c	/^    long max_limit, min_limit;$/;"	m	struct:__anon5	file:
+mmc_cleanup	mmc.c	/^mmc_cleanup( struct timeval* nowP )$/;"	f
+mmc_cleanup	thttpd.s	/^mmc_cleanup:                            # @mmc_cleanup$/;"	l
+mmc_destroy	mmc.c	/^mmc_destroy( void )$/;"	f
+mmc_destroy	thttpd.s	/^mmc_destroy:                            # @mmc_destroy$/;"	l
+mmc_logstats	mmc.c	/^mmc_logstats( long secs )$/;"	f
+mmc_logstats	thttpd.s	/^mmc_logstats:                           # @mmc_logstats$/;"	l
+mmc_map	mmc.c	/^mmc_map( char* filename, struct stat* sbP, struct timeval* nowP )$/;"	f
+mmc_map	thttpd.s	/^mmc_map:                                # @mmc_map$/;"	l
+mmc_unmap	mmc.c	/^mmc_unmap( void* addr, struct stat* sbP, struct timeval* nowP )$/;"	f
+mmc_unmap	thttpd.s	/^mmc_unmap:                              # @mmc_unmap$/;"	l
+moved	cgi-src/redirect.c	/^moved( char* script_name, char* url )$/;"	f	file:
+msecs	timers.h	/^    long msecs;$/;"	m	struct:TimerStruct
+my_getline	extras/htpasswd.c	/^static int my_getline(char *s, int n, FILE *f) {$/;"	f	file:
+my_snprintf	libhttpd.c	/^my_snprintf( char* str, size_t size, const char* format, ... )$/;"	f	file:
+my_snprintf	thttpd.s	/^my_snprintf:                            # @my_snprintf$/;"	l
+n_enc_tab	libhttpd.c	/^static const int n_enc_tab = sizeof(enc_tab) \/ sizeof(*enc_tab);$/;"	v	file:
+n_typ_tab	libhttpd.c	/^static const int n_typ_tab = sizeof(typ_tab) \/ sizeof(*typ_tab);$/;"	v	file:
+name_compare	libhttpd.c	/^name_compare( a, b )$/;"	f	file:
+name_compare	thttpd.s	/^name_compare:                           # @name_compare$/;"	l
+ndpevents	fdwatch.c	/^static int ndpevents;$/;"	v	file:
+next	mmc.c	/^    struct MapStruct* next;$/;"	m	struct:MapStruct	typeref:struct:MapStruct::MapStruct	file:
+next	timers.h	/^    struct TimerStruct* next;$/;"	m	struct:TimerStruct	typeref:struct:TimerStruct::TimerStruct
+next_byte_index	thttpd.c	/^    off_t next_byte_index;$/;"	m	struct:__anon5	file:
+next_free_connect	thttpd.c	/^    int next_free_connect;$/;"	m	struct:__anon5	file:
+next_ridx	fdwatch.c	/^static int nreturned, next_ridx;$/;"	v	file:
+nfiles	fdwatch.c	/^static int nfiles;$/;"	v	file:
+nkqevents	fdwatch.c	/^static int nkqevents;$/;"	v	file:
+no_empty_referers	libhttpd.h	/^    int no_empty_referers;$/;"	m	struct:__anon2
+no_empty_referers	thttpd.c	/^static int no_empty_referers;$/;"	v	file:
+no_log	libhttpd.h	/^    int no_log;$/;"	m	struct:__anon2
+no_log	thttpd.c	/^static int do_chroot, no_log, no_symlink_check, do_vhost, do_global_passwd;$/;"	v	file:
+no_symlink_check	libhttpd.h	/^    int no_symlink_check;$/;"	m	struct:__anon2
+no_symlink_check	thttpd.c	/^static int do_chroot, no_log, no_symlink_check, do_vhost, do_global_passwd;$/;"	v	file:
+no_value_required	thttpd.c	/^no_value_required( char* name, char* value )$/;"	f	file:
+not_found	cgi-src/redirect.c	/^not_found( char* script_name )$/;"	f	file:
+not_found	cgi-src/ssi.c	/^not_found( char* filename )$/;"	f	file:
+not_found2	cgi-src/ssi.c	/^not_found2( char* directive, char* tag, char* filename2 )$/;"	f	file:
+not_permitted	cgi-src/ssi.c	/^not_permitted( char* directive, char* tag, char* val )$/;"	f	file:
+npoll_fds	fdwatch.c	/^static int npoll_fds;$/;"	v	file:
+nreturned	fdwatch.c	/^static int nreturned, next_ridx;$/;"	v	file:
+nselect_fds	fdwatch.c	/^static int nselect_fds;$/;"	v	file:
+num_connects	thttpd.c	/^static int num_connects, max_connects, first_free_connect;$/;"	v	file:
+num_sending	thttpd.c	/^    int num_sending;$/;"	m	struct:__anon4	file:
+numthrottles	thttpd.c	/^static int numthrottles, maxthrottles;$/;"	v	file:
+numtnums	thttpd.c	/^    int numtnums;$/;"	m	struct:__anon5	file:
+nwatches	fdwatch.c	/^static long nwatches;$/;"	v	file:
+occasional	thttpd.c	/^occasional( ClientData client_data, struct timeval* nowP )$/;"	f	file:
+occasional	thttpd.s	/^occasional:                             # @occasional$/;"	l
+ok200title	libhttpd.c	/^static char* ok200title = "OK";$/;"	v	file:
+ok206title	libhttpd.c	/^static char* ok206title = "Partial Content";$/;"	v	file:
+one_one	libhttpd.h	/^    int one_one;	\/* HTTP\/1.1 or better *\/$/;"	m	struct:__anon3
+opendir	configure	/^opendir()$/;"	f
+origfilename	libhttpd.h	/^    char* origfilename;$/;"	m	struct:__anon3
+p	timers.h	/^    void* p;$/;"	m	union:__anon6
+p3p	libhttpd.h	/^    char* p3p;$/;"	m	struct:__anon2
+p3p	thttpd.c	/^static char* p3p;$/;"	v	file:
+panic	mmc.c	/^panic( void )$/;"	f	file:
+parse	cgi-src/ssi.c	/^parse( char* vfilename, char* filename, FILE* fp, char* str )$/;"	f	file:
+parse_args	thttpd.c	/^parse_args( int argc, char** argv )$/;"	f	file:
+pathinfo	libhttpd.h	/^    char* pathinfo;$/;"	m	struct:__anon3
+pattern	thttpd.c	/^    char* pattern;$/;"	m	struct:__anon4	file:
+periodic	timers.h	/^    int periodic;$/;"	m	struct:TimerStruct
+pidfile	thttpd.c	/^static char* pidfile;$/;"	v	file:
+poll_add_fd	fdwatch.c	/^poll_add_fd( int fd, int rw )$/;"	f	file:
+poll_check_fd	fdwatch.c	/^poll_check_fd( int fd )$/;"	f	file:
+poll_del_fd	fdwatch.c	/^poll_del_fd( int fd )$/;"	f	file:
+poll_fdidx	fdwatch.c	/^static int* poll_fdidx;$/;"	v	file:
+poll_get_fd	fdwatch.c	/^poll_get_fd( int ridx )$/;"	f	file:
+poll_init	fdwatch.c	/^poll_init( int nfiles )$/;"	f	file:
+poll_rfdidx	fdwatch.c	/^static int* poll_rfdidx;$/;"	v	file:
+poll_watch	fdwatch.c	/^poll_watch( long timeout_msecs )$/;"	f	file:
+pollfds	fdwatch.c	/^static struct pollfd* pollfds;$/;"	v	typeref:struct:pollfd	file:
+port	libhttpd.h	/^    unsigned short port;$/;"	m	struct:__anon2
+port	thttpd.c	/^static unsigned short port;$/;"	v	file:
+post_post_garbage_hack	libhttpd.c	/^post_post_garbage_hack( httpd_conn* hc )$/;"	f	file:
+pound_case	tdate_parse.c	/^pound_case( char* str )$/;"	f	file:
+prefix	Makefile	/^prefix = \/usr\/local$/;"	m
+prefix	cgi-src/Makefile	/^prefix =	\/usr\/local$/;"	m
+prefix	extras/Makefile	/^prefix =	\/usr\/local$/;"	m
+prev	timers.h	/^    struct TimerStruct* prev;$/;"	m	struct:TimerStruct	typeref:struct:TimerStruct::TimerStruct
+protocol	libhttpd.h	/^    char* protocol;$/;"	m	struct:__anon3
+putline	extras/htpasswd.c	/^static void putline(FILE *f,char *l) {$/;"	f	file:
+query	libhttpd.h	/^    char* query;$/;"	m	struct:__anon3
+range_if	libhttpd.h	/^    time_t if_modified_since, range_if;$/;"	m	struct:__anon3
+rate	thttpd.c	/^    long rate;$/;"	m	struct:__anon4	file:
+re_open_logfile	thttpd.c	/^re_open_logfile( void )$/;"	f	file:
+read_buf	libhttpd.h	/^    char* read_buf;$/;"	m	struct:__anon3
+read_config	thttpd.c	/^read_config( char* filename )$/;"	f	file:
+read_file	cgi-src/ssi.c	/^read_file( char* vfilename, char* filename, FILE* fp )$/;"	f	file:
+read_idx	libhttpd.h	/^    size_t read_size, read_idx, checked_idx;$/;"	m	struct:__anon3
+read_size	libhttpd.h	/^    size_t read_size, read_idx, checked_idx;$/;"	m	struct:__anon3
+read_throttlefile	thttpd.c	/^read_throttlefile( char* throttlefile )$/;"	f	file:
+really_check_referer	libhttpd.c	/^really_check_referer( httpd_conn* hc )$/;"	f	file:
+really_clear_connection	thttpd.c	/^really_clear_connection( connecttab* c, struct timeval* tvP )$/;"	f	file:
+really_clear_connection	thttpd.s	/^really_clear_connection:                # @really_clear_connection$/;"	l
+really_start_request	libhttpd.c	/^really_start_request( httpd_conn* hc, struct timeval* nowP )$/;"	f	file:
+really_start_request	thttpd.s	/^really_start_request:                   # @really_start_request$/;"	l
+really_unmap	mmc.c	/^really_unmap( Map** mm )$/;"	f	file:
+refcount	mmc.c	/^    int refcount;$/;"	m	struct:MapStruct	file:
+referer	libhttpd.h	/^    char* referer;$/;"	m	struct:__anon3
+reftime	mmc.c	/^    time_t reftime;$/;"	m	struct:MapStruct	file:
+remoteuser	libhttpd.h	/^    char* remoteuser;$/;"	m	struct:__anon3
+reqhost	libhttpd.h	/^    char* reqhost;$/;"	m	struct:__anon3
+response	libhttpd.h	/^    char* response;$/;"	m	struct:__anon3
+responselen	libhttpd.h	/^    size_t responselen;$/;"	m	struct:__anon3
+s	tdate_parse.c	/^    char* s;$/;"	m	struct:strlong	file:
+sa	libhttpd.h	/^    struct sockaddr sa;$/;"	m	union:__anon1	typeref:struct:__anon1::sockaddr
+sa_in	libhttpd.h	/^    struct sockaddr_in sa_in;$/;"	m	union:__anon1	typeref:struct:__anon1::sockaddr_in
+sa_in6	libhttpd.h	/^    struct sockaddr_in6 sa_in6;$/;"	m	union:__anon1	typeref:struct:__anon1::sockaddr_in6
+sa_stor	libhttpd.h	/^    struct sockaddr_storage sa_stor;$/;"	m	union:__anon1	typeref:struct:__anon1::sockaddr_storage
+sb	cgi-src/ssi.c	/^static struct stat sb;$/;"	v	typeref:struct:stat	file:
+sb	libhttpd.h	/^    struct stat sb;$/;"	m	struct:__anon3	typeref:struct:__anon3::stat
+scan_mon	tdate_parse.c	/^scan_mon( char* str_mon, long* tm_monP )$/;"	f	file:
+scan_wday	tdate_parse.c	/^scan_wday( char* str_wday, long* tm_wdayP )$/;"	f	file:
+sccsid	strerror.c	/^static char sccsid[] = "@(#)strerror.c  5.1 (Berkeley) 4\/9\/89";$/;"	v	file:
+select_add_fd	fdwatch.c	/^select_add_fd( int fd, int rw )$/;"	f	file:
+select_check_fd	fdwatch.c	/^select_check_fd( int fd )$/;"	f	file:
+select_del_fd	fdwatch.c	/^select_del_fd( int fd )$/;"	f	file:
+select_fdidx	fdwatch.c	/^static int* select_fdidx;$/;"	v	file:
+select_fds	fdwatch.c	/^static int* select_fds;$/;"	v	file:
+select_get_fd	fdwatch.c	/^select_get_fd( int ridx )$/;"	f	file:
+select_get_maxfd	fdwatch.c	/^select_get_maxfd( void )$/;"	f	file:
+select_init	fdwatch.c	/^select_init( int nfiles )$/;"	f	file:
+select_rfdidx	fdwatch.c	/^static int* select_rfdidx;$/;"	v	file:
+select_watch	fdwatch.c	/^select_watch( long timeout_msecs )$/;"	f	file:
+send_authenticate	libhttpd.c	/^send_authenticate( httpd_conn* hc, char* realm )$/;"	f	file:
+send_authenticate	thttpd.s	/^send_authenticate:                      # @send_authenticate$/;"	l
+send_dirredirect	libhttpd.c	/^send_dirredirect( httpd_conn* hc )$/;"	f	file:
+send_err_file	libhttpd.c	/^send_err_file( httpd_conn* hc, int status, char* title, char* extraheads, char* filename )$/;"	f	file:
+send_err_file	thttpd.s	/^send_err_file:                          # @send_err_file$/;"	l
+send_mime	libhttpd.c	/^send_mime( httpd_conn* hc, int status, char* title, char* encodings, char* extraheads, char* type, off_t length, time_t mod )$/;"	f	file:
+send_mime	thttpd.s	/^send_mime:                              # @send_mime$/;"	l
+send_response	libhttpd.c	/^send_response( httpd_conn* hc, int status, char* title, char* extraheads, char* form, char* arg )$/;"	f	file:
+send_response	thttpd.s	/^send_response:                          # @send_response$/;"	l
+send_response_tail	libhttpd.c	/^send_response_tail( httpd_conn* hc )$/;"	f	file:
+server_hostname	libhttpd.h	/^    char* server_hostname;$/;"	m	struct:__anon2
+should_linger	libhttpd.h	/^    int should_linger;$/;"	m	struct:__anon3
+show_size	cgi-src/ssi.c	/^show_size( off_t size )$/;"	f	file:
+show_stats	thttpd.c	/^show_stats( ClientData client_data, struct timeval* nowP )$/;"	f	file:
+show_stats	thttpd.s	/^show_stats:                             # @show_stats$/;"	l
+show_time	cgi-src/ssi.c	/^show_time( time_t t, int gmt )$/;"	f	file:
+shut_down	thttpd.c	/^shut_down( void )$/;"	f	file:
+shut_down	thttpd.s	/^shut_down:                              # @shut_down$/;"	l
+size	mmc.c	/^    off_t size;$/;"	m	struct:MapStruct	file:
+sizefmt	cgi-src/ssi.c	/^static int sizefmt;$/;"	v	file:
+slurp	cgi-src/ssi.c	/^slurp( char* vfilename, char* filename, FILE* fp )$/;"	f	file:
+sockaddr_check	libhttpd.c	/^sockaddr_check( httpd_sockaddr* saP )$/;"	f	file:
+sockaddr_len	libhttpd.c	/^sockaddr_len( httpd_sockaddr* saP )$/;"	f	file:
+socket	configure	/^socket()$/;"	f
+socket	configure	/^socket();$/;"	f
+socklen_t	libhttpd.c	/^typedef int socklen_t;$/;"	t	file:
+start_time	thttpd.c	/^time_t start_time, stats_time;$/;"	v
+started_at	thttpd.c	/^    time_t started_at, active_at;$/;"	m	struct:__anon5	file:
+stats_bytes	thttpd.c	/^off_t stats_bytes;$/;"	v
+stats_connections	thttpd.c	/^long stats_connections;$/;"	v
+stats_simultaneous	thttpd.c	/^int stats_simultaneous;$/;"	v
+stats_time	thttpd.c	/^time_t start_time, stats_time;$/;"	v
+status	libhttpd.h	/^    int status;$/;"	m	struct:__anon3
+str_alloc_count	libhttpd.c	/^static int str_alloc_count = 0;$/;"	v	file:
+str_alloc_size	libhttpd.c	/^static size_t str_alloc_size = 0;$/;"	v	file:
+strd	extras/htpasswd.c	/^static char * strd(char *s) {$/;"	f	file:
+strdecode	libhttpd.c	/^strdecode( char* to, char* from )$/;"	f	file:
+strdecode	thttpd.s	/^strdecode:                              # @strdecode$/;"	l
+strencode	libhttpd.c	/^strencode( char* to, int tosize, char* from )$/;"	f	file:
+strerror	strerror.c	/^strerror(errnum)$/;"	f
+strlong	tdate_parse.c	/^struct strlong {$/;"	s	file:
+strlong_compare	tdate_parse.c	/^strlong_compare( v1, v2 )$/;"	f	file:
+strlong_compare	thttpd.s	/^strlong_compare:                        # @strlong_compare$/;"	l
+strlong_search	tdate_parse.c	/^strlong_search( char* str, struct strlong* tab, int n, long* lP )$/;"	f	file:
+sub_process	libhttpd.c	/^static int sub_process = 0;$/;"	v	file:
+tdate_parse	tdate_parse.c	/^tdate_parse( char* str )$/;"	f
+tdate_parse	thttpd.s	/^tdate_parse:                            # @tdate_parse$/;"	l
+temp_template	extras/htpasswd.c	/^char temp_template[] = "\/tmp\/htp.XXXXXX";$/;"	v
+terminate	thttpd.c	/^int terminate = 0;$/;"	v
+terminate	thttpd.s	/^terminate:$/;"	l
+tfd	extras/htpasswd.c	/^int tfd;$/;"	v
+throttlefile	thttpd.c	/^static char* throttlefile;$/;"	v	file:
+throttles	thttpd.c	/^static throttletab* throttles;$/;"	v	file:
+throttletab	thttpd.c	/^    } throttletab;$/;"	t	typeref:struct:__anon4	file:
+thttpd_logstats	thttpd.c	/^thttpd_logstats( long secs )$/;"	f	file:
+tilde_map_1	libhttpd.c	/^tilde_map_1( httpd_conn* hc )$/;"	f	file:
+tilde_map_2	libhttpd.c	/^tilde_map_2( httpd_conn* hc )$/;"	f	file:
+tildemapped	libhttpd.h	/^    int tildemapped;	\/* this connection got tilde-mapped *\/$/;"	m	struct:__anon3
+time	timers.h	/^    struct timeval time;$/;"	m	struct:TimerStruct	typeref:struct:TimerStruct::timeval
+timefmt	cgi-src/ssi.c	/^static char timefmt[100];$/;"	v	file:
+timer_proc	timers.h	/^    TimerProc* timer_proc;$/;"	m	struct:TimerStruct
+timers	timers.c	/^static Timer* timers[HASH_SIZE];$/;"	v	file:
+timezone	libhttpd.c	110;"	d	file:
+tm_to_time	tdate_parse.c	/^tm_to_time( struct tm* tmP )$/;"	f	file:
+tmr_cancel	thttpd.s	/^tmr_cancel:                             # @tmr_cancel$/;"	l
+tmr_cancel	timers.c	/^tmr_cancel( Timer* t )$/;"	f
+tmr_cleanup	thttpd.s	/^tmr_cleanup:                            # @tmr_cleanup$/;"	l
+tmr_cleanup	timers.c	/^tmr_cleanup( void )$/;"	f
+tmr_create	thttpd.s	/^tmr_create:                             # @tmr_create$/;"	l
+tmr_create	timers.c	/^tmr_create($/;"	f
+tmr_destroy	thttpd.s	/^tmr_destroy:                            # @tmr_destroy$/;"	l
+tmr_destroy	timers.c	/^tmr_destroy( void )$/;"	f
+tmr_init	thttpd.s	/^tmr_init:                               # @tmr_init$/;"	l
+tmr_init	timers.c	/^tmr_init( void )$/;"	f
+tmr_logstats	thttpd.s	/^tmr_logstats:                           # @tmr_logstats$/;"	l
+tmr_logstats	timers.c	/^tmr_logstats( long secs )$/;"	f
+tmr_mstimeout	thttpd.s	/^tmr_mstimeout:                          # @tmr_mstimeout$/;"	l
+tmr_mstimeout	timers.c	/^tmr_mstimeout( struct timeval* nowP )$/;"	f
+tmr_reset	thttpd.s	/^tmr_reset:                              # @tmr_reset$/;"	l
+tmr_reset	timers.c	/^tmr_reset( struct timeval* nowP, Timer* t )$/;"	f
+tmr_run	thttpd.s	/^tmr_run:                                # @tmr_run$/;"	l
+tmr_run	timers.c	/^tmr_run( struct timeval* nowP )$/;"	f
+tmr_timeout	thttpd.s	/^tmr_timeout:                            # @tmr_timeout$/;"	l
+tmr_timeout	timers.c	/^tmr_timeout( struct timeval* nowP )$/;"	f
+tnums	thttpd.c	/^    int tnums[MAXTHROTTLENUMS];         \/* throttle indexes *\/$/;"	m	struct:__anon5	file:
+to64	extras/htpasswd.c	/^static void to64(register char *s, register long v, register int n) {$/;"	f	file:
+typ_tab	libhttpd.c	/^static struct mime_entry typ_tab[] = {$/;"	v	typeref:struct:mime_entry	file:
+typ_tab	thttpd.s	/^typ_tab:$/;"	l
+type	libhttpd.h	/^    char* type;		\/* not malloc()ed *\/$/;"	m	struct:__anon3
+unknown_directive	cgi-src/ssi.c	/^unknown_directive( char* filename, char* directive )$/;"	f	file:
+unknown_tag	cgi-src/ssi.c	/^unknown_tag( char* filename, char* directive, char* tag )$/;"	f	file:
+unknown_value	cgi-src/ssi.c	/^unknown_value( char* filename, char* directive, char* tag, char* val )$/;"	f	file:
+update_throttles	thttpd.c	/^update_throttles( ClientData client_data, struct timeval* nowP )$/;"	f	file:
+update_throttles	thttpd.s	/^update_throttles:                       # @update_throttles$/;"	l
+url	cgi-src/ssi.c	/^static char* url;$/;"	v	file:
+url_pattern	libhttpd.h	/^    char* url_pattern;$/;"	m	struct:__anon2
+url_pattern	thttpd.c	/^static char* url_pattern;$/;"	v	file:
+usage	extras/htpasswd.c	/^static void usage(void) {$/;"	f	file:
+usage	thttpd.c	/^usage( void )$/;"	f	file:
+usage	thttpd.s	/^usage:                                  # @usage$/;"	l
+user	thttpd.c	/^static char* user;$/;"	v	file:
+useragent	libhttpd.h	/^    char* useragent;$/;"	m	struct:__anon3
+val	libhttpd.c	/^    char* val;$/;"	m	struct:mime_entry	file:
+val_len	libhttpd.c	/^    size_t val_len;$/;"	m	struct:mime_entry	file:
+value_required	thttpd.c	/^value_required( char* name, char* value )$/;"	f	file:
+vhost	libhttpd.h	/^    int vhost;$/;"	m	struct:__anon2
+vhost_map	libhttpd.c	/^vhost_map( httpd_conn* hc )$/;"	f	file:
+wakeup_connection	thttpd.c	/^wakeup_connection( ClientData client_data, struct timeval* nowP )$/;"	f	file:
+wakeup_connection	thttpd.s	/^wakeup_connection:                      # @wakeup_connection$/;"	l
+wakeup_timer	thttpd.c	/^    Timer* wakeup_timer;$/;"	m	struct:__anon5	file:
+watchdog_flag	thttpd.c	/^static volatile int got_hup, got_usr1, watchdog_flag;$/;"	v	file:
+working_rfdset	fdwatch.c	/^static fd_set working_rfdset;$/;"	v	file:
+working_wfdset	fdwatch.c	/^static fd_set working_wfdset;$/;"	v	file:
+wouldblock_delay	thttpd.c	/^    long wouldblock_delay;$/;"	m	struct:__anon5	file:

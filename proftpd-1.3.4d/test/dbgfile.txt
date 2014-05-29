@@ -1,92 +1,92 @@
-~~~pid: 4098 standalone_main
-~~~pid: 4098 daemon_loop fork_server
-~~~pid: 4108 cmd_loop
-~~~pid: 4108 pr_netio_read @ memcpy return 0x7fff26a0f3d0
-~~~pid: 4108 cmd_class: 0 arg: jun cmd_loop
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 pr_netio_read @ memcpy return 0x7fff26a0f3d0
-~~~pid: 4108 cmd_class: 0 arg: 123 cmd_loop
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 pr_netio_read @ memcpy return 0x7fff26a0f3d0
-~~~pid: 4108 cmd_class: 0 arg: /home/jun/straight-DTA/vsftpd-2.2.2/test cmd_loop
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 pr_netio_read @ memcpy return 0x7fff26a0f3d0
-~~~pid: 4108 cmd_class: 0 arg: A cmd_loop
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 pr_netio_read @ memcpy return 0x7fff26a0f3d0
-~~~pid: 4108 cmd_class: 0 arg:  cmd_loop
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 pr_netio_read @ memcpy return 0x7fff26a0f3d0
-~~~pid: 4108 cmd_class: 0 arg: server.txt cmd_loop
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 xfer_stor 1st..
-~~~pid: 4108 xfer_stor 2nd
-~~~pid: 4108 xfer_stor 3rd
-~~~pid: 4108 xfer_stor 4th
-~~~pid: 4108 xfer_stor 5th
-~~~pid: 4108 xfer_stor 6th
-~~~pid: 4108 xfer_stor 6.5th
-~~~pid: 4108 xfer_stor 7th
-~~~pid: 4108 xfer_stor 8th before pr_data_xfer...
-~~~pid: 4108 pr_data_xfer XXXXXXXX
-~~~pid: 4108 pr_netio_read @ memcpy return 0x7fff26a0f170
-~~~pid: 4108 pr_data_xfer 1st read len:53 
-~~~pid: 4108 pr_data_xfer NOT return -1 memcpy 0x7fff26a101e0
-~~~pid: 4108 pr_data_xfer NOT return -1 memcpy 0x7fff26a101e0
-~~~pid: 4108 pr_data_xfer XXXXXXXX
-~~~pid: 4108 pr_netio_read @ memcpy return 0x7fff26a0f170
-~~~pid: 4108 pr_data_xfer 1st read len:0 
-~~~pid: 4108 pr_data_xfer NOT return -1 memcpy 0x7fff26a101e0
-~~~pid: 4108 pr_data_xfer NOT return -1 memcpy 0x7fff26a101e0
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 pr_netio_read @ memcpy return 0x7fff26a0f3d0
-~~~pid: 4108 cmd_class: 0 arg:  cmd_loop
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
-~~~pid: 4108 _dispatch pr_stash_get_symbol
+~~~pid: 10950 standalone_main
+~~~pid: 10950 daemon_loop fork_server
+~~~pid: 10977 cmd_loop
+~~~pid: 10977 pr_netio_read @ memcpy return 0x7fffa6573ff0
+~~~pid: 10977 cmd_class: 0 arg: jun cmd_loop
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 pr_netio_read @ memcpy return 0x7fffa6573ff0
+~~~pid: 10977 cmd_class: 0 arg: 123 cmd_loop
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 pr_netio_read @ memcpy return 0x7fffa6573ff0
+~~~pid: 10977 cmd_class: 0 arg: /home/jun/straight-DTA/vsftpd-2.2.2/test cmd_loop
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 pr_netio_read @ memcpy return 0x7fffa6573ff0
+~~~pid: 10977 cmd_class: 0 arg: A cmd_loop
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 pr_netio_read @ memcpy return 0x7fffa6573ff0
+~~~pid: 10977 cmd_class: 0 arg:  cmd_loop
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 pr_netio_read @ memcpy return 0x7fffa6573ff0
+~~~pid: 10977 cmd_class: 0 arg: server.txt cmd_loop
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 xfer_stor 1st..
+~~~pid: 10977 xfer_stor 2nd
+~~~pid: 10977 xfer_stor 3rd
+~~~pid: 10977 xfer_stor 4th
+~~~pid: 10977 xfer_stor 5th
+~~~pid: 10977 xfer_stor 6th
+~~~pid: 10977 xfer_stor 6.5th
+~~~pid: 10977 xfer_stor 7th
+~~~pid: 10977 xfer_stor 8th before pr_data_xfer...
+~~~pid: 10977 pr_data_xfer XXXXXXXX
+~~~pid: 10977 pr_netio_read @ memcpy return 0x7fffa6573d90
+~~~pid: 10977 pr_data_xfer 1st read len:53 
+~~~pid: 10977 pr_data_xfer NOT return -1 memcpy 0x7fffa6574e00
+~~~pid: 10977 pr_data_xfer NOT return -1 memcpy 0x7fffa6574e00
+~~~pid: 10977 pr_data_xfer XXXXXXXX
+~~~pid: 10977 pr_netio_read @ memcpy return 0x7fffa6573d90
+~~~pid: 10977 pr_data_xfer 1st read len:0 
+~~~pid: 10977 pr_data_xfer NOT return -1 memcpy 0x7fffa6574e00
+~~~pid: 10977 pr_data_xfer NOT return -1 memcpy 0x7fffa6574e00
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 pr_netio_read @ memcpy return 0x7fffa6573ff0
+~~~pid: 10977 cmd_class: 0 arg:  cmd_loop
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
+~~~pid: 10977 _dispatch pr_stash_get_symbol
