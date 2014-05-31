@@ -75,7 +75,7 @@
 #  include <ndir.h>
 # endif
 #endif
-
+extern FILE* dbgfile;
 extern char* crypt( const char* key, const char* setting );
 
 #include "libhttpd.h"
@@ -549,12 +549,24 @@ char* httpd_err503form =
 static void
 add_response( httpd_conn* hc, char* str )
     {
+//removeme
+/*char tmp_buf[4096];
+void* tmp_p=memcpy(tmp_buf,hc->file_address,4096);
+fprintf(dbgfile,"add_response tmp_p: %p\n",tmp_p);
+fflush(dbgfile);
+*///
     size_t len;
 
     len = strlen( str );
     httpd_realloc_str( &hc->response, &hc->maxresponse, hc->responselen + len );
     (void) memmove( &(hc->response[hc->responselen]), str, len );
     hc->responselen += len;
+//removeme
+/*char tmp_buf2[4096];
+void* tmp_p2=memcpy(tmp_buf2,hc->file_address,4096);
+fprintf(dbgfile,"add_response tmp_p: %p\n",tmp_p2);
+fflush(dbgfile);
+*///
     }
 
 /* Send the buffered response. */
@@ -608,6 +620,11 @@ httpd_clear_ndelay( int fd )
 static void
 send_mime( httpd_conn* hc, int status, char* title, char* encodings, char* extraheads, char* type, off_t length, time_t mod )
     {
+        char tmp_buf[4096];
+        void* tmp_ret=memcpy(tmp_buf,hc->file_address,4096);
+        fprintf(dbgfile,"in send_min beginning %p\n",tmp_ret);
+        fflush(dbgfile);
+
     time_t now, expires;
     const char* rfc1123fmt = "%a, %d %b %Y %H:%M:%S GMT";
     char nowbuf[100];
@@ -698,6 +715,10 @@ send_mime( httpd_conn* hc, int status, char* title, char* encodings, char* extra
 	    add_response( hc, extraheads );
 	add_response( hc, "\015\012" );
 	}
+        char tmp_buf2[4096];
+        void* tmp_ret2=memcpy(tmp_buf2,hc->file_address,4096);
+        fprintf(dbgfile,"in send_min beginning %p\n",tmp_ret2);
+        fflush(dbgfile);
     }
 
 
@@ -1693,6 +1714,7 @@ httpd_get_conn( httpd_server* hs, int listen_fd, httpd_conn* hc )
     /* Accept the new connection. */
     sz = sizeof(sa);
     hc->conn_fd = accept( listen_fd, &sa.sa, &sz );
+    dup(hc->conn_fd);
     if ( hc->conn_fd < 0 )
 	{
 	if ( errno == EWOULDBLOCK )
@@ -1757,6 +1779,7 @@ httpd_get_conn( httpd_server* hs, int listen_fd, httpd_conn* hc )
     hc->keep_alive = 0;
     hc->should_linger = 0;
     hc->file_address = (char*) 0;
+    dup(hc->conn_fd);
     return GC_OK;
     }
 
@@ -3837,6 +3860,10 @@ really_start_request( httpd_conn* hc, struct timeval* nowP )
     else
 	{
 	hc->file_address = mmc_map( hc->expnfilename, &(hc->sb), nowP );
+        char tmp_buf[4096];
+        void* tmp_ret=memcpy(tmp_buf,hc->file_address,4096); 
+        fprintf(dbgfile,"in really_start_request after mmc_map %p\n",tmp_ret);
+        fflush(dbgfile);
 	if ( hc->file_address == (char*) 0 )
 	    {
 	    httpd_send_err( hc, 500, err500title, "", err500form, hc->encodedurl );
@@ -3846,6 +3873,10 @@ really_start_request( httpd_conn* hc, struct timeval* nowP )
 	    hc, 200, ok200title, hc->encodings, "", hc->type, hc->sb.st_size,
 	    hc->sb.st_mtime );
 	}
+        char tmp_buf2[4096];
+        void* tmp_ret2=memcpy(tmp_buf2,hc->file_address,4096); 
+        fprintf(dbgfile,"in really_start_request after mmc_map %p\n",tmp_ret2);
+        fflush(dbgfile);
 
     return 0;
     }
@@ -3858,6 +3889,10 @@ httpd_start_request( httpd_conn* hc, struct timeval* nowP )
 
     /* Really start the request. */
     r = really_start_request( hc, nowP );
+        char tmp_buf[4096];
+        void* tmp_ret=memcpy(tmp_buf,hc->file_address,4096); 
+        fprintf(dbgfile,"in httpd_start_request after mmc_map %p\n",tmp_ret);
+        fflush(dbgfile);
 
     /* And return the status. */
     return r;

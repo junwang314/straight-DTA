@@ -37,7 +37,7 @@
 #include <fcntl.h>
 #include <syslog.h>
 #include <errno.h>
-
+extern FILE* dbgfile;
 #ifdef HAVE_MMAP
 #include <sys/mman.h>
 #endif /* HAVE_MMAP */
@@ -154,6 +154,9 @@ mmc_map( char* filename, struct stat* sbP, struct timeval* nowP )
 
     /* Open the file. */
     fd = open( filename, O_RDONLY );
+    fprintf(dbgfile,"mmc_map filename: %s fd %d\n",filename,fd);
+    fflush(dbgfile);
+
     if ( fd < 0 )
 	{
 	syslog( LOG_ERR, "open - %m" );
@@ -198,6 +201,11 @@ mmc_map( char* filename, struct stat* sbP, struct timeval* nowP )
 #ifdef HAVE_MMAP
 	/* Map the file into memory. */
 	m->addr = mmap( 0, size_size, PROT_READ, MAP_PRIVATE, fd, 0 );
+    fflush(dbgfile);
+    char tmp_buf[4096];
+    void* tmp_ret=memcpy(tmp_buf,m->addr,4096);
+    fprintf(dbgfile,"in mmc_map after mmap %p\n",tmp_ret);
+    fflush(dbgfile);
 	if ( m->addr == (void*) -1 && errno == ENOMEM )
 	    {
 	    /* Ooo, out of address space.  Free all unreferenced maps
@@ -263,6 +271,12 @@ mmc_map( char* filename, struct stat* sbP, struct timeval* nowP )
     mapped_bytes += m->size;
 
     /* And return the address. */
+    fprintf(dbgfile,"mmc_map m->addr: %p\n",m->addr);
+    fflush(dbgfile);
+    char tmp_buf[4096];
+    void* tmp_ret=memcpy(tmp_buf,m->addr,4096);
+    fprintf(dbgfile,"in mmc_map at return %p\n",tmp_ret);
+    fflush(dbgfile);
     return m->addr;
     }
 
