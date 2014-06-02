@@ -47,57 +47,35 @@ vsf_priv_parent_postlogin(struct vsf_session* p_sess)
 static void
 process_post_login_req(struct vsf_session* p_sess)
 {
-  fprintf(dbgfile,"pid: %d process_post_login_req\n",syscall(__NR_getpid));
-  fflush(dbgfile);
   char cmd;
   /* Blocks */
-//  fprintf(dbgfile,"**********\n");
-//  fflush(dbgfile);
   cmd = priv_sock_get_cmd(p_sess->parent_fd);
-//  fprintf(dbgfile,"**********\n");
-//  fflush(dbgfile);
   if (tunable_chown_uploads && cmd == PRIV_SOCK_CHOWN)
   {
-    fprintf(dbgfile,"pid: %d PRIV_SOCK_CHOWN\n",syscall(__NR_getpid));
-    fflush(dbgfile);
     cmd_process_chown(p_sess);
   }
   else if (cmd == PRIV_SOCK_GET_DATA_SOCK)
   {
-    fprintf(dbgfile,"pid: %d PRIV_SOCK_GET_DATA_SOCK\n",syscall(__NR_getpid));
-    fflush(dbgfile);
     cmd_process_get_data_sock(p_sess);
   }
   else if (cmd == PRIV_SOCK_PASV_CLEANUP)
   {
-    fprintf(dbgfile,"pid: %d PRIV_SOCK_PASV_CLEANUP\n",syscall(__NR_getpid));
-    fflush(dbgfile);
     cmd_process_pasv_cleanup(p_sess);
   }
   else if (cmd == PRIV_SOCK_PASV_ACTIVE)
   {
-    fprintf(dbgfile,"pid: %d PRIV_SOCK_PASV_ACTIVE\n",syscall(__NR_getpid));
-    fflush(dbgfile);
     cmd_process_pasv_active(p_sess);
   }
   else if (cmd == PRIV_SOCK_PASV_LISTEN)
   {
-    fprintf(dbgfile,"pid: %d PRIV_SOCK_PASV_LISTEN pasv_listen_fd: %d\n",syscall(__NR_getpid),p_sess->pasv_listen_fd);
-    fflush(dbgfile);
     cmd_process_pasv_listen(p_sess);
-    fprintf(dbgfile,"pid: %d after PRIV_SOCK_PASV_LISTEN pasv_listen_fd: %d\n",syscall(__NR_getpid),p_sess->pasv_listen_fd);
-    fflush(dbgfile);
   }
   else if (cmd == PRIV_SOCK_PASV_ACCEPT)
   {
-    fprintf(dbgfile,"pid: %d PRIV_SOCK_PASV_ACCEPT pasv_listen_fd: %d\n",syscall(__NR_getpid),p_sess->pasv_listen_fd);
-    fflush(dbgfile);
     cmd_process_pasv_accept(p_sess);
   }
   else
   {
-    fprintf(dbgfile,"pid: %d else\n",syscall(__NR_getpid));
-    fflush(dbgfile);
     die("bad request in process_post_login_req");
   }
 }

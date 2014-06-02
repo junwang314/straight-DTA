@@ -84,8 +84,6 @@ static void resolve_tilde(struct mystr* p_str, struct vsf_session* p_sess);
 void
 process_post_login(struct vsf_session* p_sess)
 {
-  fprintf(dbgfile, "pid: %d process_post_login child_fd: %d\n",syscall(__NR_getpid),p_sess->child_fd);
-  fflush(dbgfile);
   str_getcwd(&p_sess->home_str);
   if (p_sess->is_anonymous)
   {
@@ -170,8 +168,6 @@ process_post_login(struct vsf_session* p_sess)
         str_copy(&s_src_str, &s_rhs_str);
       }
     }
-//    fprintf(dbgfile, "pid: %d process_post_login ftp_cmd_str: %s\n",syscall(__NR_getpid), &p_sess->ftp_cmd_str.p_buf);
-//    fflush(dbgfile);
 
     if (!cmd_ok)
     {
@@ -244,8 +240,6 @@ process_post_login(struct vsf_session* p_sess)
              (tunable_anon_upload_enable || !p_sess->is_anonymous) &&
              str_equal_text(&p_sess->ftp_cmd_str, "STOR"))
     {
-      fprintf(dbgfile,"pid: %d post_process_login STOR data_fd: %d\n",syscall(__NR_getpid), p_sess->data_fd);
-      fflush(dbgfile);
       handle_stor(p_sess);
     }
     else if (tunable_write_enable &&
@@ -978,8 +972,6 @@ handle_stor(struct vsf_session* p_sess)
 static void
 handle_upload_common(struct vsf_session* p_sess, int is_append, int is_unique)
 {
-  fprintf(dbgfile,"pid: %d handle_upload_common data_fd: %d\n",syscall(__NR_getpid),p_sess->data_fd);
-  fflush(dbgfile);
   static struct vsf_sysutil_statbuf* s_p_statbuf;
   static struct mystr s_filename;
   struct mystr* p_filename;
@@ -1014,8 +1006,6 @@ handle_upload_common(struct vsf_session* p_sess, int is_append, int is_unique)
   /* XXX - do we care about race between create and chown() of anonymous
    * upload?
    */
-  fprintf(dbgfile, "pid: %d handle_upload_common filename: %s data_fd: %d\n",syscall(__NR_getpid),str_getbuf(p_filename),p_sess->data_fd);
-  fflush(dbgfile);
   if (is_unique || (p_sess->is_anonymous && !tunable_anon_other_write_enable))
   {
     new_file_fd = str_create(p_filename);
@@ -1086,16 +1076,10 @@ handle_upload_common(struct vsf_session* p_sess, int is_append, int is_unique)
     str_append_str(&resp_str, p_filename);
     remote_fd = get_remote_transfer_fd(p_sess, str_getbuf(&resp_str));
     str_free(&resp_str);
-    fprintf(dbgfile,"pid: %d **is_unique** data_fd: %d\n",syscall(__NR_getpid),p_sess->data_fd);
-    fflush(dbgfile);
   }
   else
   {
-  fprintf(dbgfile,"pid: %d **not is_unique** data_fd: %d\n",syscall(__NR_getpid),p_sess->data_fd);
-  fflush(dbgfile);
     remote_fd = get_remote_transfer_fd(p_sess, "Ok to send data.");
-  fprintf(dbgfile,"pid: %d **not is_unique** data_fd: %d\n",syscall(__NR_getpid),p_sess->data_fd);
-  fflush(dbgfile);
   }
 
 
@@ -1105,15 +1089,11 @@ handle_upload_common(struct vsf_session* p_sess, int is_append, int is_unique)
   }
   if (tunable_ascii_upload_enable && p_sess->is_ascii)
   {
-    fprintf(dbgfile,"pid: %d vsf_ftpdataio_transfer_file 1 1\n",syscall(__NR_getpid));
-    fflush(dbgfile);
     trans_ret = vsf_ftpdataio_transfer_file(p_sess, remote_fd,
                                             new_file_fd, 1, 1);
   }
   else
   {
-    fprintf(dbgfile,"pid: %d vsf_ftpdataio_transfer_file 1 0 data_fd: %d\n",syscall(__NR_getpid),p_sess->data_fd);
-    fflush(dbgfile);
     trans_ret = vsf_ftpdataio_transfer_file(p_sess, remote_fd,
                                             new_file_fd, 1, 0);
   }
@@ -1405,8 +1385,6 @@ handle_sigurg(void* p_private)
 static int
 get_remote_transfer_fd(struct vsf_session* p_sess, const char* p_status_msg)
 {
-  fprintf(dbgfile,"pid: %d get_remote_transfer_fd data_fd: %d child_fd: %d\n",syscall(__NR_getpid), p_sess->data_fd,p_sess->child_fd);
-  fflush(dbgfile);  
   int remote_fd;
   if (!pasv_active(p_sess) && !port_active(p_sess))
   {
@@ -1415,18 +1393,12 @@ get_remote_transfer_fd(struct vsf_session* p_sess, const char* p_status_msg)
   p_sess->abor_received = 0;
   if (pasv_active(p_sess))
   {
-    fprintf(dbgfile,"pid: %d vsf_ftpdataio_get_pasv_fd data_fd: %d\n",syscall(__NR_getpid), p_sess->data_fd);
-    fflush(dbgfile);
     remote_fd = vsf_ftpdataio_get_pasv_fd(p_sess);
   }
   else
   {
-    fprintf(dbgfile,"pid: %d vsf_ftpdataio_get_port \n",syscall(__NR_getpid));
-    fflush(dbgfile);
     remote_fd = vsf_ftpdataio_get_port_fd(p_sess);
   }
-  fprintf(dbgfile,"pid: %d get_remote_transfer_fd before vsf_cmdio_write data_fd: %d \n",syscall(__NR_getpid), p_sess->data_fd);
-  fflush(dbgfile);
   if (vsf_sysutil_retval_is_error(remote_fd))
   {
     return remote_fd;
@@ -1437,8 +1409,6 @@ get_remote_transfer_fd(struct vsf_session* p_sess, const char* p_status_msg)
     vsf_ftpdataio_dispose_transfer_fd(p_sess);
     return -1;
   }
-  fprintf(dbgfile,"pid: %d get_remote_transfer_fd return remote_fd data_fd: %d \n",syscall(__NR_getpid), p_sess->data_fd);
-  fflush(dbgfile);
   return remote_fd;
 }
 
