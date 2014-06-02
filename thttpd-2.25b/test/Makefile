@@ -30,7 +30,7 @@ clean:$(SRC).bc $(INIT).c $(LOG).c
 	touch $^
 
 run:$(TARGET)
-	sudo strace -f -o $(TARGET).strace ./$(TARGET) -D -d ../
+	sudo ./thttpd -D -d ../
 
 view:$(TARGET).bc
 	llvm-dis $^ -o $(TARGET).ll

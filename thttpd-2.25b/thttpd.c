@@ -67,7 +67,7 @@
 #ifndef HAVE_INT64T
 typedef long long int64_t;
 #endif
-FILE* dbgfile;
+
 
 static char* argv0;
 static int debug;
@@ -357,7 +357,6 @@ main( int argc, char** argv )
 #ifdef USE_IPV6
 //    assert(0);
 #endif
-    dbgfile=fopen("dbgfile.txt","w+");
     char* cp;
     struct passwd* pwd;
     uid_t uid = 32767;
@@ -1563,9 +1562,6 @@ handle_newconnect( struct timeval* tvP, int listen_fd )
 	    case GC_NO_MORE:
 	    return 1;
 	    }
-        dup(c->hc->conn_fd);
-        fprintf(dbgfile,"~~~http_get_conn accept fd: %d\n",c->hc->conn_fd);
-        fflush(dbgfile);
 	c->conn_state = CNST_READING;
 	/* Pop it off the free list. */
 	first_free_connect = c->next_free_connect;
@@ -1671,12 +1667,7 @@ handle_read( connecttab* c, struct timeval* tvP )
 	finish_connection( c, tvP );
 	return;
 	}
-        char tmp_buf[4096];
-        void* tmp_ret=memcpy(tmp_buf,hc->file_address,4096);
-        fprintf(dbgfile,"in handle_read after httpd_start_request %p\n",tmp_ret);
-        fflush(dbgfile);
-    fprintf(dbgfile,"handle_read hc->file_address: %p\n",hc->file_address);
-    fflush(dbgfile);
+
     /* Fill in end_byte_index. */
     if ( hc->got_range )
 	{
@@ -1714,11 +1705,6 @@ handle_read( connecttab* c, struct timeval* tvP )
 
     fdwatch_del_fd( hc->conn_fd );
     fdwatch_add_fd( hc->conn_fd, c, FDW_WRITE );
-        char tmp_buf2[4096];
-        void* tmp_ret2=memcpy(tmp_buf2,hc->file_address,4096);
-        fprintf(dbgfile,"in httpd_start_request after mmc_map %p\n",tmp_ret2);
-        fflush(dbgfile);
-
     }
 
 
@@ -1751,17 +1737,12 @@ handle_send( connecttab* c, struct timeval* tvP )
 	** hoping that this generates a single packet.
 	*/
 	struct iovec iv[2];
-        fprintf(dbgfile,"handle_send hc->file_address: %p\n",hc->file_address);
-        fflush(dbgfile);
-
 
 	iv[0].iov_base = hc->response;
 	iv[0].iov_len = hc->responselen;
 	iv[1].iov_base = &(hc->file_address[c->next_byte_index]);
 	iv[1].iov_len = MIN( c->end_byte_index - c->next_byte_index, max_bytes );
 	sz = writev( hc->conn_fd, iv, 2 );
-        fprintf(dbgfile,"writev hc->conn_fd: %d \nwritev content: %s\n end writev\n",hc->conn_fd,iv[1].iov_base);
-        fflush(dbgfile);
 	}
 
     if ( sz < 0 && errno == EINTR )
