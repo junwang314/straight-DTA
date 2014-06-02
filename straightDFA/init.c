@@ -142,10 +142,9 @@ short * _StraightTaint_init (short ** ptrToAddr)
 //    int pid=getpid(); 
     system("auditctl -D");
     char cmd[1024];
-    snprintf(cmd,1024,"sudo auditctl -a exit,always -F arch=b64 -S clone -S fork -S open -S socket -S bind -S connect -S accept -S write -S kill -S close -F pid=%d\0",pid);
+    snprintf(cmd,1024,"sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S bind -S connect -S accept -S write -S kill -S close -F pid=%d\0",pid);
     system(cmd);
 
-    sleep(1);
 #endif
 
     printf("init complete...\n");

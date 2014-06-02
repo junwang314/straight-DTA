@@ -1490,4 +1490,11 @@
 5238  write(3, "482\n487\n482\n487\n482\n487\n482\n487\n"..., 4096) = 4096
 5238  write(3, "482\n487\n482\n487\n482\n487\n482\n487\n"..., 4096) = 4096
 5238  write(3, "482\n487\n482\n487\n482\n487\n482\n487\n"..., 4096) = 4096
-5238  poll([{fd=6, events=POLLIN}], 1, 4987
+5238  poll([{fd=6, events=POLLIN}], 1, 4987) = 0 (Timeout)
+5238  --- SIGALRM (Alarm clock) @ 0 (0) ---
+5238  chdir("/tmp")                     = 0
+5238  rt_sigprocmask(SIG_UNBLOCK, [ABRT], NULL, 8) = 0
+5238  write(3, "784\n1787\n1784\n1787\n1784\n1787\n178"..., 682) = 682
+5238  tgkill(5238, 5238, SIGABRT)       = 0
+5238  --- SIGABRT (Aborted) @ 0 (0) ---
+5238  +++ killed by SIGABRT (core dumped) +++
