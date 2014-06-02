@@ -96,10 +96,14 @@ vsf_two_process_start(struct vsf_session* p_sess)
     int newpid;
     if (tunable_isolate_network)
     {
+      fprintf(dbgfile,"vsf_sysutil_fork_newnet\n");
+      fflush(dbgfile);
       newpid = vsf_sysutil_fork_newnet();
     }
     else
     {
+      fprintf(dbgfile,"vsf_sysutil_fork\n");
+      fflush(dbgfile);
       newpid = vsf_sysutil_fork();
     }
     if (newpid != 0)
@@ -173,6 +177,8 @@ void
 vsf_two_process_login(struct vsf_session* p_sess,
                       const struct mystr* p_pass_str)
 {
+  fprintf(dbgfile,"vsf_two_process_login\n");
+  fflush(dbgfile);
   char result;
   priv_sock_send_cmd(p_sess->child_fd, PRIV_SOCK_LOGIN);
   priv_sock_send_str(p_sess->child_fd, &p_sess->user_str);
@@ -255,17 +261,23 @@ vsf_two_process_listen(struct vsf_session* p_sess)
 int
 vsf_two_process_get_pasv_fd(struct vsf_session* p_sess)
 {
+  fprintf(dbgfile,"pid: %d priv_sock_recv_fd child_fd: %d\n",syscall(__NR_getpid),p_sess->child_fd);
+  fflush(dbgfile);
   char res;
   priv_sock_send_cmd(p_sess->child_fd, PRIV_SOCK_PASV_ACCEPT);
   res = priv_sock_get_result(p_sess->child_fd);
   if (res == PRIV_SOCK_RESULT_BAD)
   {
+    fprintf(dbgfile,"pid: %d priv_sock_get_int\n",syscall(__NR_getpid));
+    fflush(dbgfile);
     return priv_sock_get_int(p_sess->child_fd);
   }
   else if (res != PRIV_SOCK_RESULT_OK)
   {
     die("could not accept on listening socket");
   }
+  fprintf(dbgfile,"pid: %d priv_sock_recv_fd child_fd: %d\n",syscall(__NR_getpid),p_sess->child_fd);
+  fflush(dbgfile);
   return priv_sock_recv_fd(p_sess->child_fd);
 }
 
@@ -286,6 +298,8 @@ extern FILE* dbgfile;
 static void
 process_login_req(struct vsf_session* p_sess)
 {
+  fprintf(dbgfile,"pid: %d process_login_req child_fd: %d\n",syscall(__NR_getpid),p_sess->child_fd);
+  fflush(dbgfile);
 
   enum EVSFPrivopLoginResult e_login_result = kVSFLoginNull;
   char cmd;
@@ -322,6 +336,8 @@ process_login_req(struct vsf_session* p_sess)
       break;
     case kVSFLoginReal:
       {
+        fprintf(dbgfile,"KVSFLoginReal\n");
+        fflush(dbgfile);
         int do_chroot = 0;
         if (tunable_chroot_local_user)
         {
@@ -365,6 +381,8 @@ static void
 common_do_login(struct vsf_session* p_sess, const struct mystr* p_user_str,
                 int do_chroot, int anon)
 {
+  fprintf(dbgfile,"pid: %d common_do_login child_fd: %d\n",getpid(),p_sess->child_fd);
+  fflush(dbgfile);
   int was_anon = anon;
   const struct mystr* p_orig_user_str = p_user_str;
   int newpid;
@@ -384,14 +402,22 @@ common_do_login(struct vsf_session* p_sess, const struct mystr* p_user_str,
   /* Set this before we fork */
   p_sess->is_anonymous = anon;
   priv_sock_close(p_sess);
+  fprintf(dbgfile,"pid: %d before priv_sock_init child_fd: %d\n",syscall(__NR_getpid),p_sess->child_fd);
+  fflush(dbgfile);
   priv_sock_init(p_sess);
+  fprintf(dbgfile,"pid: %d after priv_sock_init child_fd: %d\n",syscall(__NR_getpid),p_sess->child_fd);
+  fflush(dbgfile);
   vsf_sysutil_install_sighandler(kVSFSysUtilSigCHLD, handle_sigchld, 0, 1);
   if (tunable_isolate_network && !tunable_port_promiscuous)
   {
+    fprintf(dbgfile,"vsf_sysutil_fork_newnet\n");
+    fflush(dbgfile);
     newpid = vsf_sysutil_fork_newnet();
   }
   else
   {
+    fprintf(dbgfile,"vsf_sysutil_fork\n");
+    fflush(dbgfile);
     newpid = vsf_sysutil_fork();
   }
   if (newpid == 0)
@@ -408,6 +434,8 @@ common_do_login(struct vsf_session* p_sess, const struct mystr* p_user_str,
      * connection in our SIGTERM handler.
      */
     vsf_set_die_if_parent_dies();
+    fprintf(dbgfile,"pid: %d before set_child_context child_fd: %d\n",syscall(__NR_getpid),p_sess->child_fd);
+    fflush(dbgfile);
     priv_sock_set_child_context(p_sess);
     if (tunable_guest_enable && !anon)
     {

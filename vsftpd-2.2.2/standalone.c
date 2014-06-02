@@ -156,16 +156,18 @@ vsf_standalone_main(void)
     child_info.num_this_ip = handle_ip_count(p_raw_addr);
     if (tunable_isolate)
     {
+      printf("vsf_sysutil_fork_isolate_failok\n");
       new_child = vsf_sysutil_fork_isolate_failok();
     }
     else
     {
+      printf("vsf_sysutil_fork_failok\n");
       new_child = vsf_sysutil_fork_failok();
     }
     if (new_child != 0)
     {
       /* Parent context */
-      //printf("parent context\n");
+      printf("parent context\n");
       vsf_sysutil_close(new_client_sock);
       if (new_child > 0)
       {
@@ -182,6 +184,8 @@ vsf_standalone_main(void)
     else
     {
       /* Child context */
+      fprintf(dbgfile,"child context\n");
+      fflush(dbgfile);
       vsf_set_die_if_parent_dies();
       vsf_sysutil_close(listen_sock);
       prepare_child(new_client_sock);
