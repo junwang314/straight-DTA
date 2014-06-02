@@ -1,8 +1,0 @@
-4116	socket	6	live
-4116	socket	7
-4116	accept	host:::ffff:127.0.0.1
-4116	accept	-11
-4116	accept	host:::ffff:127.0.0.1
-4116	accept	-11
-4116	open	/home/jun/straight-DTA/thttpd-2.25b/index.html
-4116	open	NotFound
