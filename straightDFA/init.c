@@ -139,10 +139,10 @@ short * _StraightTaint_init (short ** ptrToAddr)
     configFile=fopen("configFile","w+");
     fprintf(configFile,"%s\n",filename);
     fflush(configFile);
-//    int pid=getpid(); 
     system("auditctl -D");
     char cmd[1024];
     snprintf(cmd,1024,"sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S bind -S connect -S accept -S write -S kill -S close -F pid=%d\0",pid);
+//    snprintf(cmd,1024,"sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S bind -S connect -S accept -S kill -S close");
     system(cmd);
 
 #endif

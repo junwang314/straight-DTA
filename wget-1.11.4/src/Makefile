@@ -47,7 +47,7 @@ localedir    = $(datadir)/locale
 
 DESTDIR      =
 
-CC       = gcc
+CC       = wllvm
 CPPFLAGS = 
 # The following line is losing on some versions of make!
 DEFS     = -DHAVE_CONFIG_H -DSYSTEM_WGETRC=\"$(sysconfdir)/wgetrc\" -DLOCALEDIR=\"$(localedir)\"

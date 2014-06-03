@@ -31,7 +31,7 @@ DESTDIR =
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 
-CC = gcc
+CC = wllvm
 GMSGFMT = PATH=../src:$$PATH /usr/bin/msgfmt
 MSGFMT = /usr/bin/msgfmt
 XGETTEXT = PATH=../src:$$PATH /usr/bin/xgettext

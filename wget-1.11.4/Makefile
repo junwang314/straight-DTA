@@ -54,7 +54,7 @@ mandir      = ${prefix}/share/man
 manext      = 1
 localedir   = $(prefix)/share/locale
 
-CC = gcc
+CC = wllvm
 CFLAGS =  -O2 -Wall
 CPPFLAGS = 
 DEFS = -DHAVE_CONFIG_H -DSYSTEM_WGETRC=\"$(sysconfdir)/wgetrc\" -DLOCALEDIR=\"$(localedir)\"
