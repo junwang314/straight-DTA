@@ -39,15 +39,15 @@ void _StraightTaint_log(short BBID)
     if (addr != buf->end) {
         return;
     } else {
-        printf("post buf %p full\n", buf);
+        //printf("post buf %p full\n", buf);
         sem_post(&(buf->full));
         //assert(queue == NULL);
         //queue = buf;
         // switch buffer
-        printf("switch buffer...\n");
+        //printf("switch buffer...\n");
         buf = buf->next;
         addr = buf->start;
-        printf("wait buf %p empty\n", buf);
+        //printf("wait buf %p empty\n", buf);
         sem_wait(&(buf->empty));
         return;
     }
@@ -63,14 +63,14 @@ void *_StraightTaint_logger_thread(void *arg)
 
     struct buffer *cur_buf = buf;
     for(;;) {
-        printf("logger wait buf %p empty\n", cur_buf);
+        //printf("logger wait buf %p empty\n", cur_buf);
         sem_wait(&(cur_buf->full));
         //write buffer to file
-        printf("write buffer to file...\n");
-        fprintf(flog, "buffer start %p end %p\n", cur_buf->start, cur_buf->end);
+        //printf("write buffer to file...\n");
+        //fprintf(flog, "buffer start %p end %p\n", cur_buf->start, cur_buf->end);
         fwrite(cur_buf->start, 1, BUF_SIZE, flog);
         fflush(flog);
-        printf("logger post buf %p empty\n", cur_buf);
+        //printf("logger post buf %p empty\n", cur_buf);
         sem_post(&(cur_buf->empty));
         cur_buf = cur_buf->next;
     }

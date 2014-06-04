@@ -37,7 +37,7 @@ int cp(int i)
 int main(int argc, char **argv)
 {
     int i, ret;
-    for (i=0; i<100000; i++) {
+    for (i=0; i<1000000; i++) {
         ret = cp(i);
     }
     printf("exit...\n");

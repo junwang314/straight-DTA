@@ -17,11 +17,11 @@ $(TARGET).s:$(TARGET).bc
 $(TARGET).bc:$(NEWSRC).bc $(INIT).bc $(LOG).bc
 	llvm-link $^ -o $@
 
-$(INIT).bc:$(INIT).c
-	clang -g -c -emit-llvm $^ -o $@
+$(INIT).bc:$(INIT).c $(LOG).h
+	clang -g -c -emit-llvm $< -o $@
 
-$(LOG).bc:$(LOG).c
-	clang -g -c -emit-llvm $^ -o $@
+$(LOG).bc:$(LOG).c $(LOG).h
+	clang -g -c -emit-llvm $< -o $@
 
 $(NEWSRC).bc:$(SRC).bc
 	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -inst < $^ > $@
@@ -29,7 +29,7 @@ $(NEWSRC).bc:$(SRC).bc
 $(SRC).bc:$(SRC).c
 	clang -g -c -emit-llvm $^ -o $@
 
-clean:$(SRC).c $(INIT).c $(LOG).c $(LOG).h
+clean:$(SRC).c $(INIT).c $(LOG).c
 	rm $(TARGET) $(TARGET).s $(TARGET).bc
 	touch $^
 

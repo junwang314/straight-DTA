@@ -5,7 +5,7 @@
 
 //#define HACK_LOG
 //#define BUF_SIZE 100*1024*1024 //100MB
-#define BUF_SIZE 1024*1024 //1KB
+#define BUF_SIZE 10*1024*1024 //1KB
 
 
 struct buffer {
