@@ -11,7 +11,8 @@ $(TARGET):$(TARGET).s
 	gcc -g -pthread $^ -o $@
 
 $(TARGET).s:$(TARGET).bc
-	llc $^
+	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -inline-log -inline< $^ > inline.bc
+	llc inline.bc -o $@
 
 $(TARGET).bc:$(NEWSRC).bc $(INIT).bc $(LOG).bc
 	llvm-link $^ -o $@
@@ -28,7 +29,7 @@ $(NEWSRC).bc:$(SRC).bc
 $(SRC).bc:$(SRC).c
 	clang -g -c -emit-llvm $^ -o $@
 
-clean:$(SRC).c $(INIT).c $(LOG).c
+clean:$(SRC).c $(INIT).c $(LOG).c $(LOG).h
 	rm $(TARGET) $(TARGET).s $(TARGET).bc
 	touch $^
 

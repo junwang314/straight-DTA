@@ -1,12 +1,21 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 #include <sys/types.h>
 #include <unistd.h>
 #define _GNU_SOURCE         /* See feature_test_macros(7) */
 #include <sys/syscall.h>   /* For SYS_xxx definitions */
+#include <signal.h>
+#include <assert.h>
+
+#include "log.h"
+
+extern short *addr;
 
 extern FILE *configFile; 
 extern FILE *flog;
+
+extern struct buffer *buf;
 
 void _StraightTaint_pseudo()
 {
@@ -17,9 +26,54 @@ void _StraightTaint_flush(short BBID)
     fflush(flog);
 }
 
+struct buffer *queue = NULL;
+
 void _StraightTaint_log(short BBID)
 {
+#ifdef HACK_LOG
     fprintf(flog, "%d\n", BBID);
+#else
+    //fprintf(flog, "%d\n", BBID);
+    *addr = BBID;
+    addr++;
+    if (addr != buf->end) {
+        return;
+    } else {
+        printf("post buf %p full\n", buf);
+        sem_post(&(buf->full));
+        //assert(queue == NULL);
+        //queue = buf;
+        // switch buffer
+        printf("switch buffer...\n");
+        buf = buf->next;
+        addr = buf->start;
+        printf("wait buf %p empty\n", buf);
+        sem_wait(&(buf->empty));
+        return;
+    }
+#endif
+}
+
+void *_StraightTaint_logger_thread(void *arg)
+{
+    sigset_t set;
+    int s;
+    sigfillset(&set);
+    s = pthread_sigmask(SIG_SETMASK, &set, NULL);
+
+    struct buffer *cur_buf = buf;
+    for(;;) {
+        printf("logger wait buf %p empty\n", cur_buf);
+        sem_wait(&(cur_buf->full));
+        //write buffer to file
+        printf("write buffer to file...\n");
+        fprintf(flog, "buffer start %p end %p\n", cur_buf->start, cur_buf->end);
+        fwrite(cur_buf->start, 1, BUF_SIZE, flog);
+        fflush(flog);
+        printf("logger post buf %p empty\n", cur_buf);
+        sem_post(&(cur_buf->empty));
+        cur_buf = cur_buf->next;
+    }
 }
 
 static inline void do_StraightTaint_fork(int pid)
