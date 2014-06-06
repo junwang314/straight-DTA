@@ -67,10 +67,17 @@ void buf_switcher()
 
 struct buffer buf1, buf2;
 struct buffer *buf;
+pthread_t logger_thread;
 
 short * _StraightTaint_init (short ** ptrToAddr)
 {
 #ifndef _HACK_LOG
+    int uid = getuid();
+    if (uid != 0) {
+        fprintf(stderr, "You must be root to run kernel audit!\n");
+        exit(0);
+    }
+
     buf1.next = &buf2;
     buf2.next = &buf1;
     buf = &buf1;
@@ -100,8 +107,11 @@ short * _StraightTaint_init (short ** ptrToAddr)
     printf("buffer 1: start %p end %p size %.1fMB\n", buf1.start, buf1.end, (buf1.end-buf1.start)*2.0/1024/1024);
     printf("buffer 2: start %p end %p size %.1fMB\n", buf2.start, buf2.end, (buf2.end-buf2.start)*2.0/1024/1024);
 
-    pthread_t logger_thread;
-    pthread_create(&logger_thread, NULL, _StraightTaint_logger_thread, NULL);
+    atexit(_StraightTaint_logger_thread_terminate);
+    if ( pthread_create(&logger_thread, NULL, _StraightTaint_logger_thread, NULL) ){
+        perror("failed to create logger thread");
+        exit(0);
+    }
 //    printf("&addr=%p\n", ptrToAddr);
 //    printf("addr=%p\n", *ptrToAddr);
 //
@@ -174,7 +184,6 @@ short * _StraightTaint_init (short ** ptrToAddr)
     configFile=fopen("configFile","w+");
     fprintf(configFile,"%s\n",filename);
     fflush(configFile);
-//    int pid=getpid(); 
     system("auditctl -D");
     char cmd[1024];
     snprintf(cmd,1024,"sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S bind -S connect -S accept -S write -S kill -S close -F pid=%d\0",pid);

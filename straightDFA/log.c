@@ -16,6 +16,8 @@ extern FILE *configFile;
 extern FILE *flog;
 
 extern struct buffer *buf;
+extern pthread_t logger_thread;
+
 
 void _StraightTaint_pseudo()
 {
@@ -25,8 +27,6 @@ void _StraightTaint_flush(short BBID)
 {
     fflush(flog);
 }
-
-struct buffer *queue = NULL;
 
 void _StraightTaint_log(short BBID)
 {
@@ -39,16 +39,20 @@ void _StraightTaint_log(short BBID)
     if (addr != buf->end) {
         return;
     } else {
+        buf->cursor = addr;
         //printf("post buf %p full\n", buf);
         sem_post(&(buf->full));
-        //assert(queue == NULL);
-        //queue = buf;
-        // switch buffer
+        //switch buffer
         //printf("switch buffer...\n");
         buf = buf->next;
         addr = buf->start;
         //printf("wait buf %p empty\n", buf);
-        sem_wait(&(buf->empty));
+        //sem_wait(&(buf->empty));
+        if (sem_trywait(&(buf->empty))) {
+            perror("producer is faster than consumer!!!");
+            sleep(2);
+            exit(0);
+        }
         return;
     }
 #endif
@@ -63,17 +67,31 @@ void *_StraightTaint_logger_thread(void *arg)
 
     struct buffer *cur_buf = buf;
     for(;;) {
-        //printf("logger wait buf %p empty\n", cur_buf);
+        printf("logger wait buf %p full\n", cur_buf);
         sem_wait(&(cur_buf->full));
         //write buffer to file
-        //printf("write buffer to file...\n");
+        printf("write buffer to file...\n");
         //fprintf(flog, "buffer start %p end %p\n", cur_buf->start, cur_buf->end);
-        fwrite(cur_buf->start, 1, BUF_SIZE, flog);
+        int size = cur_buf->cursor - cur_buf->start;
+        fwrite(cur_buf->start, sizeof(short), size, flog);
         fflush(flog);
-        //printf("logger post buf %p empty\n", cur_buf);
+        printf("logger post buf %p empty\n", cur_buf);
         sem_post(&(cur_buf->empty));
         cur_buf = cur_buf->next;
+        if (cur_buf == NULL) { //all finished, about to exit
+            printf("about to exit...\n");
+            break;
+        }
     }
+    return 0;
+}
+
+void *_StraightTaint_logger_thread_terminate(void)
+{
+    buf->cursor = addr;
+    buf->next = NULL;    
+    sem_post(&(buf->full));
+    pthread_join(logger_thread, NULL);
 }
 
 static inline void do_StraightTaint_fork(int pid)

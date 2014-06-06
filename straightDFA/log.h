@@ -4,13 +4,14 @@
 #include <semaphore.h>
 
 //#define HACK_LOG
-//#define BUF_SIZE 100*1024*1024 //100MB
-#define BUF_SIZE 10*1024*1024 //1KB
+#define BUF_SIZE 100*1024*1024 //100MB
+//#define BUF_SIZE 512 //1KB
 
 
 struct buffer {
     short *start;
     short *end;
+    short *cursor;
     int size;
     sem_t full;
     sem_t empty;
@@ -18,5 +19,6 @@ struct buffer {
 };
 
 extern void *_StraightTaint_logger_thread(void *);
+extern void *_StraightTaint_logger_thread_terminate(void);
 
 #endif
