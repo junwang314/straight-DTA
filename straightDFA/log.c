@@ -30,7 +30,7 @@ void _StraightTaint_flush(short BBID)
 
 void _StraightTaint_log(short BBID)
 {
-#ifdef HACK_LOG
+#ifdef _HACK_LOG
     fprintf(flog, "%d\n", BBID);
 #else
     //fprintf(flog, "%d\n", BBID);

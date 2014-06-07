@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 #define BUF_SIZE 10*1024*1024
 
 int main(int argc, char *argv[])
@@ -30,5 +30,10 @@ int main(int argc, char *argv[])
     }
     fclose(f);
     fclose(fnew);
+    char cmd[1024];
+    strcpy(cmd,"sudo mv ");
+    strcat(cmd, argv[1]);
+    strcat(cmd, filename);
+    system(cmd);
     return 0;
 }
