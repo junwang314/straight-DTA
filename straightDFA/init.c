@@ -12,12 +12,13 @@
 #include <signal.h>     /* Signal handling */
 #include <semaphore.h>  /* Semaphore */
 
-#define _HACK_LOG
+#include "log.h"
 
 FILE *flog;
 FILE *configFile;
 #define DFT
 
+/*
 //total buffer size
 #define SHMSZ 4096*1024*100    //400MB
 
@@ -26,7 +27,6 @@ short *buf1, *buf2, *pos, *buf;
 struct timeval tv_old, tv_new;
 
 unsigned long sum = 0;
-
 void buf_switcher()
 {
     //get the current posotion
@@ -63,9 +63,55 @@ void buf_switcher()
     //printf("&addr=%p\n", p2addr);
     //printf("addr=%p\n", *p2addr);
 }
+*/
+
+struct buffer buf1, buf2;
+struct buffer *buf;
+pthread_t logger_thread;
 
 short * _StraightTaint_init (short ** ptrToAddr)
 {
+#ifndef _HACK_LOG
+    int uid = getuid();
+    if (uid != 0) {
+        fprintf(stderr, "You must be root to run kernel audit!\n");
+        exit(0);
+    }
+
+    buf1.next = &buf2;
+    buf2.next = &buf1;
+    buf = &buf1;
+    char *ptr = (char *)malloc(BUF_SIZE*2); //BUF_SIZE*2 byte buffer
+    if (ptr == NULL) {
+        perror("malloc");
+        exit(1);
+    }
+    buf1.start = (short *) ptr;
+    buf1.end = (short *) (ptr + BUF_SIZE) - 1;
+    buf2.start = (short *) (ptr + BUF_SIZE);
+    buf2.end = (short *) (ptr + 2*BUF_SIZE) - 1;
+    sem_init(&(buf1.full), 0, 0);
+    sem_init(&(buf1.empty), 0, 0);
+    sem_init(&(buf2.full), 0, 0);
+    sem_init(&(buf2.empty), 0, 0);
+    sem_post(&(buf1.empty));
+    sem_post(&(buf2.empty));
+
+    int pid = getpid();
+    char filename[1024];
+    snprintf(filename, 1024, "tmp.%d", pid);
+    flog = fopen(filename, "w+");
+    configFile=fopen("configFile","w+");
+    fprintf(configFile,"%s\n",filename);
+    fflush(configFile);
+    printf("buffer 1: start %p end %p size %.1fMB\n", buf1.start, buf1.end, (buf1.end-buf1.start)*2.0/1024/1024);
+    printf("buffer 2: start %p end %p size %.1fMB\n", buf2.start, buf2.end, (buf2.end-buf2.start)*2.0/1024/1024);
+
+    atexit(_StraightTaint_logger_thread_terminate);
+    if ( pthread_create(&logger_thread, NULL, _StraightTaint_logger_thread, NULL) ){
+        perror("failed to create logger thread");
+        exit(0);
+    }
 //    printf("&addr=%p\n", ptrToAddr);
 //    printf("addr=%p\n", *ptrToAddr);
 //
@@ -130,8 +176,7 @@ short * _StraightTaint_init (short ** ptrToAddr)
 //    sem_post(s);
 //
 //    gettimeofday(&tv_old, NULL);
-
-#ifdef _HACK_LOG
+#else
     int pid = getpid();
     char filename[1024];
     snprintf(filename, 1024, "tmp.%d", pid);
@@ -148,5 +193,5 @@ short * _StraightTaint_init (short ** ptrToAddr)
 #endif
 
     printf("init complete...\n");
-    return pos;
+    return buf->start;
 }

@@ -1059,6 +1059,8 @@ vsf_sysutil_send_fd(int sock_fd, int send_fd)
 int
 vsf_sysutil_recv_fd(const int sock_fd)
 {
+  fprintf(dbgfile,"pid: %d const vsf_sysutil_recv_fd\n",syscall(__NR_getpid));
+  fflush(dbgfile);  
   int retval;
   struct msghdr msg;
   char recvchar;
@@ -1141,6 +1143,8 @@ vsf_sysutil_recv_fd(int sock_fd)
   msg.msg_iovlen = 1;
   msg.msg_accrights = (caddr_t) &recv_fd;
   msg.msg_accrightslen = sizeof(recv_fd);
+  fprintf(dbgfile,"pid: %d vsf_sysutil_recv_fd recvmsg\n",syscall(__NR_getpid));
+  fflush(dbgfile);
   retval = recvmsg(sock_fd, &msg, 0);
   if (retval != 1)
   {
@@ -1259,19 +1263,26 @@ vsf_set_term_if_parent_dies()
 #endif
 }
 
+extern FILE* dbgfile;
 
 int
 vsf_sysutil_fork_isolate_failok()
 {
 #ifdef VSF_SYSDEP_HAVE_LINUX_CLONE
+  fprintf(dbgfile, "VSF_SYSDEP_HAVE_LINUX_CLONE\n");
+  fflush(dbgfile);
   static int cloneflags_work = 1;
   if (cloneflags_work)
   {
+    fprintf(dbgfile,"syscall __NR_clone\n");
+    fflush(dbgfile);
     int ret = syscall(__NR_clone, CLONE_NEWPID | CLONE_NEWIPC | SIGCHLD, NULL);
     if (ret != -1 || (errno != EINVAL && errno != EPERM))
     {
       if (ret == 0)
       {
+        fprintf(dbgfile,"call vsf_sysutil_post_fork\n");
+        fflush(dbgfile);
         vsf_sysutil_post_fork();
       }
       return ret;
@@ -1279,6 +1290,8 @@ vsf_sysutil_fork_isolate_failok()
     cloneflags_work = 0;
   }
 #endif
+  fprintf(dbgfile, "return vsf_sysutil_fork_failok\n");
+  fflush(dbgfile);
   return vsf_sysutil_fork_failok();
 }
 

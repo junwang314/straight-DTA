@@ -11,16 +11,17 @@ $(TARGET):$(TARGET).s
 	gcc -g -pthread $^ -o $@
 
 $(TARGET).s:$(TARGET).bc
-	llc $^
+	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -inline-log -inline< $^ > inline.bc
+	llc inline.bc -o $@
 
 $(TARGET).bc:$(NEWSRC).bc $(INIT).bc $(LOG).bc
 	llvm-link $^ -o $@
 
-$(INIT).bc:$(INIT).c
-	clang -g -c -emit-llvm $^ -o $@
+$(INIT).bc:$(INIT).c $(LOG).h
+	clang -g -c -emit-llvm $< -o $@
 
-$(LOG).bc:$(LOG).c
-	clang -g -c -emit-llvm $^ -o $@
+$(LOG).bc:$(LOG).c $(LOG).h
+	clang -g -c -emit-llvm $< -o $@
 
 $(NEWSRC).bc:$(SRC).bc
 	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -inst < $^ > $@
