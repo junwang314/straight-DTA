@@ -1974,6 +1974,10 @@ static RETSIGTYPE sig_terminate(int signo) {
   /* Capture the signal number for later display purposes. */
   term_signo = signo;
 
+  if (signo == SIGINT ) {
+    exit(0);
+  }
+
   if (signo == SIGSEGV ||
       signo == SIGXCPU
 #ifdef SIGBUS
@@ -2624,7 +2628,11 @@ static void daemonize(void) {
   pr_fsio_chdir("/", 0);
 }
 
+
 static void inetd_main(void) {
+
+
+
   int res = 0;
 
   /* Make sure the scoreboard file exists. */

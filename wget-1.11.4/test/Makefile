@@ -30,7 +30,7 @@ clean:$(SRC).bc $(INIT).c $(LOG).c
 	touch $^
 
 run:$(TARGET)
-	./$(TARGET) www.google.com www.bing.com	
+	./$(TARGET) www.google.com www.bing.com www.psu.com	
 
 view:$(TARGET).bc
 	llvm-dis $^ -o $(TARGET).ll
