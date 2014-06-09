@@ -19,6 +19,6 @@ struct buffer {
 };
 
 extern void *_StraightTaint_logger_thread(void *);
-extern void *_StraightTaint_logger_thread_terminate(void);
+extern void _StraightTaint_logger_thread_terminate(void);
 
 #endif

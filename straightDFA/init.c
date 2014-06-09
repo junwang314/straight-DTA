@@ -11,11 +11,13 @@
 #include <string.h>     /* String handling */
 #include <signal.h>     /* Signal handling */
 #include <semaphore.h>  /* Semaphore */
+#include <assert.h>
 
 #include "log.h"
 
 FILE *flog;
 FILE *configFile;
+extern short *addr;
 #define DFT
 
 /*
@@ -196,4 +198,75 @@ short * _StraightTaint_init (short ** ptrToAddr)
 #endif
 
 
+}
+
+static inline void do_StraightTaint_fork(int pid)
+{
+    if (pid > 0) { //parent process
+        //do nothing
+    } else if (pid == 0) { //child process
+#ifdef HACK_LOG
+        char filename[1024];
+        int nrPid=syscall(__NR_getpid);
+        snprintf(filename, 1024, "tmp.%d", nrPid);
+        //record the log-file-name in configFile
+        fprintf(configFile,"%s\n",filename);
+        fflush(configFile);
+        //run auditd for this new process
+        char cmd[1024];
+snprintf(cmd,1024,"sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S bind -S connect -S accept -S write -S kill -S close -F pid=%d\0",nrPid);
+        system(cmd);
+        //copy parent log to child log
+        FILE* flogParent=flog;
+        flog = fopen(filename, "w+");
+        rewind(flogParent);
+        int bbid=0;
+        int size;
+        fflush(flog);
+        fflush(flogParent);
+        while(EOF!=fscanf(flogParent,"%d",&bbid)){
+            // printf("bbid: %d\n",bbid);
+            fprintf(flog,"%d\n",bbid);
+        }
+        fclose(flogParent);
+#else
+        buf = &buf1;
+        addr = buf->start;
+        sem_init(&(buf1.full), 0, 0);
+        sem_init(&(buf1.empty), 0, 0);
+        sem_init(&(buf2.full), 0, 0);
+        sem_init(&(buf2.empty), 0, 0);
+        sem_post(&(buf1.empty));
+        sem_post(&(buf2.empty));
+
+        int pid = getpid();
+        char filename[1024];
+        snprintf(filename, 1024, "tmp.%d", pid);
+        flog = fopen(filename, "w+");
+        //configFile=fopen("configFile","w+");
+        fprintf(configFile,"%s\n",filename);
+        fflush(configFile);
+        printf("buffer 1: start %p end %p size %.1fMB\n", buf1.start, buf1.end, (buf1.end-buf1.start)*2.0/1024/1024);
+        printf("buffer 2: start %p end %p size %.1fMB\n", buf2.start, buf2.end, (buf2.end-buf2.start)*2.0/1024/1024);
+
+        atexit(_StraightTaint_logger_thread_terminate);
+        if ( pthread_create(&logger_thread, NULL, _StraightTaint_logger_thread, NULL) ){
+            perror("failed to create logger thread");
+            exit(0);
+        }
+#endif
+    } else {
+        assert(0);
+    }
+}
+
+void _StraightTaint_fork32(int pid)
+{
+    do_StraightTaint_fork(pid);
+}
+
+void _StraightTaint_fork64(long lpid)
+{
+    int pid = (int)lpid;
+    do_StraightTaint_fork(pid);
 }
