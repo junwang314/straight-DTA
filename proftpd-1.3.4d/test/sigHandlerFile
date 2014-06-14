@@ -1,8 +1,8 @@
-6157
-736
-566
-573
-579
-576
-582
-597
+data_urgent
+sig_alarm
+sig_disconnect
+sig_evnt
+sig_restart
+sig_child
+sig_terminate
+sig_abort
