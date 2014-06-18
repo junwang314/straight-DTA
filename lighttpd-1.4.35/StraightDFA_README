@@ -1,0 +1,12 @@
+sudo apt-get install libpcre3-dev
+sudo apt-get install zlib1g-dev
+udo apt-get install libbz2-dev
+(or sudo apt-get build-dep lighttpd)
+CC=wllvm; make; sudo make install
+sudo lighttpd -D -f doc/config/lighttpd.conf
+http://www.lighttpd.net/
+Multiprocess, able to extract-bc
+
+ctl+C ends the program
+html file root is : ./www/htdocs/
+
