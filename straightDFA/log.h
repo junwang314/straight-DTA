@@ -3,7 +3,7 @@
 
 #include <semaphore.h>
 
-//#define _HACK_LOG
+#define _HACK_LOG
 #define BUF_SIZE 500*1024*1024 //100MB
 //#define BUF_SIZE 512 //1KB
 

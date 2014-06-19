@@ -1974,9 +1974,9 @@ static RETSIGTYPE sig_terminate(int signo) {
   /* Capture the signal number for later display purposes. */
   term_signo = signo;
 
-  if (signo == SIGINT ) {
+/*  if (signo == SIGINT ) {
     exit(0);
-  }
+  }*/
 
   if (signo == SIGSEGV ||
       signo == SIGXCPU

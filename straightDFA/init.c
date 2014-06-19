@@ -205,9 +205,9 @@ static inline void do_StraightTaint_fork(int pid)
     if (pid > 0) { //parent process
         //do nothing
     } else if (pid == 0) { //child process
-#ifdef HACK_LOG
+#ifdef _HACK_LOG
         char filename[1024];
-        int nrPid=syscall(__NR_getpid);
+        int nrPid=getpid();//syscall(__NR_getpid);
         snprintf(filename, 1024, "tmp.%d", nrPid);
         //record the log-file-name in configFile
         fprintf(configFile,"%s\n",filename);

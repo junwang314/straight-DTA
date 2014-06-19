@@ -1,0 +1,5 @@
+http://openbsd.mirrors.pair.com/OpenSSH/portable/openssh-5.9p1.tar.gz
+dep1: download openssl 1.0.0 from http://www.openssl.org/source/ ; ./config; make; sudo make install
+CC=wllvm ./configure; make; make install
+sudo /home/jun/straight-DTA/openssh-5.9p1/sshd -D
+If “host key verification failed”, then run “ssh-keygen -R localhost” on client side
