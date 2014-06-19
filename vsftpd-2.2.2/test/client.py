@@ -9,7 +9,7 @@ while i<argv:
     ftp = FTP("localhost", "jun", "123")
     ftp.cwd("/home/jun/straight-DTA/vsftpd-2.2.2/test")
 
-    for j in range(10):
+    for j in range(100):
         with open('client.txt') as f:
             ftp.storlines('STOR server.txt', f)
     ftp.quit()
