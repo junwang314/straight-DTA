@@ -11,7 +11,8 @@ $(TARGET):$(TARGET).s
 	gcc -g -pthread $^ -lcrypt -o $@
 
 $(TARGET).s:$(TARGET).bc
-	llc $^
+	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -inline-log -inline< $^ > inline.bc
+	llc inline.bc -o $@
 
 $(TARGET).bc:$(NEWSRC).bc $(INIT).bc $(LOG).bc
 	llvm-link $^ -o $@
