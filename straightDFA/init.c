@@ -243,6 +243,7 @@ snprintf(cmd,1024,"sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S
         char filename[1024];
         snprintf(filename, 1024, "tmp.%d", pid);
         flog = fopen(filename, "w+");
+        assert(flog);
         //configFile=fopen("configFile","w+");
         fprintf(configFile,"%s\n",filename);
         fflush(configFile);
