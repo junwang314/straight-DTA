@@ -1,4 +1,4 @@
-TARGET=ssh
+TARGET=dropbear
 DIR=../
 SRC=$(DIR)/$(TARGET)
 NEWSRC=$(DIR)/new$(TARGET)
@@ -8,7 +8,7 @@ LOG=../../straightDFA/log
 all:$(TARGET)
 
 $(TARGET):$(TARGET).s
-	gcc -fno-stack-protector -g -pthread $^ -lcrypt -lpcre -ldl -o $@ -L.. -L../openbsd-compat/  -fstack-protector-all -lssh -lopenbsd-compat  -lcrypto -ldl -lutil -lz -lnsl  -lcrypt -lresolv
+	gcc -g -pthread $^ -o $@ -lutil  -lcrypt
 
 $(TARGET).s:$(TARGET).bc
 	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -inline-log -inline< $^ > inline.bc
@@ -31,7 +31,7 @@ clean:$(SRC).bc $(INIT).c $(LOG).c
 	touch $^
 
 run:$(TARGET)
-	sudo ./lighttpd -D -f ../doc/config/lighttpd.conf
+	sudo ./dropbear -F
 	
 
 view:$(TARGET).bc
