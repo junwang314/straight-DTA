@@ -1,3 +1,0 @@
-libpureftpd_a-getloadavg.o: getloadavg.c ../config.h
-
-../config.h:

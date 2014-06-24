@@ -1,3 +1,0 @@
-libpureftpd_a-parser.o: parser.c ../config.h
-
-../config.h:

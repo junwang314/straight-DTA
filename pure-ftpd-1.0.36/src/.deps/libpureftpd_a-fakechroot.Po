@@ -1,3 +1,0 @@
-libpureftpd_a-fakechroot.o: fakechroot.c ../config.h
-
-../config.h:

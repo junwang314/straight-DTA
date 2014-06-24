@@ -1,3 +1,0 @@
-libpureftpd_a-crypto.o: crypto.c ../config.h
-
-../config.h:

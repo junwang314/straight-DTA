@@ -1,3 +1,0 @@
-libpureftpd_a-ftpwho-update.o: ftpwho-update.c ../config.h
-
-../config.h:
