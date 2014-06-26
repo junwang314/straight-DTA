@@ -68,8 +68,7 @@ mod_compress.lo: mod_compress.c base.h ../config.h settings.h \
   /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
   /usr/include/x86_64-linux-gnu/asm/errno.h \
   /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
-  /usr/include/zlib.h /usr/include/zconf.h /usr/include/zlibdefs.h \
-  /usr/include/bzlib.h
+  /usr/include/zlib.h /usr/include/zconf.h /usr/include/zlibdefs.h
 
 base.h:
 
@@ -292,5 +291,3 @@ crc32.h:
 /usr/include/zconf.h:
 
 /usr/include/zlibdefs.h:
-
-/usr/include/bzlib.h:
