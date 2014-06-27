@@ -1,1 +1,10 @@
 #
+CC=wllvm ./configure --disable-zlib --disable-syslog
+make PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp"
+sudo make PROGRAMS="dropbear dbclient dropbearkey dropbearconvert scp" install
+sudo mkdir /etc/dropbear
+cd /etc/dropbear
+dropbearkey -t rsa -f dropbear_rsa_host_key
+OR dropbearkey -t dss -f dropbear_dss_host_key
+OR dropbearkey -t ecdsa -f dropbear_ecdsa_host_key
+when using ssh to connect to the server, if host key verfication failed, then try "ssh-keygen -R localhost". // is it possible to use the same hostkey for both dropbear and ssh?
