@@ -1,0 +1,4 @@
+http://pserv.sourceforge.net/ 
+./configure; make; make install
+sudo mkdir/usr/local/var/log/
+wget localhost:8080
