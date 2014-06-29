@@ -18,6 +18,7 @@
 FILE *flog;
 FILE *configFile;
 extern short *addr;
+extern void _StraightTaint_log(short);
 #define DFT
 
 /*
@@ -203,6 +204,11 @@ short * _StraightTaint_init (short ** ptrToAddr)
 static inline void do_StraightTaint_fork(int pid)
 {
     if (pid > 0) { //parent process
+#ifndef _HACK_LOG
+        _StraightTaint_log(0);
+        _StraightTaint_log(pid/65536);
+        _StraightTaint_log(pid%65536);
+#endif
         //do nothing
     } else if (pid == 0) { //child process
 #ifdef _HACK_LOG
@@ -230,6 +236,7 @@ snprintf(cmd,1024,"sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S
         }
         fclose(flogParent);
 #else
+
         buf = &buf1;
         addr = buf->start;
         sem_init(&(buf1.full), 0, 0);

@@ -29,7 +29,7 @@ Getopt::Long::Configure("no_ignorecase");
 
 my $prog = basename($0);
 
-my $compiler = q(wllvm);
+my $compiler = q(gcc);
 my $cflags = q( -DLINUX -O2 -Wall -DPR_SHARED_MODULE);
 my $cppflags = q();
 my $ltdl_ldflags = q();
