@@ -10,7 +10,8 @@ all:$(TARGET)
 $(TARGET):$(TARGET).s
 	gcc -g -pthread $^ -o $@ -L.. -L../openbsd-compat/  -fstack-protector-all -lssh -lopenbsd-compat  -lcrypto -ldl -lutil -lz -lnsl  -lcrypt -lresolv 
 $(TARGET).s:$(TARGET).bc
-	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -inline-log -inline< $^ > inline.bc
+	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -inline-log< $^ > inline.bc
+	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -inline< $^ > inline.bc
 	llc inline.bc -o $@
 
 $(TARGET).bc:$(NEWSRC).bc $(INIT).bc $(LOG).bc
@@ -23,7 +24,8 @@ $(LOG).bc:$(LOG).c
 	clang -g -c -emit-llvm $^ -o $@
 
 $(NEWSRC).bc:$(SRC).bc
-	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -inline -inst < $^ > $@
+	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -inline < $^ > $@
+	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -inst < $^ > $@
 
 clean:$(SRC).bc $(INIT).c $(LOG).c
 	rm $(TARGET) $(TARGET).s $(TARGET).bc
