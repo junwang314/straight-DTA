@@ -800,7 +800,7 @@
 /* #undef HAVE_LIBSECURITY */
 
 /* Define if you have the libtinfo library (-ltinfo).  */
-/* #undef HAVE_LIBTINFO */
+#define HAVE_LIBTINFO 1
 
 /* Define if you have the addrinfo struct.  */
 #define HAVE_STRUCT_ADDRINFO 1
