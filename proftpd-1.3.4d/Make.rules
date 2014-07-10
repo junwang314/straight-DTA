@@ -23,7 +23,7 @@ LIBTOOL=$(SHELL) $(top_builddir)/libtool
 RANLIB=ranlib
 
 CURSES_LIBS=
-UTILS_LIBS= -lsupp -lcrypt -ldl 
+UTILS_LIBS= -ltinfo -lsupp -lcrypt -ldl 
 
 INSTALL=/usr/bin/install -c
 INSTALL_USER=root

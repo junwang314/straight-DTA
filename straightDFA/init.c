@@ -14,7 +14,7 @@
 #include <assert.h>
 
 #include "log.h"
-
+FILE *Ferror;
 FILE *flog;
 FILE *configFile;
 extern short *addr;
@@ -74,6 +74,7 @@ pthread_t logger_thread;
 
 short * _StraightTaint_init (short ** ptrToAddr)
 {
+    Ferror=fopen("LoggingError","w+");
 #ifndef _HACK_LOG
     //int uid = getuid();
     //if (uid != 0) {
@@ -110,10 +111,18 @@ short * _StraightTaint_init (short ** ptrToAddr)
     //printf("buffer 1: start %p end %p size %.1fMB\n", buf1.start, buf1.end, (buf1.end-buf1.start)*2.0/1024/1024);
     //printf("buffer 2: start %p end %p size %.1fMB\n", buf2.start, buf2.end, (buf2.end-buf2.start)*2.0/1024/1024);
 
-    atexit(_StraightTaint_logger_thread_terminate);
+    int regExit=atexit(_StraightTaint_logger_thread_terminate);
+    if(regExit)
+    {
+      fprintf(Ferror,"Failed in registering atexit() returns %d. pid: %d\n",getpid(), regExit);
+      fflush(Ferror);
+      exit(-1);
+    }
     if ( pthread_create(&logger_thread, NULL, _StraightTaint_logger_thread, NULL) ){
         perror("failed to create logger thread");
-        exit(0);
+        fprintf(Ferror,"failed to create logger thread. pid: %d\n",getpid());
+	fflush(Ferror);
+	exit(0);
     }
     //printf("init complete...\n");
     return buf->start;
@@ -250,18 +259,31 @@ snprintf(cmd,1024,"sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S
         char filename[1024];
         snprintf(filename, 1024, "tmp.%d", pid);
         flog = fopen(filename, "w+");
-        assert(flog);
+        fprintf(Ferror,"tmpfilename: %s. flog:%p. pid: %d\n",filename, flog, getpid());
+        fflush(Ferror);
+	assert(flog);
         //configFile=fopen("configFile","w+");
         fprintf(configFile,"%s\n",filename);
         fflush(configFile);
         //printf("buffer 1: start %p end %p size %.1fMB\n", buf1.start, buf1.end, (buf1.end-buf1.start)*2.0/1024/1024);
         //printf("buffer 2: start %p end %p size %.1fMB\n", buf2.start, buf2.end, (buf2.end-buf2.start)*2.0/1024/1024);
 
-        atexit(_StraightTaint_logger_thread_terminate);
+        int regExit=atexit(_StraightTaint_logger_thread_terminate);
+        if(regExit)
+	{
+	  fprintf(Ferror,"Failed in registering atexit() returns %d. pid: %d\n",getpid(), regExit);
+          fflush(Ferror);
+          exit(-1);
+	}
         if ( pthread_create(&logger_thread, NULL, _StraightTaint_logger_thread, NULL) ){
             perror("failed to create logger thread");
-            exit(0);
+            fprintf(Ferror,"failed to create logger thread. pid: %d\n",getpid());
+            fflush(Ferror);
+	    exit(0);
         }
+        fprintf(Ferror,"In fork: create logger thread. pid: %d\n",getpid());
+        fflush(Ferror);
+
 #endif
     } else {
         assert(0);

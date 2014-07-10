@@ -12,7 +12,7 @@
 #include "log.h"
 
 extern short *addr;
-
+extern FILE *Ferror;
 extern FILE *configFile; 
 extern FILE *flog;
 
@@ -63,6 +63,9 @@ void _StraightTaint_log(short BBID)
 
 void *_StraightTaint_logger_thread(void *arg)
 {
+    fprintf(Ferror,"create logger thread. pid: %d\n",getpid());
+    fflush(Ferror);
+
     sigset_t set;
     int s;
     sigfillset(&set);
@@ -91,6 +94,9 @@ void *_StraightTaint_logger_thread(void *arg)
 
 void _StraightTaint_logger_thread_terminate(void)
 {
+    fprintf(Ferror,"terminate logger thread. pid: %d\n",getpid());
+    fflush(Ferror);
+
     buf->cursor = addr;
     buf->next = NULL;    
     sem_post(&(buf->full));

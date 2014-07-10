@@ -25,10 +25,10 @@
 	.file	4 "/usr/include/x86_64-linux-gnu/bits/semaphore.h"
 	.file	5 "../../straightDFA/log.c"
 	.text
-	.globl	_Z8myListenv
+	.globl	myListen
 	.align	16, 0x90
-	.type	_Z8myListenv,@function
-_Z8myListenv:                           # @_Z8myListenv
+	.type	myListen,@function
+myListen:                               # @myListen
 	.cfi_startproc
 # BB#0:                                 # %entry
 	pushq	%rbp
@@ -44,7 +44,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	pushq	%r13
 	pushq	%r12
 	pushq	%rbx
-	subq	$56, %rsp
+	subq	$72, %rsp
 .Ltmp6:
 	.cfi_offset %rbx, -56
 .Ltmp7:
@@ -98,28 +98,34 @@ _Z8myListenv:                           # @_Z8myListenv
 .LBB0_3:                                # %_StraightTaint_log.exit
 	movq	%rsp, %rcx
 	leaq	-16(%rcx), %rax
-	movq	%rcx, %r15
-	movq	%rax, -64(%rbp)         # 8-byte Spill
+	movq	%rcx, %rbx
+	movq	%rax, -56(%rbp)         # 8-byte Spill
 	movq	%rax, %rsp
-	movq	%rax, -80(%rbp)         # 8-byte Spill
+	movq	%rax, -88(%rbp)         # 8-byte Spill
 	leaq	-16(%rax), %r13
 	movq	%r13, %rsp
-	movq	%rsp, %rbx
-	leaq	-16(%rbx), %rax
-	movq	%rax, -72(%rbp)         # 8-byte Spill
-	movq	%rax, %rsp
 	movq	%rsp, %r12
-	addq	$-16, %r12
-	movq	%r12, %rsp
+	leaq	-16(%r12), %rax
+	movq	%rax, -80(%rbp)         # 8-byte Spill
+	movq	%rax, %rsp
+	addq	$-16, %rax
+	movq	%rax, -96(%rbp)         # 8-byte Spill
+	movq	%rax, %rsp
 	movq	%rsp, %r14
 	addq	$-16, %r14
 	movq	%r14, %rsp
+	movq	%rsp, %r15
+	addq	$-16, %r15
+	movq	%r15, %rsp
 	movq	%rsp, %rax
 	addq	$-16, %rax
-	movq	%rax, -56(%rbp)         # 8-byte Spill
+	movq	%rax, -104(%rbp)        # 8-byte Spill
 	movq	%rax, %rsp
 	addq	$-16, %rax
-	movq	%rax, -88(%rbp)         # 8-byte Spill
+	movq	%rax, -64(%rbp)         # 8-byte Spill
+	movq	%rax, %rsp
+	addq	$-16, %rax
+	movq	%rax, -72(%rbp)         # 8-byte Spill
 	movq	%rax, %rsp
 	callq	getpid
 	movl	%eax, %ecx
@@ -127,8 +133,8 @@ _Z8myListenv:                           # @_Z8myListenv
 	xorl	%eax, %eax
 	movl	%ecx, %esi
 	callq	printf
-	movl	$0, -16(%r15)
-	movq	-80(%rbp), %rax         # 8-byte Reload
+	movl	$0, -16(%rbx)
+	movq	-88(%rbp), %rax         # 8-byte Reload
 	movl	$0, -16(%rax)
 	movl	$20149999, %edi         # imm = 0x13376EF
 	xorl	%esi, %esi
@@ -137,25 +143,26 @@ _Z8myListenv:                           # @_Z8myListenv
 	movl	$1, %esi
 	xorl	%edx, %edx
 	callq	socket
-	movl	%eax, -16(%r15)
+	movl	%eax, -16(%rbx)
 	movl	$.L.str1, %edi
 	xorl	%eax, %eax
 	callq	printf
 	movabsq	$3472328296227680304, %rax # imm = 0x3030303030303030
-	movq	%rax, -8(%rbx)
-	movq	%rax, -16(%rbx)
-	movw	$2, -16(%rbx)
+	movq	%r12, %rcx
+	movq	%rax, -8(%rcx)
+	movq	%rax, -16(%rcx)
+	movw	$2, -16(%rcx)
 	xorl	%edi, %edi
 	callq	htonl
-	movl	%eax, -12(%rbx)
+	movl	%eax, -12(%r12)
 	movl	$5000, %edi             # imm = 0x1388
 	callq	htons
-	movw	%ax, -14(%rbx)
-	movl	-16(%r15), %edi
+	movw	%ax, -14(%r12)
+	movl	-16(%rbx), %edi
 	movl	$16, %edx
-	movq	-72(%rbp), %rsi         # 8-byte Reload
+	movq	-80(%rbp), %rsi         # 8-byte Reload
 	callq	bind
-	movl	-16(%r15), %edi
+	movl	-16(%rbx), %edi
 	movl	$10, %esi
 	callq	listen
 	cmpl	$-1, %eax
@@ -205,6 +212,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	movl	$.L.str5, %edi
 	xorl	%eax, %eax
 	callq	printf
+	movq	-96(%rbp), %r12         # 8-byte Reload
 	movl	$0, (%r12)
 	jmp	.LBB0_12
 	.align	16, 0x90
@@ -257,7 +265,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	callq	sem_wait
 .LBB0_15:                               # %_StraightTaint_log.exit57
                                         #   in Loop: Header=BB0_12 Depth=1
-	cmpl	$1, (%r12)
+	cmpl	$2, (%r12)
 	jg	.LBB0_68
 # BB#16:                                # %for.body
                                         #   in Loop: Header=BB0_12 Depth=1
@@ -308,7 +316,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	movl	$.L.str6, %edi
 	xorl	%eax, %eax
 	callq	printf
-	movq	-64(%rbp), %rax         # 8-byte Reload
+	movq	-56(%rbp), %rax         # 8-byte Reload
 	movl	(%rax), %ebx
 	movl	$20149999, %edi         # imm = 0x13376EF
 	xorl	%esi, %esi
@@ -428,7 +436,9 @@ _Z8myListenv:                           # @_Z8myListenv
 	callq	sem_wait
 .LBB0_35:                               # %_StraightTaint_log.exit152
                                         #   in Loop: Header=BB0_12 Depth=1
-	movq	-56(%rbp), %rdi         # 8-byte Reload
+	movq	-64(%rbp), %rax         # 8-byte Reload
+	movq	%r15, (%rax)
+	movq	%r15, %rdi
 	callq	wait
 	cmpl	$-1, %eax
 	movl	%eax, (%r14)
@@ -530,10 +540,12 @@ _Z8myListenv:                           # @_Z8myListenv
 	callq	sem_wait
 .LBB0_43:                               # %_StraightTaint_log.exit190
                                         #   in Loop: Header=BB0_12 Depth=1
-	movq	-56(%rbp), %rax         # 8-byte Reload
-	testb	$127, (%rax)
+	movl	(%r15), %eax
+	movq	-72(%rbp), %rcx         # 8-byte Reload
+	movl	%eax, (%rcx)
+	testb	$127, (%rcx)
 	jne	.LBB0_48
-# BB#44:                                # %if.then34
+# BB#44:                                # %if.then35
                                         #   in Loop: Header=BB0_12 Depth=1
 	movw	$12, -44(%rbp)
 	.loc	5 38 0                  # ../../straightDFA/log.c:38:0
@@ -587,7 +599,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	callq	printf
 	jmp	.LBB0_52
 	.align	16, 0x90
-.LBB0_48:                               # %if.else37
+.LBB0_48:                               # %if.else38
                                         #   in Loop: Header=BB0_12 Depth=1
 	movw	$13, -44(%rbp)
 	.loc	5 38 0                  # ../../straightDFA/log.c:38:0
@@ -636,7 +648,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	movl	$.L.str13, %edi
 	xorl	%eax, %eax
 	callq	printf
-.LBB0_52:                               # %if.end39
+.LBB0_52:                               # %if.end40
                                         #   in Loop: Header=BB0_12 Depth=1
 	movw	$14, -44(%rbp)
 	.loc	5 38 0                  # ../../straightDFA/log.c:38:0
@@ -681,7 +693,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	addq	$64, %rdi
 	callq	sem_wait
 	.align	16, 0x90
-.LBB0_55:                               # %if.end40
+.LBB0_55:                               # %if.end41
                                         #   in Loop: Header=BB0_12 Depth=1
 	movw	$15, -44(%rbp)
 	.loc	5 38 0                  # ../../straightDFA/log.c:38:0
@@ -725,7 +737,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	movq	buf(%rip), %rdi
 	addq	$64, %rdi
 	callq	sem_wait
-.LBB0_58:                               # %if.end42
+.LBB0_58:                               # %if.end43
                                         #   in Loop: Header=BB0_12 Depth=1
 	movl	$1, %edi
 	callq	sleep
@@ -771,7 +783,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	movq	buf(%rip), %rdi
 	addq	$64, %rdi
 	callq	sem_wait
-.LBB0_61:                               # %if.end43
+.LBB0_61:                               # %if.end44
                                         #   in Loop: Header=BB0_12 Depth=1
 	movw	$17, -44(%rbp)
 	.loc	5 38 0                  # ../../straightDFA/log.c:38:0
@@ -910,7 +922,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	xorl	%esi, %esi
 	callq	dup2
 	movl	%eax, %ecx
-	movq	-88(%rbp), %rax         # 8-byte Reload
+	movq	-104(%rbp), %rax        # 8-byte Reload
 	movl	%ecx, (%rax)
 	movl	$.L.str10, %edi
 	xorl	%eax, %eax
@@ -922,7 +934,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	callq	printf
 	movl	(%r13), %edi
 	callq	close
-	movq	-64(%rbp), %rax         # 8-byte Reload
+	movq	-56(%rbp), %rax         # 8-byte Reload
 	movl	(%rax), %edi
 	callq	close
 	leaq	-40(%rbp), %rsp
@@ -984,7 +996,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	movl	$.L.str3, %edi
 	movl	$.L.str4, %esi
 	movl	$31, %edx
-	movl	$.L__PRETTY_FUNCTION__._Z8myListenv, %ecx
+	movl	$.L__PRETTY_FUNCTION__.myListen, %ecx
 	callq	__assert_fail
 .LBB0_68:                               # %for.end
 	movw	$19, -44(%rbp)
@@ -1031,7 +1043,7 @@ _Z8myListenv:                           # @_Z8myListenv
 	movq	%rax, %rdi
 	callq	sem_wait
 .LBB0_71:                               # %_StraightTaint_log.exit342
-	movq	-64(%rbp), %rax         # 8-byte Reload
+	movq	-56(%rbp), %rax         # 8-byte Reload
 	movl	(%rax), %eax
 	movl	%eax, %edi
 	callq	close
@@ -1085,10 +1097,10 @@ _Z8myListenv:                           # @_Z8myListenv
 	movl	$.L.str3, %edi
 	movl	$.L.str4, %esi
 	movl	$46, %edx
-	movl	$.L__PRETTY_FUNCTION__._Z8myListenv, %ecx
+	movl	$.L__PRETTY_FUNCTION__.myListen, %ecx
 	callq	__assert_fail
 .Ltmp11:
-	.size	_Z8myListenv, .Ltmp11-_Z8myListenv
+	.size	myListen, .Ltmp11-myListen
 	.cfi_endproc
 
 	.globl	main
@@ -1196,7 +1208,7 @@ main:                                   # @main
 	movl	$.L.str14, %edi
 	xorl	%eax, %eax
 	callq	printf
-	callq	_Z8myListenv
+	callq	myListen
 	xorl	%edi, %edi
 	movl	$1025, %edx             # imm = 0x401
 	xorl	%ecx, %ecx
@@ -1305,7 +1317,7 @@ main:                                   # @main
 	testl	%eax, %eax
 	movl	%eax, (%r12)
 	jle	.LBB1_22
-# BB#11:                                # %cond.true10
+# BB#11:                                # %cond.true12
 	movw	$25, -42(%rbp)
 	.loc	5 38 0                  # ../../straightDFA/log.c:38:0
 	movq	addr(%rip), %rax
@@ -1346,7 +1358,7 @@ main:                                   # @main
 	movq	buf(%rip), %rdi
 	addq	$64, %rdi
 	callq	sem_wait
-.LBB1_14:                               # %cond.end12
+.LBB1_14:                               # %cond.end14
 	movw	$28, -42(%rbp)
 	.loc	5 38 0                  # ../../straightDFA/log.c:38:0
 	movq	addr(%rip), %rax
@@ -1477,7 +1489,7 @@ main:                                   # @main
 	movl	$89, %edx
 	movl	$.L__PRETTY_FUNCTION__.main, %ecx
 	callq	__assert_fail
-.LBB1_22:                               # %cond.false11
+.LBB1_22:                               # %cond.false13
 	movw	$26, -42(%rbp)
 	.loc	5 38 0                  # ../../straightDFA/log.c:38:0
 	movq	addr(%rip), %rax
@@ -2333,13 +2345,13 @@ _StraightTaint_logger_thread_terminate: # @_StraightTaint_logger_thread_terminat
 
 	.type	.L.str4,@object         # @.str4
 .L.str4:
-	.asciz	"server.cpp"
-	.size	.L.str4, 11
+	.asciz	"server.c"
+	.size	.L.str4, 9
 
-	.type	.L__PRETTY_FUNCTION__._Z8myListenv,@object # @__PRETTY_FUNCTION__._Z8myListenv
-.L__PRETTY_FUNCTION__._Z8myListenv:
+	.type	.L__PRETTY_FUNCTION__.myListen,@object # @__PRETTY_FUNCTION__.myListen
+.L__PRETTY_FUNCTION__.myListen:
 	.asciz	"void myListen()"
-	.size	.L__PRETTY_FUNCTION__._Z8myListenv, 16
+	.size	.L__PRETTY_FUNCTION__.myListen, 16
 
 	.type	.L.str5,@object         # @.str5
 .L.str5:
@@ -4088,6 +4100,7 @@ _StraightTaint_logger_thread_terminate: # @_StraightTaint_logger_thread_terminat
 	.quad	0                       # ARange terminator
 	.quad	0
 	.section	.debug_ranges,"",@progbits
+.Lgnu_ranges1:
 .Lgnu_ranges0:
 .Ldebug_ranges0:
 	.quad	.Ltmp73
@@ -4110,7 +4123,6 @@ _StraightTaint_logger_thread_terminate: # @_StraightTaint_logger_thread_terminat
 	.quad	.Ltmp81
 	.quad	0
 	.quad	0
-.Lgnu_ranges1:
 	.section	.debug_macinfo,"",@progbits
 	.section	.debug_pubnames,"",@progbits
 .Lset2 = .Lpubnames_end0-.Lpubnames_begin0 # Length of Public Names Info
