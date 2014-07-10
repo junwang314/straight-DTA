@@ -31,7 +31,15 @@ clean:$(SRC).bc $(INIT).c $(LOG).c
 	touch $^
 
 run:$(TARGET)
-	sudo ./pserv
+	sudo auditctl -D
+	sleep 1
+	sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S bind -S connect -S accept -S kill -S close
+	sleep 2
+	sudo auditctl -l
+	sleep 5
+	sudo strace -f -o pserv.strace ./pserv
+	sleep 1
+	sudo auditctl -D
 
 view:$(TARGET).bc
 	llvm-dis $^ -o $(TARGET).ll
