@@ -31,7 +31,15 @@ clean:$(SRC).bc $(INIT).c $(LOG).c
 	touch $^
 
 run:$(TARGET)
-	python client.py
+	sudo auditctl -D
+	sleep 1
+	sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S bind -S connect -S accept -S kill -S close
+	sleep 1
+	sudo auditctl -l
+	sleep 1
+	sudo strace -f -o vsftpd.strace ./vsftpd
+	sleep 1
+	sudo auditctl -D
 
 view:$(TARGET).bc
 	llvm-dis $^ -o $(TARGET).ll
