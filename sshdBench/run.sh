@@ -1,4 +1,4 @@
-for i in 1
+for i in 1 2
 do
 	echo $i
 	scp ../genFile/file_1MB root@130.203.157.226:/root/file_1MB
