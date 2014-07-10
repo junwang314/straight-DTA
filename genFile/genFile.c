@@ -19,9 +19,9 @@ int main(int argc, char** argv)
 		sprintf(fName,"file_%dMB\0",size);
 		printf("generat %s\n",fName);
 		outF=fopen(fName,"w+");
-		for(int j=0; j<size*8; j++)
+		for(int j=0; j<size; j++)
 		{
-			fwrite(outF, 1024, 1024,outF);
+			fwrite(buf, 1024, 1024,outF);
 		}
 		fclose(outF);
 	}
