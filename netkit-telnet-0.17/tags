@@ -1,0 +1,1024 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ADD	telnetd/state.c	1297;"	d	file:
+ADD_DATA	telnetd/state.c	1298;"	d	file:
+AMBIGUOUS	telnet/genget.h	4;"	d
+ARCH32	telnetd/sys_term.c	55;"	d	file:
+ARCH64	telnetd/sys_term.c	54;"	d	file:
+ARRAY_H	telnet/array.h	36;"	d
+Argv	telnetd/setproctitle.c	/^static char **Argv = NULL;		\/* pointer to argument vector *\/$/;"	v	file:
+Argv0	telnetd/setproctitle.c	/^static char Argv0[128];			\/* program name *\/$/;"	v	file:
+B115200	telnet/terminal.cc	544;"	d	file:
+B19200	telnet/terminal.cc	532;"	d	file:
+B38400	telnet/terminal.cc	536;"	d	file:
+B57600	telnet/terminal.cc	540;"	d	file:
+BIND	telnet/commands.cc	1844;"	d	file:
+BIND2	telnet/commands.cc	1845;"	d	file:
+BINDS	telnet/commands.cc	1846;"	d	file:
+BSD	telnet/externs.h	38;"	d
+BYTES_PER_LINE	telnet/utilities.cc	91;"	d	file:
+CONTROL	telnet/defines.h	52;"	d
+ClearArray	telnet/general.h	46;"	d
+ClearElement	telnet/general.h	45;"	d
+Clocks	telnet/types.h	/^} Clocks;$/;"	t	typeref:struct:__anon5
+DEFAULT_IM	telnetd/ext.h	212;"	d
+DIAG	telnetd/telnetd.h	43;"	d
+DIAG	telnetd/telnetd.h	45;"	d
+DataToNetwork	telnet/tn3270.cc	/^int DataToNetwork(char *buffer, int count, int done) {$/;"	f
+DataToTerminal	telnet/tn3270.cc	/^int DataToTerminal(char *buffer, int count) {$/;"	f
+Dump	telnet/utilities.cc	/^void Dump(int direction, char *buffer, int length) {$/;"	f
+ENV_VALUE	telnet/defines.h	38;"	d
+ENV_VALUE	telnetd/defs.h	44;"	d
+ENV_VAR	telnet/defines.h	37;"	d
+ENV_VAR	telnetd/defs.h	43;"	d
+EmptyTerminal	telnet/terminal.cc	/^void EmptyTerminal(void) {$/;"	f
+EnvList	telnet/commands.cc	/^struct envcmd EnvList[] = {$/;"	v	typeref:struct:envcmd
+Exit	telnet/utilities.cc	/^void Exit(int returnCode) {$/;"	f
+ExitString	telnet/utilities.cc	/^void ExitString(const char *string, int returnCode) {$/;"	f
+FD_CLR	telnet/fdset.h	46;"	d
+FD_ISSET	telnet/fdset.h	47;"	d
+FD_SET	telnet/fdset.h	45;"	d
+FD_ZERO	telnet/fdset.h	48;"	d
+Finish3270	telnet/tn3270.cc	/^void Finish3270(void) {$/;"	f
+GETMODECMD	telnet/commands.cc	1168;"	d	file:
+GETSEND	telnet/commands.cc	374;"	d	file:
+GETTOGGLE	telnet/commands.cc	778;"	d	file:
+HAS_IPPROTO_IP	telnet/commands.cc	78;"	d	file:
+HAS_IPPROTO_IP	telnet/netlink.cc	18;"	d	file:
+HAS_IPPROTO_IP	telnetd/telnetd.c	68;"	d	file:
+HELP	telnet/genget.h	5;"	d
+HELPINDENT	telnet/commands.cc	87;"	d	file:
+HIS_STATE_DO	telnet/externs.h	143;"	d
+HIS_STATE_DO	telnetd/defs.h	191;"	d
+HIS_STATE_WILL	telnet/externs.h	141;"	d
+HIS_STATE_WILL	telnetd/defs.h	189;"	d
+HIS_WANT_STATE_DO	telnet/externs.h	144;"	d
+HIS_WANT_STATE_DO	telnetd/defs.h	192;"	d
+HIS_WANT_STATE_WILL	telnet/externs.h	142;"	d
+HIS_WANT_STATE_WILL	telnetd/defs.h	190;"	d
+HaveInput	telnet/tn3270.cc	/^int HaveInput;		\/* There is input available to scan *\/$/;"	v
+ISend	telnet/telnet.cc	/^  ISend,		\/* trying to send network data in *\/$/;"	v
+Ibackp	telnet/tn3270.cc	/^char Ibuf[8*BUFSIZ], *Ifrontp, *Ibackp;$/;"	v
+Ibuf	telnet/tn3270.cc	/^char Ibuf[8*BUFSIZ], *Ifrontp, *Ibackp;$/;"	v
+Ifrontp	telnet/tn3270.cc	/^char Ibuf[8*BUFSIZ], *Ifrontp, *Ibackp;$/;"	v
+In3270	telnet/telnet.cc	/^  In3270,		\/* Are we in 3270 mode? *\/$/;"	v
+KLUDGE_LINEMODE	telnetd/defs.h	110;"	d
+LOG_DAEMON	telnetd/defs.h	70;"	d
+LOG_ODELAY	telnetd/defs.h	74;"	d
+LOWER	telnet/genget.cc	45;"	d	file:
+LastArgv	telnetd/setproctitle.c	/^static char *LastArgv = NULL;		\/* end of argv *\/$/;"	v	file:
+MAXHOSTNAMELEN	telnet/commands.cc	90;"	d	file:
+MAXHOSTNAMELEN	telnetd/telnetd.c	599;"	d	file:
+MODE_COMMAND_LINE	telnet/defines.h	50;"	d
+MODE_LOCAL_CHARS	telnet/defines.h	48;"	d
+MODE_LOCAL_ECHO	telnet/defines.h	49;"	d
+MY_STATE_DO	telnet/externs.h	110;"	d
+MY_STATE_DO	telnetd/defs.h	145;"	d
+MY_STATE_WILL	telnet/externs.h	108;"	d
+MY_STATE_WILL	telnetd/defs.h	143;"	d
+MY_WANT_STATE_DO	telnet/externs.h	111;"	d
+MY_WANT_STATE_DO	telnetd/defs.h	146;"	d
+MY_WANT_STATE_WILL	telnet/externs.h	109;"	d
+MY_WANT_STATE_WILL	telnetd/defs.h	144;"	d
+ModeList	telnet/commands.cc	/^static struct modelist ModeList[] = {$/;"	v	typeref:struct:modelist	file:
+Modelist	telnet/types.h	/^} Modelist;$/;"	t	typeref:struct:__anon4
+N	telnet/commands.cc	868;"	d	file:
+N	telnet/commands.cc	887;"	d	file:
+NET2ADD	telnet/ring.h	110;"	d
+NETADD	telnet/ring.h	109;"	d
+NETSLOP	telnetd/defs.h	96;"	d
+NIACCUM	telnetd/defs.h	98;"	d
+NO_LINEMODE	telnetd/defs.h	111;"	d
+NULL	telnet/array.h	43;"	d
+NULL	telnet/ptrarray.h	43;"	d
+NetSetPgrp	telnet/sys_bsd.cc	/^void NetSetPgrp(int fd) {$/;"	f
+NetSigIO	telnet/sys_bsd.cc	/^void NetSigIO(int fd, int onoff) {$/;"	f
+NetTrace	telnet/utilities.cc	/^FILE *NetTrace = 0;		\/* Not in bss, since needs to stay *\/ \/* ? *\/$/;"	v
+NetTraceFile	telnet/utilities.cc	/^char NetTraceFile[256] = "(standard output)";$/;"	v
+OBJS	telnet/Makefile	/^OBJS = $(patsubst %.cc, %.o, $(SRCS))$/;"	m
+OBJS	telnetd/Makefile	/^OBJS = telnetd.o state.o termstat.o slc.o sys_term.o utility.o \\$/;"	m
+OBJS	telnetlogin/Makefile	/^OBJS = telnetlogin.o$/;"	m
+OPT_REPLY_SIZE	telnet/telnet.cc	1145;"	d	file:
+OXTABS	telnetd/sys_term.c	475;"	d	file:
+PRINTOPTIONS	telnetd/utility.c	40;"	d	file:
+PTRARRAY_H	telnet/ptrarray.h	36;"	d
+PUTSHORT	telnet/telnet.cc	2036;"	d	file:
+Push3270	telnet/tn3270.cc	/^int Push3270(void) {$/;"	f
+REAL_LINEMODE	telnetd/defs.h	109;"	d
+SBTERMMODEL	telnet/tn3270.cc	69;"	d	file:
+SB_ACCUM	telnet/telnet.cc	77;"	d	file:
+SB_ACCUM	telnetd/state.c	59;"	d	file:
+SB_CLEAR	telnet/telnet.cc	75;"	d	file:
+SB_CLEAR	telnetd/state.c	57;"	d	file:
+SB_EOF	telnet/telnet.cc	83;"	d	file:
+SB_EOF	telnetd/state.c	63;"	d	file:
+SB_GET	telnet/telnet.cc	81;"	d	file:
+SB_GET	telnetd/state.c	62;"	d	file:
+SB_LEN	telnet/telnet.cc	84;"	d	file:
+SB_LEN	telnetd/state.c	64;"	d	file:
+SB_PEEK	telnet/telnet.cc	82;"	d	file:
+SB_TERM	telnet/telnet.cc	76;"	d	file:
+SB_TERM	telnetd/state.c	58;"	d	file:
+SLC_EXPORT	telnet/telnet.cc	861;"	d	file:
+SLC_IMPORT	telnet/telnet.cc	860;"	d	file:
+SLC_NAMES	telnet/utilities.cc	42;"	d	file:
+SLC_NAMES	telnetd/defs.h	50;"	d
+SLC_RVALUE	telnet/telnet.cc	862;"	d	file:
+SRCS	telnet/Makefile	/^SRCS = commands.cc main.cc network.cc ring.cc sys_bsd.cc telnet.cc \\$/;"	m
+SUB	Makefile	/^SUB =   telnet telnetd$/;"	m
+SUBBUFSIZE	telnet/externs.h	59;"	d
+SYNCHing	telnet/telnet.cc	/^  SYNCHing,	\/* we are in TELNET SYNCH mode *\/$/;"	v
+SYNCHing	telnetd/global.c	/^int	SYNCHing;		\/* we are in TELNET SYNCH mode *\/$/;"	v
+Scheduler	telnet/telnet.cc	/^int Scheduler(int block) {$/;"	f
+Sendlist	telnet/commands.cc	/^static struct sendlist Sendlist[] = {$/;"	v	typeref:struct:sendlist	file:
+Sent3270TerminalType	telnet/tn3270.cc	/^static int Sent3270TerminalType;	\/* Have we said we are a 3270? *\/$/;"	v	file:
+SetForExit	telnet/utilities.cc	/^void SetForExit(void) {$/;"	f
+SetIn3270	telnet/defines.h	44;"	d
+SetIn3270	telnet/tn3270.cc	/^void SetIn3270(void) {$/;"	f
+SetNetTrace	telnet/utilities.cc	/^void SetNetTrace(const char *file) {$/;"	f
+Setlist	telnet/commands.cc	/^static struct setlist Setlist[] = {$/;"	v	typeref:struct:setlist	file:
+Slcent	telnetd/defs.h	/^} slcent, *Slcent;$/;"	t	typeref:struct:__anon1
+Slcfun	telnetd/defs.h	/^} slcfun, *Slcfun;$/;"	t	typeref:struct:__anon2
+StringToTerminal	telnet/tn3270.cc	/^void StringToTerminal(char *s) {$/;"	f
+TCSADRAIN	telnet/terminal.cc	239;"	d	file:
+TCSADRAIN	telnet/terminal.cc	244;"	d	file:
+TCSADRAIN	telnet/terminal.cc	249;"	d	file:
+TCSANOW	telnet/terminal.cc	238;"	d	file:
+TCSANOW	telnet/terminal.cc	243;"	d	file:
+TCSANOW	telnet/terminal.cc	248;"	d	file:
+TCSIG	telnetd/telnetd.c	1089;"	d	file:
+TD_EXERCISE	telnetd/defs.h	133;"	d
+TD_NETDATA	telnetd/defs.h	134;"	d
+TD_OPTIONS	telnetd/defs.h	136;"	d
+TD_PTYDATA	telnetd/defs.h	135;"	d
+TD_REPORT	telnetd/defs.h	132;"	d
+TELCMDS	telnet/utilities.cc	41;"	d	file:
+TELCMDS	telnetd/defs.h	49;"	d
+TELOPTS	telnet/utilities.cc	40;"	d	file:
+TELOPTS	telnetd/defs.h	48;"	d
+TELOPT_ENVIRON	telnet/defines.h	39;"	d
+TELOPT_ENVIRON	telnetd/defs.h	45;"	d
+TS_CR	telnet/telnet.cc	135;"	d	file:
+TS_CR	telnetd/state.c	73;"	d	file:
+TS_DATA	telnet/telnet.cc	129;"	d	file:
+TS_DATA	telnetd/state.c	71;"	d	file:
+TS_DO	telnet/telnet.cc	133;"	d	file:
+TS_DO	telnetd/state.c	78;"	d	file:
+TS_DONT	telnet/telnet.cc	134;"	d	file:
+TS_DONT	telnetd/state.c	79;"	d	file:
+TS_IAC	telnet/telnet.cc	130;"	d	file:
+TS_IAC	telnetd/state.c	72;"	d	file:
+TS_SB	telnet/telnet.cc	136;"	d	file:
+TS_SB	telnetd/state.c	74;"	d	file:
+TS_SE	telnet/telnet.cc	137;"	d	file:
+TS_SE	telnetd/state.c	75;"	d	file:
+TS_WILL	telnet/telnet.cc	131;"	d	file:
+TS_WILL	telnetd/state.c	76;"	d	file:
+TS_WONT	telnet/telnet.cc	132;"	d	file:
+TS_WONT	telnetd/state.c	77;"	d	file:
+TTYADD	telnet/terminal.h	1;"	d
+TTYBYTES	telnet/terminal.h	2;"	d
+TTYROOM	telnet/terminal.h	3;"	d
+TerminalAutoFlush	telnet/terminal.cc	/^TerminalAutoFlush(void)$/;"	f
+TerminalDefaultChars	telnet/terminal.cc	/^void TerminalDefaultChars(void) {$/;"	f
+TerminalFlushOutput	telnet/terminal.cc	/^TerminalFlushOutput()$/;"	f
+TerminalNewMode	telnet/terminal.cc	/^void TerminalNewMode(int f)$/;"	f
+TerminalRead	telnet/terminal.cc	/^static int TerminalRead(char *buf, int n) {$/;"	f	file:
+TerminalSaveState	telnet/terminal.cc	/^TerminalSaveState()$/;"	f
+TerminalSpecialChars	telnet/sys_bsd.cc	/^TerminalSpecialChars(int c)$/;"	f
+TerminalSpeeds	telnet/terminal.cc	/^void TerminalSpeeds(long *ispeed, long *ospeed) {$/;"	f
+TerminalWindowSize	telnet/terminal.cc	/^int TerminalWindowSize(long *rows, long *cols) {$/;"	f
+TerminalWrite	telnet/terminal.cc	/^static int TerminalWrite(const char *buf, int n) {$/;"	f	file:
+Togglelist	telnet/commands.cc	/^static struct togglelist Togglelist[] = {$/;"	v	typeref:struct:togglelist	file:
+VDISCARD	telnet/externs.h	242;"	d
+VDISCARD	telnetd/sys_term.c	161;"	d	file:
+_PATH_LOGIN	telnetd/pathnames.h	40;"	d
+_PATH_LOGIN	telnetlogin/telnetlogin.c	56;"	d	file:
+_POSIX_VDISABLE	telnetd/defs.h	87;"	d
+_POSIX_VDISABLE	telnetd/defs.h	89;"	d
+_clocks	telnetd/ext.h	/^extern struct _clocks {$/;"	s
+_gettermname	telnetd/telnetd.c	/^_gettermname(void)$/;"	f	file:
+_hostname	telnet/commands.cc	/^static char _hostname[MAXHOSTNAMELEN];$/;"	v	file:
+_putchar	telnet/tn3270.cc	/^void _putchar(char c) {$/;"	f
+_setlist_init	telnet/commands.cc	/^_setlist_init()$/;"	f
+_terminit	telnetd/termstat.c	/^static int _terminit = 0;$/;"	v	file:
+actionexplanation	telnet/commands.cc	/^    const char *actionexplanation;$/;"	m	struct:togglelist	file:
+add	telnet/array.h	/^    int add(const T &val) {$/;"	f	class:array
+add	telnet/ptrarray.h	/^    int add(T *val) {$/;"	f	class:ptrarray
+add_slc	telnetd/slc.c	/^void add_slc(char func, char flag, cc_t val) {$/;"	f
+add_slcbuf_char	telnetd/slc.c	/^static void add_slcbuf_char(unsigned char ch) {$/;"	f	file:
+add_slcbuf_raw_char	telnetd/slc.c	/^static void add_slcbuf_raw_char(unsigned char ch) {$/;"	f	file:
+addarg	telnetd/sys_term.c	/^static void addarg(struct argv_stuff *avs, const char *val) {$/;"	f	file:
+alwayslinemode	telnetd/global.c	/^int	alwayslinemode;	\/* command line option *\/$/;"	v
+arg1	telnet/commands.cc	/^	int	arg1;$/;"	m	struct:modelist	file:
+argc	telnetd/sys_term.c	/^   int argc;$/;"	m	struct:argv_stuff	file:
+argmax	telnetd/sys_term.c	/^   int argmax;$/;"	m	struct:argv_stuff	file:
+argv	telnetd/sys_term.c	/^   const char **argv;$/;"	m	struct:argv_stuff	file:
+argv_stuff	telnetd/sys_term.c	/^struct argv_stuff {$/;"	s	file:
+array	telnet/array.h	/^    array() { v=NULL; n=max=0; }$/;"	f	class:array
+array	telnet/array.h	/^class array {$/;"	c
+askedSGA	telnet/telnet.cc	/^  askedSGA = 0,	\/* We have talked about suppress go ahead *\/$/;"	v
+au_rcsid	telnet/authenc.cc	/^char au_rcsid[] = $/;"	v
+auth_level	telnetd/telnetd.c	/^int	auth_level = 0;$/;"	v
+autoflush	telnet/telnet.cc	/^  autoflush = 0,	\/* flush output when interrupting? *\/$/;"	v
+autologin	telnet/telnet.cc	/^  autologin = 0,	\/* Autologin anyone? *\/$/;"	v
+autosynch	telnet/telnet.cc	/^  autosynch,	\/* send interrupt characters with SYNCH? *\/$/;"	v
+ayt	telnet/sys_bsd.cc	/^void ayt(int sig) {$/;"	f
+ayt_status	telnet/commands.cc	/^void ayt_status(int) {$/;"	f
+baseline	telnetd/ext.h	/^    int baseline;		\/* time started to do timed action *\/$/;"	m	struct:_clocks
+bftpd	telnetd/global.c	/^int	bftpd;		\/* behave as bftp daemon *\/$/;"	v
+binding	telnet/ring.h	/^    datasink *binding;$/;"	m	class:ringbuf
+binmode	telnet/commands.cc	/^int binmode;$/;"	v
+bol	telnet/telnet.cc	/^static int bol = 1, local = 0;$/;"	v	file:
+bsd_rcsid	telnet/sys_bsd.cc	/^char bsd_rcsid[] = $/;"	v
+buf	telnet/ring.h	/^    char *buf;$/;"	m	class:ringbuf
+bye	telnet/commands.cc	/^static int bye(void) {$/;"	f	file:
+call	telnet/commands.cc	/^    int call(int argc, const char *argv[]) {$/;"	f	class:command_entry
+cc_t	telnet/externs.h	/^typedef unsigned char cc_t;$/;"	t
+cfgetispeed	telnet/terminal.cc	257;"	d	file:
+cfgetispeed	telnet/terminal.cc	259;"	d	file:
+cfgetospeed	telnet/terminal.cc	255;"	d	file:
+chan	telnet/netlink.cc	/^static netchannel chan;$/;"	v	file:
+chan1	telnet/terminal.cc	/^static ttysynk chan1;$/;"	v	file:
+chan2	telnet/netlink.cc	/^static netchannel2 chan2;$/;"	v	file:
+chan2	telnet/terminal.cc	/^static ttysorc chan2;$/;"	v	file:
+change_slc	telnetd/slc.c	/^void change_slc(char func, char flag, cc_t val) {$/;"	f
+charp	telnet/commands.cc	/^    cc_t *charp;			\/* where it is located at *\/$/;"	m	struct:setlist	file:
+check_a_hostname	telnetlogin/telnetlogin.c	/^static int check_a_hostname(char *hname) {$/;"	f	file:
+check_display	telnetlogin/telnetlogin.c	/^static int check_display(char *disp) {$/;"	f	file:
+check_posixly_correct	telnetlogin/telnetlogin.c	/^static int check_posixly_correct(char *val) {$/;"	f	file:
+check_remotehost	telnetlogin/telnetlogin.c	/^static int check_remotehost(char *val) {$/;"	f	file:
+check_slc	telnetd/slc.c	/^void check_slc(void) {$/;"	f
+check_term	telnetlogin/telnetlogin.c	/^static int check_term(char *termtype) {$/;"	f	file:
+clean	telnet/environ.cc	/^    void clean() { if (var) delete []var; if (value) delete []value; }$/;"	f	class:enviro
+cleanup	telnetd/sys_term.c	/^void cleanup(int sig) {$/;"	f
+clear	telnet/environ.cc	/^    void clear() { clean(); var = value = NULL; }$/;"	f	class:enviro
+clear_mark	telnet/ring.h	/^    void clear_mark() { marked = -1; }$/;"	f	class:ringbuf
+clearmode	telnet/commands.cc	/^int clearmode(int bit) {$/;"	f
+clientstat	telnetd/termstat.c	/^void clientstat(register int code, register int parm1, register int parm2)$/;"	f
+clocks	telnet/telnet.cc	/^Clocks clocks;$/;"	v
+clocks	telnetd/global.c	/^struct _clocks clocks;$/;"	v	typeref:struct:_clocks
+close	telnet/netlink.cc	/^void netlink::close(int doshutdown) {$/;"	f	class:netlink
+closehelp	telnet/commands.cc	/^	closehelp[] =	"close current connection",$/;"	v	file:
+cmd_rcsid	telnet/commands.cc	/^char cmd_rcsid[] = $/;"	v
+cmdrc	telnet/commands.cc	/^void cmdrc(const char *m1, const char *m2) {$/;"	f
+cmdtab	telnet/commands.cc	/^static ptrarray<command_entry> cmdtab;$/;"	v	file:
+cmdtab2	telnet/commands.cc	/^static ptrarray<command_entry> cmdtab2;$/;"	v	file:
+cmdtab_init	telnet/commands.cc	/^void cmdtab_init(void) {$/;"	f
+command	telnet/commands.cc	/^void command(int top, const char *tbuf, int cnt) {$/;"	f
+command_entry	telnet/commands.cc	/^    command_entry(const char *n, const char *e, $/;"	f	class:command_entry
+command_entry	telnet/commands.cc	/^    command_entry(const char *n, const char *e, command_table *sub) {$/;"	f	class:command_entry
+command_entry	telnet/commands.cc	/^    command_entry(const char *n, const char *e,$/;"	f	class:command_entry
+command_entry	telnet/commands.cc	/^class command_entry {$/;"	c	file:
+command_table	telnet/commands.cc	/^typedef ptrarray<command_entry> command_table;$/;"	t	file:
+connect	telnet/netlink.cc	/^int netlink::connect(int debug, struct hostent *host, $/;"	f	class:netlink
+connected	telnet/telnet.cc	/^  connected,$/;"	v
+control	telnet/commands.cc	/^static const char *control(cc_t c)$/;"	f	file:
+copy_termbuf	telnetd/sys_term.c	/^void copy_termbuf(char *cp, int len) {$/;"	f
+copyright	telnet/main.cc	/^char copyright[] =$/;"	v
+copyright	telnetd/telnetd.c	/^char copyright[] =$/;"	v
+copyright	telnetlogin/telnetlogin.c	/^char copyright[] =$/;"	v
+count	telnet/ring.h	/^    int count;  \/* chars presently stored in buffer *\/$/;"	m	class:ringbuf
+crlf	telnet/telnet.cc	/^  crlf,		\/* Should '\\r' be mapped to <CR><LF> (or <CR><NUL>)? *\/$/;"	v
+crmod	telnet/telnet.cc	/^  crmod,$/;"	v
+crmodhelp	telnet/commands.cc	/^static char	crmodhelp[] =	"deprecated command -- use 'toggle crmod' instead";$/;"	v	file:
+current	telnetd/defs.h	/^	slcent		current;	\/* the current settings *\/$/;"	m	struct:__anon2
+cursesdata	telnet/tn3270.cc	/^int cursesdata;		\/* Do we dump curses data? *\/$/;"	v
+datasink	telnet/ring.h	/^class datasink {$/;"	c
+deadpeer	telnet/sys_bsd.cc	/^static void deadpeer(int \/*sig*\/) {$/;"	f	file:
+debug	telnet/telnet.cc	/^  debug = 0,$/;"	v
+debug	telnetd/telnetd.c	/^int debug = 0;$/;"	v
+def_col	telnetd/termstat.c	/^int def_row = 0, def_col = 0;$/;"	v
+def_row	telnetd/termstat.c	/^int def_row = 0, def_col = 0;$/;"	v
+def_rspeed	telnetd/termstat.c	/^int def_tspeed = -1, def_rspeed = -1;$/;"	v
+def_slcbuf	telnetd/slc.c	/^static unsigned char *def_slcbuf = (unsigned char *)0;$/;"	v	file:
+def_slclen	telnetd/slc.c	/^static int def_slclen = 0;$/;"	v	file:
+def_tspeed	telnetd/termstat.c	/^int def_tspeed = -1, def_rspeed = -1;$/;"	v
+default_slc	telnetd/slc.c	/^void default_slc(void) {$/;"	f
+defer_terminit	telnetd/termstat.c	/^defer_terminit()$/;"	f
+deferslc	telnetd/slc.c	/^void deferslc(void) {$/;"	f
+define	telnet/environ.cc	/^    void define(const char *vr, const char *vl) {$/;"	f	class:enviro
+defset	telnetd/defs.h	/^	slcent		defset;		\/* the default settings *\/$/;"	m	struct:__anon2
+defval	telnetd/sys_term.c	116;"	d	file:
+describe	telnet/commands.cc	/^    void describe() {$/;"	f	class:command_entry
+devnull	telnet/ring.cc	/^class devnull : public datasink {$/;"	c	file:
+diagnostic	telnetd/global.c	/^int	diagnostic;	\/* telnet diagnostic capabilities *\/$/;"	v
+didnetreceive	telnet/types.h	/^    int didnetreceive;		\/* last time we read data from network *\/$/;"	m	struct:__anon5
+didnetreceive	telnetd/ext.h	/^    int didnetreceive;		\/* last time we read data from network *\/$/;"	m	struct:_clocks
+die	telnetlogin/telnetlogin.c	/^static void die(const char *fmt, ...) {$/;"	f	file:
+display	telnet/commands.cc	/^static int display(int argc, const char *argv[]) {$/;"	f	file:
+displayhelp	telnet/commands.cc	/^	displayhelp[] =	"display operating parameters",$/;"	v	file:
+do_dont_resp	telnet/telnet.cc	/^char	do_dont_resp[256];$/;"	v
+do_dont_resp	telnetd/global.c	/^char	do_dont_resp[256];$/;"	v
+do_opt_slc	telnetd/slc.c	/^void do_opt_slc(unsigned char  *ptr, int len) {$/;"	f
+do_slc_mode_export	telnet/commands.cc	/^static int do_slc_mode_export(void) {$/;"	f	file:
+dobye	telnet/commands.cc	/^static int dobye(int isfromquit) {$/;"	f	file:
+docharmode	telnet/commands.cc	/^static int docharmode(int) {$/;"	f	file:
+doclientstat	telnetd/state.c	/^static void doclientstat(void) {$/;"	f	file:
+doeof	telnetd/telnetd.c	/^void doeof(void) {$/;"	f
+doexport	telnet/environ.cc	/^    int doexport;       \/* 1 -> export with default list of variables *\/$/;"	m	class:enviro	file:
+doflush	telnet/telnet.cc	/^static void doflush(void) {$/;"	f	file:
+doit	telnetd/telnetd.c	/^doit(struct sockaddr_in *who)$/;"	f	file:
+dokludgemode	telnet/commands.cc	/^static int dokludgemode(int) {$/;"	f	file:
+dolinemode	telnet/commands.cc	/^static int dolinemode(int) {$/;"	f	file:
+dolmmode	telnet/commands.cc	/^static int dolmmode(int bit, int on) {$/;"	f	file:
+donebinarytoggle	telnet/telnet.cc	/^  donebinarytoggle,	\/* the user has put us in binary *\/$/;"	v
+donelclchars	telnet/telnet.cc	/^  donelclchars,	\/* the user has set "localchars" *\/$/;"	v
+dont	telnetd/state.c	/^static unsigned char dont[] = { IAC, DONT, '%', 'c', 0 };$/;"	v	file:
+dontlecho	telnet/telnet.cc	/^  dontlecho,	\/* do we suppress local echoing right now? *\/$/;"	v
+dontoption	telnet/telnet.cc	/^static void dontoption(int option) {$/;"	f	file:
+dontoption	telnetd/state.c	/^void dontoption(int option) {$/;"	f
+doopt	telnetd/state.c	/^static unsigned char doopt[] = { IAC, DO, '%', 'c', 0 };$/;"	v	file:
+dooption	telnet/telnet.cc	/^static void dooption(int option) {$/;"	f	file:
+dooption	telnetd/state.c	/^void dooption(int option) {$/;"	f
+doquit	telnet/commands.cc	/^static int doquit(void) {$/;"	f	file:
+doset	telnet/commands.cc	/^static void doset(struct setlist *sl) {$/;"	f	file:
+dostatus	telnet/commands.cc	/^static int dostatus(int notmuch) {$/;"	f	file:
+dosynch	telnet/telnet.cc	/^int dosynch(void) {$/;"	f
+dosynch1	telnet/commands.cc	/^static int dosynch1(const char *, const char *) { return dosynch(); }$/;"	f	file:
+dotog	telnet/commands.cc	/^static void dotog(struct togglelist *tl) {$/;"	f	file:
+echo	telnet/authenc.cc	/^	int echo;$/;"	v
+echoc	telnet/telnet.cc	/^cc_t echoc;$/;"	v
+echotoggle	telnet/types.h	/^    int echotoggle;		\/* last time user entered echo character *\/$/;"	m	struct:__anon5
+echotoggle	telnetd/ext.h	/^    int echotoggle;		\/* last time user entered echo character *\/$/;"	m	struct:_clocks
+editedhost	telnetd/utility.c	/^char editedhost[32];$/;"	v
+edithost	telnetd/utility.c	/^edithost(const char *pat, const char *host)$/;"	f
+editmode	telnetd/global.c	/^int	editmode;	\/* edit modes in use *\/$/;"	v
+eight	telnet/telnet.cc	/^eight = 0,$/;"	v
+empty_count	telnet/ring.h	/^    int empty_count() { return size - count; }$/;"	f	class:ringbuf
+end_slc	telnetd/slc.c	/^int end_slc(unsigned char **bufp) {$/;"	f
+endwin	configure	/^    endwin();$/;"	f
+env_cmd	telnet/commands.cc	/^int env_cmd(int argc, const char *argv[]) {$/;"	f
+env_copy	telnet/environ.cc	/^static void env_copy(void) {$/;"	f	file:
+env_define	telnet/environ.cc	/^void env_define(const char *var, const char *value) {$/;"	f
+env_export	telnet/environ.cc	/^void env_export(const char *var) {$/;"	f
+env_find	telnet/environ.cc	/^static enviro *env_find(const char *var) {$/;"	f	file:
+env_fix_display	telnet/environ.cc	/^static void env_fix_display(void) {$/;"	f	file:
+env_getvalue	telnet/environ.cc	/^const char *env_getvalue(const char *var, int exported_only) {$/;"	f
+env_help	telnet/commands.cc	/^static void env_help(const char *, const char *) {$/;"	f	file:
+env_init	telnet/environ.cc	/^void env_init(void) {$/;"	f
+env_iterate	telnet/environ.cc	/^void env_iterate(int *iter, int \/*exported_only*\/) {$/;"	f
+env_list	telnet/environ.cc	/^void env_list(void) {$/;"	f
+env_next	telnet/environ.cc	/^const char *env_next(int *iter, int exported_only) {$/;"	f
+env_opt	telnet/telnet.cc	/^void env_opt(unsigned char *buf, int len) {$/;"	f
+env_opt_add	telnet/telnet.cc	/^void env_opt_add(const char *ep) {$/;"	f
+env_opt_end	telnet/telnet.cc	/^void env_opt_end(int emptyok) {$/;"	f
+env_opt_start	telnet/telnet.cc	/^void env_opt_start(void) {$/;"	f
+env_opt_start_info	telnet/telnet.cc	/^void env_opt_start_info(void) {$/;"	f
+env_put	telnet/environ.cc	/^static void env_put(const char *var, const char *val, int exp) {$/;"	f	file:
+env_send	telnet/environ.cc	/^void env_send(const char *var) {$/;"	f
+env_undefine	telnet/environ.cc	/^void env_undefine(const char *var) {$/;"	f
+env_unexport	telnet/environ.cc	/^void env_unexport(const char *var) {$/;"	f
+envcmd	telnet/commands.cc	/^struct envcmd {$/;"	s	file:
+envfunc	telnet/commands.cc	/^typedef void (*envfunc)(const char *, const char *);$/;"	t	file:
+envhelp	telnet/commands.cc	/^	envhelp[] =	"change environment variables ('environ ?' for more)",$/;"	v	file:
+envinit	telnetd/sys_term.c	/^char *envinit[3];$/;"	v
+enviro	telnet/environ.cc	/^    enviro() { var = value = NULL; doexport = 0; }$/;"	f	class:enviro
+enviro	telnet/environ.cc	/^class enviro {$/;"	c	file:
+environsubopt	telnetd/ext.h	/^    int environsubopt;		\/* environ subopt is received *\/$/;"	m	struct:_clocks
+envvarok	telnetd/state.c	/^static int envvarok(char *varp) {$/;"	f	file:
+escapechar	telnet/telnet.cc	/^cc_t escapechar;$/;"	v
+escapehelp	telnet/commands.cc	/^static char	escapehelp[] =	"deprecated command -- use 'set escape' instead";$/;"	v	file:
+fatal	telnetd/utility.c	/^fatal(int f, const char *msg)$/;"	f
+fatalperror	telnetd/utility.c	/^fatalperror(int f, const char *msg)$/;"	f
+filestuff	telnet/commands.cc	/^static void filestuff(int fd) {$/;"	f	file:
+flag	telnetd/defs.h	/^	unsigned char flag;		\/* the flags for this function *\/$/;"	m	struct:__anon1
+flags	telnet/telnet.cc	/^  char flags;	\/* Current flags & level *\/$/;"	m	struct:spc	file:
+flowmode	telnetd/global.c	/^int	flowmode;	\/* current flow control state *\/$/;"	v
+flush	telnet/ring.cc	/^int ringbuf::flush() {$/;"	f	class:ringbuf
+flushline	telnet/telnet.cc	/^int flushline;$/;"	v
+flushout	telnet/telnet.cc	/^  flushout,	\/* flush output *\/$/;"	v
+fmtstr	telnetd/utility.c	/^static char fmtstr[] = { "%H:%M on %A, %d %B %Y" };$/;"	v	file:
+full_count	telnet/ring.h	/^    int full_count() {$/;"	f	class:ringbuf
+ge_rcsid	telnetd/getent.c	/^char ge_rcsid[] = $/;"	v
+genget	telnet/genget.cc	/^char **genget(const char *name, char **table, int stlen) {$/;"	f
+get_slc_defaults	telnetd/slc.c	/^void get_slc_defaults(void) {$/;"	f
+get_status	telnet/telnet.cc	/^int get_status(const char *, const char *) {$/;"	f
+getch	telnet/ring.cc	/^int ringbuf::getch(int *ch) {$/;"	f	class:ringbuf
+getcmd	telnet/commands.cc	/^static command_entry *getcmd(command_table *tab, const char *name) {$/;"	f	file:
+getconnmode	telnet/terminal.cc	/^int getconnmode(void) {$/;"	f
+getent	telnetd/getent.c	/^int getent(char *cp, char *name) {$/;"	f
+getenvcmd	telnet/commands.cc	/^static struct envcmd *getenvcmd(const char *name) {$/;"	f	file:
+getexport	telnet/environ.cc	/^    int getexport() const { return doexport; }$/;"	f	class:enviro
+getfd	telnet/netlink.cc	/^int netlink::getfd() {$/;"	f	class:netlink
+gethelp	telnet/commands.cc	/^    void gethelp() {$/;"	f	class:command_entry
+getname	telnet/commands.cc	/^    const char *getname() const { return name; }$/;"	f	class:command_entry
+getname	telnet/environ.cc	/^    const char *getname() const { return var; }$/;"	f	class:enviro
+getpty	telnetd/sys_term.c	/^int getpty(void) {$/;"	f
+getptyslave	telnetd/sys_term.c	/^static int getptyslave(void) {$/;"	f	file:
+gets	telnet/ring.cc	/^int ringbuf::gets(char *rbuf, int max) {$/;"	f	class:ringbuf
+getset	telnet/commands.cc	/^getset(const char *name)$/;"	f	file:
+getstr	telnetd/getent.c	/^char *getstr(char *cp, char **cpp) {$/;"	f
+getterminaltype	telnetd/telnetd.c	/^getterminaltype(char *name)$/;"	f	file:
+gettermname	telnet/telnet.cc	/^static const char *gettermname(void) {$/;"	f	file:
+getval	telnet/environ.cc	/^    const char *getval() const { return value; }$/;"	f	class:enviro
+gg_rcsid	telnet/genget.cc	/^char gg_rcsid[] = $/;"	v
+global_rcsid	telnetd/global.c	/^char global_rcsid[] = $/;"	v
+globalmode	telnet/telnet.cc	/^  globalmode;$/;"	v
+gotDM	telnet/types.h	/^    int gotDM;			\/* when did we last see a data mark *\/$/;"	m	struct:__anon5
+gotDM	telnetd/ext.h	/^    int gotDM;			\/* when did we last see a data mark *\/$/;"	m	struct:_clocks
+handler	telnet/commands.cc	/^	int	(*handler)(int);	\/* routine which executes command *\/$/;"	m	struct:modelist	file:
+handler	telnet/commands.cc	/^	void	(*handler)(const char *, const char *);$/;"	m	struct:envcmd	file:
+handler	telnet/commands.cc	/^    int (*handler)(const char *, const char *); $/;"	m	struct:sendlist	file:
+handler	telnet/commands.cc	/^    int (*handler)(int);	\/* routine to do actual setting *\/$/;"	m	struct:togglelist	file:
+handler	telnet/commands.cc	/^    void (*handler)(const char *);$/;"	m	struct:setlist	file:
+handler0	telnet/commands.cc	/^	int (*handler0)(void);$/;"	m	union:command_entry::__anon6	file:
+handler1	telnet/commands.cc	/^	int (*handler1)(const char *);$/;"	m	union:command_entry::__anon6	file:
+handler2	telnet/commands.cc	/^	int (*handler2)(const char *, const char *);$/;"	m	union:command_entry::__anon6	file:
+handlern	telnet/commands.cc	/^	int (*handlern)(int, const char **);$/;"	m	union:command_entry::__anon6	file:
+head	telnet/ring.h	/^    int head;   \/* next input character goes here *\/$/;"	m	class:ringbuf
+help	telnet/commands.cc	/^	const char	*help;		\/* help string *\/$/;"	m	struct:modelist	file:
+help	telnet/commands.cc	/^	const char	*help;$/;"	m	struct:envcmd	file:
+help	telnet/commands.cc	/^    const char *help;				\/* help information *\/$/;"	m	struct:setlist	file:
+help	telnet/commands.cc	/^    const char *help;			\/* help message *\/$/;"	m	struct:togglelist	file:
+help	telnet/commands.cc	/^    const char *help;		\/* Help information (0 ==> no help) *\/$/;"	m	struct:sendlist	file:
+help	telnet/commands.cc	/^    const char *help;    \/* help string (NULL for no help) *\/$/;"	m	class:command_entry	file:
+help	telnet/commands.cc	/^static int help(command_table *tab, int argc, const char *argv[]) {$/;"	f	file:
+highestof	telnet/general.h	43;"	d
+his_do_dont_is_changing	telnetd/defs.h	215;"	d
+his_state_is_do	telnet/externs.h	146;"	d
+his_state_is_do	telnetd/defs.h	194;"	d
+his_state_is_dont	telnet/externs.h	151;"	d
+his_state_is_dont	telnetd/defs.h	199;"	d
+his_state_is_will	telnet/externs.h	147;"	d
+his_state_is_will	telnetd/defs.h	195;"	d
+his_state_is_wont	telnet/externs.h	152;"	d
+his_state_is_wont	telnetd/defs.h	200;"	d
+his_want_state_is_do	telnet/externs.h	148;"	d
+his_want_state_is_do	telnetd/defs.h	196;"	d
+his_want_state_is_dont	telnet/externs.h	153;"	d
+his_want_state_is_dont	telnetd/defs.h	201;"	d
+his_want_state_is_will	telnet/externs.h	149;"	d
+his_want_state_is_will	telnetd/defs.h	197;"	d
+his_want_state_is_wont	telnet/externs.h	154;"	d
+his_want_state_is_wont	telnetd/defs.h	202;"	d
+his_will_wont_is_changing	telnetd/defs.h	214;"	d
+host_name	telnetd/telnetd.c	/^char host_name[MAXHOSTNAMELEN];$/;"	v
+hostinfo	telnetd/telnetd.c	/^int	hostinfo = 1;			\/* do we print login banner? *\/$/;"	v
+hostname	telnet/commands.cc	/^char	*hostname;$/;"	v
+ibits	telnet/sys_bsd.cc	/^static fd_set ibits, obits, xbits;$/;"	v	file:
+init	telnet/ring.cc	/^int ringbuf::init(int sz, datasink *sink, source *src) {$/;"	f	class:ringbuf
+init_3270	telnet/tn3270.cc	/^void init_3270(void) {$/;"	f
+init_env	telnetd/sys_term.c	/^void init_env(void) {$/;"	f
+init_network	telnet/network.cc	/^void init_network(void) {$/;"	f
+init_sys	telnet/sys_bsd.cc	/^void init_sys(void)$/;"	f
+init_telnet	telnet/telnet.cc	/^void init_telnet(void) {$/;"	f
+init_termbuf	telnetd/sys_term.c	/^void init_termbuf(void) {$/;"	f
+init_terminal	telnet/terminal.cc	/^void init_terminal(void) {$/;"	f
+initarg	telnetd/sys_term.c	/^static void initarg(struct argv_stuff *avs) {$/;"	f	file:
+initfunc	telnet/telnet.cc	875;"	d	file:
+initfunc	telnet/telnet.cc	906;"	d	file:
+initsetproctitle	telnetd/setproctitle.c	/^initsetproctitle(int argc, char **argv, char **envp)$/;"	f
+inputAvailable	telnet/tn3270.cc	/^void inputAvailable(void) {$/;"	f
+interrupt	telnetd/telnetd.c	/^void interrupt(void) {$/;"	f
+intp	telnet/telnet.cc	/^void intp(void) {$/;"	f
+intr	telnet/sys_bsd.cc	/^static void intr(int \/*sig*\/) {$/;"	f	file:
+intr2	telnet/sys_bsd.cc	/^static void intr2(int \/*sig*\/) {$/;"	f	file:
+is_unique	telnet/telnet.cc	/^static int is_unique(const char *name, const stringarray &ar) {$/;"	f	file:
+isprefix	telnet/genget.cc	/^int isprefix(const char *s1, const char *s2) {$/;"	f
+keepalive	telnetd/telnetd.c	/^int keepalive = 1;$/;"	v
+kerninfo	telnetd/utility.c	/^struct utsname kerninfo;$/;"	v	typeref:struct:utsname
+kludgelinemode	telnet/telnet.cc	/^int kludgelinemode = 1;$/;"	v
+lclchars	telnet/commands.cc	/^static int lclchars(int) {$/;"	f	file:
+legal_envs	telnetlogin/telnetlogin.c	/^} legal_envs[] = {$/;"	v	typeref:struct:__anon3
+len	telnet/authenc.cc	/^	int len;$/;"	v
+length	telnet/authenc.cc	/^	int length;$/;"	v
+line	telnet/commands.cc	/^static char line[256];$/;"	v	file:
+line	telnetd/sys_term.c	/^char *line = linedata;$/;"	v
+linedata	telnetd/sys_term.c	/^static char linedata[PATH_MAX];$/;"	v	file:
+linemode	telnet/telnet.cc	/^int linemode;$/;"	v
+linemode	telnetd/global.c	/^int	linemode;	\/* linemode on\/off *\/$/;"	v
+lm_do	telnet/telnet.cc	/^void lm_do(unsigned char *cmd, int len) {$/;"	f
+lm_dont	telnet/telnet.cc	/^void lm_dont(unsigned char * \/*cmd*\/, int len) {$/;"	f
+lm_mode	telnet/telnet.cc	/^void lm_mode(unsigned char *cmd, int len, int init) {$/;"	f
+lm_will	telnet/telnet.cc	/^void lm_will(unsigned char *cmd, int len) {$/;"	f
+lm_wont	telnet/telnet.cc	/^void lm_wont(unsigned char * \/*cmd*\/, int len) {$/;"	f
+lmodetype	telnetd/global.c	/^int	lmodetype;	\/* Client support for linemode *\/$/;"	v
+local	telnet/telnet.cc	/^static int bol = 1, local = 0;$/;"	v	file:
+localchars	telnet/telnet.cc	/^  localchars,	\/* we recognize interrupt\/quit *\/$/;"	v
+localflow	telnet/telnet.cc	/^  localflow,	\/* we handle flow control locally *\/$/;"	v
+localstat	telnetd/termstat.c	/^localstat()$/;"	f
+login_tty	telnetd/sys_term.c	/^int login_tty(int t) {$/;"	f
+loginprg	telnetd/telnetd.c	/^char *loginprg = _PATH_LOGIN;$/;"	v
+logout	telnet/commands.cc	/^int logout(void) {$/;"	f
+logouthelp	telnet/commands.cc	/^	logouthelp[] =	"forcibly logout remote user and close the connection",$/;"	v	file:
+main	telnet/main.cc	/^main(int argc, char *argv[])$/;"	f
+main	telnetd/telnetd.c	/^main(int argc, char *argv[], char *env[])$/;"	f
+main	telnetlogin/telnetlogin.c	/^int main(int argc, char *argv[]) {$/;"	f
+main_rcsid	telnet/main.cc	/^char main_rcsid[] = $/;"	v
+makeargv	telnet/commands.cc	/^static void makeargv(void) {$/;"	f	file:
+margc	telnet/commands.cc	/^static int margc;$/;"	v	file:
+margv	telnet/commands.cc	/^static const char *margv[20];$/;"	v	file:
+marked	telnet/ring.h	/^    int marked;   \/* this character is marked *\/$/;"	m	class:ringbuf
+max	telnet/array.h	/^    int n, max;$/;"	m	class:array
+max	telnet/ptrarray.h	/^    int n, max;$/;"	m	class:ptrarray
+min	telnet/utilities.cc	92;"	d	file:
+mklist	telnet/telnet.cc	/^static void mklist(char *buf, const char *name, stringarray &fill) {$/;"	f	file:
+modecmd	telnet/commands.cc	/^static int modecmd(const char *arg) {$/;"	f	file:
+modedescriptions	telnet/types.h	/^    char *modedescriptions;$/;"	m	struct:__anon4
+modehelp	telnet/commands.cc	/^int modehelp(int) {$/;"	f
+modelist	telnet/commands.cc	/^struct modelist {$/;"	s	file:
+modelist	telnet/telnet.cc	/^Modelist modelist[] = {$/;"	v
+modenegotiated	telnet/types.h	/^    int modenegotiated;		\/* last time operating mode negotiated *\/$/;"	m	struct:__anon5
+modenegotiated	telnetd/ext.h	/^    int modenegotiated;		\/* last time operating mode negotiated *\/$/;"	m	struct:_clocks
+modestring	telnet/commands.cc	/^	modestring[] = "try to enter line or character mode ('mode ?' for more)";$/;"	v	file:
+modetype	telnet/types.h	/^    char modetype;$/;"	m	struct:__anon4
+my_do_dont_is_changing	telnetd/defs.h	182;"	d
+my_setupterm	telnet/telnet.cc	/^static int my_setupterm(const char *tname, int \/*fd*\/, int *errp) {$/;"	f	file:
+my_state_is_do	telnet/externs.h	117;"	d
+my_state_is_do	telnetd/defs.h	152;"	d
+my_state_is_dont	telnet/externs.h	122;"	d
+my_state_is_dont	telnetd/defs.h	157;"	d
+my_state_is_will	telnet/externs.h	118;"	d
+my_state_is_will	telnetd/defs.h	153;"	d
+my_state_is_wont	telnet/externs.h	123;"	d
+my_state_is_wont	telnetd/defs.h	158;"	d
+my_want_state_is_do	telnet/externs.h	119;"	d
+my_want_state_is_do	telnetd/defs.h	154;"	d
+my_want_state_is_dont	telnet/externs.h	124;"	d
+my_want_state_is_dont	telnetd/defs.h	159;"	d
+my_want_state_is_will	telnet/externs.h	120;"	d
+my_want_state_is_will	telnetd/defs.h	155;"	d
+my_want_state_is_wont	telnet/externs.h	125;"	d
+my_want_state_is_wont	telnetd/defs.h	160;"	d
+my_will_wont_is_changing	telnetd/defs.h	179;"	d
+mylevel	telnet/telnet.cc	/^  char mylevel;	\/* Maximum level & flags *\/$/;"	m	struct:spc	file:
+n	telnet/array.h	/^    int n, max;$/;"	m	class:array
+n	telnet/ptrarray.h	/^    int n, max;$/;"	m	class:ptrarray
+name	telnet/commands.cc	/^	const char	*name;		\/* command name *\/$/;"	m	struct:modelist	file:
+name	telnet/commands.cc	/^	const char	*name;$/;"	m	struct:envcmd	file:
+name	telnet/commands.cc	/^    const char *name;				\/* name *\/$/;"	m	struct:setlist	file:
+name	telnet/commands.cc	/^    const char *name;			\/* name of toggle *\/$/;"	m	struct:togglelist	file:
+name	telnet/commands.cc	/^    const char *name;		\/* How user refers to it (case independent) *\/$/;"	m	struct:sendlist	file:
+name	telnet/commands.cc	/^    const char *name;    \/* command name *\/$/;"	m	class:command_entry	file:
+name	telnetlogin/telnetlogin.c	/^   const char *name;$/;"	m	struct:__anon3	file:
+narg	telnet/commands.cc	/^	int	narg;$/;"	m	struct:envcmd	file:
+narg	telnet/commands.cc	/^    int narg;			\/* Number of arguments *\/$/;"	m	struct:sendlist	file:
+nargs	telnet/commands.cc	/^    int nargs;$/;"	m	class:command_entry	file:
+nbackp	telnetd/global.c	/^char	netobuf[BUFSIZ+NETSLOP], *nfrontp, *nbackp;$/;"	v
+nbyte	telnet/commands.cc	/^    int nbyte;			\/* Number of bytes to send this command *\/$/;"	m	struct:sendlist	file:
+ncc	telnetd/global.c	/^int	pcc, ncc;$/;"	v
+needconnect	telnet/commands.cc	/^	int	needconnect;	\/* Do we need to be connected to execute? *\/$/;"	m	struct:modelist	file:
+needconnect	telnet/commands.cc	/^    int needconnect;		\/* Need to be connected *\/$/;"	m	struct:sendlist	file:
+net	telnet/netlink.h	/^    int net;$/;"	m	class:netlink
+net	telnetd/global.c	/^int	pty, net;$/;"	v
+net_encrypt	telnet/authenc.cc	/^net_encrypt()$/;"	f
+net_rcsid	telnet/network.cc	/^char net_rcsid[] = $/;"	v
+netchannel	telnet/netlink.cc	/^class netchannel : public ringbuf::source {$/;"	c	file:
+netchannel2	telnet/netlink.cc	/^class netchannel2 : public datasink {$/;"	c	file:
+netclear	telnet/telnet.cc	/^static void netclear(void) {$/;"	f	file:
+netclear	telnetd/utility.c	/^void netclear(void)$/;"	f
+netdata	telnet/commands.cc	/^static int netdata;		\/* Print out network data flow *\/$/;"	v	file:
+netflush	telnet/network.cc	/^int netflush(void) {$/;"	f
+netflush	telnetd/utility.c	/^netflush(void)$/;"	f
+netibuf	telnetd/global.c	/^char	netibuf[BUFSIZ], *netip;$/;"	v
+netip	telnetd/global.c	/^char	netibuf[BUFSIZ], *netip;$/;"	v
+netiring	telnet/network.cc	/^ringbuf netiring;$/;"	v
+netlink	telnet/netlink.cc	/^netlink::netlink() { net = -1; }$/;"	f	class:netlink
+netlink	telnet/netlink.h	/^class netlink {$/;"	c
+netobuf	telnetd/global.c	/^char	netobuf[BUFSIZ+NETSLOP], *nfrontp, *nbackp;$/;"	v
+netoprintf	telnetd/utility.c	/^netoprintf(const char *fmt, ...)$/;"	f
+netoring	telnet/network.cc	/^ringbuf netoring;$/;"	v
+netsink	telnet/netlink.cc	/^datasink *netsink = &chan2;$/;"	v
+netsrc	telnet/netlink.cc	/^ringbuf::source *netsrc = &chan;$/;"	v
+neturg	telnetd/global.c	/^char	*neturg;		\/* one past last bye of urgent data *\/$/;"	v
+new_tc	telnet/terminal.cc	/^struct termios new_tc;$/;"	v	typeref:struct:termios
+nextitem	telnetd/utility.c	/^nextitem(char *current)$/;"	f	file:
+nfrontp	telnetd/global.c	/^char	netobuf[BUFSIZ+NETSLOP], *nfrontp, *nbackp;$/;"	v
+nlink	telnet/netlink.cc	/^netlink nlink;$/;"	v
+noasynchnet	telnet/telnet.cc	/^  noasynchnet = 0,\/* User specified "-noasynch" on command line *\/$/;"	v
+noasynchtty	telnet/telnet.cc	/^  noasynchtty = 0,\/* User specified "-noasynch" on command line *\/$/;"	v
+nonblock	telnet/netlink.cc	/^void netlink::nonblock(int onoff) {$/;"	f	class:netlink
+not42	telnetd/state.c	/^int not42 = 1;$/;"	v
+nullsink	telnet/ring.cc	/^datasink *nullsink = &nullsink_obj;$/;"	v
+nullsink_obj	telnet/ring.cc	/^static devnull nullsink_obj;$/;"	v	file:
+num	telnet/array.h	/^    int num() const { return n; }$/;"	f	class:array
+num	telnet/ptrarray.h	/^    int num() const { return n; }$/;"	f	class:ptrarray
+numberof	telnet/general.h	42;"	d
+obits	telnet/sys_bsd.cc	/^static fd_set ibits, obits, xbits;$/;"	v	file:
+oflgs	telnet/commands.cc	/^char *oflgs[] = { "read-only", "write-only", "read-write" };$/;"	v
+old_tc	telnet/terminal.cc	/^struct termios old_tc;$/;"	v	typeref:struct:termios
+oldeofc	telnetd/slc.c	/^cc_t oldeofc = '\\004';$/;"	v
+oobinline	telnet/netlink.cc	/^void netlink::oobinline() {$/;"	f	class:netlink
+openhelp	telnet/commands.cc	/^	openhelp[] =	"connect to a site",$/;"	v	file:
+operator []	telnet/array.h	/^    T &operator [] (int ix) const {$/;"	f	class:array
+operator []	telnet/ptrarray.h	/^    T *&operator [] (int ix) const {$/;"	f	class:ptrarray
+operator new	telnet/array.h	/^inline void *operator new(size_t, void *v) { return v; }$/;"	f
+opt_reply	telnet/telnet.cc	/^unsigned char *opt_reply;$/;"	v
+opt_replyend	telnet/telnet.cc	/^unsigned char *opt_replyend;$/;"	v
+opt_replyp	telnet/telnet.cc	/^unsigned char *opt_replyp;$/;"	v
+options	telnet/telnet.cc	/^char	options[256];		\/* The combined options *\/$/;"	v
+options	telnetd/global.c	/^char	options[256];$/;"	v
+optionstatus	telnet/utilities.cc	/^void optionstatus(void) {$/;"	f
+outputPurge	telnet/tn3270.cc	/^void outputPurge(void) {$/;"	f
+pbackp	telnetd/global.c	/^char	ptyobuf[BUFSIZ+NETSLOP], *pfrontp, *pbackp;$/;"	v
+pcc	telnetd/global.c	/^int	pcc, ncc;$/;"	v
+peerdied	telnet/telnet.cc	/^sigjmp_buf peerdied;$/;"	v
+pfrontp	telnetd/global.c	/^char	ptyobuf[BUFSIZ+NETSLOP], *pfrontp, *pbackp;$/;"	v
+pkg	version.h	/^char pkg[]="$NetKit: netkit-telnet-0.17 $";$/;"	v
+pop	telnet/array.h	/^    T pop() { T t = (*this)[n-1]; setsize(n-1); return t; }$/;"	f	class:array
+pop	telnet/ptrarray.h	/^    void pop() { setsize(n-1); }$/;"	f	class:ptrarray
+prettydump	telnet/commands.cc	/^static int prettydump;	\/* Print "netdata" output in user readable format *\/$/;"	v	file:
+printdata	telnetd/utility.c	/^printdata(const char *tag, const char *ptr, int cnt)$/;"	f
+printf	telnet/ring.cc	/^void ringbuf::printf(const char *format, ...) {$/;"	f	class:ringbuf
+printoption	telnet/utilities.cc	/^void printoption(const char *direction, int cmd, int option) {$/;"	f
+printoption	telnetd/utility.c	/^printoption(const char *fmt, int option)$/;"	f
+printsub	telnet/utilities.cc	/^void printsub(int direction, unsigned char *pointer, int length) {$/;"	f
+printsub	telnetd/utility.c	/^printsub(char direction, unsigned char *pointer, int length)$/;"	f
+process_command	telnet/commands.cc	/^static int process_command(command_table *tab, int argc, const char **argv) {$/;"	f	file:
+process_rings	telnet/sys_bsd.cc	/^int process_rings(int netin, int netout, int netex, int ttyin, int ttyout, $/;"	f
+process_slc	telnetd/slc.c	/^void process_slc(unsigned char func, unsigned char flag, cc_t val) {$/;"	f
+progname	telnetd/telnetd.c	/^char *progname;$/;"	v
+prompt	telnet/authenc.cc	/^	char *prompt;$/;"	v
+prompt	telnet/telnet.cc	/^char *prompt = 0;$/;"	v
+ptrarray	telnet/ptrarray.h	/^    ptrarray() { v=NULL; n=max=0; }$/;"	f	class:ptrarray
+ptrarray	telnet/ptrarray.h	/^class ptrarray {$/;"	c
+pty	telnetd/global.c	/^int	pty, net;$/;"	v
+ptyflush	telnetd/utility.c	/^void 	ptyflush(void)$/;"	f
+ptyibuf	telnetd/telnetd.c	/^char	ptyibuf[BUFSIZ], *ptyip = ptyibuf;$/;"	v
+ptyibuf2	telnetd/telnetd.c	/^char	ptyibuf2[BUFSIZ];$/;"	v
+ptyip	telnetd/telnetd.c	/^char	ptyibuf[BUFSIZ], *ptyip = ptyibuf;$/;"	v
+ptyobuf	telnetd/global.c	/^char	ptyobuf[BUFSIZ+NETSLOP], *pfrontp, *pbackp;$/;"	v
+ptyslavefd	telnetd/sys_term.c	/^static int ptyslavefd=-1;$/;"	v	file:
+push	telnet/array.h	/^    void push(const T &val) { add(val); }$/;"	f	class:array
+push	telnet/ptrarray.h	/^    void push(T *val) { add(val); }$/;"	f	class:ptrarray
+putch	telnet/ring.h	/^    void putch(char c) { write(&c, 1); }$/;"	f	class:ringbuf
+putchr	telnetd/utility.c	/^void putchr(int cc)$/;"	f
+putf	telnetd/utility.c	/^void putf(const char *cp, char *where)$/;"	f
+putlocation	telnetd/utility.c	/^static char *putlocation;$/;"	v	file:
+putstr	telnetd/utility.c	/^putstr(const char *s)$/;"	f	file:
+quit	telnet/commands.cc	/^void quit(void) {$/;"	f
+quithelp	telnet/commands.cc	/^	quithelp[] =	"exit telnet",$/;"	v	file:
+rcbuf	telnet/commands.cc	/^static char rcbuf[128];$/;"	v	file:
+rcname	telnet/commands.cc	/^static char *rcname = 0;$/;"	v	file:
+rcsid	telnetlogin/telnetlogin.c	/^char rcsid[] =$/;"	v
+read	telnet/netlink.cc	/^    virtual int read(char *buf, int maxlen) {$/;"	f	class:netchannel
+read	telnet/terminal.cc	/^    virtual int read(char *buf, int maxlen) {$/;"	f	class:ttysorc	file:
+read_source	telnet/ring.cc	/^int ringbuf::read_source() {$/;"	f	class:ringbuf
+reallocto	telnet/array.h	/^    void reallocto(int newsize) {$/;"	f	class:array
+reallocto	telnet/ptrarray.h	/^    void reallocto(int x) {$/;"	f	class:ptrarray
+recv_ayt	telnetd/telnetd.c	/^void recv_ayt(void) {$/;"	f
+remhost	telnetlogin/telnetlogin.c	/^static const char *remhost = NULL;$/;"	v	file:
+remote_host_name	telnetd/telnetd.c	/^char remote_host_name[MAXHOSTNAMELEN];$/;"	v
+require_SecurID	telnetd/global.c	/^int	require_SecurID;$/;"	v
+require_SecurID	telnetd/telnetd.c	/^int	require_SecurID = 0;$/;"	v
+resettermname	telnet/telnet.cc	/^int resettermname = 1;$/;"	v
+result	telnet/authenc.cc	/^	char *result;$/;"	v
+ring_rcsid	telnet/ring.cc	/^char ring_rcsid[] =$/;"	v
+ringbuf	telnet/ring.h	/^class ringbuf {$/;"	c
+rlogin	telnet/telnet.cc	/^cc_t rlogin;$/;"	v
+rlogin_susp	telnet/telnet.cc	/^int rlogin_susp(void) {$/;"	f
+saveline	telnet/commands.cc	/^static char saveline[256];$/;"	v	file:
+sb_terminal	telnet/tn3270.cc	/^static char sb_terminal[] = { IAC, SB,$/;"	v	file:
+send	telnet/netlink.cc	/^int netlink::send(const char *s, int n, int f) {$/;"	f	class:netlink
+send_do	telnet/telnet.cc	/^void send_do(int c, int init) {$/;"	f
+send_do	telnetd/state.c	/^void send_do(int option, int init) {$/;"	f
+send_docmd	telnet/commands.cc	/^static int send_docmd(const char *name, const char *) {$/;"	f	file:
+send_dont	telnet/telnet.cc	/^void send_dont(int c, int init) {$/;"	f
+send_dont	telnetd/state.c	/^void send_dont(int option, int init) {$/;"	f
+send_dontcmd	telnet/commands.cc	/^static int send_dontcmd(const char *name, const char *) {$/;"	f	file:
+send_esc	telnet/commands.cc	/^static int send_esc(const char *, const char *) {$/;"	f	file:
+send_help	telnet/commands.cc	/^static int send_help(const char *, const char *) {$/;"	f	file:
+send_slc	telnetd/slc.c	/^void send_slc(void) {$/;"	f
+send_status	telnetd/state.c	/^void send_status(void) {$/;"	f
+send_tncmd	telnet/commands.cc	/^int send_tncmd(int (*func)(int, int), const char *cmd, const char *name) {$/;"	f
+send_will	telnet/telnet.cc	/^void send_will(int c, int init) {$/;"	f
+send_will	telnetd/state.c	/^void send_will(int option, int init) {$/;"	f
+send_willcmd	telnet/commands.cc	/^static int send_willcmd(const char *name, const char *) {$/;"	f	file:
+send_wont	telnet/telnet.cc	/^void send_wont(int c, int init) {$/;"	f
+send_wont	telnetd/state.c	/^void send_wont(int option, int init) {$/;"	f
+send_wontcmd	telnet/commands.cc	/^static int send_wontcmd(const char *name, const char *) {$/;"	f	file:
+sendabort	telnet/telnet.cc	/^void sendabort(void) {$/;"	f
+sendayt	telnet/telnet.cc	/^void sendayt(void) {$/;"	f
+sendbrk	telnet/telnet.cc	/^void sendbrk(void) {$/;"	f
+sendbrk	telnetd/telnetd.c	/^void sendbrk(void) {$/;"	f
+sendcmd	telnet/commands.cc	/^static int sendcmd(int argc, const char *argv[]) {$/;"	f	file:
+sendeof	telnet/telnet.cc	/^void sendeof(void) {$/;"	f
+sendhelp	telnet/commands.cc	/^	sendhelp[] =	"transmit special characters ('send ?' for more)",$/;"	v	file:
+sendlist	telnet/commands.cc	/^struct sendlist {$/;"	s	file:
+sendnaws	telnet/telnet.cc	/^void sendnaws(void) {$/;"	f
+sendsusp	telnet/telnet.cc	/^void sendsusp(void) {$/;"	f
+sendsusp	telnetd/telnetd.c	/^void sendsusp(void) {$/;"	f
+sendwin	telnet/sys_bsd.cc	/^static void sendwin(int \/*sig*\/) {$/;"	f	file:
+sequenceIs	telnetd/defs.h	104;"	d
+set_escape_char	telnet/commands.cc	/^void set_escape_char(char *s) {$/;"	f
+set_his_state_do	telnet/externs.h	156;"	d
+set_his_state_do	telnetd/defs.h	204;"	d
+set_his_state_dont	telnet/externs.h	161;"	d
+set_his_state_dont	telnetd/defs.h	209;"	d
+set_his_state_will	telnet/externs.h	157;"	d
+set_his_state_will	telnetd/defs.h	205;"	d
+set_his_state_wont	telnet/externs.h	162;"	d
+set_his_state_wont	telnetd/defs.h	210;"	d
+set_his_want_state_do	telnet/externs.h	158;"	d
+set_his_want_state_do	telnetd/defs.h	206;"	d
+set_his_want_state_dont	telnet/externs.h	163;"	d
+set_his_want_state_dont	telnetd/defs.h	211;"	d
+set_his_want_state_will	telnet/externs.h	159;"	d
+set_his_want_state_will	telnetd/defs.h	207;"	d
+set_his_want_state_wont	telnet/externs.h	164;"	d
+set_his_want_state_wont	telnetd/defs.h	212;"	d
+set_mark	telnet/ring.h	/^    void set_mark() { marked = head; }$/;"	f	class:ringbuf
+set_my_state_do	telnet/externs.h	127;"	d
+set_my_state_do	telnetd/defs.h	162;"	d
+set_my_state_dont	telnet/externs.h	132;"	d
+set_my_state_dont	telnetd/defs.h	167;"	d
+set_my_state_will	telnet/externs.h	128;"	d
+set_my_state_will	telnetd/defs.h	163;"	d
+set_my_state_wont	telnet/externs.h	133;"	d
+set_my_state_wont	telnetd/defs.h	168;"	d
+set_my_want_state_do	telnet/externs.h	129;"	d
+set_my_want_state_do	telnetd/defs.h	164;"	d
+set_my_want_state_dont	telnet/externs.h	134;"	d
+set_my_want_state_dont	telnetd/defs.h	169;"	d
+set_my_want_state_will	telnet/externs.h	130;"	d
+set_my_want_state_will	telnetd/defs.h	165;"	d
+set_my_want_state_wont	telnet/externs.h	135;"	d
+set_my_want_state_wont	telnetd/defs.h	170;"	d
+set_termbuf	telnetd/sys_term.c	/^void set_termbuf(void) {$/;"	f
+setcmd	telnet/commands.cc	/^static int setcmd(int argc, const char *argv[]) {$/;"	f	file:
+setcommandmode	telnet/terminal.cc	/^void setcommandmode(void) {$/;"	f
+setconnmode	telnet/terminal.cc	/^void setconnmode(int force) {$/;"	f
+setdebug	telnet/netlink.cc	/^int netlink::setdebug(int debug) {$/;"	f	class:netlink
+setescape	telnet/commands.cc	/^static int setescape(int argc, const char *argv[]) {$/;"	f	file:
+setexport	telnet/environ.cc	/^    void setexport(int ex) { doexport = ex; }$/;"	f	class:enviro
+sethelp	telnet/commands.cc	/^	sethelp[] = 	"set operating parameters ('set ?' for more)",$/;"	v	file:
+setlist	telnet/commands.cc	/^struct setlist {$/;"	s	file:
+setmode	telnet/commands.cc	/^int setmode(int bit) {$/;"	f
+setproctitle	telnetd/setproctitle.c	/^setproctitle(const char *fmt, ...)$/;"	f
+setproctitle_rcsid	telnetd/setproctitle.c	/^char setproctitle_rcsid[] =$/;"	v
+setsink	telnet/ring.h	/^    datasink *setsink(datasink *nu) {$/;"	f	class:ringbuf
+setsize	telnet/array.h	/^    void setsize(int newsize) {$/;"	f	class:array
+setsize	telnet/ptrarray.h	/^    void setsize(int newsize) {$/;"	f	class:ptrarray
+settimer	telnet/defines.h	41;"	d
+settimer	telnetd/defs.h	103;"	d
+settogglehelp	telnet/commands.cc	/^static void settogglehelp(int set) {$/;"	f	file:
+settranscom	telnet/tn3270.cc	/^int settranscom(int argc, char *argv[]) {$/;"	f
+setval	telnetd/sys_term.c	113;"	d	file:
+shell	telnet/commands.cc	/^int shell(int argc, const char **) {$/;"	f
+showoptions	telnet/telnet.cc	/^  showoptions,$/;"	v
+sigiocount	telnet/tn3270.cc	/^int sigiocount;		\/* Number of times we got a SIGIO *\/$/;"	v
+size	telnet/ring.h	/^    int size;   \/* total size of buffer *\/$/;"	m	class:ringbuf
+skiprc	telnet/telnet.cc	/^  skiprc = 0,$/;"	v
+slc	telnet/telnet.cc	/^void slc(unsigned char *cp, int len) {$/;"	f
+slc_add_reply	telnet/telnet.cc	/^void slc_add_reply(int func, int flags, int value) {$/;"	f
+slc_check	telnet/telnet.cc	/^void slc_check(void) {$/;"	f
+slc_end_reply	telnet/telnet.cc	/^void slc_end_reply(void) {$/;"	f
+slc_export	telnet/telnet.cc	/^void slc_export(void) {$/;"	f
+slc_import	telnet/telnet.cc	/^void slc_import(int def) {$/;"	f
+slc_init	telnet/telnet.cc	/^void slc_init(void) {$/;"	f
+slc_mode	telnet/telnet.cc	/^static int slc_mode = SLC_EXPORT;$/;"	v	file:
+slc_mode_export	telnet/telnet.cc	/^void slc_mode_export(void) {$/;"	f
+slc_mode_import	telnet/telnet.cc	/^void slc_mode_import(int def) {$/;"	f
+slc_mode_import_0	telnet/commands.cc	/^static int slc_mode_import_0(void) {$/;"	f	file:
+slc_mode_import_1	telnet/commands.cc	/^static int slc_mode_import_1(void) {$/;"	f	file:
+slc_rcsid	telnetd/slc.c	/^char slc_rcsid[] = $/;"	v
+slc_reply	telnet/telnet.cc	/^unsigned char slc_reply[128];$/;"	v
+slc_replyp	telnet/telnet.cc	/^unsigned char *slc_replyp;$/;"	v
+slc_start_reply	telnet/telnet.cc	/^void slc_start_reply(void) {$/;"	f
+slc_update	telnet/telnet.cc	/^int slc_update(void) {$/;"	f
+slcbuf	telnetd/slc.c	/^static unsigned char slcbuf[NSLC*6];	\/* buffer for slc negotiation *\/$/;"	v	file:
+slcchange	telnetd/slc.c	/^static int slcchange;	\/* change to slc is requested *\/$/;"	v	file:
+slcent	telnetd/defs.h	/^} slcent, *Slcent;$/;"	t	typeref:struct:__anon1
+slcfun	telnetd/defs.h	/^} slcfun, *Slcfun;$/;"	t	typeref:struct:__anon2
+slcoff	telnetd/slc.c	/^static int slcoff;                      \/* offset into slc buffer *\/$/;"	v	file:
+slcstate	telnet/telnet.cc	/^void slcstate(void) {$/;"	f
+slctab	telnet/commands.cc	/^static ptrarray<command_entry> slctab;$/;"	v	file:
+slctab	telnetd/global.c	/^slcfun	slctab[NSLC + 1];	\/* slc mapping table *\/$/;"	v
+source	telnet/ring.h	/^    class source {$/;"	c	class:ringbuf
+sourceroute	telnet/commands.cc	/^static unsigned long sourceroute(char *arg, char **cpp, int *lenp) {$/;"	f	file:
+spc	telnet/telnet.cc	/^struct spc {$/;"	s	file:
+spc_data	telnet/telnet.cc	/^} spc_data[NSLC+1];$/;"	v	typeref:struct:spc
+spcset	telnetd/sys_term.c	/^int spcset(int func, cc_t *valp, cc_t **valpp) {$/;"	f
+special	telnet/commands.cc	/^static int special(const char *s) {$/;"	f	file:
+speed	telnet/terminal.cc	/^	long speed;$/;"	m	struct:termspeeds	file:
+speed	telnetd/sys_term.c	/^	int	speed;$/;"	m	struct:termspeeds	file:
+sptr	telnetd/defs.h	/^	cc_t		*sptr;		\/* a pointer to the char in *\/$/;"	m	struct:__anon2
+srcbinding	telnet/ring.h	/^    source *srcbinding;$/;"	m	class:ringbuf
+st_rcsid	telnetd/sys_term.c	/^char st_rcsid[] = $/;"	v
+start_login	telnetd/sys_term.c	/^void start_login(const char *host, int autologin, const char *name) {$/;"	f
+start_slc	telnetd/slc.c	/^void start_slc(int getit) {$/;"	f
+startslave	telnetd/sys_term.c	/^void startslave(const char *host, int autologin, char *autoname) {$/;"	f
+state_rcsid	telnetd/state.c	/^char state_rcsid[] = $/;"	v
+status	telnet/commands.cc	/^static int status(void) {$/;"	f	file:
+statushelp	telnet/commands.cc	/^	statushelp[] =	"print status information",$/;"	v	file:
+stilloob	telnet/netlink.cc	/^int netlink::stilloob(void) {$/;"	f	class:netlink
+stilloob	telnetd/utility.c	/^int stilloob(int s)		\/* socket number *\/$/;"	f
+str	telnet/authenc.cc	/^	unsigned char *str;$/;"	v
+stringarray	telnet/telnet.cc	/^typedef ptrarray<const char> stringarray;$/;"	t	file:
+strip	telnet/telnet.cc	71;"	d	file:
+subbuffer	telnet/telnet.cc	/^static unsigned char subbuffer[SUBBUFSIZE];$/;"	v	file:
+subbuffer	telnetd/state.c	/^unsigned char subbuffer[512], *subpointer=subbuffer, *subend=subbuffer;$/;"	v
+subend	telnet/telnet.cc	/^static unsigned char *subpointer, *subend;	 \/* buffer for sub-options *\/$/;"	v	file:
+subend	telnetd/state.c	/^unsigned char subbuffer[512], *subpointer=subbuffer, *subend=subbuffer;$/;"	v
+subhandler	telnet/commands.cc	/^	command_table *subhandler;$/;"	m	union:command_entry::__anon6	file:
+suboption	telnet/telnet.cc	/^static void suboption(void) {$/;"	f	file:
+suboption	telnetd/state.c	/^void suboption(void) {$/;"	f
+subpointer	telnet/telnet.cc	/^static unsigned char *subpointer, *subend;	 \/* buffer for sub-options *\/$/;"	v	file:
+subpointer	telnetd/state.c	/^unsigned char subbuffer[512], *subpointer=subbuffer, *subend=subbuffer;$/;"	v
+susp	telnet/terminal.cc	/^static void susp(int \/*sig*\/) {$/;"	f	file:
+suspend	telnet/commands.cc	/^int suspend(void) {$/;"	f
+sys_telnet_init	telnet/sys_bsd.cc	/^void sys_telnet_init(void) {$/;"	f
+system	telnet/types.h	/^    int system;			\/* what the current time is *\/$/;"	m	struct:__anon5
+system	telnetd/ext.h	/^    int system;			\/* what the current time is *\/$/;"	m	struct:_clocks
+tail	telnet/ring.h	/^    int tail;   \/* next output character comes from here *\/$/;"	m	class:ringbuf
+tcgetattr	telnet/terminal.cc	240;"	d	file:
+tcgetattr	telnet/terminal.cc	245;"	d	file:
+tcgetattr	telnet/terminal.cc	250;"	d	file:
+tcsetattr	telnet/terminal.cc	254;"	d	file:
+tcval	telnet/sys_bsd.cc	/^cc_t *tcval(int func) {$/;"	f
+tel_enter_binary	telnet/telnet.cc	/^void tel_enter_binary(int rw) {$/;"	f
+tel_leave_binary	telnet/telnet.cc	/^void tel_leave_binary(int rw) {$/;"	f
+telnet	telnet/telnet.cc	/^void telnet(const char * \/*user*\/) {$/;"	f
+telnet	telnetd/telnetd.c	/^void telnet(int f, int p)$/;"	f
+telnet_rcsid	telnet/telnet.cc	/^char telnet_rcsid[] = $/;"	v
+telnet_spin	telnet/authenc.cc	/^telnet_spin()$/;"	f
+telnetd_rcsid	telnetd/telnetd.c	/^char telnetd_rcsid[] = $/;"	v
+telnetport	telnet/telnet.cc	/^  telnetport,$/;"	v
+telrcv	telnet/telnet.cc	/^int telrcv(void) {$/;"	f
+telrcv	telnetd/state.c	/^void telrcv(void) {$/;"	f
+telrcv_state	telnet/telnet.cc	/^static int telrcv_state;$/;"	v	file:
+telsnd	telnet/telnet.cc	/^static int telsnd(void) {$/;"	f	file:
+termAytChar	telnet/externs.h	295;"	d
+termAytChar	telnet/terminal.cc	/^cc_t termAytChar;$/;"	v
+termAytCharp	telnet/externs.h	316;"	d
+termAytCharp	telnet/externs.h	333;"	d
+termEofChar	telnet/externs.h	229;"	d
+termEofCharp	telnet/externs.h	302;"	d
+termEofCharp	telnet/externs.h	319;"	d
+termEraseChar	telnet/externs.h	230;"	d
+termEraseCharp	telnet/externs.h	303;"	d
+termEraseCharp	telnet/externs.h	320;"	d
+termFlushChar	telnet/externs.h	247;"	d
+termFlushChar	telnet/terminal.cc	/^cc_t termFlushChar;$/;"	v
+termFlushCharp	telnet/externs.h	308;"	d
+termFlushCharp	telnet/externs.h	325;"	d
+termForw1Char	telnet/externs.h	283;"	d
+termForw1Char	telnet/terminal.cc	/^cc_t termForw1Char;$/;"	v
+termForw1Charp	telnet/externs.h	314;"	d
+termForw1Charp	telnet/externs.h	331;"	d
+termForw2Char	telnet/externs.h	289;"	d
+termForw2Char	telnet/terminal.cc	/^cc_t termForw2Char;$/;"	v
+termForw2Charp	telnet/externs.h	315;"	d
+termForw2Charp	telnet/externs.h	332;"	d
+termIntChar	telnet/externs.h	231;"	d
+termIntCharp	telnet/externs.h	304;"	d
+termIntCharp	telnet/externs.h	321;"	d
+termKillChar	telnet/externs.h	232;"	d
+termKillCharp	telnet/externs.h	305;"	d
+termKillCharp	telnet/externs.h	322;"	d
+termLiteralNextChar	telnet/externs.h	265;"	d
+termLiteralNextChar	telnet/terminal.cc	/^cc_t termLiteralNextChar;$/;"	v
+termLiteralNextCharp	telnet/externs.h	311;"	d
+termLiteralNextCharp	telnet/externs.h	328;"	d
+termQuitChar	telnet/externs.h	233;"	d
+termQuitCharp	telnet/externs.h	306;"	d
+termQuitCharp	telnet/externs.h	323;"	d
+termRprntChar	telnet/externs.h	259;"	d
+termRprntChar	telnet/terminal.cc	/^cc_t termRprntChar;$/;"	v
+termRprntCharp	telnet/externs.h	310;"	d
+termRprntCharp	telnet/externs.h	327;"	d
+termStartChar	telnet/externs.h	271;"	d
+termStartChar	telnet/terminal.cc	/^cc_t termStartChar;$/;"	v
+termStartCharp	telnet/externs.h	312;"	d
+termStartCharp	telnet/externs.h	329;"	d
+termStopChar	telnet/externs.h	277;"	d
+termStopChar	telnet/terminal.cc	/^cc_t termStopChar;$/;"	v
+termStopCharp	telnet/externs.h	313;"	d
+termStopCharp	telnet/externs.h	330;"	d
+termSuspChar	telnet/externs.h	238;"	d
+termSuspChar	telnet/terminal.cc	/^cc_t termSuspChar;$/;"	v
+termSuspCharp	telnet/externs.h	307;"	d
+termSuspCharp	telnet/externs.h	324;"	d
+termWerasChar	telnet/externs.h	253;"	d
+termWerasChar	telnet/terminal.cc	/^cc_t termWerasChar;$/;"	v
+termWerasCharp	telnet/externs.h	309;"	d
+termWerasCharp	telnet/externs.h	326;"	d
+termbuf	telnet/telnet.cc	/^char termbuf[2048];$/;"	v
+termbuf	telnetd/sys_term.c	/^static struct termios termbuf, termbuf2;	\/* pty control structure *\/$/;"	v	typeref:struct:termios	file:
+termbuf2	telnetd/sys_term.c	/^static struct termios termbuf, termbuf2;	\/* pty control structure *\/$/;"	v	typeref:struct:	file:
+termdata	telnet/commands.cc	/^static int termdata;    \/* Print out terminal data flow *\/$/;"	v	file:
+terminal_rcsid	telnet/terminal.cc	/^char terminal_rcsid[] = $/;"	v
+terminaltype	telnetd/global.c	/^char	*terminaltype;$/;"	v
+terminaltypeok	telnetd/telnetd.c	/^terminaltypeok(const char *s)$/;"	f	file:
+terminit	telnetd/termstat.c	/^terminit()$/;"	f
+termspeeds	telnet/terminal.cc	/^struct termspeeds {$/;"	s	file:
+termspeeds	telnet/terminal.cc	/^} termspeeds[] = {$/;"	v	typeref:struct:termspeeds
+termspeeds	telnetd/sys_term.c	/^struct termspeeds {$/;"	s	file:
+termspeeds	telnetd/sys_term.c	/^} termspeeds[] = {$/;"	v	typeref:struct:termspeeds
+termstat_rcsid	telnetd/termstat.c	/^char termstat_rcsid[] = $/;"	v
+tin	telnet/terminal.cc	/^static int tin;			\/* Input file descriptor *\/$/;"	v	file:
+tline	telnet/tn3270.cc	/^char tline[200];$/;"	v
+tlink_getifd	telnet/terminal.cc	/^int tlink_getifd(void) {$/;"	f
+tlink_getofd	telnet/terminal.cc	/^int tlink_getofd(void) {$/;"	f
+tlink_init	telnet/terminal.cc	/^void tlink_init(void) {$/;"	f
+tn	telnet/commands.cc	/^int tn(int argc, const char *argv[]) {$/;"	f
+tn3270_rcsid	telnet/tn3270.cc	/^char tn3270_rcsid[] = $/;"	v
+tn3270_ttype	telnet/tn3270.cc	/^int tn3270_ttype(void) {$/;"	f
+tninit	telnet/main.cc	/^tninit(void)$/;"	f
+togbinary	telnet/commands.cc	/^static int togbinary(int val) {$/;"	f	file:
+togcrlf	telnet/commands.cc	/^static int togcrlf(int) {$/;"	f	file:
+togcrmod	telnet/commands.cc	/^static int togcrmod(void) {$/;"	f	file:
+togdebug	telnet/commands.cc	/^static int togdebug(int) {$/;"	f	file:
+toggle	telnet/commands.cc	/^static int toggle(int argc, const char *argv[]) {$/;"	f	file:
+togglehelp	telnet/commands.cc	/^static int togglehelp(int) {$/;"	f	file:
+togglelist	telnet/commands.cc	/^struct togglelist {$/;"	s	file:
+togglestring	telnet/commands.cc	/^	togglestring[] ="toggle operating parameters ('toggle ?' for more)",$/;"	v	file:
+togrbinary	telnet/commands.cc	/^static int togrbinary(int val) {$/;"	f	file:
+togxbinary	telnet/commands.cc	/^static int togxbinary(int val) {$/;"	f	file:
+toplevel	telnet/telnet.cc	/^sigjmp_buf toplevel;$/;"	v
+tos	telnet/commands.cc	/^int tos = -1;$/;"	v
+tout	telnet/terminal.cc	/^static int tout;		\/* Output file descriptor *\/$/;"	v	file:
+transcom	telnet/tn3270.cc	/^char *transcom = 0;	\/* transparent mode command (default: none) *\/$/;"	v
+transcomhelp	telnet/commands.cc	/^	transcomhelp[] = "specify Unix command for transparent mode pipe",$/;"	v	file:
+tspeedsubopt	telnetd/ext.h	/^    int tspeedsubopt;		\/* tspeed subopt is received *\/$/;"	m	struct:_clocks
+ttloop	telnetd/utility.c	/^ttloop(void)$/;"	f
+tty_binaryin	telnetd/sys_term.c	/^void tty_binaryin(int on) {$/;"	f
+tty_binaryout	telnetd/sys_term.c	/^void tty_binaryout(int on) {$/;"	f
+tty_flowmode	telnetd/sys_term.c	/^int tty_flowmode(void) {$/;"	f
+tty_isbinaryin	telnetd/sys_term.c	/^int tty_isbinaryin(void) {$/;"	f
+tty_isbinaryout	telnetd/sys_term.c	/^int tty_isbinaryout(void) {$/;"	f
+tty_iscrnl	telnetd/sys_term.c	/^int tty_iscrnl(void) {$/;"	f
+tty_isecho	telnetd/sys_term.c	/^int tty_isecho(void) {$/;"	f
+tty_isediting	telnetd/sys_term.c	/^int tty_isediting(void) {$/;"	f
+tty_islitecho	telnetd/sys_term.c	/^int tty_islitecho(void) {$/;"	f
+tty_israw	telnetd/sys_term.c	/^int tty_israw(void) {$/;"	f
+tty_issofttab	telnetd/sys_term.c	/^int tty_issofttab(void) {$/;"	f
+tty_istrapsig	telnetd/sys_term.c	/^int tty_istrapsig(void) {$/;"	f
+tty_linemode	telnetd/sys_term.c	/^int tty_linemode(void) {$/;"	f
+tty_rspeed	telnetd/sys_term.c	/^void tty_rspeed(int val) {$/;"	f
+tty_setecho	telnetd/sys_term.c	/^void tty_setecho(int on) {$/;"	f
+tty_setedit	telnetd/sys_term.c	/^void tty_setedit(int on) {$/;"	f
+tty_setlinemode	telnetd/sys_term.c	/^void tty_setlinemode(int on) {$/;"	f
+tty_setlitecho	telnetd/sys_term.c	/^void tty_setlitecho(int on) {$/;"	f
+tty_setsig	telnetd/sys_term.c	/^void tty_setsig(int on) {$/;"	f
+tty_setsofttab	telnetd/sys_term.c	/^void tty_setsofttab(int on) {$/;"	f
+tty_tspeed	telnetd/sys_term.c	/^void tty_tspeed(int val) {$/;"	f
+ttyflush	telnet/terminal.cc	/^int ttyflush(int drop) {$/;"	f
+ttyiring	telnet/terminal.cc	/^ringbuf ttyoring, ttyiring;$/;"	v
+ttyoring	telnet/terminal.cc	/^ringbuf ttyoring, ttyiring;$/;"	v
+ttypesubopt	telnetd/ext.h	/^    int ttypesubopt;		\/* ttype subopt is received *\/$/;"	m	struct:_clocks
+ttysink	telnet/terminal.cc	/^datasink *ttysink = &chan1;$/;"	v
+ttysorc	telnet/terminal.cc	/^class ttysorc : public ringbuf::source {$/;"	c	file:
+ttysrc	telnet/terminal.cc	/^ringbuf::source *ttysrc = &chan2;$/;"	v
+ttysynk	telnet/terminal.cc	/^class ttysynk : public datasink {$/;"	c	file:
+turn_on_sga	telnetd/state.c	/^int turn_on_sga = 0;$/;"	v
+ungetch	telnet/ring.cc	/^void ringbuf::ungetch(int ch) {$/;"	f	class:ringbuf
+unsetcmd	telnet/commands.cc	/^static int unsetcmd(int argc, const char *argv[]) {$/;"	f	file:
+unsethelp	telnet/commands.cc	/^	unsethelp[] = 	"unset operating parameters ('unset ?' for more)",$/;"	v	file:
+upcase	telnet/utilities.cc	/^void upcase(char *str) {$/;"	f
+usage	telnet/main.cc	/^void usage(void) {$/;"	f
+usage	telnetd/telnetd.c	/^usage(void)$/;"	f
+useeditmode	telnetd/global.c	/^int	useeditmode;	\/* edit modes to use *\/$/;"	v
+uselinemode	telnetd/global.c	/^int	uselinemode;	\/* what linemode to use (on\/off) *\/$/;"	v
+util_rcsid	telnet/utilities.cc	/^char util_rcsid[] = $/;"	v
+util_rcsid	telnetd/utility.c	/^char util_rcsid[] = $/;"	v
+v	telnet/array.h	/^    T *v;$/;"	m	class:array
+v	telnet/ptrarray.h	/^    T **v;$/;"	m	class:ptrarray
+val	telnet/authenc.cc	/^	char *val;$/;"	v
+val	telnet/telnet.cc	/^  cc_t val;$/;"	m	struct:spc	file:
+val	telnetd/defs.h	/^	cc_t val;		\/* the value of the special character *\/$/;"	m	struct:__anon1
+validate_tty	telnetlogin/telnetlogin.c	/^static void validate_tty(void) {$/;"	f	file:
+validator	telnetlogin/telnetlogin.c	/^   int (*validator)(char *);$/;"	m	struct:__anon3	file:
+valp	telnet/telnet.cc	/^  cc_t *valp;$/;"	m	struct:spc	file:
+value	telnet/environ.cc	/^    char *value;        \/* pointer to variable's value *\/$/;"	m	class:enviro	file:
+value	telnet/terminal.cc	/^	long value;$/;"	m	struct:termspeeds	file:
+value	telnetd/sys_term.c	/^	int	value;$/;"	m	struct:termspeeds	file:
+var	telnet/environ.cc	/^    char *var;	        \/* pointer to variable name *\/$/;"	m	class:enviro	file:
+variable	telnet/commands.cc	/^    int *variable;$/;"	m	struct:togglelist	file:
+vars	telnet/environ.cc	/^static array<enviro> vars;$/;"	v	file:
+want_status_response	telnet/telnet.cc	/^int want_status_response = 0;$/;"	v
+wewant	telnetd/utility.c	221;"	d	file:
+what	telnet/commands.cc	/^    int what;			\/* Character to be sent (<0 ==> special) *\/$/;"	m	struct:sendlist	file:
+will	telnetd/state.c	/^unsigned char	will[] = { IAC, WILL, '%', 'c', 0 };$/;"	v
+will_wont_resp	telnet/telnet.cc	/^char	will_wont_resp[256];$/;"	v
+will_wont_resp	telnetd/global.c	/^char	will_wont_resp[256];$/;"	v
+willoption	telnet/telnet.cc	/^void willoption(int option) {$/;"	f
+willoption	telnetd/state.c	/^void willoption(int option) {$/;"	f
+wont	telnetd/state.c	/^unsigned char	wont[] = { IAC, WONT, '%', 'c', 0 };$/;"	v
+wontoption	telnet/telnet.cc	/^void wontoption(int option) {$/;"	f
+wontoption	telnetd/state.c	/^void wontoption(int option) {$/;"	f
+write	telnet/netlink.cc	/^    virtual int write(const char *buf, int len) {$/;"	f	class:netchannel2
+write	telnet/ring.cc	/^    virtual int write(const char *, int n) { return n; }$/;"	f	class:devnull	file:
+write	telnet/ring.cc	/^void ringbuf::write(const char *buffer, int ct) {$/;"	f	class:ringbuf
+write	telnet/terminal.cc	/^    virtual int write(const char *buf, int len) {$/;"	f	class:ttysynk
+writenet	telnetd/utility.c	/^void writenet(register unsigned char *ptr, register int len)$/;"	f
+writeurg	telnet/netlink.cc	/^    virtual int writeurg(const char *buf, int len) {$/;"	f	class:netchannel2
+writeurg	telnet/ring.cc	/^    virtual int writeurg(const char *, int n) { return n; }$/;"	f	class:devnull	file:
+writeurg	telnet/terminal.cc	/^    virtual int writeurg(const char *buf, int len) {$/;"	f	class:ttysynk
+xbits	telnet/sys_bsd.cc	/^static fd_set ibits, obits, xbits;$/;"	v	file:
+xdisplocsubopt	telnetd/ext.h	/^    int xdisplocsubopt;		\/* xdisploc subopt is received *\/$/;"	m	struct:_clocks
+xmitAO	telnet/telnet.cc	/^void xmitAO(void) {$/;"	f
+xmitEC	telnet/telnet.cc	/^void xmitEC(void) {$/;"	f
+xmitEL	telnet/telnet.cc	/^void xmitEL(void) {$/;"	f
+zhelp	telnet/commands.cc	/^	zhelp[] =	"suspend telnet",$/;"	v	file:
+~array	telnet/array.h	/^    ~array() { setsize(0); delete []((char *)v); }$/;"	f	class:array
+~datasink	telnet/ring.h	/^    virtual ~datasink() {}$/;"	f	class:datasink
+~enviro	telnet/environ.cc	/^    ~enviro() { clean(); }$/;"	f	class:enviro
+~netlink	telnet/netlink.cc	/^netlink::~netlink() { ::close(net); }$/;"	f	class:netlink
+~ptrarray	telnet/ptrarray.h	/^    ~ptrarray() { delete []v; }$/;"	f	class:ptrarray
+~source	telnet/ring.h	/^	virtual ~source() {}$/;"	f	class:ringbuf::source

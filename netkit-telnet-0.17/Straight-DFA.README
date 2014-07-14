@@ -1,0 +1,21 @@
+1. CC=wllvm ./configure; make; cd telnetd; make
+There might be some errors when make. Need to add #include <cstdlib> ,
+#include “string.h” if compilation gets error. When make telnetd, Need
+to add -lstdc++ in creating telnetd.
+
+2. How to run it?
+sudo ./telnetd -debug
+telnetd is not like SSH which runs as a daemon. It is run on
+per-request base. 
+http://www.linuxforums.org/forum/red-hat-fedora-linux/50841-run-telnet-server.html 
+It can also be started through inetd
+4、开启& 关闭 服务 
+    非常简单，只要在想要关闭的服务前面加上一个#，比如想要关闭23端囗，被telnet使用，只要象下面这样。 
+    #telnet  stream  tcp    nowait  root    /usr/sbin/tcpd  in.telnetd 
+    这时，telnet服务已经关闭了，以后，如果我想让朋友通过telnet访问我的计算机，我只需要把#去掉，就象这样。 
+    telnet  stream  tcp    nowait  root    /usr/sbin/tcpd  in.telnetd 
+    这时，telnet服务又被开启，就是这么简单。重新启动inetd进程让改动生效，用下面的命令。 
+    james:~ # killall -HUP inetd 
+    http://www.gwin7.com/win7/news/1673.html 
+
+3. It is multi process
