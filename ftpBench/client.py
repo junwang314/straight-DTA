@@ -18,6 +18,8 @@ def client(cycle, fileList):
 	    with open(fileName) as f:
 #	        ftp.storlines("STOR "+fileName+"."+timeStr(), f)
 	        ftp.storlines("STOR "+fileName, f)
+                print i,fileName	
+		time.sleep(1)
     ftp.quit()
 
 def main(session, cycle, fileList):
