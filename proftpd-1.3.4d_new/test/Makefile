@@ -11,7 +11,7 @@ $(TARGET):$(TARGET).s
 	gcc -g -pthread $^ -lcrypt -o $@
 
 $(TARGET).s:$(TARGET).bc
-	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -inline-log -inline< $^ > inline.bc
+	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -inline-log -inline< $^ > inline.bc
 	llc inline.bc -o $@
 
 $(TARGET).bc:$(NEWSRC).bc $(INIT).bc $(LOG).bc
@@ -24,7 +24,7 @@ $(LOG).bc:$(LOG).c
 	clang -g -c -emit-llvm $^ -o $@
 
 $(NEWSRC).bc:$(SRC).bc
-	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -inst < $^ > $@
+	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -inst < $^ > $@
 
 clean:$(SRC).bc $(INIT).c $(LOG).c
 	rm $(TARGET) $(TARGET).s $(TARGET).bc
@@ -37,7 +37,7 @@ view:$(TARGET).bc
 	llvm-dis $^ -o $(TARGET).ll
 
 reco:$(TARGET).bc
-	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -reco < $^
+	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -reco < $^
 
 verbose:$(TARGET).bc
-	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -reco -debug-only=verbose < $^ >make.ll 2>&1; vim make.ll
+	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -reco -debug-only=verbose < $^ >make.ll 2>&1; vim make.ll

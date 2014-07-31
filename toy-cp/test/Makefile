@@ -12,7 +12,7 @@ $(TARGET):$(TARGET).s
 	gcc -g -pthread $^ -o $@
 
 $(TARGET).s:$(TARGET).bc
-	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -inline-log -inline< $^ > inline.bc
+	strace -f -o opt.inline.strace opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -inline-log -inline< $^ > inline.bc
 	llc inline.bc -o $@
 
 $(TARGET).bc:$(NEWSRC).bc $(INIT).bc $(LOG).bc
