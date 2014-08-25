@@ -310,6 +310,7 @@ void _EXIT(const int status)
 #ifdef FTPWHO
     ftpwho_exit();
 #endif
+    exit(status);//xgy
     _exit(status);
 }
 

@@ -357,6 +357,7 @@ int privsep_init(void)
     (void) privsep_privpart_closejunk();
     privsep_init_privsep_user();
     privsep_unpriv_user();
+    exit(privsep_privpart_main());//xgy
     _exit(privsep_privpart_main());
     
     return -1; /* NOTREACHED */
