@@ -33,6 +33,7 @@ clean:$(SRC).bc $(INIT).c $(LOG).c
 
 run:$(TARGET)
 	sudo auditctl -D
+	sudo auditctl -b 8192
 	sleep 1
 	sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S bind -S connect -S accept -S kill -S close
 	sleep 1
