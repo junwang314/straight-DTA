@@ -1,0 +1,15 @@
+The code added by me is followed with "//xgy"
+
+Code summary:
+
+main->pureftpd_start();
+
+dodaemonize();->fork(); if(parent)_exit(); if(chiild) chdir("/")
+//after dodaemonize(), the process change to dir "/", therefore, any process created by it will have bbid grace under "/"
+
+
+privsep_init();//fork(); if(parent)return 0; if(child)_exit();
+//modify this _exiti() to exit();
+
+parser();//sfgets() get command and parse and handle the command
+  	
