@@ -25,24 +25,24 @@ int main(int argc, char **argv)
     sigaction(SIGALRM, &sa, NULL);
 
     char buf[4096];
-	int fs = open(src, O_RDONLY);
-	int fd = open(dst, O_WRONLY|O_CREAT, 0664);
+    int fs = open(src, O_RDONLY);
+    int fd = open(dst, O_WRONLY|O_CREAT, 0664);
 
     alarm(1);
     sleep(1);
 
-	void * p = malloc(4096);
-	void * q = malloc(4096);
-	while(1) {
-		ssize_t rc = read(fs, p, 4096);
-		if (rc <= 0)
-			break;
-        memcpy(q, p, rc);
-		write(fd, q, rc);
-	}
+    void * p = malloc(4096);
+    void * q = malloc(4096);
+    while(1) {
+	    ssize_t rc = read(fs, p, 4096);
+	    if (rc <= 0)
+		    break;
+            memcpy(q, p, rc);
+	    write(fd, q, rc);
+    }
     sleep(1);
-	close(fs);
-	close(fd);
-	free(p);
-	return 0;
+    close(fs);
+    close(fd);
+    free(p);
+    return 0;
 }

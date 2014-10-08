@@ -8,12 +8,12 @@ LOG=../../straightDFA/log
 all:$(TARGET)
 
 $(TARGET):$(TARGET).s
-	/bin/bash ../libtool  --tag=CC   --mode=link clang -flto  -g -O2 -Wall -W -Wshadow -pedantic -std=gnu99 -export-dynamic  -o lighttpd inline.bc -L/usr/lib/x86_64-linux-gnu -lpcre -ldl -pthread -L/usr/lib/x86_64-linux-gnu -lpcre 
+	/bin/bash ../libtool  --tag=CC   --mode=link clang  -g -O2 -Wall -W -Wshadow -pedantic -std=gnu99 -export-dynamic  -o lighttpd inline.bc -L/usr/lib/x86_64-linux-gnu -lpcre -ldl -pthread -L/usr/lib/x86_64-linux-gnu -lpcre 
 #	gcc -g -pthread $^ -L/usr/lib/x86_64-linux-gnu -lpcre -ldl -o $@
 #	gcc -g -pthread $^ -lcrypt -o $@
 
 $(TARGET).s:$(TARGET).bc
-	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -inline-log -inline< $^ > inline.bc
+	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -inline-log -inline< $^ > inline.bc
 	llc inline.bc -o $@
 
 $(TARGET).bc:$(NEWSRC).bc $(INIT).bc $(LOG).bc
@@ -26,24 +26,33 @@ $(LOG).bc:$(LOG).c
 	clang -g -c -emit-llvm $^ -o $@
 
 $(NEWSRC).bc:$(SRC).bc
-	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -inline -inst < $^ > $@
+	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -inline -inst < $^ > $@
 
 clean:$(SRC).bc $(INIT).c $(LOG).c
 	rm $(TARGET) $(TARGET).s $(TARGET).bc
 	touch $^
 
 run:$(TARGET)
-	sudo ./lighttpd -D -f ../doc/config/lighttpd.conf
-  
+	sudo auditctl -D
+	sudo auditctl -b 8192
+	sleep 1
+	sudo auditctl -a exit,always -F arch=b64 -S open -S socket -S bind -S connect -S accept -S kill -S close
+	sleep 1
+	sudo auditctl -l
+	sleep 1
+	sudo strace -f -o lighttpd.strace ./lighttpd -D -f ../doc/config/lighttpd.conf
+	sleep 1
+	sudo auditctl -D
+
 view:$(TARGET).bc
 	llvm-dis $^ -o $(TARGET).ll
 
 reco:$(TARGET).bc
-	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -reco < $^
+	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -reco < $^
 
 verbose:$(TARGET).bc
-	opt -load /home/jun/llvm-3.x/build/Debug+Asserts/lib/LLVMHello.so -reco -debug-only=verbose < $^ >make.ll 2>&1; vim make.ll
+	opt -load /home/jun/llvm-3.x/build/Release+Debug+Asserts/lib/LLVMHello.so -reco -debug-only=verbose < $^ >make.ll 2>&1; vim make.ll
 
-extractbc:$(TARGET)
-	cd ../src
-	../src/extractbc.sh
+#extractbc:$(TARGET)
+#	cd ../src
+#	../src/extractbc.sh

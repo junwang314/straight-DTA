@@ -11,7 +11,8 @@ def timeStr():
 
 def client(cycle, fileList):
     print "a new session"
-    ftp = FTP("130.203.157.226", "jun", "123")
+#    ftp = FTP("130.203.157.226", "jun", "123")
+    ftp = FTP("localhost", "jun", "123")
     ftp.cwd("upload")
     for i in range(cycle):
         for fileName in fileList:
@@ -36,6 +37,6 @@ session=int(sys.argv[1])
 cycle=int(sys.argv[2])
 #fileList=["file_1MB","file_2MB","file_3MB", "file_4MB", "file_5MB", "file_10MB"]
 #fileList=["file_1MB","file_2MB","file_3MB", "file_4MB", "file_5MB", "file_10MB","file_20MB","file_50MB"]
-#fileList=["file_36KB"]
+#fileList=["file_20KB"]
 fileList=["file_10KB",  "file_20KB" , "file_50KB" , "file_100KB" , "file_1000KB" ]
 main(session, cycle, fileList)

@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 {
     int i, ret;
     //int pid = fork();
-    for (i=0; i<1000000; i++) {
+    for (i=0; i<10; i++) {
         ret = cp(i);
     }
     return 0;
