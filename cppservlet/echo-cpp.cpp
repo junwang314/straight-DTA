@@ -8,6 +8,8 @@
 #include "fcgio.h"
 #include <fstream>
 #include <sstream>
+#include <string>
+#include "ftpget.h"
 using namespace std;
 
 bool a2pdf(string fname, string path){
@@ -45,6 +47,34 @@ int pdf2out(int fd, ostringstream &out){
 	return ret;
 }
 
+bool a2gz(string fname, string path){
+	string pathname=path+fname;
+	if(access(pathname.c_str(), F_OK)==-1){
+		return false;
+	}
+
+	string gzip("gzip -c ");
+	gzip=gzip+pathname+" > "+pathname+".gz";
+	if(system(gzip.c_str())!=0){
+		return false;
+	}
+	return true;
+}
+
+int gz2out(int fd, ostringstream &out){
+	int ret=0;
+	while(true){
+		char buf[1024];
+		int r;
+		r=read(fd, buf, sizeof(buf));
+		if(r==0)break;
+		out.write(buf, r);
+		ret+=r;
+	}
+	close(fd);
+	return ret;
+}
+
 int main(void) {
     // Backup the stdio streambufs
     streambuf * cin_streambuf  = cin.rdbuf();
@@ -65,16 +95,17 @@ int main(void) {
         cout.rdbuf(&cout_fcgi_streambuf);
         cerr.rdbuf(&cerr_fcgi_streambuf);
 
-		cout<<"Content-Type: application/pdf\r\n";
+		cout<<"Content-Type: application/gzip\r\n";
 
 		string path("/home/jun/straight-DTA/cppservlet/fs/");
-		string fname("doc.txt");
+		string fname("cp.c");
+        getFile(fname);
 
-		if(a2pdf(fname, path)){
-			string pdfpathname=path+fname+".pdf";
+		if(a2gz(fname, path)){
+			string pdfpathname=path+fname+".gz";
 			int fd=open(pdfpathname.c_str(), O_RDONLY);
 			ostringstream out;
-			int sz=pdf2out(fd, out);
+			int sz=gz2out(fd, out);
 
 			char size[32];
 			sprintf(size, "%d", sz);

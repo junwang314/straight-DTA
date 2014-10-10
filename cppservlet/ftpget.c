@@ -20,9 +20,9 @@
  *
  ***************************************************************************/
 #include <stdio.h>
-
+#include <string>
 #include <curl/curl.h>
-
+using namespace std;
 /*
  * This is an example showing how to get a single file from an FTP server.
  * It delays the actual destination file creation until the first write
@@ -48,12 +48,14 @@ static size_t my_fwrite(void *buffer, size_t size, size_t nmemb, void *stream)
 }
 
 
-int main(void)
+int getFile(string fname)
 {
   CURL *curl;
   CURLcode res;
+
+  string pathname=string("fs/")+fname;
   struct FtpFile ftpfile={
-    "curl.tar.gz", /* name to store the file as if succesful */
+    pathname.c_str(), /* name to store the file as if succesful */
     NULL
   };
 
@@ -64,8 +66,10 @@ int main(void)
     /*
      * You better replace the URL with one that works!
      */
+	string url("ftp://localhost/");
+	url=url+fname;
     curl_easy_setopt(curl, CURLOPT_URL,
-                     "ftp://ftp.example.com/pub/www/utilities/curl/curl-7.9.2.tar.gz");
+                     url.c_str());
     /* Define our callback to get called when there's data to be written */
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, my_fwrite);
     /* Set a pointer to our struct to pass to the callback */
@@ -92,3 +96,8 @@ int main(void)
 
   return 0;
 }
+
+/*int main(){
+	string fname("cp.c");
+	getFile(fname);
+}*/
