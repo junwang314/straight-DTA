@@ -22,7 +22,7 @@
  *   2. in plugins_call_init()
  *
  */
-
+extern FILE* dbgfile;
 typedef struct {
 	PLUGIN_DATA;
 } plugin_data;
@@ -361,6 +361,8 @@ handler_t plugins_call_handle_fdevent(server *srv, const fd_conn *fdc) {
  */
 
 handler_t plugins_call_init(server *srv) {
+  fprintf(dbgfile, "plugins_call_init\n");
+	fflush(dbgfile);
 	size_t i;
 	plugin **ps;
 
@@ -426,6 +428,8 @@ handler_t plugins_call_init(server *srv) {
 			p->data = NULL;
 		}
 	}
+  fprintf(dbgfile, "plugins_call_init before return\n");
+	fflush(dbgfile);
 
 	return HANDLER_GO_ON;
 }

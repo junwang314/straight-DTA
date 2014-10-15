@@ -538,7 +538,10 @@ static void show_help (void) {
 	write(STDOUT_FILENO, b, strlen(b));
 }
 
+extern FILE* dbgfile;
+
 int main (int argc, char **argv) {
+	dbgfile=fopen("dbgfile","w+");
 	server *srv = NULL;
 	int print_config = 0;
 	int test_config = 0;
