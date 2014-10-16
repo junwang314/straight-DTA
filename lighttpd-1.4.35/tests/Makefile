@@ -34,8 +34,8 @@ POST_UNINSTALL = :
 build_triplet = x86_64-unknown-linux-gnu
 host_triplet = x86_64-unknown-linux-gnu
 target_triplet = x86_64-unknown-linux-gnu
-check_PROGRAMS = fcgi-auth$(EXEEXT) \
-	fcgi-responder$(EXEEXT)
+#check_PROGRAMS = fcgi-auth$(EXEEXT) \
+#	fcgi-responder$(EXEEXT)
 subdir = tests
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -50,15 +50,15 @@ CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__fcgi_auth_SOURCES_DIST = fcgi-auth.c
-am_fcgi_auth_OBJECTS = fcgi-auth.$(OBJEXT)
+#am_fcgi_auth_OBJECTS = fcgi-auth.$(OBJEXT)
 fcgi_auth_OBJECTS = $(am_fcgi_auth_OBJECTS)
 fcgi_auth_DEPENDENCIES =
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
 am__fcgi_responder_SOURCES_DIST = fcgi-responder.c
-am_fcgi_responder_OBJECTS =  \
-	fcgi-responder.$(OBJEXT)
+#am_fcgi_responder_OBJECTS =  \
+#	fcgi-responder.$(OBJEXT)
 fcgi_responder_OBJECTS = $(am_fcgi_responder_OBJECTS)
 fcgi_responder_DEPENDENCIES =
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
@@ -142,11 +142,11 @@ AUTOCONF = ${SHELL} /home/jun/straight-DTA/lighttpd-1.4.35/missing --run autocon
 AUTOHEADER = ${SHELL} /home/jun/straight-DTA/lighttpd-1.4.35/missing --run autoheader
 AUTOMAKE = ${SHELL} /home/jun/straight-DTA/lighttpd-1.4.35/missing --run automake-1.11
 AWK = mawk
-BZ_LIB = -lbz2
-CC = gcc
+BZ_LIB = 
+CC = clang -flto
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2 -Wall -W -Wshadow -pedantic -std=gnu99
-CPP = gcc -E
+CPP = clang -flto -E
 CPPFLAGS =  -D_REENTRANT -D__EXTENSIONS__  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES
 CRYPT_LIB = -lcrypt
 CYGPATH_W = echo
@@ -172,7 +172,7 @@ INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LBER_LIB = 
-LD = /usr/bin/ld -m elf_x86_64
+LD = /usr/bin/ld
 LDAP_LIB = 
 LDFLAGS = 
 LIBEV_CFLAGS = 
@@ -230,7 +230,7 @@ abs_srcdir = /home/jun/straight-DTA/lighttpd-1.4.35/tests
 abs_top_builddir = /home/jun/straight-DTA/lighttpd-1.4.35
 abs_top_srcdir = /home/jun/straight-DTA/lighttpd-1.4.35
 ac_ct_AR = ar
-ac_ct_CC = gcc
+ac_ct_CC = clang -flto
 ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
@@ -284,10 +284,10 @@ top_srcdir = ..
 
 # lighttpd.conf and conformance.pl expect this directory
 testdir = $(srcdir)/tmp/lighttpd/
-fcgi_auth_SOURCES = fcgi-auth.c
-fcgi_auth_LDADD = -lfcgi
-fcgi_responder_SOURCES = fcgi-responder.c
-fcgi_responder_LDADD = -lfcgi
+#fcgi_auth_SOURCES = fcgi-auth.c
+#fcgi_auth_LDADD = -lfcgi
+#fcgi_responder_SOURCES = fcgi-responder.c
+#fcgi_responder_LDADD = -lfcgi
 TESTS = \
 	prepare.sh \
 	run-tests.pl \
