@@ -103,7 +103,10 @@ am__liblightcomp_la_SOURCES_DIST = buffer.c log.c keyvalue.c chunk.c \
 	configfile-glue.c http-header-glue.c network_write.c \
 	network_linux_sendfile.c network_freebsd_sendfile.c \
 	network_writev.c network_solaris_sendfilev.c network_openssl.c \
-	splaytree.c status_counter.c
+	splaytree.c status_counter.c \
+	mod_indexfile.c mod_access.c mod_scgi.c mod_fastcgi.c mod_accesslog.c \
+	mod_dirlisting.c mod_staticfile.c
+
 am__objects_1 = liblightcomp_la-buffer.lo liblightcomp_la-log.lo \
 	liblightcomp_la-keyvalue.lo liblightcomp_la-chunk.lo \
 	liblightcomp_la-http_chunk.lo liblightcomp_la-stream.lo \
@@ -131,7 +134,10 @@ am__objects_1 = liblightcomp_la-buffer.lo liblightcomp_la-log.lo \
 	liblightcomp_la-network_writev.lo \
 	liblightcomp_la-network_solaris_sendfilev.lo \
 	liblightcomp_la-network_openssl.lo \
-	liblightcomp_la-splaytree.lo liblightcomp_la-status_counter.lo
+	liblightcomp_la-splaytree.lo liblightcomp_la-status_counter.lo \
+	mod_indexfile.lo mod_access.lo mod_scgi.lo mod_fastcgi.lo mod_accesslog.lo \
+	mod_dirlisting.lo mod_staticfile.lo
+
 #am_liblightcomp_la_OBJECTS = $(am__objects_1)
 liblightcomp_la_OBJECTS = $(am_liblightcomp_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
@@ -385,7 +391,10 @@ am__lighttpd_SOURCES_DIST = server.c response.c connections.c \
 	configfile-glue.c http-header-glue.c network_write.c \
 	network_linux_sendfile.c network_freebsd_sendfile.c \
 	network_writev.c network_solaris_sendfilev.c network_openssl.c \
-	splaytree.c status_counter.c
+	splaytree.c status_counter.c \
+	mod_indexfile.c mod_access.c mod_scgi.c mod_fastcgi.c mod_accesslog.c \
+	mod_dirlisting.c mod_staticfile.c
+
 am__objects_2 = buffer.$(OBJEXT) log.$(OBJEXT) keyvalue.$(OBJEXT) \
 	chunk.$(OBJEXT) http_chunk.$(OBJEXT) stream.$(OBJEXT) \
 	fdevent.$(OBJEXT) stat_cache.$(OBJEXT) plugin.$(OBJEXT) \
@@ -404,7 +413,10 @@ am__objects_2 = buffer.$(OBJEXT) log.$(OBJEXT) keyvalue.$(OBJEXT) \
 	network_linux_sendfile.$(OBJEXT) \
 	network_freebsd_sendfile.$(OBJEXT) network_writev.$(OBJEXT) \
 	network_solaris_sendfilev.$(OBJEXT) network_openssl.$(OBJEXT) \
-	splaytree.$(OBJEXT) status_counter.$(OBJEXT)
+	splaytree.$(OBJEXT) status_counter.$(OBJEXT) \
+	mod_indexfile.$(OBJEXT) mod_access.$(OBJEXT) mod_scgi.$(OBJEXT) mod_fastcgi.$(OBJEXT) mod_accesslog.$(OBJEXT) \
+	mod_dirlisting.$(OBJEXT) mod_staticfile.$(OBJEXT)
+
 am__objects_3 = $(am__objects_2)
 am__objects_4 = server.$(OBJEXT) response.$(OBJEXT) \
 	connections.$(OBJEXT) network.$(OBJEXT) configfile.$(OBJEXT) \
@@ -666,7 +678,9 @@ common_src = buffer.c log.c \
       network_write.c network_linux_sendfile.c \
       network_freebsd_sendfile.c network_writev.c \
       network_solaris_sendfilev.c network_openssl.c \
-      splaytree.c status_counter.c
+      splaytree.c status_counter.c \
+			mod_indexfile.c mod_access.c mod_scgi.c mod_fastcgi.c mod_accesslog.c \
+			mod_dirlisting.c mod_staticfile.c
 
 src = server.c response.c connections.c network.c configfile.c \
 	configparser.c request.c proc_open.c $(am__append_2)

@@ -13,6 +13,9 @@
 #ifndef __WIN32
 # include <dlfcn.h>
 #endif
+
+#define LIGHTTPD_STATIC
+
 /*
  *
  * if you change this enum to add a new callback, be sure
@@ -111,7 +114,14 @@ int plugins_load(server *srv) {
 	}\
 	plugins_register(srv, p);
 
-#include "plugin-static.h"
+//#include "plugin-static.h"
+  PLUGIN_INIT(mod_indexfile)
+	PLUGIN_INIT(mod_access)
+	PLUGIN_INIT(mod_scgi)
+  PLUGIN_INIT(mod_fastcgi)
+  PLUGIN_INIT(mod_accesslog)
+  PLUGIN_INIT(mod_dirlisting)
+  PLUGIN_INIT(mod_staticfile)
 
 	return 0;
 }
@@ -173,7 +183,8 @@ int plugins_load(server *srv) {
 
 			return -1;
 		}
-
+    fprintf(dbgfile, "dlopen: %s\n", srv->tmp_buf->ptr);
+		fflush(dbgfile);
 #endif
 		buffer_reset(srv->tmp_buf);
 		buffer_copy_string(srv->tmp_buf, modules);
@@ -202,6 +213,8 @@ int plugins_load(server *srv) {
 #else
 #if 1
 		init = (int (*)(plugin *))(intptr_t)dlsym(p->lib, srv->tmp_buf->ptr);
+		fprintf(dbgfile, "dlsym: %s\n", srv->tmp_buf->ptr);
+		fflush(dbgfile);
 #else
 		*(void **)(&init) = dlsym(p->lib, srv->tmp_buf->ptr);
 #endif
@@ -413,6 +426,9 @@ handler_t plugins_call_init(server *srv) {
 			if (NULL == (p->data = p->init())) {
 				log_error_write(srv, __FILE__, __LINE__, "sb",
 						"plugin-init failed for module", p->name);
+				fprintf(dbgfile, "plugins_call_init before return\n");
+				fflush(dbgfile);
+
 				return HANDLER_ERROR;
 			}
 
@@ -422,6 +438,9 @@ handler_t plugins_call_init(server *srv) {
 			if (p->version != LIGHTTPD_VERSION_ID) {
 				log_error_write(srv, __FILE__, __LINE__, "sb",
 						"plugin-version doesn't match lighttpd-version for", p->name);
+				fprintf(dbgfile, "plugins_call_init before return\n");
+				fflush(dbgfile);
+
 				return HANDLER_ERROR;
 			}
 		} else {

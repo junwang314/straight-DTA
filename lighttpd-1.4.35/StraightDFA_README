@@ -22,3 +22,26 @@ llvm-link -o lighttpd.bc server.o response.o connections.o network.o configfile.
 llc lighttpd.bc
 gcc -g -pthread lighttpd.s -L/usr/lib/x86_64-linux-gnu -lpcre -ldl -o lighttpd2
 
+
+To build static lighttpd, need to statically link these files:
+dlopen: /usr/local/lib/mod_indexfile.so
+dlsym: mod_indexfile_plugin_init
+buffer_init
+dlopen: /usr/local/lib/mod_access.so
+dlsym: mod_access_plugin_init
+buffer_init
+dlopen: /usr/local/lib/mod_scgi.so
+dlsym: mod_scgi_plugin_init
+buffer_init
+dlopen: /usr/local/lib/mod_fastcgi.so
+dlsym: mod_fastcgi_plugin_init
+buffer_init
+dlopen: /usr/local/lib/mod_accesslog.so
+dlsym: mod_accesslog_plugin_init
+buffer_init
+dlopen: /usr/local/lib/mod_dirlisting.so
+dlsym: mod_dirlisting_plugin_init
+buffer_init
+dlopen: /usr/local/lib/mod_staticfile.so
+mod_indexfile.c mod_access.c mod_scgi.c mod_fastcgi.c mod_accesslog.c
+mod_dirlisting.c mod_staticfile.c
