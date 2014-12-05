@@ -214,7 +214,8 @@ static void https_add_ssl_entries(connection *con) {
 
 handler_t http_response_prepare(server *srv, connection *con) {
 	handler_t r;
-
+	fprintf(dbgfile, "http_response_prepare: entry!\n");
+	fflush(dbgfile);
 	/* looks like someone has already done a decision */
 	if (con->mode == DIRECT &&
 	    (con->http_status != 0 && con->http_status != 200)) {
@@ -222,13 +223,16 @@ handler_t http_response_prepare(server *srv, connection *con) {
 		if (con->file_finished == 0) {
 			chunkqueue_reset(con->write_queue);
 		}
-
+		fprintf(dbgfile, "http_response_prepare: looks like someone has already done a decision and return with HANDLER_FINISHED!\n");
+		fflush(dbgfile);
 		return HANDLER_FINISHED;
 	}
 
 	/* no decision yet, build conf->filename */
 	if (con->mode == DIRECT && con->physical.path->used == 0) {
 		char *qstr;
+		fprintf(dbgfile, "http_response_prepare: have to parse the full request again\n");
+		fflush(dbgfile);
 
 		/* we only come here when we have the parse the full request again
 		 *
@@ -589,7 +593,8 @@ handler_t http_response_prepare(server *srv, connection *con) {
 			if (S_ISDIR(sce->st.st_mode)) {
 				if (con->uri.path->ptr[con->uri.path->used - 2] != '/') {
 					/* redirect to .../ */
-
+					fprintf(dbgfile, "http_response_prepare: call http_response_redirect_to_directory\n");
+					fflush(dbgfile);
 					http_response_redirect_to_directory(srv, con);
 
 					return HANDLER_FINISHED;

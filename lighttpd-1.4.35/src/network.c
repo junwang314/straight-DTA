@@ -1034,6 +1034,9 @@ int network_register_fdevents(server *srv) {
 }
 
 int network_write_chunkqueue(server *srv, connection *con, chunkqueue *cq, off_t max_bytes) {
+	fprintf(dbgfile, "network_write_chunkqueue: entry!\n");
+	fflush(dbgfile);
+
 	int ret = -1;
 	off_t written = 0;
 #ifdef TCP_CORK

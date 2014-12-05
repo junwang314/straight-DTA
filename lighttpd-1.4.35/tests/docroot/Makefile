@@ -105,11 +105,11 @@ AUTOCONF = ${SHELL} /home/jun/straight-DTA/lighttpd-1.4.35/missing --run autocon
 AUTOHEADER = ${SHELL} /home/jun/straight-DTA/lighttpd-1.4.35/missing --run autoheader
 AUTOMAKE = ${SHELL} /home/jun/straight-DTA/lighttpd-1.4.35/missing --run automake-1.11
 AWK = mawk
-BZ_LIB = 
-CC = clang -flto
+BZ_LIB = -lbz2
+CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2 -Wall -W -Wshadow -pedantic -std=gnu99
-CPP = clang -flto -E
+CPP = gcc -E
 CPPFLAGS =  -D_REENTRANT -D__EXTENSIONS__  -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES
 CRYPT_LIB = -lcrypt
 CYGPATH_W = echo
@@ -135,7 +135,7 @@ INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LBER_LIB = 
-LD = /usr/bin/ld
+LD = /usr/bin/ld -m elf_x86_64
 LDAP_LIB = 
 LDFLAGS = 
 LIBEV_CFLAGS = 
@@ -193,7 +193,7 @@ abs_srcdir = /home/jun/straight-DTA/lighttpd-1.4.35/tests/docroot
 abs_top_builddir = /home/jun/straight-DTA/lighttpd-1.4.35
 abs_top_srcdir = /home/jun/straight-DTA/lighttpd-1.4.35
 ac_ct_AR = ar
-ac_ct_CC = clang -flto
+ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .

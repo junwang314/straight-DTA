@@ -35,7 +35,7 @@
 #endif
 
 #include "sys-socket.h"
-
+extern FILE* dbgfile;
 typedef struct {
 	        PLUGIN_DATA;
 } plugin_data;
@@ -413,7 +413,11 @@ static int connection_handle_read(server *srv, connection *con) {
 }
 
 static int connection_handle_write_prepare(server *srv, connection *con) {
+	fprintf(dbgfile, "connection_handler_write_prepare: entry!\n");
+	fflush(dbgfile);
 	if (con->mode == DIRECT) {
+		fprintf(dbgfile, "connection_handler_write_prepare: static files\n");
+		fflush(dbgfile);
 		/* static files */
 		switch(con->request.http_method) {
 		case HTTP_METHOD_GET:
@@ -482,7 +486,8 @@ static int connection_handle_write_prepare(server *srv, connection *con) {
 
 			if (HANDLER_ERROR != stat_cache_get_entry(srv, con, con->physical.path, &sce)) {
 				con->file_finished = 1;
-
+				fprintf(dbgfile, "connection_handle_write_prepare: append file and overwrite header and set con->file_finished=1\n");
+				fflush(dbgfile);
 				http_chunk_append_file(srv, con, con->physical.path, 0, sce->st.st_size);
 				response_header_overwrite(srv, con, CONST_STR_LEN("Content-Type"), CONST_BUF_LEN(sce->content_type));
 			}
@@ -607,6 +612,8 @@ static int connection_handle_write_prepare(server *srv, connection *con) {
 }
 
 static int connection_handle_write(server *srv, connection *con) {
+	fprintf(dbgfile, "connection_handle_write: entry!\n");
+	fflush(dbgfile);
 	switch(network_write_chunkqueue(srv, con, con->write_queue, MAX_WRITE_LIMIT)) {
 	case 0:
 		con->write_request_ts = srv->cur_ts;
@@ -874,6 +881,8 @@ int connection_reset(server *srv, connection *con) {
  * we get called by the state-engine and by the fdevent-handler
  */
 static int connection_handle_read_state(server *srv, connection *con)  {
+	fprintf(dbgfile, "connection_handle_read_state entry!\n");
+	fflush(dbgfile);
 	connection_state_t ostate = con->state;
 	chunk *c, *last_chunk;
 	off_t last_offset;
@@ -882,6 +891,8 @@ static int connection_handle_read_state(server *srv, connection *con)  {
 	int is_closed = 0; /* the connection got closed, if we don't have a complete header, -> error */
 
 	if (con->is_readable) {
+		fprintf(dbgfile, "connection_handle_read_state call connection_handle_read\n");
+		fflush(dbgfile);
 		con->read_idle_ts = srv->cur_ts;
 
 		switch(connection_handle_read(srv, con)) {
@@ -1007,6 +1018,8 @@ found_header_end:
 					b.used = last_offset + 1;
 				}
 
+				fprintf(dbgfile, "connection_handle_read_state call buffer_append_string_buffer copy the contents from chunkqueue to con->request.request\n");
+				fflush(dbgfile);
 				buffer_append_string_buffer(con->request.request, &b);
 
 				if (c == last_chunk) {
@@ -1165,11 +1178,16 @@ found_header_end:
 }
 
 static handler_t connection_handle_fdevent(server *srv, void *context, int revents) {
+	fprintf(dbgfile, "connection_handle_fdevent entry!\n");
+	fflush(dbgfile);
 	connection *con = context;
 
 	joblist_append(srv, con);
 
 	if (con->srv_socket->is_ssl) {
+		fprintf(dbgfile, "connection_handle_fdevent is_ssl\n");
+		fflush(dbgfile);
+
 		/* ssl may read and write for both reads and writes */
 		if (revents & (FDEVENT_IN | FDEVENT_OUT)) {
 			con->is_readable = 1;
@@ -1177,9 +1195,13 @@ static handler_t connection_handle_fdevent(server *srv, void *context, int reven
 		}
 	} else {
 		if (revents & FDEVENT_IN) {
+			fprintf(dbgfile, "connection_handle_fdevent set is_readable=1\n");
+			fflush(dbgfile);
 			con->is_readable = 1;
 		}
 		if (revents & FDEVENT_OUT) {
+			fprintf(dbgfile, "connection_handle_fdevent set is_writable=1\n");
+			fflush(dbgfile);
 			con->is_writable = 1;
 			/* we don't need the event twice */
 		}
@@ -1187,6 +1209,8 @@ static handler_t connection_handle_fdevent(server *srv, void *context, int reven
 
 
 	if (revents & ~(FDEVENT_IN | FDEVENT_OUT)) {
+		fprintf(dbgfile, "connection_handle_fdevent set is neither writable or readable\n");
+		fflush(dbgfile);
 		/* looks like an error */
 
 		/* FIXME: revents = 0x19 still means that we should read from the queue */
@@ -1225,13 +1249,16 @@ static handler_t connection_handle_fdevent(server *srv, void *context, int reven
 
 	if (con->state == CON_STATE_READ ||
 	    con->state == CON_STATE_READ_POST) {
+		fprintf(dbgfile, "connection_handle_fdevent call connection_handle_read_state\n");
+		fflush(dbgfile);
 		connection_handle_read_state(srv, con);
 	}
 
 	if (con->state == CON_STATE_WRITE &&
 	    !chunkqueue_is_empty(con->write_queue) &&
 	    con->is_writable) {
-
+		fprintf(dbgfile, "connection_handle_fdevent call connection_handle_write\n");
+		fflush(dbgfile);
 		if (-1 == connection_handle_write(srv, con)) {
 			connection_set_state(srv, con, CON_STATE_ERROR);
 
@@ -1242,6 +1269,9 @@ static handler_t connection_handle_fdevent(server *srv, void *context, int reven
 	}
 
 	if (con->state == CON_STATE_CLOSE) {
+		fprintf(dbgfile, "connection_handle_fdevent CON_STATE_CLOSE\n");
+		fflush(dbgfile);
+
 		/* flush the read buffers */
 		int len;
 		char buf[1024];
@@ -1278,6 +1308,8 @@ connection *connection_accept(server *srv, server_socket *srv_socket) {
 	cnt_len = sizeof(cnt_addr);
 
 	if (-1 == (cnt = accept(srv_socket->fd, (struct sockaddr *) &cnt_addr, &cnt_len))) {
+		fprintf(dbgfile, "connection_accept: cnt is: %d\n", cnt);
+		fflush(dbgfile);
 		switch (errno) {
 		case EAGAIN:
 #if EWOULDBLOCK != EAGAIN
@@ -1322,7 +1354,9 @@ connection *connection_accept(server *srv, server_socket *srv_socket) {
 		con->dst_addr = cnt_addr;
 		buffer_copy_string(con->dst_addr_buf, inet_ntop_cache_get_ip(srv, &(con->dst_addr)));
 		con->srv_socket = srv_socket;
-
+		
+		fprintf(dbgfile, "connection_accept: cnt is: %d\n", cnt);
+		fflush(dbgfile);
 		if (-1 == (fdevent_fcntl_set(srv->ev, con->fd))) {
 			log_error_write(srv, __FILE__, __LINE__, "ss", "fcntl failed: ", strerror(errno));
 			return NULL;
@@ -1354,6 +1388,8 @@ connection *connection_accept(server *srv, server_socket *srv_socket) {
 
 
 int connection_state_machine(server *srv, connection *con) {
+	fprintf(dbgfile, "connection_state_machine: \n");
+	fflush(dbgfile);
 	int done = 0, r;
 #ifdef USE_OPENSSL
 	server_socket *srv_sock = con->srv_socket;
@@ -1371,6 +1407,8 @@ int connection_state_machine(server *srv, connection *con) {
 
 		switch (con->state) {
 		case CON_STATE_REQUEST_START: /* transient */
+			fprintf(dbgfile, "connection_state_machine: CON_STATE_REQUEST_START\n");
+			fflush(dbgfile);
 			if (srv->srvconf.log_state_handling) {
 				log_error_write(srv, __FILE__, __LINE__, "sds",
 						"state for fd", con->fd, connection_get_state(con->state));
@@ -1386,6 +1424,8 @@ int connection_state_machine(server *srv, connection *con) {
 
 			break;
 		case CON_STATE_REQUEST_END: /* transient */
+			fprintf(dbgfile, "connection_state_machine: CON_STATE_REQUEST_END\n");
+			fflush(dbgfile);
 			if (srv->srvconf.log_state_handling) {
 				log_error_write(srv, __FILE__, __LINE__, "sds",
 						"state for fd", con->fd, connection_get_state(con->state));
@@ -1398,6 +1438,8 @@ int connection_state_machine(server *srv, connection *con) {
 
 			if (http_request_parse(srv, con)) {
 				/* we have to read some data from the POST request */
+				fprintf(dbgfile, "connection_state_machine: call http_request_parse and set con->state as CON_STATE_READ_POST\n");
+				fflush(dbgfile);
 
 				connection_set_state(srv, con, CON_STATE_READ_POST);
 
@@ -1408,6 +1450,8 @@ int connection_state_machine(server *srv, connection *con) {
 
 			break;
 		case CON_STATE_HANDLE_REQUEST:
+			fprintf(dbgfile, "connection_state_machine: CON_STATE_HANDLE_REQUEST\n");
+			fflush(dbgfile);
 			/*
 			 * the request is parsed
 			 *
@@ -1424,6 +1468,8 @@ int connection_state_machine(server *srv, connection *con) {
 
 			switch (r = http_response_prepare(srv, con)) {
 			case HANDLER_FINISHED:
+				fprintf(dbgfile, "connection_state_machine: http_response_prepare returns HANDLER_FINISHED\n");
+				fflush(dbgfile);
 				if (con->mode == DIRECT) {
 					if (con->http_status == 404 ||
 					    con->http_status == 403) {
@@ -1466,6 +1512,8 @@ int connection_state_machine(server *srv, connection *con) {
 				connection_set_state(srv, con, CON_STATE_RESPONSE_START);
 				break;
 			case HANDLER_WAIT_FOR_FD:
+				fprintf(dbgfile, "connection_state_machine: http_response_prepare returns HANDLER_WAIT_FOR_FD\n");
+				fflush(dbgfile);
 				srv->want_fds++;
 
 				fdwaitqueue_append(srv, con);
@@ -1474,24 +1522,34 @@ int connection_state_machine(server *srv, connection *con) {
 
 				break;
 			case HANDLER_COMEBACK:
+				fprintf(dbgfile, "connection_state_machine: http_response_prepare returns HANDLER_COMEBACK\n");
+				fflush(dbgfile);
 				done = -1;
 				/* fallthrough */
 			case HANDLER_WAIT_FOR_EVENT:
+				fprintf(dbgfile, "connection_state_machine: http_response_prepare returns HANDLER_WAIT_FOR_EVENT\n");
+				fflush(dbgfile);
 				/* come back here */
 				connection_set_state(srv, con, CON_STATE_HANDLE_REQUEST);
 
 				break;
 			case HANDLER_ERROR:
+				fprintf(dbgfile, "connection_state_machine: http_response_prepare returns HANDLER_ERROR\n");
+				fflush(dbgfile);
 				/* something went wrong */
 				connection_set_state(srv, con, CON_STATE_ERROR);
 				break;
 			default:
+				fprintf(dbgfile, "connection_state_machine: http_response_prepare returns default\n");
+				fflush(dbgfile);
 				log_error_write(srv, __FILE__, __LINE__, "sdd", "unknown ret-value: ", con->fd, r);
 				break;
 			}
 
 			break;
 		case CON_STATE_RESPONSE_START:
+			fprintf(dbgfile, "connection_state_machine: CON_STATE_RESPONSE_START\n");
+			fflush(dbgfile);
 			/*
 			 * the decision is done
 			 * - create the HTTP-Response-Header
@@ -1512,6 +1570,8 @@ int connection_state_machine(server *srv, connection *con) {
 			connection_set_state(srv, con, CON_STATE_WRITE);
 			break;
 		case CON_STATE_RESPONSE_END: /* transient */
+			fprintf(dbgfile, "connection_state_machine: CON_STATE_RESPONSE_END\n");
+			fflush(dbgfile);
 			/* log the request */
 
 			if (srv->srvconf.log_state_handling) {
@@ -1574,6 +1634,8 @@ int connection_state_machine(server *srv, connection *con) {
 
 			break;
 		case CON_STATE_CONNECT:
+			fprintf(dbgfile, "connection_state_machine: CON_STATE_CONNECT\n");
+			fflush(dbgfile);
 			if (srv->srvconf.log_state_handling) {
 				log_error_write(srv, __FILE__, __LINE__, "sds",
 						"state for fd", con->fd, connection_get_state(con->state));
@@ -1585,6 +1647,8 @@ int connection_state_machine(server *srv, connection *con) {
 
 			break;
 		case CON_STATE_CLOSE:
+			fprintf(dbgfile, "connection_state_machine: CON_STATE_CLOSE\n");
+			fflush(dbgfile);
 			if (srv->srvconf.log_state_handling) {
 				log_error_write(srv, __FILE__, __LINE__, "sds",
 						"state for fd", con->fd, connection_get_state(con->state));
@@ -1616,7 +1680,11 @@ int connection_state_machine(server *srv, connection *con) {
 
 			break;
 		case CON_STATE_READ_POST:
+			fprintf(dbgfile, "connection_state_machine: CON_STATE_POST\n");
+			fflush(dbgfile);
 		case CON_STATE_READ:
+			fprintf(dbgfile, "connection_state_machine: CON_STATE_READ\n");
+			fflush(dbgfile);
 			if (srv->srvconf.log_state_handling) {
 				log_error_write(srv, __FILE__, __LINE__, "sds",
 						"state for fd", con->fd, connection_get_state(con->state));
@@ -1625,6 +1693,8 @@ int connection_state_machine(server *srv, connection *con) {
 			connection_handle_read_state(srv, con);
 			break;
 		case CON_STATE_WRITE:
+			fprintf(dbgfile, "connection_state_machine: CON_STATE_WRITE\n");
+			fflush(dbgfile);
 			if (srv->srvconf.log_state_handling) {
 				log_error_write(srv, __FILE__, __LINE__, "sds",
 						"state for fd", con->fd, connection_get_state(con->state));
@@ -1650,7 +1720,8 @@ int connection_state_machine(server *srv, connection *con) {
 
 			break;
 		case CON_STATE_ERROR: /* transient */
-
+			fprintf(dbgfile, "connection_state_machine: CON_STATE_ERROR\n");
+			fflush(dbgfile);
 			/* even if the connection was drop we still have to write it to the access log */
 			if (con->http_status) {
 				plugins_call_handle_request_done(srv, con);
@@ -1752,6 +1823,8 @@ int connection_state_machine(server *srv, connection *con) {
 
 			break;
 		default:
+			fprintf(dbgfile, "connection_state_machine: default\n");
+			fflush(dbgfile);
 			log_error_write(srv, __FILE__, __LINE__, "sdd",
 					"unknown state:", con->fd, con->state);
 
@@ -1771,11 +1844,15 @@ int connection_state_machine(server *srv, connection *con) {
 				con->fd,
 				connection_get_state(con->state));
 	}
+	fprintf(dbgfile, "connection_state_machine: end loop\n");
+	fflush(dbgfile);
 
 	switch(con->state) {
 	case CON_STATE_READ_POST:
 	case CON_STATE_READ:
 	case CON_STATE_CLOSE:
+		fprintf(dbgfile, "connection_state_machine: fdevent_event_set FDEVENT_IN\n");
+		fflush(dbgfile);
 		fdevent_event_set(srv->ev, &(con->fde_ndx), con->fd, FDEVENT_IN);
 		break;
 	case CON_STATE_WRITE:
@@ -1786,6 +1863,8 @@ int connection_state_machine(server *srv, connection *con) {
 		if (!chunkqueue_is_empty(con->write_queue) &&
 		    (con->is_writable == 0) &&
 		    (con->traffic_limit_reached == 0)) {
+			fprintf(dbgfile, "connection_state_machine: fdevent_event_set FDEVENT_OUT\n");
+			fflush(dbgfile);
 			fdevent_event_set(srv->ev, &(con->fde_ndx), con->fd, FDEVENT_OUT);
 		} else {
 			fdevent_event_del(srv->ev, &(con->fde_ndx), con->fd);

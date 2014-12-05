@@ -10,7 +10,8 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <assert.h>
-
+#include <stdio.h>
+extern FILE* dbgfile;
 
 fdevents *fdevent_init(server *srv, size_t maxfds, fdevent_handler_t type) {
 	fdevents *ev;
@@ -159,6 +160,8 @@ int fdevent_event_del(fdevents *ev, int *fde_ndx, int fd) {
 }
 
 int fdevent_event_set(fdevents *ev, int *fde_ndx, int fd, int events) {
+	fprintf(dbgfile, "fdevent_event_set: fd %d events %d\n",fd, events);
+	fflush(dbgfile);
 	int fde = fde_ndx ? *fde_ndx : -1;
 
 	if (ev->event_set) fde = ev->event_set(ev, fde, fd, events);
@@ -211,9 +214,15 @@ void fd_close_on_exec(int fd) {
 
 int fdevent_fcntl_set(fdevents *ev, int fd) {
 	fd_close_on_exec(fd);
-	if ((ev) && (ev->fcntl_set)) return ev->fcntl_set(ev, fd);
-#ifdef O_NONBLOCK
-	return fcntl(fd, F_SETFL, O_NONBLOCK | O_RDWR);
+	if ((ev) && (ev->fcntl_set)) {
+		fprintf(dbgfile, "fdevent_fcntl_set: call fcntl_set\n");
+		fflush(dbgfile);
+		return ev->fcntl_set(ev, fd);
+	}
+#ifdef o_nonblock
+	fprintf(dbgfile, "fdevent_fcntl_set: call fcntl\n");
+	fflush(dbgfile);
+	return fcntl(fd, f_SETFL, O_NONBLOCK | O_RDWR);
 #else
 	return 0;
 #endif

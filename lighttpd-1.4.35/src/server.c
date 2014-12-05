@@ -1290,7 +1290,11 @@ int main (int argc, char **argv) {
 				 * check all connections for timeouts
 				 *
 				 */
+				fprintf(dbgfile, "main-loop: conns->used: %d\n", conns->used);
+				fflush(dbgfile);
 				for (ndx = 0; ndx < conns->used; ndx++) {
+					fprintf(dbgfile, "main-loop: ndx: %d\n", ndx);
+					fflush(dbgfile);
 					int changed = 0;
 					connection *con;
 					int t_diff;
@@ -1299,8 +1303,13 @@ int main (int argc, char **argv) {
 
 					if (con->state == CON_STATE_READ ||
 					    con->state == CON_STATE_READ_POST) {
+						fprintf(dbgfile, "main-loop: con->state == CON_STATE_READ || CON_STATE_READ_POST\n");
+						fflush(dbgfile);
 						if (con->request_count == 1) {
 							if (srv->cur_ts - con->read_idle_ts > con->conf.max_read_idle) {
+								fprintf(dbgfile, "main-loop: con->state == CON_STATE_READ || CON_STATE_READ_POST time out, request_count==1\n");
+								fflush(dbgfile);
+
 								/* time - out */
 #if 0
 								log_error_write(srv, __FILE__, __LINE__, "sd",
@@ -1311,6 +1320,9 @@ int main (int argc, char **argv) {
 							}
 						} else {
 							if (srv->cur_ts - con->read_idle_ts > con->keep_alive_idle) {
+								fprintf(dbgfile, "main-loop: con->state == CON_STATE_READ || CON_STATE_READ_POST time out\n");
+								fflush(dbgfile);
+
 								/* time - out */
 #if 0
 								log_error_write(srv, __FILE__, __LINE__, "sd",
@@ -1343,6 +1355,8 @@ int main (int argc, char **argv) {
 									(int)con->conf.max_write_idle,
 									"seconds. If this a problem increase server.max-write-idle");
 							}
+							fprintf(dbgfile, "main-loop: (con->state == CON_STATE_WRITE) && (con->write_request_ts != 0) time out\n");
+							fflush(dbgfile);
 							connection_set_state(srv, con, CON_STATE_ERROR);
 							changed = 1;
 						}
@@ -1365,6 +1379,8 @@ int main (int argc, char **argv) {
 					}
 
 					if (changed) {
+						fprintf(dbgfile, "main-loop: changed\n");
+						fflush(dbgfile);
 						connection_state_machine(srv, con);
 					}
 					con->bytes_written_cur_second = 0;
@@ -1389,6 +1405,8 @@ int main (int argc, char **argv) {
 
 		if (srv->sockets_disabled) {
 			/* our server sockets are disabled, why ? */
+			fprintf(dbgfile, "main-loop: srv->sockets_disabled\n");
+			fflush(dbgfile);
 
 			if ((srv->cur_fds + srv->want_fds < srv->max_fds * 8 / 10) && /* we have enough unused fds */
 			    (srv->conns->used <= srv->max_conns * 9 / 10) &&
@@ -1406,6 +1424,8 @@ int main (int argc, char **argv) {
 			if ((srv->cur_fds + srv->want_fds > srv->max_fds * 9 / 10) || /* out of fds */
 			    (srv->conns->used >= srv->max_conns) || /* out of connections */
 			    (graceful_shutdown)) { /* graceful_shutdown */
+					fprintf(dbgfile, "main-loop: graceful shutdown\n");
+					fflush(dbgfile);
 
 				/* disable server-fds */
 
@@ -1466,6 +1486,8 @@ int main (int argc, char **argv) {
 			connection *con;
 
 			for (; free_fds > 0 && NULL != (con = fdwaitqueue_unshift(srv, srv->fdwaitqueue)); free_fds--) {
+				fprintf(dbgfile, "main-loop: we still have some fds to share\n");
+				fflush(dbgfile);
 				connection_state_machine(srv, con);
 
 				srv->want_fds--;
@@ -1473,6 +1495,8 @@ int main (int argc, char **argv) {
 		}
 
 		if ((n = fdevent_poll(srv->ev, 1000)) > 0) {
+			fprintf(dbgfile, "main-loop: n=fdevent_poll() %d\n",n);
+			fflush(dbgfile);
 			/* n is the number of events */
 			int revents;
 			int fd_ndx;
@@ -1501,6 +1525,9 @@ int main (int argc, char **argv) {
 				log_error_write(srv, __FILE__, __LINE__, "sdd",
 						"event for", fd, revents);
 #endif
+				fprintf(dbgfile, "main-loop: handle event n=%d, fd=%d\n",n, fd);
+				fflush(dbgfile);
+			
 				switch (r = (*handler)(srv, context, revents)) {
 				case HANDLER_FINISHED:
 				case HANDLER_GO_ON:
@@ -1521,10 +1548,13 @@ int main (int argc, char **argv) {
 					"fdevent_poll failed:",
 					strerror(errno));
 		}
-
+		fprintf(dbgfile, "main-loop: finished handling n=%d events\n",n);
+		fflush(dbgfile);
 		for (ndx = 0; ndx < srv->joblist->used; ndx++) {
 			connection *con = srv->joblist->ptr[ndx];
 			handler_t r;
+			fprintf(dbgfile, "main-loop: for (ndx = 0; ndx < srv->joblist->used; ndx++)\n");
+			fflush(dbgfile);
 
 			connection_state_machine(srv, con);
 

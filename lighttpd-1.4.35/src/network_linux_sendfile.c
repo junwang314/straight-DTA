@@ -23,10 +23,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include <fcntl.h>
-
+#include "stdio.h"
 /* on linux 2.4.29 + debian/ubuntu we have crashes if this is enabled */
 #undef HAVE_POSIX_FADVISE
 
+extern FILE* dbgfile;
 int network_write_chunkqueue_linuxsendfile(server *srv, connection *con, int fd, chunkqueue *cq, off_t max_bytes) {
 	chunk *c;
 
@@ -152,9 +153,11 @@ int network_write_chunkqueue_linuxsendfile(server *srv, connection *con, int fd,
 				}
 #endif
 			}
+			fprintf(dbgfile, "linux sendfile: out fd %d in fd %d in file name %s\n", fd, c->file.fd, c->file.name->ptr);
+			fflush(dbgfile);
 
 			if (-1 == (r = sendfile(fd, c->file.fd, &offset, toSend))) {
-				switch (errno) {
+								switch (errno) {
 				case EAGAIN:
 				case EINTR:
 					/* ok, we can't send more, let's try later again */

@@ -16,6 +16,7 @@
 
 # include <sys/epoll.h>
 
+extern FILE* dbgfile;
 static void fdevent_linux_sysepoll_free(fdevents *ev) {
 	close(ev->epoll_fd);
 	free(ev->epoll_events);
@@ -83,6 +84,8 @@ static int fdevent_linux_sysepoll_event_set(fdevents *ev, int fde_ndx, int fd, i
 }
 
 static int fdevent_linux_sysepoll_poll(fdevents *ev, int timeout_ms) {
+	fprintf(dbgfile, "fdevent_linux_sysepoll_poll: %d\n");
+	fflush(dbgfile);
 	return epoll_wait(ev->epoll_fd, ev->epoll_events, ev->maxfds, timeout_ms);
 }
 

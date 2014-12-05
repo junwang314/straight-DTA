@@ -23,8 +23,6 @@ static const char hex_chars[] = "0123456789abcdef";
 FILE* dbgfile;
 
 buffer* buffer_init(void) {
-	fprintf(dbgfile, "buffer_init\n");
-	fflush(dbgfile);
 	buffer *b;
 
 	b = malloc(sizeof(*b));
