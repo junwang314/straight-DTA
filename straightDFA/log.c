@@ -61,6 +61,11 @@ void _StraightTaint_log(short BBID)
 #endif
 }
 
+void _StraightTaint_logCounter(int c){
+  _StraightTaint_log((short)(c/BBID));
+  _StraightTaint_log((short)(c%BBID));
+}
+
 void *_StraightTaint_logger_thread(void *arg)
 {
     fprintf(Ferror,"create logger thread. pid: %d\n",getpid());
