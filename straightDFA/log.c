@@ -62,8 +62,8 @@ void _StraightTaint_log(short BBID)
 }
 
 void _StraightTaint_logCounter(int c){
-  _StraightTaint_log((short)(c/BBID));
-  _StraightTaint_log((short)(c%BBID));
+  _StraightTaint_log((short)(c/65536));
+  _StraightTaint_log((short)(c%65536));
 }
 
 void *_StraightTaint_logger_thread(void *arg)
