@@ -26,6 +26,13 @@ CPPFLAGS += -isystem $(GTEST_DIR)/include
 
 # Flags passed to the C++ compiler.
 CXXFLAGS += -g -Wall -Wextra -pthread -std=c++0x
+CXXFLAGS += -D__STDC_CONSTANT_MACROS -D__STDC_LIMIT_MACROS
+
+#Gaoyao
+LIBDIR=/home/jun/llvm-3.x/build/Release+Asserts/lib
+OBJDIR=/home/jun/llvm-3.x/build/lib/Transforms/Hello/Release+Debug+Asserts
+LIBS= -lLLVMIRReader -lLLVMTableGen -lLLVMMCJIT -lLLVMRuntimeDyld -lLLVMObject -lLLVMMCDisassembler -lLLVMLinker -lLLVMipo -lLLVMInterpreter -lLLVMInstrumentation -lLLVMJIT -lLLVMExecutionEngine -lLLVMDebugInfo -lLLVMBitWriter -lLLVMX86Disassembler -lLLVMX86AsmParser -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMSelectionDAG -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMX86Info -lLLVMAsmPrinter -lLLVMMCParser -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAsmParser -lLLVMBitReader -lLLVMAnalysis -lLLVMTarget -lLLVMMC -lLLVMCore -lLLVMSupport -ldl -lpthread
+OBJS= $(OBJDIR)/INPUT_InstTrace.o $(OBJDIR)/Analyzer_handleConstExpr.o $(OBJDIR)/Analyzer_test.o $(OBJDIR)/inlineLog.o $(OBJDIR)/INPUT_SyscallTrace.o $(OBJDIR)/MetaDFAOrigin.o $(OBJDIR)/Analyzer_handleLibCall.o $(OBJDIR)/Analyzer_utils.o $(OBJDIR)/INPUT_GlobalData.o $(OBJDIR)/instrumentIR.o  $(OBJDIR)/Analyzer_instHandlers.o     $(OBJDIR)/DEBUG_utils.o $(OBJDIR)/LocalMemMap.o $(OBJDIR)/OUTPUT_GraphGenerator.o $(OBJDIR)/Analyzer.o $(OBJDIR)/GlobalMemMap.o $(OBJDIR)/INPUT_SigHandler.o $(OBJDIR)/MetaDFA.o
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
@@ -71,17 +78,14 @@ gtest_main.a : gtest-all.o gtest_main.o
 # gtest_main.a, depending on whether it defines its own main()
 # function.
 
-try:
-	echo $(USER_DIR)
-	echo "\\\\\\\0"
-	echo $(USER_DIR)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/TEST_InstTrace.cc
-
 TEST_InstTrace.o : $(USER_DIR)/TEST_InstTrace.cc
 	echo $(USER_DIR)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/TEST_InstTrace.cc
 
 #Gaoyao: link with gtest.a instead of gtest_main.a, coz the
 #TEST_InstTrace.cc has main function defined
-TEST_InstTrace : TEST_InstTrace.o gtest.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+TEST_InstTrace : TEST_InstTrace.o gtest.a $(OBJS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@ -L$(LIBDIR) $(LIBS)
+
+run.TEST_InstTrace:
+	./TEST_InstTrace
