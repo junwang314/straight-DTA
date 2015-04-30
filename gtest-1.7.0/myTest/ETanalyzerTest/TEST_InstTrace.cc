@@ -63,6 +63,42 @@ TEST_F(InstTraceFix, ForkQueue){
 	globalData.reset((INPUT_GlobalData*)NULL);
 }
 
+bool isEntryInst(Instruction const* inst){
+	if(inst==NULL)return false;
+	BasicBlock const* bbl=inst->getParent();
+	if(bbl==NULL)return false;
+	if(&(bbl->front())!=inst)return false;
+	Function const* func=bbl->getParent();
+	if(func==NULL)return false;
+	if(bbl!=&(func->getEntryBlock()))return false;
+	return true;
+}
+
+bool verifyInstTrace(deque<Instruction const*> const instTrace){
+	stack<Function const*> callstk;
+	for(auto i=instTrace.begin(), i_e=instTrace.end(); i!=i_e; i++){
+		Instruction const* inst=*i;
+		if(isEntryInst(inst)){
+			Function const* func=inst->getParent()->getParent();
+			callstk.push(func);
+		}else if(isa<ReturnInst>(inst)){
+			if(callstk.empty()){
+				cout<<"InstTrace Error: Excessive return inst!\n";
+				return false;
+			}else{
+				Function const* tmp=callstk.top();
+				if(tmp==inst->getParent()->getParent()){
+					callstk.pop();
+				}else{
+					cout<<"InstTrace Error: call-return not match!\n";
+					return false;
+				}
+			}
+		}
+		
+	}
+	return true;
+}
 
 TEST_F(InstTraceFix, traceBB){
 	string logdir("/home/jun/straight-DTA/pserv-3.3/test");
@@ -74,6 +110,24 @@ TEST_F(InstTraceFix, traceBB){
 
 	INPUT_InstTrace* it=new INPUT_InstTrace( *m1, logdir, cfigfile );
 
+	EXPECT_FALSE(it->isForkQueueEmpty());
+	char const* traceFileName=it->getLogFileName();
+	it->updateInstTrace(traceFileName);
+	EXPECT_TRUE(it->isForkQueueEmpty());
+
+}
+
+TEST_F(InstTraceFix, instTrace){
+	string logdir("/home/jun/straight-DTA/pserv-3.3/test");
+	string cfigfile("configFile");
+
+	debug_utils.reset(new DEBUG_utils());
+	sigHandlerSet.reset(new INPUT_SigHandlerSet( (logdir+"/"+"sigHandlerFile").c_str() ));
+	globalData.reset(new INPUT_GlobalData(*m1));
+
+	INPUT_InstTrace* it=new INPUT_InstTrace( *m1, logdir, cfigfile );
+	auto instTrace1=it->getTraceInstForReadOnly();
+	EXPECT_TRUE(verifyInstTrace(instTrace1));
 	EXPECT_FALSE(it->isForkQueueEmpty());
 	char const* traceFileName=it->getLogFileName();
 	it->updateInstTrace(traceFileName);
