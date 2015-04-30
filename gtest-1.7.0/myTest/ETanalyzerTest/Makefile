@@ -87,5 +87,5 @@ TEST_InstTrace.o : $(USER_DIR)/TEST_InstTrace.cc
 TEST_InstTrace : TEST_InstTrace.o gtest.a $(OBJS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@ -L$(LIBDIR) $(LIBS)
 
-run.TEST_InstTrace:
+run.TEST_InstTrace:TEST_InstTrace
 	./TEST_InstTrace
