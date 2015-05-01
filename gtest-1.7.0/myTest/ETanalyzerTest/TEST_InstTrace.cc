@@ -32,7 +32,7 @@ class InstTraceFix: public testing::Test{
 		SMDiagnostic error1;
 		Module const * m1;
 };
-
+/*
 TEST_F(InstTraceFix, ForkQueue){
 	string logdir("/home/jun/straight-DTA/pserv-3.3/test");
 	string cfigfile("configFile");
@@ -62,7 +62,7 @@ TEST_F(InstTraceFix, ForkQueue){
 	sigHandlerSet.reset((INPUT_SigHandlerSet*)NULL);
 	globalData.reset((INPUT_GlobalData*)NULL);
 }
-
+*/
 bool isEntryInst(Instruction const* inst){
 	if(inst==NULL)return false;
 	BasicBlock const* bbl=inst->getParent();
@@ -74,6 +74,32 @@ bool isEntryInst(Instruction const* inst){
 	return true;
 }
 
+bool isCallExit(Instruction const* inst){
+	if(CallInst const* callInst=dyn_cast<CallInst>(inst)){
+		Function const* func=callInst->getCalledFunction();
+		if(func==NULL)return false;
+		string funcName(func->getName().data());
+		if(funcName=="exit"){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}else{
+		return false;
+	}
+}
+
+void dumpInstTrace(deque<Instruction const*> const instTrace){
+	for(auto i=instTrace.begin(), i_e=instTrace.end(); i!=i_e; i++){
+		Instruction const* inst=*i;
+		if(BasicBlock const* bbl=inst->getParent()){
+			cerr<<bbl->getParent()->getName().data()<<"\t";
+		}
+		inst->dump();
+	}
+}
+
 bool verifyInstTrace(deque<Instruction const*> const instTrace){
 	stack<Function const*> callstk;
 	for(auto i=instTrace.begin(), i_e=instTrace.end(); i!=i_e; i++){
@@ -81,7 +107,7 @@ bool verifyInstTrace(deque<Instruction const*> const instTrace){
 		if(isEntryInst(inst)){
 			Function const* func=inst->getParent()->getParent();
 			callstk.push(func);
-		}else if(isa<ReturnInst>(inst)){
+		}else if(isa<ReturnInst>(inst) || isCallExit(inst)){
 			if(callstk.empty()){
 				cout<<"InstTrace Error: Excessive return inst!\n";
 				return false;
@@ -91,6 +117,8 @@ bool verifyInstTrace(deque<Instruction const*> const instTrace){
 					callstk.pop();
 				}else{
 					cout<<"InstTrace Error: call-return not match!\n";
+					cout<<"Entry function: "<<tmp->getName().data()<<"\n";
+					cout<<"ReturnInst in function: "<<inst->getParent()->getParent()->getName().data()<<"\n";
 					return false;
 				}
 			}
@@ -99,7 +127,7 @@ bool verifyInstTrace(deque<Instruction const*> const instTrace){
 	}
 	return true;
 }
-
+/*
 TEST_F(InstTraceFix, traceBB){
 	string logdir("/home/jun/straight-DTA/pserv-3.3/test");
 	string cfigfile("configFile");
@@ -116,7 +144,7 @@ TEST_F(InstTraceFix, traceBB){
 	EXPECT_TRUE(it->isForkQueueEmpty());
 
 }
-
+*/
 TEST_F(InstTraceFix, instTrace){
 	string logdir("/home/jun/straight-DTA/pserv-3.3/test");
 	string cfigfile("configFile");
@@ -127,14 +155,16 @@ TEST_F(InstTraceFix, instTrace){
 
 	INPUT_InstTrace* it=new INPUT_InstTrace( *m1, logdir, cfigfile );
 	auto instTrace1=it->getTraceInstForReadOnly();
-	EXPECT_TRUE(verifyInstTrace(instTrace1));
+	bool traceIsValid=verifyInstTrace(instTrace1);
+	EXPECT_TRUE(traceIsValid);
+	if(traceIsValid==false){
+		dumpInstTrace(instTrace1);
+	}
 	EXPECT_FALSE(it->isForkQueueEmpty());
 	char const* traceFileName=it->getLogFileName();
 	it->updateInstTrace(traceFileName);
 	EXPECT_TRUE(it->isForkQueueEmpty());
-
 }
-
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
