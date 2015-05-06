@@ -32,7 +32,7 @@ class InstTraceFix: public testing::Test{
 		SMDiagnostic error1;
 		Module const * m1;
 };
-/*
+
 TEST_F(InstTraceFix, ForkQueue){
 	string logdir("/home/jun/straight-DTA/pserv-3.3/test");
 	string cfigfile("configFile");
@@ -62,7 +62,7 @@ TEST_F(InstTraceFix, ForkQueue){
 	sigHandlerSet.reset((INPUT_SigHandlerSet*)NULL);
 	globalData.reset((INPUT_GlobalData*)NULL);
 }
-*/
+
 bool isEntryInst(Instruction const* inst){
 	if(inst==NULL)return false;
 	BasicBlock const* bbl=inst->getParent();
@@ -127,7 +127,7 @@ bool verifyInstTrace(deque<Instruction const*> const instTrace){
 	}
 	return true;
 }
-/*
+
 TEST_F(InstTraceFix, traceBB){
 	string logdir("/home/jun/straight-DTA/pserv-3.3/test");
 	string cfigfile("configFile");
@@ -144,7 +144,7 @@ TEST_F(InstTraceFix, traceBB){
 	EXPECT_TRUE(it->isForkQueueEmpty());
 
 }
-*/
+
 TEST_F(InstTraceFix, instTrace){
 	string logdir("/home/jun/straight-DTA/pserv-3.3/test");
 	string cfigfile("configFile");
@@ -155,6 +155,7 @@ TEST_F(InstTraceFix, instTrace){
 
 	INPUT_InstTrace* it=new INPUT_InstTrace( *m1, logdir, cfigfile );
 	auto instTrace1=it->getTraceInstForReadOnly();
+	EXPECT_TRUE(instTrace1.size()>0);
 	bool traceIsValid=verifyInstTrace(instTrace1);
 	EXPECT_TRUE(traceIsValid);
 	if(traceIsValid==false){
@@ -164,6 +165,49 @@ TEST_F(InstTraceFix, instTrace){
 	char const* traceFileName=it->getLogFileName();
 	it->updateInstTrace(traceFileName);
 	EXPECT_TRUE(it->isForkQueueEmpty());
+	auto instTrace2=it->getTraceInstForReadOnly();
+	EXPECT_TRUE(instTrace2.size()>0);
+	traceIsValid=verifyInstTrace(instTrace2);
+	EXPECT_TRUE(traceIsValid);
+	if(traceIsValid==false){
+		dumpInstTrace(instTrace2);
+	}
+}
+
+TEST_F(InstTraceFix, iterator){
+	string logdir("/home/jun/straight-DTA/pserv-3.3/test");
+	string cfigfile("configFile");
+
+	debug_utils.reset(new DEBUG_utils());
+	sigHandlerSet.reset(new INPUT_SigHandlerSet( (logdir+"/"+"sigHandlerFile").c_str() ));
+	globalData.reset(new INPUT_GlobalData(*m1));
+
+	INPUT_InstTrace* it=new INPUT_InstTrace( *m1, logdir, cfigfile );
+
+	auto instTrace=it->getTraceInstForReadOnly();
+	auto begin=it->getTraceInstBegin();
+	auto end=it->getTraceInstEnd();
+	long numInst1=0;
+	for(auto i=begin; i!=end; i++){
+		numInst1++;
+	}
+	EXPECT_TRUE(numInst1>0);
+	for(auto i=instTrace.begin(), i_e=instTrace.end(); i!=i_e; i++){
+		numInst1--;
+	}
+	EXPECT_TRUE(numInst1==0);
+	bool traceAreSame=true;
+	if(numInst1==0){
+		for(auto i=instTrace.begin(), i_e=instTrace.end(); i!=i_e; i++, begin++){
+			Instruction const* k1=*i;
+			Instruction const* k2=*begin;
+			if(k1->getOpcode()!=k2->getOpcode()){
+				traceAreSame=false;
+				break;
+			}
+		}
+		EXPECT_TRUE(traceAreSame);
+	}
 }
 
 int main(int argc, char **argv) {
