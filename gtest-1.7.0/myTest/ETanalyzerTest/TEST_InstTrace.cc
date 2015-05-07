@@ -25,12 +25,17 @@ shared_ptr<DEBUG_utils> debug_utils;
 class InstTraceFix: public testing::Test{
   protected:   
     virtual void SetUp(){
-			string irfile("/home/jun/straight-DTA/pserv-3.3/test/pserv.bc");
-			m1=ParseIRFile(irfile.c_str(), error1, context1);
+			string irfile_pserv("/home/jun/straight-DTA/pserv-3.3/test/pserv.bc");
+			m1=ParseIRFile(irfile_pserv.c_str(), error1, context1);
+      string irfile_vsftpd("/home/jun/straight-DTA/vsftpd-2.2.2/test/vsftpd.bc");
+      m2=ParseIRFile(irfile_vsftpd.c_str(), error2, context2);
 		}
     LLVMContext context1;
 		SMDiagnostic error1;
 		Module const * m1;
+    LLVMContext context2;
+    SMDiagnostic error2;
+    Module const * m2;
 };
 
 TEST_F(InstTraceFix, ForkQueue){
