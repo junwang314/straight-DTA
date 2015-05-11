@@ -25,47 +25,42 @@ shared_ptr<DEBUG_utils> debug_utils;
 class InstTraceFix: public testing::Test{
   protected:   
     virtual void SetUp(){
-			string irfile_pserv("/home/jun/straight-DTA/pserv-3.3/test/pserv.bc");
-			m1=ParseIRFile(irfile_pserv.c_str(), error1, context1);
       string irfile_vsftpd("/home/jun/straight-DTA/vsftpd-2.2.2/test/vsftpd.bc");
       m2=ParseIRFile(irfile_vsftpd.c_str(), error2, context2);
 		}
-    LLVMContext context1;
-		SMDiagnostic error1;
-		Module const * m1;
     LLVMContext context2;
     SMDiagnostic error2;
     Module const * m2;
 };
 
-TEST_F(InstTraceFix, ForkQueue){
-	string logdir("/home/jun/straight-DTA/pserv-3.3/test");
-	string cfigfile("configFile");
+TEST_F(InstTraceFix, ForkQueue_vsftpd){
+  string logdir("/home/jun/straight-DTA/vsftpd-2.2.2/test");
+  string cfigfile("configFile");
 
-	debug_utils.reset(new DEBUG_utils());
-	sigHandlerSet.reset(new INPUT_SigHandlerSet( (logdir+"/"+"sigHandlerFile").c_str() ));
-	globalData.reset(new INPUT_GlobalData(*m1));
+  debug_utils.reset(new DEBUG_utils());
+  sigHandlerSet.reset(new INPUT_SigHandlerSet( (logdir+"/"+"sigHandlerFile").c_str() ));
+  globalData.reset(new INPUT_GlobalData(*m2));
 
-	INPUT_InstTrace* it=new INPUT_InstTrace( *m1, logdir, cfigfile );
-	EXPECT_FALSE(it->isForkQueueEmpty());
-	char* fq1=it->getForkQueueFront();
-	EXPECT_TRUE(fq1!=NULL);
-	string fq1s(fq1);
-	EXPECT_TRUE(fq1s == "tmp.19007.full");
-	it->popForkQueue();
-	EXPECT_FALSE(it->isForkQueueEmpty());
-	char* fq2=it->getForkQueueFront();
-	EXPECT_TRUE(fq2!=NULL);
-	string fq2s(fq2);
-	EXPECT_TRUE(fq2s == "tmp.19010.full");
-	it->popForkQueue();
-	EXPECT_TRUE(it->isForkQueueEmpty());	
-	
-	delete it;
+  INPUT_InstTrace* it=new INPUT_InstTrace( *m2, logdir, cfigfile );
+  EXPECT_FALSE(it->isForkQueueEmpty());
+  char* fq1=it->getForkQueueFront();
+  EXPECT_TRUE(fq1!=NULL);
+  string fq1s(fq1);
+  EXPECT_TRUE(fq1s == "tmp.27340.full");
+  it->popForkQueue();
+  EXPECT_FALSE(it->isForkQueueEmpty());
+  char* fq2=it->getForkQueueFront();
+  EXPECT_TRUE(fq2!=NULL);
+  string fq2s(fq2);
+  EXPECT_TRUE(fq2s == "tmp.27348.full");
+  it->popForkQueue();
+  EXPECT_TRUE(it->isForkQueueEmpty());
 
-	debug_utils.reset((DEBUG_utils*)NULL);
-	sigHandlerSet.reset((INPUT_SigHandlerSet*)NULL);
-	globalData.reset((INPUT_GlobalData*)NULL);
+  delete it;
+
+  debug_utils.reset((DEBUG_utils*)NULL);
+  sigHandlerSet.reset((INPUT_SigHandlerSet*)NULL);
+  globalData.reset((INPUT_GlobalData*)NULL);
 }
 
 bool isEntryInst(Instruction const* inst){
@@ -133,61 +128,66 @@ bool verifyInstTrace(deque<Instruction const*> const instTrace){
 	return true;
 }
 
-TEST_F(InstTraceFix, traceBB){
-	string logdir("/home/jun/straight-DTA/pserv-3.3/test");
+TEST_F(InstTraceFix, traceBB_vsftpd){
+	string logdir("/home/jun/straight-DTA/vsftpd-2.2.2/test");
 	string cfigfile("configFile");
 
 	debug_utils.reset(new DEBUG_utils());
 	sigHandlerSet.reset(new INPUT_SigHandlerSet( (logdir+"/"+"sigHandlerFile").c_str() ));
-	globalData.reset(new INPUT_GlobalData(*m1));
+	globalData.reset(new INPUT_GlobalData(*m2));
 
-	INPUT_InstTrace* it=new INPUT_InstTrace( *m1, logdir, cfigfile );
-
+	INPUT_InstTrace* it=new INPUT_InstTrace( *m2, logdir, cfigfile );
 	EXPECT_FALSE(it->isForkQueueEmpty());
-	char const* traceFileName=it->getLogFileName();
-	it->updateInstTrace(traceFileName);
-	EXPECT_TRUE(it->isForkQueueEmpty());
 
+	//child process
+	char const* traceFileNameChild=it->getLogFileName();
+	it->updateInstTrace(traceFileNameChild);
+	EXPECT_FALSE(it->isForkQueueEmpty());
+	//child of child process
+	char const* traceFileNameChildOfChild=it->getLogFileName();
+	it->updateInstTrace(traceFileNameChildOfChild);
+	EXPECT_TRUE(it->isForkQueueEmpty());
 }
 
-TEST_F(InstTraceFix, instTrace){
-	string logdir("/home/jun/straight-DTA/pserv-3.3/test");
+TEST_F(InstTraceFix, instTrace_vsftpd){
+	string logdir("/home/jun/straight-DTA/vsftpd-2.2.2/test");
 	string cfigfile("configFile");
 
 	debug_utils.reset(new DEBUG_utils());
 	sigHandlerSet.reset(new INPUT_SigHandlerSet( (logdir+"/"+"sigHandlerFile").c_str() ));
-	globalData.reset(new INPUT_GlobalData(*m1));
+	globalData.reset(new INPUT_GlobalData(*m2));
 
-	INPUT_InstTrace* it=new INPUT_InstTrace( *m1, logdir, cfigfile );
+	INPUT_InstTrace* it=new INPUT_InstTrace( *m2, logdir, cfigfile );
 	auto instTrace1=it->getTraceInstForReadOnly();
 	EXPECT_TRUE(instTrace1.size()>0);
 	bool traceIsValid=verifyInstTrace(instTrace1);
 	EXPECT_TRUE(traceIsValid);
 	if(traceIsValid==false){
-		dumpInstTrace(instTrace1);
+		//dumpInstTrace(instTrace1);
 	}
 	EXPECT_FALSE(it->isForkQueueEmpty());
-	char const* traceFileName=it->getLogFileName();
-	it->updateInstTrace(traceFileName);
-	EXPECT_TRUE(it->isForkQueueEmpty());
+	//child process
+	char const* traceFileNameChild=it->getLogFileName();
+	it->updateInstTrace(traceFileNameChild);
+	EXPECT_FALSE(it->isForkQueueEmpty());
 	auto instTrace2=it->getTraceInstForReadOnly();
 	EXPECT_TRUE(instTrace2.size()>0);
 	traceIsValid=verifyInstTrace(instTrace2);
 	EXPECT_TRUE(traceIsValid);
 	if(traceIsValid==false){
-		dumpInstTrace(instTrace2);
+		//dumpInstTrace(instTrace2);
 	}
 }
 
-TEST_F(InstTraceFix, iterator){
-	string logdir("/home/jun/straight-DTA/pserv-3.3/test");
+TEST_F(InstTraceFix, iterator_vftpd){
+	string logdir("/home/jun/straight-DTA/vsftpd-2.2.2/test");
 	string cfigfile("configFile");
 
 	debug_utils.reset(new DEBUG_utils());
 	sigHandlerSet.reset(new INPUT_SigHandlerSet( (logdir+"/"+"sigHandlerFile").c_str() ));
-	globalData.reset(new INPUT_GlobalData(*m1));
+	globalData.reset(new INPUT_GlobalData(*m2));
 
-	INPUT_InstTrace* it=new INPUT_InstTrace( *m1, logdir, cfigfile );
+	INPUT_InstTrace* it=new INPUT_InstTrace( *m2, logdir, cfigfile );
 
 	auto instTrace=it->getTraceInstForReadOnly();
 	auto begin=it->getTraceInstBegin();

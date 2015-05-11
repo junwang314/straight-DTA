@@ -36,7 +36,7 @@ OBJS= $(OBJDIR)/INPUT_InstTrace.o $(OBJDIR)/Analyzer_handleConstExpr.o $(OBJDIR)
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
-TESTS = TEST_InstTrace 
+TESTS = TEST_InstTrace_pserv TE_InstTrace_vsfptd 
 
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
@@ -78,14 +78,23 @@ gtest_main.a : gtest-all.o gtest_main.o
 # gtest_main.a, depending on whether it defines its own main()
 # function.
 
-TEST_InstTrace.o : $(USER_DIR)/TEST_InstTrace.cc
+TEST_InstTrace_pserv.o : $(USER_DIR)/TEST_InstTrace_pserv.cc
 	echo $(USER_DIR)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/TEST_InstTrace.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/TEST_InstTrace_pserv.cc
+
+
+TEST_InstTrace_vsftpd.o : $(USER_DIR)/TEST_InstTrace_vsftpd.cc
+	echo $(USER_DIR)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/TEST_InstTrace_vsftpd.cc
 
 #Gaoyao: link with gtest.a instead of gtest_main.a, coz the
 #TEST_InstTrace.cc has main function defined
-TEST_InstTrace : TEST_InstTrace.o gtest.a $(OBJS)
+TEST_InstTrace_pserv : TEST_InstTrace_pserv.o gtest.a $(OBJS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@ -L$(LIBDIR) $(LIBS)
 
-run.TEST_InstTrace:TEST_InstTrace
-	./TEST_InstTrace
+TEST_InstTrace_vsftpd : TEST_InstTrace_vsftpd.o gtest.a $(OBJS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@ -L$(LIBDIR) $(LIBS)
+
+run.TEST_InstTrace: TEST_InstTrace_pserv TEST_InstTrace_vsftpd 
+	./TEST_InstTrace_pserv
+	./TEST_InstTrace_vsftpd
