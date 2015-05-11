@@ -95,6 +95,8 @@ TEST_InstTrace_pserv : TEST_InstTrace_pserv.o gtest.a $(OBJS)
 TEST_InstTrace_vsftpd : TEST_InstTrace_vsftpd.o gtest.a $(OBJS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@ -L$(LIBDIR) $(LIBS)
 
-run.TEST_InstTrace: TEST_InstTrace_pserv TEST_InstTrace_vsftpd 
+run.TEST_InstTrace_pserv: TEST_InstTrace_pserv 
 	./TEST_InstTrace_pserv
+
+run.TEST_InstTrace_vsftpd: TEST_InstTrace_vsftpd 
 	./TEST_InstTrace_vsftpd
