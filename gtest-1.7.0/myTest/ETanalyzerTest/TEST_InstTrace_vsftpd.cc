@@ -177,6 +177,26 @@ TEST_F(InstTraceFix, instTrace_vsftpd){
 	if(traceIsValid==false){
 		//dumpInstTrace(instTrace2);
 	}
+	//child1 of child process
+	EXPECT_FALSE(it->isForkQueueEmpty());
+	char const * traceFileNameChild1OfChild=it->getLogFileName();
+	it->updateInstTrace(traceFileNameChild1OfChild);
+	EXPECT_TRUE(it->isForkQueueEmpty());
+	auto instTrace3=it->getTraceInstForReadOnly();
+	EXPECT_TRUE(instTrace3.size()>0);
+	traceIsValid=verifyInstTrace(instTrace3);
+	EXPECT_TRUE(traceIsValid);
+
+	//child2 of child process
+	it->popForkQueue();
+	EXPECT_FALSE(it->isForkQueueEmpty());
+	char const * traceFileNameChild2OfChild=it->getLogFileName();
+	it->updateInstTrace(traceFileNameChild2OfChild);
+	EXPECT_TRUE(it->isForkQueueEmpty());
+	auto instTrace4=it->getTraceInstForReadOnly();
+	EXPECT_TRUE(instTrace4.size()>0);
+  traceIsValid=verifyInstTrace(instTrace4);
+  EXPECT_TRUE(traceIsValid);
 }
 
 TEST_F(InstTraceFix, iterator_vftpd){
