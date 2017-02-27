@@ -32,6 +32,8 @@ clean:$(SRC).bc $(INIT).c $(LOG).c
 	touch $^
 
 run:$(TARGET)
+	sudo service vsftpd stop
+	sleep 1
 	sudo auditctl -D
 	sudo auditctl -b 8192
 	sleep 1
